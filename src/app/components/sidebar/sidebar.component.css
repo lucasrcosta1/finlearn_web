@@ -4,12 +4,12 @@
   position: fixed;
   top: 3.75rem;
   left: 0;
-  height: calc(100% - 3.75rem);
+  height: calc(100% - 7.25rem);
   background-color: white;
   color: black;
   overflow-y: auto;
   transition: all 0.3s ease-in-out;
-  border-right: 1px solid black;
+  border-right: 0.063rem solid black;
 }
 
 .sidebar ul {
@@ -41,7 +41,13 @@
 
 ul.sub-menu li:hover {
   pointer-events: fill;
-  border-top: 0px;
+  border-top: 0;
   color: #465a6e;
   background-color: #f0f3f6;
+}
+
+@media screen and (max-width: 480px) {
+  .sidebar {
+    height: calc(100% - 3.75rem);
+  }
 }
