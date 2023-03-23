@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .clickable {
-  pointer-events: fill;
+  cursor: pointer;
+}
+
+.separator {
+  border: 1px solid #dcdbdb;
+  border-radius: 1rem;
+  width: 100%;
+  height: 5vh;
+}
+
+.field-center {
+  display: flex;
+  justify-content: center;
 }

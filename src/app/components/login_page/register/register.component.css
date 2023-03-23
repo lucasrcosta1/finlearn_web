@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.space {
+  margin-left: .3rem !important;
+}
+
+.start {
+  text-align: start;
+}
+
+.center {
+  text-align: center;
+}
+
+.end {
+  text-align: end;
+}
+
+.field {
+  width: 70%;
+}
+
+.field-start {
+  display: flex;
+  justify-content: start;
+}
+
+.field-center {
+  display: flex;
+  justify-content: center;
+}
+
+.field-end {
+  display: flex;
+  justify-content: end;
+}
+
+input {
+  padding-left: .8rem;
+  font-size: small;
+}
+
+.registerBtn {
+  border: 0px;
+  width: 15rem;
+  color: white;
+  background-color: #1f761f;
+  border-radius: 1rem;
+  margin-top: 0.625rem;
+  padding-top: 0.425rem;
+  padding-bottom: 0.425rem;
+  padding-left: .1rem;
+  padding-right: .1rem;
+}

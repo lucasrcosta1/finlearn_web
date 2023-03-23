@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Login } from '../../models/login/login.model';
+import { AppComponent } from 'src/app/app.component';
+import { Login } from '../../../models/login/login.model';
+import { RegisterComponent } from '../register/register.component';
 import { LoginService } from './service/login.service';
 
 @Component({
@@ -18,9 +21,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _formBuilder  : FormBuilder,
+    private _appComponent: AppComponent,
     private _router: Router,
+    public dialog: MatDialog,
   ) {
-    this._loginService = new LoginService(_router);
+    this._loginService = new LoginService(_router,dialog);
     this.loginForm = this._formBuilder.group({
       email   :     [this.login.email,    [Validators.required, Validators.email]],
       password:     [this.login.password, [Validators.required]],
@@ -30,28 +35,43 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   /**
-   * Submit data written in the form.
+   * Open modal to register a new user.
+   * @todo open modal inside login service.
    */
-  public onSubmit (): void {
-    console.log("hi",this.loginForm.value);
-    this._checkLoginAndRedirect(this.loginForm.value.email, this.loginForm.value.password);
+  public openModalRegister (): void{
+    const dialogConfig              = new MatDialogConfig();
+    dialogConfig.disableClose       = false;
+    dialogConfig.autoFocus          = true;
+    dialogConfig.width              = "40%";
+    dialogConfig.enterAnimationDuration = '500ms';
+    dialogConfig.height             = "auto";
+    dialogConfig.panelClass         = 'management-styles';
+
+    let dialogRef = this.dialog.open(RegisterComponent, dialogConfig);
   }
 
 
-  private _checkLoginAndRedirect (username: string, password: string): void {
+  /**
+   * Submit data written in the form.
+   */
+  public onSubmit (): void {
+    this.checkLoginAndRedirect(this.loginForm.value.email, this.loginForm.value.password);
+  }
+
+
+  public checkLoginAndRedirect (username: string, password: string): void {
     let logged: boolean = false;
 
     try {
       logged = this._loginCheck(username, password);
       if (logged) {
-        console.log("I'm going HOME!");
+        this._appComponent.login = false; // activate header/sidebar/footer
         this._loginService.redirectToHome();
       }
     } catch (error) {
       console.error("Login Error:", error);
     }
   }
-
 
   /**
    * Check whether login is successfull or failed.
@@ -61,5 +81,12 @@ export class LoginComponent implements OnInit {
    */
   private _loginCheck (username: string, password: string): boolean {
     return this._loginService.isLoggedIn(username,password);
+  }
+
+  /**
+   * Open modal with login options
+   */
+  public openModalLoginWith (): void {
+    this._loginService.loginWith();
   }
 }
