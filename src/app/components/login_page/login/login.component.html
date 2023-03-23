@@ -24,7 +24,7 @@
               type="text"
               name="email"
               placeholder="Insira seu email"
-              class="form-control separator"
+              class="separator"
               formControlName="email"
               required
             >
@@ -49,9 +49,14 @@
         <div class="mt-5">
           <button [disabled]="!loginForm.valid" type="submit" class="loginBtn clickable">Entrar</button>
         </div>
+        <div class="row mt-3 mb-4">
+          <div class="col-12 field-center">
+            <button  type="button" class="connectBtn clickable" (click)="openModalLoginWith()">Entrar com</button>
+          </div>
+        </div>
       </div>
       <div class="row-md bottom-right">
-        <p>Não tem cadastro? <a routerLink="/login/register" class="link">Clique Aqui!</a></p>
+        <p>Não tem cadastro? <a (click)="openModalRegister()" class="link clickable">Clique Aqui!</a></p>
       </div>
     </form>
 

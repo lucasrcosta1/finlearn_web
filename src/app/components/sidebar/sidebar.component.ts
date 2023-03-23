@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../login/service/login.service';
+import { AppComponent } from 'src/app/app.component';
+import { LoginService } from '../login_page/login/service/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,6 +18,7 @@ export class SidebarComponent {
     top: 0,
   });
   constructor(
+    private _appComponent: AppComponent,
     private _formBuilder: FormBuilder,
     private _router: Router,
   ) {
@@ -26,6 +28,7 @@ export class SidebarComponent {
   shouldRun = true;
 
   public logout (): void {
+    this._appComponent.login = true; // activate header/sidebar/footer
     this._loginService.logout();
   }
 }
