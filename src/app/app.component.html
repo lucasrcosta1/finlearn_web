@@ -1,4 +1,4 @@
-<app-header *ngIf="!login"></app-header>
-<app-sidebar *ngIf="!login"></app-sidebar>
+<app-header *ngIf="login"></app-header>
+<app-sidebar *ngIf="login"></app-sidebar>
 <router-outlet></router-outlet>
-<app-footer *ngIf="!login"></app-footer>
+<app-footer *ngIf="login"></app-footer>

@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       email   :     [this.login.email,    [Validators.required, Validators.email]],
       password:     [this.login.password, [Validators.required]],
     });
+    this._appComponent.login = false;
   }
 
   ngOnInit(): void { }
@@ -65,7 +66,7 @@ export class LoginComponent implements OnInit {
     try {
       logged = this._loginCheck(username, password);
       if (logged) {
-        this._appComponent.login = false; // activate header/sidebar/footer
+        this._appComponent.login = true; // activate header/sidebar/footer
         this._loginService.redirectToHome();
       }
     } catch (error) {
