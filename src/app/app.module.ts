@@ -15,9 +15,13 @@ import { LoginComponent } from './components/login_page/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+
+import { SuporteComponent } from './components/suporte/suporte.component';
+
 import { RegisterComponent } from './components/login_page/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OutsideLoginComponent } from './components/login_page/outside-login/outside-login.component';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +30,13 @@ import { OutsideLoginComponent } from './components/login_page/outside-login/out
     HomeComponent,
     HeaderComponent,
     SidebarComponent,
+
+    SuporteComponent
+
     RegisterComponent,
     FooterComponent,
     OutsideLoginComponent
+
   ],
   imports: [
     BrowserModule,
