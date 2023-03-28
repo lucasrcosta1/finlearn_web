@@ -12,21 +12,16 @@ import { LoginService } from '../login_page/login/service/login.service';
 export class SidebarComponent {
   private _loginService: LoginService;
 
-  options = this._formBuilder.group({
-    bottom: 0,
-    fixed: false,
-    top: 0,
-  });
   constructor(
     private _appComponent: AppComponent,
-    private _formBuilder: FormBuilder,
     private _router: Router,
   ) {
     this._loginService = new LoginService(_router);
   }
 
-  shouldRun = true;
-
+  /**
+   * Log client out.
+   */
   public logout (): void {
     this._appComponent.login = true; // activate header/sidebar/footer
     this._loginService.logout();

@@ -51,16 +51,19 @@ export class LoginComponent implements OnInit {
     let dialogRef = this.dialog.open(RegisterComponent, dialogConfig);
   }
 
-
   /**
    * Submit data written in the form.
    */
   public onSubmit (): void {
-    this.checkLoginAndRedirect(this.loginForm.value.email, this.loginForm.value.password);
+    this.redirect(this.loginForm.value.email, this.loginForm.value.password);
   }
 
-
-  public checkLoginAndRedirect (username: string, password: string): void {
+  /**
+   * Check and redirect login.
+   * @param username
+   * @param password
+   */
+  public redirect (username: string, password: string): void {
     let logged: boolean = false;
 
     try {
@@ -75,7 +78,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Check whether login is successfull or failed.
+   * Check whether login was successfull or not.
    * @param username
    * @param password
    * @returns
