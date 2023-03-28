@@ -23,17 +23,4 @@ constructor(private _formBuilder  : FormBuilder){
 onSubmit(){
   console.log("teste",this.formulario.value)
 }
-
-  // title = 'projeto-pds1';
-  // public login = true;
-
-  //Remove bellow after test is finished:
-//   public clicked_p1: boolean = false;
-//   public clicked_p2: boolean = false;
-//   public clicked_p3: boolean = false;
-//   public clicked_p4: boolean = false;
-
-// enableClick () {
-//     this.clicked_p1 = !this.clicked_p1;
-//   }
 }
