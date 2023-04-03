@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 h2{
     display: flex;
     align-items: center;
@@ -21,18 +26,6 @@ input {
     border-radius: 4px;
 }
 
-.loginBtn {
-    border: 0px;
-    color: white;
-    background-color: #1f761f;
-    border-radius: 1rem;
-    margin-top: 0.625rem;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    padding-left: 2.688rem;
-    padding-right: 2.688rem;
-}
-
 textarea{
     font-size: 1rem;
     border-radius: 8px;
@@ -43,30 +36,15 @@ p {
     font-size: 1.09rem;
 }
 
-/* #contato{
-    background-color: #80ea807a;
-} */
-
-/* .clickBtn {
-    border: 0px;
-    color: white;
-    background-color: #1f761f;
-    border-radius: 1rem;
-    margin-top: 0.625rem;
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-} */
-
-/* #resposta_faq{
-    background-color: rgba(137, 203, 121, 0.586);     
-    height: 8rem;
-    width: 92%;
-    border-radius: 1rem;
+#faq{
+    width: 80%;
+    margin-left: 4.688rem;
+    margin-top: 4.688rem;
 }
 
-#pergunta_faq{
-    background-color: rgba(38, 165, 81, 0.27);
-    border-radius: 1rem;
-} */
+.main-content {
+    margin-top: 3.75rem;
+    margin-left: 9.4rem;
+    margin-bottom: 3.75rem;
+    padding: 0.625rem;
+}

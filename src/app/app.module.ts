@@ -31,7 +31,7 @@ import { OutsideLoginComponent } from './components/login_page/outside-login/out
     HeaderComponent,
     SidebarComponent,
 
-    SuporteComponent
+    SuporteComponent,
 
     RegisterComponent,
     FooterComponent,
