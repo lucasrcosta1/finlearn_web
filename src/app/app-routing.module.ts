@@ -14,11 +14,11 @@ import { RegisterComponent } from './components/login_page/register/register.com
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
-{path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
 
+  {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
+
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'home'}, // create a not found page.
 
 ];

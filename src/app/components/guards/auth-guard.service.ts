@@ -12,6 +12,12 @@ export class AuthGuard implements CanActivate {
     private router        : Router,
   ) { }
 
+  /**
+   * Activate route to logged user.
+   * @param route
+   * @param state
+   * @returns
+   */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (localStorage.getItem('currentUser')) {
       let user = JSON.parse(localStorage.getItem('currentUser')!);

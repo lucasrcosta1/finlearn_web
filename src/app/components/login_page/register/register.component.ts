@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
-import { RegisterService } from './register.service';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +9,6 @@ import { RegisterService } from './register.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  private _registerService: RegisterService;
 
   public registerForm     : FormGroup;
 
@@ -19,7 +17,6 @@ export class RegisterComponent {
     public dialogRef: MatDialogRef<LoginComponent>,
 
   ) {
-    this._registerService = new RegisterService();
     this.registerForm = this._formBuilder.group({
       name        : [null, [Validators.required]],
       email       : [null, [Validators.required, Validators.email]],
