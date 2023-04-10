@@ -16,6 +16,10 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
+
+import { CommunityComponent } from './components/community/community.component';
+import { FormsModule } from '@angular/forms';
+
 import { RegisterComponent } from './components/login_page/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { OutsideLoginComponent } from './components/login_page/outside-login/outside-login.component';
@@ -32,6 +36,8 @@ import { OutsideLoginComponent } from './components/login_page/outside-login/out
     RegisterComponent,
     FooterComponent,
     OutsideLoginComponent,
+    CommunityComponent
+
   ],
   imports: [
     BrowserModule,
@@ -44,6 +50,7 @@ import { OutsideLoginComponent } from './components/login_page/outside-login/out
     MatToolbarModule,
     MatSidenavModule,
     MatDialogModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

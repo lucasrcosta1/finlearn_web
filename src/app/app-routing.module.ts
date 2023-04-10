@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 
 
 import { SuporteComponent } from './components/suporte/suporte.component';
+import { CommunityComponent } from './components/community/community.component';
 
 import { LoginComponent } from './components/login_page/login/login.component';
 import { RegisterComponent } from './components/login_page/register/register.component';
@@ -14,6 +15,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
+
+  {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
+
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'home'}, // create a not found page.
 
