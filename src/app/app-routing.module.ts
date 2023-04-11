@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 
 
 import { SuporteComponent } from './components/suporte/suporte.component';
+import { CommunityComponent } from './components/community/community.component';
 
 import { LoginComponent } from './components/login_page/login/login.component';
 import { RegisterComponent } from './components/login_page/register/register.component';
@@ -20,6 +21,9 @@ const routes: Routes = [
   {path: 'authenticate/simple-auth', component: SimpleAuthComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
+
+  {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
+
   {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'authenticate/simple-auth'}, // create a not found page.
 
