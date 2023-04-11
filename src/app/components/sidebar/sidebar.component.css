@@ -4,7 +4,7 @@
   position: fixed;
   top: 3.75rem;
   left: 0;
-  height: calc(100% - 7.25rem);
+  height: calc(100% - 3.75rem);
   background-color: white;
   color: black;
   overflow-y: auto;

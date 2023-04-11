@@ -10,6 +10,10 @@ h2{
     margin: 1em auto;
 }
 
+.border-right{
+    border-right:  1px solid;
+}
+
 .form-container{
     margin: 4em auto;
     width: 60%;

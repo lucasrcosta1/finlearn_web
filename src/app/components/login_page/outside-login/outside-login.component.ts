@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -25,9 +26,9 @@ export class OutsideLoginComponent {
   constructor (
     private _router: Router,
     public dialog: MatDialog,
-
+    private _http: HttpClient,
   ) {
-    this._loginService = new LoginService(_router, dialog);
+    this._loginService = new LoginService(_router, _http, dialog);
   }
 
   /**

@@ -1,18 +1,35 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
+import { catchError, Observable } from 'rxjs';
+
 import { AppComponent } from 'src/app/app.component';
 import { Login } from 'src/app/models/login/login.model';
+import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 import { OutsideLoginComponent } from '../../outside-login/outside-login.component';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private _backEndUrl: string = "/v1/user/create"; //add to env var
+
+  // "https://finlearn-api-production.up.railway.app/v1/auth/login" //usuario cadastrado
 
   constructor(
     private _router: Router,
+    private http: HttpClient,
     public dialog?: MatDialog,
   ) { }
 
@@ -75,6 +92,19 @@ export class LoginService {
   }
 
   /**
+   * Get all users.
+   * @todo Add .pipe() method to handle error with catchError().
+   * @returns
+   */
+  public getUsers (): Observable<User[]> {
+    return this.http.get<User[]>(environment.HTTP_REQUEST + '/v1/auth/me');
+  }
+
+  public postUser(user: User) {
+    return this.http.post<User>(environment.HTTP_REQUEST + '/user/create', user);
+  }
+
+  /**
    * Send username to the backend to check its validity.
    * @param username
    * @returns
@@ -92,6 +122,7 @@ export class LoginService {
   private _checkPasswordIsValid (password: string): boolean {
     return (password == environment.login.password|| password == JSON.parse(localStorage.getItem('registeredUser')!).password);
   }
+
 
 
 

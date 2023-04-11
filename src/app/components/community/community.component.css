@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    padding-left: 9.4rem;
+}
+
+.comunidade {
+    padding-top: 2rem;
+    margin-top: 4em;
+}
+
+h2{
+    padding-bottom: 2rem;
+}
+
+/* Estilo para a barra de pesquisa */
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.list-group-header, .list-group-item.list-group-header:hover {
+    background-color: green;
+    border-color: green;
+    color: white;
+}
+
+.list-group-item:hover {
+    background-color: rgba(113, 243, 113, 0.353);
+}
+
+/* Estilo para a lista de conversas */
+.conversation-list {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.conversation-list .list-group-item.active {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
