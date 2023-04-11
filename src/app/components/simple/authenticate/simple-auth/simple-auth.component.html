@@ -1,0 +1,28 @@
+
+<div class="content-wrapper">
+  <input type="radio" name="toggle" id="toggle2">
+  <input type="radio" name="toggle" id="toggle3">
+  <section id="section-1">
+    <div class="row section-style">
+      <div class="col-4">
+          <app-simple-login></app-simple-login>
+          <label class="position"  for="toggle2" >Não tenho conta</label>
+      </div>
+      <div class="col-8">
+        <app-simple-auth-bg [register]="register"></app-simple-auth-bg>
+      </div>
+    </div>
+  </section>
+  <section id="section-2">
+    <div class="row section-style">
+      <div class="col-4">
+          <app-simple-register></app-simple-register>
+          <label class="position" for="toggle3">Já tenho conta</label>
+      </div>
+      <div class="col-8">
+        <app-simple-auth-bg [register]="!register"></app-simple-auth-bg>
+      </div>
+    </div>
+  </section>
+</div>
+
