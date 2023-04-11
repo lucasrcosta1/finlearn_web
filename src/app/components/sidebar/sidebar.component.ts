@@ -1,8 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
-import { LoginService } from '../login_page/login/service/login.service';
+import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,8 +16,9 @@ export class SidebarComponent {
   constructor(
     private _appComponent: AppComponent,
     private _router: Router,
+    private _http: HttpClient,
   ) {
-    this._loginService = new LoginService(_router);
+    this._loginService = new LoginService(_router,_http);
   }
 
   /**
@@ -24,6 +26,7 @@ export class SidebarComponent {
    */
   public logout (): void {
     this._appComponent.login = true; // activate header/sidebar/footer
+    this._loginService.appComponent.login = true;
     this._loginService.logout();
   }
 }

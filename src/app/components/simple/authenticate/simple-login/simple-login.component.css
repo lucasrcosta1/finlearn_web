@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.horizontal-line {
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+.circle-red {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgb(167, 35, 35);
+  border-radius: 50%;
+}
+
+.circle-blue {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgb(88, 88, 220);
+  border-radius: 50%;
+}
+
+.circle-gray {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid rgb(173, 173, 173);
+  border-radius: 50%;
+}
+
+.red {
+  color: rgb(167, 35, 35);
+}
+
+.blue {
+  color: rgb(88, 88, 220);
+}
+
+.gray {
+  color: rgb(173, 173, 173);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,5 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --classic-color: #1f761f;
+  --secondary-color: #151226;
+  --contrast-color: #BF307F;
+}
+
+input {
+  text-indent: 1rem;
+}
+
 .clickable {
   cursor: pointer;
 }
@@ -14,4 +25,50 @@
 .field-center {
   display: flex;
   justify-content: center;
+}
+
+.ft-xx-small {
+  font-size: xx-small;
+}
+
+.ft-x-small {
+  font-size: x-small;
+}
+
+.ft-smaller {
+  font-size: smaller;
+}
+
+.ft-small {
+  font-size: small;
+}
+
+.ft-med {
+  font-size: medium;
+}
+
+.ft-lg {
+  font-size: large;
+}
+
+.ft-larger {
+  font-size: larger;
+}
+
+.ft-x-lg {
+  font-size: x-large;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.position {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
 }

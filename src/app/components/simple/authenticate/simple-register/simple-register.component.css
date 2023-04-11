@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.space {
+  margin-left: .5rem !important;
+}
+
+.separator {
+  margin-left: 1rem; margin-right: 1rem;
+  margin-top: 1.5rem;
+}
+
+.register-btn {
+  border: 0px;
+  width: 100%;
+  color: white;
+  background-color: var(--classic-color);
+  border-radius: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 0.425rem;
+  padding-bottom: 0.425rem;
+  /* padding-left: .1rem;
+  padding-right: .1rem; */
+}
