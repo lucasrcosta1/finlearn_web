@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
@@ -8,16 +9,20 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent {
   private _content: string[] = [
-    'https://instagram.com',
-    'https://facebook.com',
-    'https://twitter.com',
-    'mailto:projetoPDSI1@projetoPDSI1.com?Subject=Email de contato&body=Corpo do email de contato'
+    environment.INSTA,
+    environment.FB,
+    environment.TWITTER,
+    environment.MAIL_TO
   ];
 
   constructor (
     private _router: Router,
   ) {}
 
+  /**
+   * Redirect page to the choosen app.
+   * @param app
+   */
   public redirect (app: string) {
     if (app === 'instagram')
       window.open(this._content[0], '_blank');

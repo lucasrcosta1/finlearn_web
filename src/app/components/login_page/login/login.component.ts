@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -22,10 +23,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private _formBuilder  : FormBuilder,
     private _appComponent: AppComponent,
+    private _http: HttpClient,
     private _router: Router,
     public dialog: MatDialog,
   ) {
-    this._loginService = new LoginService(_router,dialog);
+    this._loginService = new LoginService(_router,_http,dialog);
     this.loginForm = this._formBuilder.group({
       email   :     [this.login.email,    [Validators.required, Validators.email]],
       password:     [this.login.password, [Validators.required]],
@@ -51,16 +53,19 @@ export class LoginComponent implements OnInit {
     let dialogRef = this.dialog.open(RegisterComponent, dialogConfig);
   }
 
-
   /**
    * Submit data written in the form.
    */
   public onSubmit (): void {
-    this.checkLoginAndRedirect(this.loginForm.value.email, this.loginForm.value.password);
+    this.redirect(this.loginForm.value.email, this.loginForm.value.password);
   }
 
-
-  public checkLoginAndRedirect (username: string, password: string): void {
+  /**
+   * Check and redirect login.
+   * @param username
+   * @param password
+   */
+  public redirect (username: string, password: string): void {
     let logged: boolean = false;
 
     try {
@@ -75,7 +80,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * Check whether login is successfull or failed.
+   * Check whether login was successfull or not.
    * @param username
    * @param password
    * @returns
@@ -90,4 +95,13 @@ export class LoginComponent implements OnInit {
   public openModalLoginWith (): void {
     this._loginService.loginWith();
   }
+
+  /**
+   * Get all users.
+   */
+  public getUsers (): void {
+    let a = this._loginService.getUsers();
+    console.log("Got from backend:",a);
+  }
+
 }
