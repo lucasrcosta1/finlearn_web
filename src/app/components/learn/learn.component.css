@@ -6,7 +6,7 @@
   margin: 1rem;
   box-shadow: .3rem .3rem .3rem rgb(216, 212, 212);
   border-radius: 2rem;
-  background-color: rgb(231, 246, 231);
+  background-color: var(--medium-green);
 }
 
 .center {
@@ -19,7 +19,7 @@
   margin-left: .3rem;
   font-size: 1.5rem;
   font-family: 'Copperplate';
-  color: var(--ligtht-green) ;
+  color: var(--progress-done) ;
 }
 
 .video-player {

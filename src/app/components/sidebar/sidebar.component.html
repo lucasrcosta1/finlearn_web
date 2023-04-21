@@ -1,10 +1,17 @@
 <div class="sidebar">
+  <ul class="sub-menu" *ngFor="let tab of tabs; let i = index">
+    <li (click)="activeItem = i" [class.active]="activeItem === i" class="clickable" [routerLink]="tab.route">
+      <a>
+        <i [class]="tab.icon"  style="margin-left: 5px;"></i>
+      </a>
+    </li>
+  </ul>
   <ul class="sub-menu">
-    <li><a class="clickable" href="#">Inicio</a></li>
-    <li><a class="clickable" href="/learn">Aprenda</a></li>
-    <li><a class="clickable" href="#">Pratique</a></li>
-    <li><a class="clickable" href="/community">Comunidade</a></li>
-    <li><a class="clickable" href="/support">Suporte</a></li>
-    <li><a class="clickable" (click)="logout()" href="/authenticate/simple-auth ">Sair</a></li>
+    <li class="clickable" (click)="logout()" routerLink="/authenticate/simple-auth ">
+      <a>
+        <i class="fa fa-sign-out"  style="margin-left: 5px;"></i>
+        <!-- Sair -->
+      </a>
+    </li>
   </ul>
 </div>
