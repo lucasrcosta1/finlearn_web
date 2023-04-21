@@ -25,6 +25,8 @@ import { SimpleRegisterComponent } from './components/simple/authenticate/simple
 import { SimpleLoginComponent } from './components/simple/authenticate/simple-login/simple-login.component';
 import { SimpleAuthComponent } from './components/simple/authenticate/simple-auth/simple-auth.component';
 import { SimpleAuthBgComponent } from './components/simple/authenticate/simple-auth-bg/simple-auth-bg.component';
+import { LearnComponent } from './components/learn/learn.component';
+import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { SimpleAuthBgComponent } from './components/simple/authenticate/simple-a
     SimpleLoginComponent,
     SimpleAuthComponent,
     SimpleAuthBgComponent,
-    CommunityComponent
+    CommunityComponent,
+    LearnComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,

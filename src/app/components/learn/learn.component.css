@@ -1,0 +1,148 @@
+/* * {
+  margin: 0;
+  padding: 0;
+} */
+.learn-page {
+  margin: 1rem;
+  box-shadow: .3rem .3rem .3rem rgb(216, 212, 212);
+  border-radius: 2rem;
+  background-color: rgb(231, 246, 231);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.font {
+  margin-top: 1rem;
+  margin-left: .3rem;
+  font-size: 1.5rem;
+  font-family: 'Copperplate';
+  color: var(--ligtht-green) ;
+}
+
+.video-player {
+  border-radius: 2rem;
+  min-height: 15rem;
+  min-width: none;
+}
+
+.class-image-small {
+  border-radius: .5rem;
+  /* min-height: 3rem;
+  min-width: 3rem; */
+}
+
+.border-left {
+  border-left: .1rem solid var(--grayish);
+}
+
+.module-btn {
+  border: .1rem solid var(--border-light-btn);
+  /* width: 100%; */
+  color: var(--border-light-btn);
+  background-color: var(--whiter);
+  border-radius: .5rem;
+  height: 1.3rem;
+  /* margin-top: 1.5rem; */
+  /* padding-top: 0.425rem; */
+  /* padding-bottom: 0.425rem; */
+  /* padding-left: .1rem;
+  padding-right: .1rem; */
+}
+
+.h-60px {
+  height: 60px;
+}
+
+.h-50-p-cent {
+  height: 50%;
+}
+
+/* -------Not edited bellow----- */
+
+
+.progress-bar {
+  background-color: var(--progress-to-do);
+  height: 10px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.progress {
+  background-color: var(--progress-done);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+}
+
+.bottom-panel {
+  flex: 1;
+  padding: 1rem;
+}
+
+.carousel {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+  scroll-snap-type: x proximity;
+}
+
+.carousel-item {
+  background-color: #eee;
+  border-radius: 4px;
+  display: inline-block;
+  flex: 0 0 200px;
+  margin-right: 1rem;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+.content-thumbnail {
+  height: 100px;
+  overflow: hidden;
+}
+
+.content-thumbnail img {
+  width: 100%;
+}
+
+.carousel-item h3 {
+  margin-top: 0.5rem;
+}
+
+.carousel-item p {
+  margin: 0.5rem 0;
+}
+
+.btn {
+  background-color: #007bff;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
+  font-size: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}

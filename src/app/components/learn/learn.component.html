@@ -1,0 +1,105 @@
+<!-- Send style to css -->
+<!-- <div class="row" >
+  <div class="col-12 justify-content-center" style="box-shadow: .3rem .3rem .3rem .3rem rgb(216, 212, 212); border-radius: 5%; background-color: rgb(231, 246, 231); height: 80vh; width: 85vw;  margin:5vh;">
+    <div class="row">
+      <div class="col-8">
+        <div class="row"></div>
+        <div class="row"></div>
+      </div>
+      <div class="col-4" style="border-left: .1rem solid rgb(209, 209, 209); min-height: 50; background-color: rgb(253, 242, 227);"></div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-8"  style="background-color: beige;">
+    <div class="row" style="background-color: aqua;">
+      <div class="col-8" style="background-color: red;">Class</div>
+      <div class="col-4"style="background-color: blue;">Module list</div>
+    </div>
+    <div class="row"  style="background-color: antiquewhite;">
+      ads
+    </div>
+  </div>
+  <div class="col-4 " style="background-color: aquamarine;">
+    <div class="row">
+      <div class="col-12">a</div>
+    </div>
+  </div>
+</div> -->
+
+<div class="learn-page">
+  <div class="row ">
+    <div class="col-8 mt-4">
+      <!-- Create a app-class-module component such as app-progress-bar -->
+      <div class="row">Search bar and something else</div>
+      <div class="row">
+        <h2>Module Title</h2>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <div class="center">
+            <video src="module-video.mp4" class="video-player" controls></video>
+          </div>
+        </div>
+        <div class="col-5">
+
+          <!-- Create ngFor to show all videos from one module -->
+          <div class="row my-1"  *ngFor="let module of moduleSet;">
+            <div class="col-3">
+              <img [src]="module.imagePath" height="50px" width="70px" class="class-image-small">
+            </div>
+            <div class="col-9 h-60px">
+              <div class="row h-50-p-cent">
+                <p class="bold">{{module.moduleName}}</p>
+              </div>
+              <div class="row h-50-p-cent">
+                <div class="col-6">
+                  <i class="fa fa-question-circle-o"></i> {{module.minutes}}
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                  <button
+                    type="button"
+                    class="module-btn"
+                    (click)="goTo('gold')"
+                  >
+                  <p class="ft-x-small clickable">Assistir</p>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-4  mt-4 border-left">
+        <!-- Should I create component since div bellow instead of using a component only to the progress bar? -->
+        <div class="row mt-5">
+          <span class="center">
+            <app-progress-bar [progress]="progress"></app-progress-bar>
+          </span>
+        </div>
+        <div class="row" *ngIf="completed"><p class="font center">Módulo Finalizado!</p></div>
+        <div class="row" *ngIf="!completed"><p class="font center">Progresso no Módulo..</p></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="bottom-panel">
+      <h2>New Content</h2>
+      <div class="carousel">
+        <!-- <div class="carousel-item" *ngFor="let content of newContents"> -->
+          <div class="content-thumbnail">
+            <!-- <img [src]="content.thumbnail" alt="{{content.title}}"> -->
+            image
+          </div>
+          <h3>Title</h3>
+          <p>Description</p>
+          <!-- <h3>{{content.title}}</h3>
+          <p>{{content.description}}</p> -->
+          <a href="#" class="btn btn-primary">Start Learning</a>
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</div>

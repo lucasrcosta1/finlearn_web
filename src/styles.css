@@ -5,6 +5,13 @@
   --classic-color: #1f761f;
   --secondary-color: #151226;
   --contrast-color: #BF307F;
+  --ligtht-green: #a8cbb2;
+  --border-light-btn: #a1b6a1;
+  --grayish: #d2d2d2;
+  --progress-to-do: #ffffff;
+  --progress-done: #869c8d;
+  --shadow: #d8d4d4;
+  --whiter: #e9f9f2;
 }
 
 input {
