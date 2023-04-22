@@ -33,4 +33,8 @@ export class CommunityComponent {
     this.searchTerm = '';
     this.filteredConversations = this.conversations;
   }
+
+  openNewConversationModal(){
+    
+  }
 }

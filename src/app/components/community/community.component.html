@@ -12,11 +12,54 @@
 <body>
     <div class="comunidade">
         <div class="container">
-            <h2>Junte-se à nossa Comunidade</h2>
+            <div class="row">
+                <div class="col">
+                    <h2>Junte-se à nossa Comunidade!</h2>
+                </div>
+                <div class="col-2 text-right">
+                    <button type="button" class="btn my-button ml-2" (click)="openNewConversationModal()">Nova Conversa</button>
+                    <!-- <div class="modal fade" id="newConversationModal" tabindex="-1" role="dialog"
+                        aria-labelledby="newConversationModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="newConversationModalLabel">Nova Conversa</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form [formGroup]="newConversationForm" (ngSubmit)="onSubmit()">
+                                        <div class="form-group">
+                                            <label for="conversationName">Nome da conversa:</label>
+                                            <input type="text" class="form-control" id="conversationName" formControlName="name">
+                                            <div
+                                                *ngIf="newConversationForm.get('name').invalid && (newConversationForm.get('name').dirty || newConversationForm.get('name').touched)">
+                                                <small class="form-text text-danger"
+                                                    *ngIf="newConversationForm.get('name').errors.required">Nome é obrigatório</small>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="conversationDescription">Descrição da conversa:</label>
+                                            <textarea class="form-control" id="conversationDescription"
+                                                formControlName="description"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" [disabled]="newConversationForm.invalid"
+                                        (click)="onSubmit()">Criar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
             <div class="input-group mb-3">
-                <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" id="search-bar" class="form-control" placeholder="Pesquisar conversas" 
-                    aria-label="Pesquisar conversas" aria-describedby="basic-addon2">
-                    <!-- Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
+                <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" id="search-bar" class="form-control"
+                    placeholder="Pesquisar conversas" aria-label="Pesquisar conversas">
+                <!-- Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
                     função search() é chamada para filtrar as conversas com base no valor atual da propriedade searchTerm. -->
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
@@ -42,12 +85,10 @@
                         <li class="list-group-item">Conversation 6</li>
                     </ul>
                 </div>
-
             </div>
         </div>
-
-        
     </div>
+
 </body>
 
 </html>
