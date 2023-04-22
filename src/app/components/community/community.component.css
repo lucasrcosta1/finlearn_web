@@ -16,6 +16,12 @@ h2{
     padding-bottom: 2rem;
 }
 
+.my-button{
+    background-color: green;
+    color: white;
+    ;
+}
+
 /* Estilo para a barra de pesquisa */
 .search-bar {
     margin-bottom: 20px;
