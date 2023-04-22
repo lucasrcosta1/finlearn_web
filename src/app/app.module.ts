@@ -26,7 +26,10 @@ import { SimpleLoginComponent } from './components/simple/authenticate/simple-lo
 import { SimpleAuthComponent } from './components/simple/authenticate/simple-auth/simple-auth.component';
 import { SimpleAuthBgComponent } from './components/simple/authenticate/simple-auth-bg/simple-auth-bg.component';
 import { LearnComponent } from './components/learn/learn.component';
-import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar.component';
+import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
+import { ClassModuleComponent } from './components/aux_components/class-module/class-module/class-module.component';
+import { NewsComponent } from './components/aux_components/news/news/news.component';
+import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { ProgressBarComponent } from './components/aux_components/progress-bar/p
     SimpleAuthBgComponent,
     CommunityComponent,
     LearnComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    ClassModuleComponent,
+    NewsComponent,
+    StorieCarrouselComponent
   ],
   imports: [
     BrowserModule,

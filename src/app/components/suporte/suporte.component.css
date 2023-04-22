@@ -54,3 +54,10 @@ button.btn{
     margin-top: 1em;
     background-color: green;
 }
+
+.bg {
+  margin: 1rem;
+  box-shadow: .3rem .3rem .3rem var(--shadow);
+  border-radius: 2rem;
+  background-color: var(--medium-green);
+}

@@ -1,14 +1,21 @@
 export class Tab {
-  icon: string;
-  route: string;
+  id        : number;
+  classValue: string;
+  link: string;
+  label: string;
+  active: boolean;
+
 
   /**
    * Constructor
-   * @param icon
-   * @param route
+   * @param class
+   * @param link
    */
-  constructor (icon: string, route: string) {
-    this.icon = icon;
-    this.route = route;
+  constructor (id: number, classValue: string, link: string, label: string, active: boolean) {
+    this.id = id;
+    this.classValue = classValue;
+    this.link = link;
+    this.label = label;
+    this.active = active;
   }
 }

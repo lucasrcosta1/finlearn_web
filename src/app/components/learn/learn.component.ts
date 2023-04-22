@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Module } from 'src/app/models/modules/module.model';
+import { Module } from 'src/app/models/modules/Module.model';
 
 @Component({
   selector: 'app-learn',
@@ -7,26 +7,29 @@ import { Module } from 'src/app/models/modules/module.model';
   styleUrls: ['./learn.component.css']
 })
 export class LearnComponent implements OnInit {
-  progress = 45;
-  noOfFiles = 13;
-  completed = false;
-  moduleSet = new Set<Module>();
-
-
+  public progress     = 45;
+  public noOfFiles    = 13;
+  public completed    = false;
+  public numberOfStoriesLive = 3;
+  public numberOfStoriesMorePopularClass = 4;
 
   public ngOnInit(): void {
-    this.moduleSet.add(new Module('Negociação do Ouro','10:00','../../../assets/images/classes/gold.jpeg'));
-    this.moduleSet.add(new Module('Papeis B3','30:00','../../../assets/images/classes/papel.jpeg'));
-    this.moduleSet.add(new Module('O que é selic?','25:00','../../../assets/images/classes/selic.jpeg'));
-    this.moduleSet.add(new Module('Tesouro Direto','20:00','../../../assets/images/classes/tesouro_direto.jpeg'));
     // this.updateProgress();
   }
 
-  delay(ms: number) {
+  /**
+   * Give a delay to the resolve the promisse.
+   * @param ms
+   * @returns
+   */
+  public delay(ms: number) {
     return new Promise((resolve, reject) => setTimeout(resolve, ms));
   }
 
-  async updateProgress() {
+  /**
+   * Update progress.
+   */
+  public async updateProgress() {
     this.completed = false;
     let n = 100 / this.noOfFiles;
     for (let i = 0; i <= this.noOfFiles; i++) {
@@ -37,11 +40,5 @@ export class LearnComponent implements OnInit {
     this.completed = true;
   }
 
-  /**
-   * Redirect user to the class clicked.
-   * @param module_class
-   */
-  goTo (module_class: string): void {
 
-  }
 }

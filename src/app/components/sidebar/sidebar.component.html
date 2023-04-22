@@ -1,10 +1,10 @@
 <div class="sidebar">
   <ul class="sub-menu" *ngFor="let tab of tabs; let i = index">
-    <li (click)="activeItem = i" [class.active]="activeItem === i" class="clickable" [routerLink]="tab.route">
+    <!-- <li (click)="activeItem = i" [class.active]="activeItem === i" class="clickable" [routerLink]="tab.route">
       <a>
         <i [class]="tab.icon"  style="margin-left: 5px;"></i>
       </a>
-    </li>
+    </li> -->
   </ul>
   <ul class="sub-menu">
     <li class="clickable" (click)="logout()" routerLink="/authenticate/simple-auth ">

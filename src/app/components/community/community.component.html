@@ -10,43 +10,43 @@
 </head>
 
 <body>
-    <div class="comunidade">
-        <div class="container">
-            <h2>Junte-se à nossa Comunidade</h2>
-            <div class="input-group mb-3">
-                <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" id="search-bar" class="form-control" placeholder="Pesquisar conversas" 
-                    aria-label="Pesquisar conversas" aria-describedby="basic-addon2">
-                    <!-- Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
-                    função search() é chamada para filtrar as conversas com base no valor atual da propriedade searchTerm. -->
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
-                    <button type="button" class="btn btn-outline-secondary" (click)="clearSearch()">Limpar</button>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-header">Community Conversations</li>
-                        <li class="list-group-item">Conversation 1</li>
-                        <li class="list-group-item">Conversation 2</li>
-                        <li class="list-group-item">Conversation 3</li>
-                    </ul>
-                </div>
-                <div class="col">
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-header">Your Conversations</li>
-                        <li class="list-group-item">Conversation 4</li>
-                        <li class="list-group-item">Conversation 5</li>
-                        <li class="list-group-item">Conversation 6</li>
-                    </ul>
-                </div>
+    <div class="comunidade bg">
+      <div class="container">
+          <h2>Junte-se à nossa Comunidade</h2>
+          <div class="input-group mb-3">
+              <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" id="search-bar" class="form-control" placeholder="Pesquisar conversas"
+                  aria-label="Pesquisar conversas" aria-describedby="basic-addon2">
+                  <!-- Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
+                  função search() é chamada para filtrar as conversas com base no valor atual da propriedade searchTerm. -->
+              <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                  <button type="button" class="btn btn-outline-secondary" (click)="clearSearch()">Limpar</button>
+              </div>
+          </div>
+      </div>
+      <div class="container" >
+          <div class="row ">
+              <div class="col">
+                  <ul class="list-group">
+                      <li class="list-group-item list-group-header">Community Conversations</li>
+                      <li class="list-group-item">Conversation 1</li>
+                      <li class="list-group-item">Conversation 2</li>
+                      <li class="list-group-item">Conversation 3</li>
+                  </ul>
+              </div>
+              <div class="col mb-5">
+                  <ul class="list-group">
+                      <li class="list-group-item list-group-header">Your Conversations</li>
+                      <li class="list-group-item">Conversation 4</li>
+                      <li class="list-group-item">Conversation 5</li>
+                      <li class="list-group-item">Conversation 6</li>
+                  </ul>
+              </div>
 
-            </div>
-        </div>
+          </div>
+      </div>
 
-        
+
     </div>
 </body>
 

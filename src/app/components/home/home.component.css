@@ -2,6 +2,7 @@
   overflow-x: hidden;
 }
 
+
 .main-content {
 	padding: 0.625rem;
   font-family: Verdana;
@@ -37,8 +38,17 @@
   text-align: center;
 }
 
+
+.bg {
+  margin: 1rem;
+  box-shadow: .3rem .3rem .3rem var(--shadow);
+  border-radius: 2rem;
+  background-color: var(--medium-green);
+}
+
 @media screen and (max-height: 768px){
   .topic{
     height: 16rem;
   }
 }
+

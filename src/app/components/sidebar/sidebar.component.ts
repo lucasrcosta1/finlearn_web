@@ -24,11 +24,11 @@ export class SidebarComponent {
     private _http: HttpClient,
   ) {
     this._loginService = new LoginService(_router,_http);
-    this.tabs.add(new Tab('fa fa-home','#'));
-    this.tabs.add(new Tab('fa fa-graduation-cap','/learn'));
-    this.tabs.add(new Tab('fa fa-line-chart','/practice'));
-    this.tabs.add(new Tab('fa fa-users','/community'));
-    this.tabs.add(new Tab('fa fa-search','/support'));
+    // this.tabs.add(new Tab('fa fa-home','#'));
+    // this.tabs.add(new Tab('fa fa-graduation-cap','/learn'));
+    // this.tabs.add(new Tab('fa fa-line-chart','/practice'));
+    // this.tabs.add(new Tab('fa fa-users','/community'));
+    // this.tabs.add(new Tab('fa fa-search','/support'));
   }
 
   /**

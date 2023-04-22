@@ -1,4 +1,4 @@
-<header>
+<!-- <header>
   <div class="row">
     <div class="col-md-2 col-sm">
 
@@ -26,4 +26,47 @@
     </div>
 
   </div>
+</header> -->
+
+<!-- <header>
+  <nav>
+    <ul class="icon-list" style="margin-top: 1.5rem;">
+      <li
+      *ngFor="let tab of tabs; let i = index"
+      (click)="activeItem = i"
+      [class.active]="activeItem === i"
+      class="clickable"
+      routerLink="{{tab.link}}"
+      >
+        <a >
+          <i class="{{tab.classValue}}"></i>
+        </a>
+      </li>
+      <li class="icon-list-end">
+        <i class="fa fa-sign-out"></i>
+      </li>
+    </ul>
+  </nav>
+</header> -->
+
+<header>
+  <nav>
+    <ul class="icon-list" style="margin-top: 1.5rem;">
+      <li *ngFor="let tab of tabs; let i = index"
+        (click)="activeItem = i"
+        [class.active]="activeItem === i"
+        class="clickable"
+        routerLink="{{tab.link}}">
+        <a>
+          <i class="{{tab.classValue}}"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </header>
+<!-- Vai para dentro das opcoes do usuario no canto direito -->
+<!-- <li class="clickable" (click)="logout()" routerLink="/authenticate/simple-auth">
+  <a>
+    <i class="fa fa-sign-out"></i>
+  </a>
+</li> -->
