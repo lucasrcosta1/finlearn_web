@@ -41,10 +41,10 @@ export class LoginService {
     return new Observable((observer) => {
       this.http.post<any>(environment.HTTP_REQUEST + '/auth/login', user, httpOptions).subscribe(
         (response) => {
-          console.log(response)
           if (response.user) {
             this.appComponent.login = false;
             this.redirectToHome();
+            localStorage.setItem("auth-key",`Bearer ${response.access_token}`);
             observer.next(response.id);
           }
         }

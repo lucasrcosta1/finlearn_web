@@ -1,4 +1,13 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: localStorage.getItem("auth-key")!
+  })
+};
 
 @Component({
   selector: 'app-community',
@@ -6,6 +15,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./community.component.css']
 })
 export class CommunityComponent {
+  newTitle = false;
+  conversation = "Nova Conversa";
 
   conversations: { title: string }[] = [
     { title: 'Conversation 1' },
@@ -20,7 +31,9 @@ export class CommunityComponent {
 
   searchTerm = '';
 
-  constructor() {
+  constructor(
+    private http: HttpClient
+  ) {
     this.filteredConversations = this.conversations;
   }
 
@@ -35,6 +48,29 @@ export class CommunityComponent {
   }
 
   openNewConversationModal(){
+
+  }
+
+
+  public changeView (): void {
+    this.newTitle = !this.newTitle;
+    if (this.newTitle) this.conversation = "Voltar";
+    else this.conversation = "Nova Conversa";
+  }
+
+  public createNewConversation () {
+    let titleValue = (<HTMLInputElement>document.getElementById('search-bar'))?.value;
+    if (titleValue != undefined || titleValue != null) {
+      this.http.post<string>(
+        environment.HTTP_REQUEST + '/talk/create', {title: titleValue}, httpOptions).subscribe(
+          (response) => {
+            console.log(response);
+          }
+      );
+    }
+  }
+
+  public getConversation () {
     
   }
 }
