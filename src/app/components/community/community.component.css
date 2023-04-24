@@ -50,4 +50,5 @@ h2{
   box-shadow: .3rem .3rem .3rem var(--shadow);
   border-radius: 2rem;
   background-color: var(--medium-green);
+  min-height: 25rem;
 }

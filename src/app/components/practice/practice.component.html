@@ -10,11 +10,13 @@
 </head>
 
 <body>
-    <main class="main-content">
+  <main class="main-content">
+      <div class="bg">
+
         <h1>Simulador de Investimentos</h1>
         <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
-            <!-- <p style="width:50em;">Para praticarmos por meio da simulação de um investimento, vamos precisar escolher um ativo: CDB, Poupança ou 
-                Fundo de Investimento e considerar a variação da taxa anual de cada um. Depois, definimos um valor inicial para 
+            <!-- <p style="width:50em;">Para praticarmos por meio da simulação de um investimento, vamos precisar escolher um ativo: CDB, Poupança ou
+                Fundo de Investimento e considerar a variação da taxa anual de cada um. Depois, definimos um valor inicial para
                 ser investido e um valor de investimento mensal, caso esse último seja inviável, basta inserir o número zero. Por fim,
                 definimos qual será o prazo do nosso investimento, considerado em meses:</p> -->
             <div class="form-floating mb-3">
@@ -49,6 +51,7 @@
             <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
             <p>Montante final: {{formattedFutureValue}}</p>
         </div>
+      </div>
 
 
     </main>
