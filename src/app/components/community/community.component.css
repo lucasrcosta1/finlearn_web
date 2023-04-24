@@ -3,9 +3,6 @@
     padding: 0;
 }
 
-body {
-    padding-left: 9.4rem;
-}
 
 .comunidade {
     padding-top: 2rem;
@@ -46,4 +43,11 @@ h2{
     background-color: #007bff;
     border-color: #007bff;
     color: #fff;
+}
+
+.bg {
+  margin: 1rem;
+  box-shadow: .3rem .3rem .3rem var(--shadow);
+  border-radius: 2rem;
+  background-color: var(--medium-green);
 }
