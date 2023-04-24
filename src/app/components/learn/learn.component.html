@@ -1,0 +1,63 @@
+<!-- Send style to css -->
+<!-- <div class="row" >
+  <div class="col-12 justify-content-center" style="box-shadow: .3rem .3rem .3rem .3rem var(--shadow); border-radius: 5%; background-color: rgb(231, 246, 231); height: 80vh; width: 85vw;  margin:5vh;">
+    <div class="row">
+      <div class="col-8">
+        <div class="row"></div>
+        <div class="row"></div>
+      </div>
+      <div class="col-4" style="border-left: .1rem solid rgb(209, 209, 209); min-height: 50; background-color: rgb(253, 242, 227);"></div>
+    </div>
+  </div>
+</div> -->
+
+<!-- <div class="row">
+  <div class="col-8"  style="background-color: beige;">
+    <div class="row" style="background-color: aqua;">
+      <div class="col-8" style="background-color: red;">Class</div>
+      <div class="col-4"style="background-color: blue;">Module list</div>
+    </div>
+    <div class="row"  style="background-color: antiquewhite;">
+      ads
+    </div>
+  </div>
+  <div class="col-4 " style="background-color: aquamarine;">
+    <div class="row">
+      <div class="col-12">a</div>
+    </div>
+  </div>
+</div> -->
+
+<div class="bg">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="row justify-content-center">
+        <div class="col-12 my-5">
+          <!-- Create a app-class-module component such as app-progress-bar -->
+          <app-class-module
+            [numberOfStoriesLive]="numberOfStoriesLive"
+            [numberOfStoriesMorePopularClass]="numberOfStoriesMorePopularClass"
+          ></app-class-module>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-5">
+          <app-news></app-news>
+        </div>
+        <div class="col-7">
+          <app-storie-carrousel></app-storie-carrousel>
+        </div>
+      </div>
+    </div>
+    <div class="col-3 mt-5 border-left">
+      <!-- Should I create component since div bellow instead of using a component only to the progress bar? -->
+      <div class="row mt-4">
+          <app-progress-bar
+            class="center" [progress]="progress"
+          ></app-progress-bar>
+      </div>
+      <div class="row" *ngIf="completed"><p class="font center">Módulo Finalizado!</p></div>
+      <div class="row" *ngIf="!completed"><p class="font center">Progresso no Módulo..</p></div>
+  </div>
+  </div>
+</div>

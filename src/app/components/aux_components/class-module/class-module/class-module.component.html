@@ -1,0 +1,81 @@
+<div class="row m-3">
+  <div class="col-4 mt-2">
+    <div class="row">
+      <div class="col-6">
+        <p class="clickable live"  (click)="changeContext(0)">Lives ativas ({{numberOfStoriesLive}})</p>
+      </div>
+      <div class="col-6">
+        <p  class="clickable live" (click)="changeContext(1)">Aulas mais assistidas ({{numberOfStoriesMorePopularClass}})</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-4 center">
+    <div>
+      <div class="input-icon">
+        <i class="fa fa-search icon"></i>
+        <input type="text" class="input-style" placeholder="Busca por módulo">
+      </div>
+    </div>
+  </div>
+  <div class="col-4 center">
+    <div class="row">
+      <div class="col-6">
+        <div style="margin-right: 5px;">
+          <select class="select-style" name="genero" id="genero">
+            <option disabled selected value>Gênero</option>
+            <option *ngFor="let gender of genders; let i = index;" value="i">{{gender}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-6">
+        <div style="margin-left: 5px;">
+          <select class="select-style" name="genero" id="genero">
+            <option disabled selected value>Duração</option>
+            <option *ngFor="let minute of minutes; let i = index;" value="i">{{minute}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mt-4 mb-4">
+  <div class="col-7">
+    <h3 class="module-name-style">Módulo 1: {{actualModule}}</h3>
+  </div>
+</div>
+<div class="row my-3">
+  <div class="col-7">
+    <div class="center">
+      <video src="module-video.mp4" class="video-player" controls></video>
+    </div>
+  </div>
+  <div class="col-5">
+
+    <!-- Create ngFor to show all videos from one module -->
+    <div class="row my-1 "  *ngFor="let module of moduleSet;">
+      <div class="col-3">
+        <img [src]="module.imagePath" height="50px" width="70px" class="class-image-small clickable">
+      </div>
+      <div class="col-9 h-60px">
+        <div class="row h-50-p-cent">
+          <p class="bold">{{module.moduleName}}</p>
+        </div>
+        <div class="row h-50-p-cent">
+          <div class="col-6">
+            <i class="fa fa-question-circle-o"></i> {{module.minutes}}
+          </div>
+          <div class="col-6 d-flex justify-content-end">
+            <button
+              type="button"
+              class="module-btn"
+              (click)="goTo('gold')"
+            >
+            <p class="ft-x-small clickable">Assistir</p>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
