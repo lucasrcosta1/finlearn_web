@@ -3,41 +3,9 @@
 }
 
 
-.main-content {
-	padding: 0.625rem;
-  font-family: Verdana;
+.main-content{
+  padding: 0.625rem;
 }
-
-.topic {
-  height: 22rem;
-  width: (100%-9.4rem);
-  border: 1px solid rgb(122, 122, 122);
-  background-color: rgba(143, 247, 79, 0.468);
-  border-radius: 0.938rem;
-  margin: 1rem;
-  color: black;
-}
-
-.sub-topic {
-  height: 10rem;
-  border: 1px solid rgb(122, 122, 122);
-  border-radius: 0.938rem;
-  font-size: 1.4vw;
-  background-color: white;
-  color: black;
-  font-size: medium;
-}
-
-.centralize {
-  margin-left: 1rem;
-  margin-top: 1.5rem;
-  font-size: 1.7vw;
-}
-
-.center {
-  text-align: center;
-}
-
 
 .bg {
   margin: 1rem;
@@ -46,9 +14,44 @@
   background-color: var(--medium-green);
 }
 
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 6rem;
+}
+
+
+.content div {
+  padding: 2rem;
+  background: var(--classic-color);
+  border-radius: 0.935rem;
+  width: 45%;
+  height: 22rem;
+  color: white;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+.content div div {
+  padding: 2rem;
+  width: 100%;
+  background: var(--secondary-color);
+  border-radius: 0.935rem;
+  color: black;
+  text-align: left;
+  font-size: large;
+}
+
+#noticias {
+  width: 95%;
+}
+
 @media screen and (max-height: 768px){
   .topic{
     height: 16rem;
   }
 }
-

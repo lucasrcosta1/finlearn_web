@@ -45,7 +45,7 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     SimpleAuthComponent,
     SimpleAuthBgComponent,
     CommunityComponent,
-    PracticeComponent
+    PracticeComponent,
     LearnComponent,
     ProgressBarComponent,
     ClassModuleComponent,
