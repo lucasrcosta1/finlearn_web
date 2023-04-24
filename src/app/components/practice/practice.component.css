@@ -1,0 +1,76 @@
+.main-content{
+    margin-top: 5em;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo dos campos de entrada */
+input[type="number"],
+select {
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do botão de submit */
+button[type="submit"] {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="text"] {
+    margin-bottom: 20px;
+}
+
+.result-section {
+    display: none;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo dos textos de resultado */
+.result-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.result-section p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Mostra a seção de resultado após o submit */
+.show-result .result-section {
+    display: block;
+}
