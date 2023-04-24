@@ -9,6 +9,7 @@ import { CommunityComponent } from './components/community/community.component';
 
 import { SimpleLoginComponent } from './components/simple/authenticate/simple-login/simple-login.component';
 import { SimpleAuthComponent } from './components/simple/authenticate/simple-auth/simple-auth.component';
+import { LearnComponent } from './components/learn/learn.component';
 
 
 const routes: Routes = [
@@ -16,10 +17,11 @@ const routes: Routes = [
   // { path: '**', redirectTo: 'home'}, // create a not found page.
 
   //test new login
-  {path: 'authenticate/simple-auth', component: SimpleAuthComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'learn', component: LearnComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
   {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
+  {path: 'authenticate/simple-auth', component: SimpleAuthComponent},
   {path: '**', redirectTo: 'home'}, // create a not found page.
 
 ];

@@ -32,18 +32,21 @@
   display: block;
 }
 
-.sidebar ul li a:hover {
+li.active {
+  background-color: var(--medium-green);
+}
+/* .sidebar ul li a:hover {
   padding-left: 0.5rem;
   margin-left: 0.188rem;
   width: 0.5rem;
   background-color: #7abd7a;
-}
+} */
 
 ul.sub-menu li:hover {
   pointer-events: fill;
   border-top: 0;
   color: #465a6e;
-  background-color: #f0f3f6;
+  background-color: var(--light-green);
 }
 
 @media screen and (max-width: 480px) {

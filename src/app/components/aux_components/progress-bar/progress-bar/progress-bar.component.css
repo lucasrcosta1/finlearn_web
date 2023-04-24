@@ -1,0 +1,33 @@
+#progress {
+  height: 10rem;
+  width: 10rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  float: left;
+  /* margin-top: 5rem; */
+  /* margin-right: 10rem; */
+  border: .1rem solid #f2f2f4;
+  box-shadow: .3rem .3rem .3rem var(--shadow);
+
+}
+
+#progress-value {
+  display: block;
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  background-color: #f2f2f4 ;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.font {
+  margin-top: 1rem;
+  margin-left: .3rem;
+  font-size: 2rem;
+  font-family: 'Copperplate';
+  color: #294962 ;
+}
