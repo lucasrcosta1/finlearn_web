@@ -7,13 +7,6 @@ import { Login } from 'src/app/models/login/login.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: 'my-auth-token'
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -39,33 +32,44 @@ export class LoginService {
    */
   isLogged (user: User): Observable<any> {
     return new Observable((observer) => {
-      this.http.post<any>(environment.HTTP_REQUEST + '/auth/login', user, httpOptions).subscribe(
-        (response) => {
+      this.http.post<any>(environment.HTTP_REQUEST + '/auth/login', user).subscribe({
+        next: (response) => {
           if (response.user) {
             this.appComponent.login = false;
             this.redirectToHome();
             localStorage.setItem("auth-key",`Bearer ${response.access_token}`);
-            observer.next(response.id);
+            observer.next(response.user.id);
           }
+        },
+        error: (error) => {
+          observer.error(error.error.detail);
         }
-      );
-    })
+      });
+    });
   }
 
   /**
    * Register a new user.
    * @todo Check if user saved to the DB is User type.
+   * @todo The token saved isn't valid. Shouldn't receive an valid token in the response?
    */
-  registerUser (user: User) {
-    this.http.post<any>(environment.HTTP_REQUEST + '/user/create', user, httpOptions).subscribe(
-      (response) => {
-        console.log("response register",response);
-        if (response.id) {
-          this.appComponent.login = false;
-          this.redirectToHome();
+  registerUser (user: User): Observable<any>  {
+    return new Observable((observer) => {
+      this.http.post<any>(environment.HTTP_REQUEST + '/user/create', user).subscribe({
+        next: (response) => {
+          console.log(response);
+          if (response) {
+            this.appComponent.login = false;
+            this.redirectToHome();
+            localStorage.setItem("auth-key",`Bearer ${response.access_token}`);
+            observer.next(response);
+          }
+        },
+        error: (error) => {
+          observer.error(error.error.detail);
         }
-      }
-    );
+      });
+    });
   }
 
 
@@ -87,11 +91,18 @@ export class LoginService {
   }
 
   /**
+   * Once login wasn't successfull, user is redirect to the login page.
+   */
+  public redirectToAuth (): void {
+    this.router.navigate(['/authenticate/simple-auth']);
+  }
+
+  /**
    * Log user out.
    * @todo create logic to remove token once user is logged out.
    */
   public logout (): void {
-    // localStorage.removeItem('currentUser');
+    localStorage.removeItem('auth-key');
     // window.location.reload();
   }
 
