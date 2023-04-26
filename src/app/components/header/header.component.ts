@@ -35,7 +35,6 @@ export class HeaderComponent implements OnInit {
    * Log client out.
    */
   public logout (): void {
-    localStorage.removeItem("auth-key");
     this._appComponent.login = true; // activate header/sidebar/footer
     this._loginService.appComponent.login = true;
     this._loginService.logout();

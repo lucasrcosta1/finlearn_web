@@ -94,4 +94,12 @@ export class PracticeComponent implements OnInit {
     // Exibição do resultado
   this.showResult = true;
 }
+
+  public classGraph(index: number) {
+    if (index == 0) {
+        return 'col-md-12'
+    } else {
+        return 'col-md-6'
+    }
+  }
 }

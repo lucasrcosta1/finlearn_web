@@ -46,3 +46,21 @@
   justify-content: center;
   align-items: center;
 }
+
+
+
+
+/* ---------------- */
+.field {
+  width: 80%;
+}
+
+.remove-border {
+  border: 0;
+  margin-right: 1rem;
+}
+
+.header-bg {
+  background-color: var(--classic-color);
+  color: var(--shadow);
+}

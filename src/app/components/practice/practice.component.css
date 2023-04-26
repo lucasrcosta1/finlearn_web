@@ -36,6 +36,9 @@ form {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px;
     padding: 20px;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 
 /* Estilo dos campos de entrada */

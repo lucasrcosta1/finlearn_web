@@ -1,51 +1,47 @@
-<html>
-
-        <div class="container bg" style="margin-left: 5rem;">
-            <div  id="pratique" style="margin-top: 3rem;">
-                <h1>Simulador de Investimentos</h1>
-                <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
-                    <!-- <p style="width:50em;">Para praticarmos por meio da simulação de um investimento, vamos precisar escolher um ativo: CDB, Poupança ou 
-                                Fundo de Investimento e considerar a variação da taxa anual de cada um. Depois, definimos um valor inicial para 
-                                ser investido e um valor de investimento mensal, caso esse último seja inviável, basta inserir o número zero. Por fim,
-                                definimos qual será o prazo do nosso investimento, considerado em meses:</p> -->
-                    <div class="form-floating mb-3">
-                        <select class="form-select" id="investmentType" formControlName="investmentType" required>
-                            <option value="cdb">CDB (taxa anual: 6%)</option>
-                            <option value="poupanca">Poupança (taxa anual: 4,5%)</option>
-                            <option value="fundo">Fundo de investimento (taxa anual: 8%)</option>
-                        </select>
-                        <label for="investmentType">Tipo de investimento</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="investmentAmount" formControlName="investmentAmount"
-                            placeholder="Apenas números" required />
-                        <label for="investmentAmount">Valor inicial</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="monthlyInvestment" formControlName="monthlyInvestment"
-                            placeholder="Apenas números" required />
-                        <label for="monthlyInvestment">Investimento mensal</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input class="form-control" type="number" id="investmentTerm" formControlName="investmentTerm"
-                            placeholder="Apenas números" required />
-                        <label for="investmentAmount">Prazo em meses</label>
-                        <!-- <span>meses</span> -->
-                    </div>
-                    <button type="submit">Simular</button>
-                </form>
-
+<div class="row justify-content-center bg">
+  <div class="col-5" id="pratique">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 style="text-align: center;" >Simulador de Investimentos</h1>
+        <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="investmentType" formControlName="investmentType" required>
+                    <option value="cdb">CDB (taxa anual: 6%)</option>
+                    <option value="poupanca">Poupança (taxa anual: 4,5%)</option>
+                    <option value="fundo">Fundo de investimento (taxa anual: 8%)</option>
+                </select>
+                <label for="investmentType">Tipo de investimento</label>
             </div>
-            <div *ngIf="showResult">
-                <div class="container">
-                    <h1>Resultado:</h1>
-                    <p>Investimento selecionado: {{selectedInvestment.type}}</p>
-                    <p>Montante investido: {{formattedPrincipal}}</p>
-                    <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
-                    <p>Montante final: {{formattedFutureValue}}</p>
-                </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="investmentAmount" formControlName="investmentAmount"
+                    placeholder="Apenas números" required />
+                <label for="investmentAmount">Valor inicial</label>
             </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="monthlyInvestment" formControlName="monthlyInvestment"
+                    placeholder="Apenas números" required />
+                <label for="monthlyInvestment">Investimento mensal</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="investmentTerm" formControlName="investmentTerm"
+                    placeholder="Apenas números" required />
+                <label for="investmentAmount">Prazo em meses</label>
+            </div>
+            <button type="submit">Simular</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 d-flex justify-content-center align-items-center" *ngIf="showResult">
+    <div class="row" id="pratique">
+      <div class="col-12">
+        <div class="container">
+            <h1>Resultado:</h1>
+            <p>Investimento selecionado: {{selectedInvestment.type}}</p>
+            <p>Montante investido: {{formattedPrincipal}}</p>
+            <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
+            <p>Montante final: {{formattedFutureValue}}</p>
         </div>
       </div>
-
-</html>
+  </div>
+</div>
