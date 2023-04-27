@@ -8,8 +8,8 @@ import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
 import { PracticeComponent } from './components/practice/practice.component';
 
-import { SimpleLoginComponent } from './components/simple/authenticate/simple-login/simple-login.component';
-import { SimpleAuthComponent } from './components/simple/authenticate/simple-auth/simple-auth.component';
+import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
+import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
 import { LearnComponent } from './components/learn/learn.component';
 
 
@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
   {path: 'practice', component: PracticeComponent, canActivate: [AuthGuard]},
   {path: 'authenticate/simple-auth', component: SimpleAuthComponent},
-  {path: '**', redirectTo: 'home'}, // create a not found page.
+  {path: '**', redirectTo: 'authenticate/simple-auth'}, // create a not found page.
 
 ];
 

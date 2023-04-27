@@ -24,3 +24,12 @@
   /* padding-left: .1rem;
   padding-right: .1rem; */
 }
+
+.header-bg {
+  background-color: var(--classic-color);
+  color: var(--shadow);
+}
+
+.field {
+  width: 80%;
+}
