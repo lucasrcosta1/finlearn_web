@@ -98,7 +98,7 @@ li.active::before {
 
 .icon-list li:hover {
   background-color: var(--medium-green);
-  padding: .1rem;
+  /* padding: .1rem; */
   border-radius: 1rem;
 }
 
