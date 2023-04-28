@@ -94,7 +94,7 @@ export class LoginService {
    * Once login wasn't successfull, user is redirect to the login page.
    */
   public redirectToAuth (): void {
-    this.router.navigate(['/authenticate/simple-auth']);
+    this.router.navigate(['/auth/login']);
   }
 
   /**
