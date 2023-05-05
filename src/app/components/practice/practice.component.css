@@ -31,12 +31,12 @@ form {
 }
 
 #pratique{
-    background-color: #f2f2f2;
+    background-color: var(--practice);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-bottom: 30px;
     padding: 20px;
-    margin-top: 3rem;
+    margin-top: 1rem;
     margin-left: 2rem;
     margin-right: 2rem;
 }
@@ -94,3 +94,26 @@ input[type="text"] {
 .show-result .result-section {
     display: block;
 }
+
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.stroked {
+  background-color: rgba(255, 255, 255, 0) !important;
+  color: black !important;
+  font-size: small !important;
+  box-shadow: none !important;
+  border: .01rem solid rgb(190, 189, 189) !important;
+}
+

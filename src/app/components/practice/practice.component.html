@@ -1,4 +1,4 @@
-<div class="row justify-content-center bg">
+<!-- <div class="row justify-content-center bg">
   <div class="col-5" id="pratique">
     <div class="row">
       <div class="col-sm-12">
@@ -44,4 +44,96 @@
         </div>
       </div>
   </div>
+</div> -->
+
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+<div class="row bg justify-content-center">
+  <div class="col-sm-6 mt-3 " id="pratique">
+    <div class="row">
+      <div class="col-12">
+        <h1 style="text-align: center; margin-bottom:0;" >Simulador de Investimentos</h1>
+        <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+          <mat-stepper class="col-8" style="background-color: var(--practice);" orientation="vertical" [linear]="true"  #stepper>
+            <mat-step >
+              <ng-template matStepLabel >Passo 1</ng-template>
+              <ng-template matStepContent>
+                <mat-form-field appearance="fill" class="col-12">
+                  <mat-label>Tipo de investimento</mat-label>
+                  <mat-select [(value)]="selected" formControlName="investmentType" required>
+                    <mat-option *ngFor="let field of fieldInvestType | keyvalue; let i = index;" [value]="field.value.interestRate">{{field.value.name}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <span *ngIf="selected != ''" class="m-0 mb-3 p-0 d-flex justify-content-center bold text-primary" >
+                  Rendimento = {{selected}}
+                </span>
+                <div class="col-12 p-0 m-0 d-flex justify-content-end">
+                  <button  mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
+                </div>
+              </ng-template>
+            </mat-step>
+            <mat-step >
+              <ng-template matStepLabel>Passo 2</ng-template>
+              <ng-template matStepContent>
+                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
+                  <mat-label>Valor inicial</mat-label>
+                  <input matInput class="example-right-align" formControlName="investmentAmount" >
+                  <span matTextPrefix>$&nbsp;</span>
+                  <span matTextSuffix>.00</span>
+                </mat-form-field>
+                <div class="col-12 p-0 m-0 d-flex justify-content-between">
+                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
+                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
+                </div>
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Passo 3</ng-template>
+              <ng-template matStepContent>
+                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
+                  <mat-label>Investimento mensal</mat-label>
+                  <input matInput formControlName="monthlyInvestment" class="example-right-align">
+                  <span matTextPrefix>$&nbsp;</span>
+                  <span matTextSuffix style="margin-left: .2rem;">.00</span>
+                </mat-form-field>
+                <div class="col-12 p-0 m-0 d-flex justify-content-between">
+                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
+                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
+                </div>
+              </ng-template>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Passo 4</ng-template>
+              <ng-template matStepContent>
+                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
+                  <mat-label>Prazo (meses)</mat-label>
+                  <input matInput formControlName="investmentTerm" class="example-right-align" required>
+                  <span matTextPrefix>$&nbsp;</span>
+                  <span matTextSuffix style="margin-left: .2rem;">meses</span>
+                </mat-form-field>
+                <div class="col-12 p-0 m-0 d-flex justify-content-between">
+                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
+                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0" type="submit" [disabled]="!investmentForm.valid">Simular</button>
+                </div>
+              </ng-template>
+            </mat-step>
+          </mat-stepper>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 d-flex justify-content-center align-items-center" *ngIf="showResult">
+    <div class="row" id="pratique">
+      <div class="col-12">
+        <div class="container">
+            <h1>Resultado:</h1>
+            <p>Investimento selecionado: {{selectedInvestment.type}}</p>
+            <p>Montante investido: {{formattedPrincipal}}</p>
+            <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
+            <p>Montante final: {{formattedFutureValue}}</p>
+        </div>
+      </div>
+  </div>
 </div>
+
