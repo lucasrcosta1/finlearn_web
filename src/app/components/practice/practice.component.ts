@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { InvestType } from 'src/app/models/InvestType.model';
 
 @Component({
   selector: 'app-practice',
@@ -7,6 +8,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./practice.component.css']
 })
 export class PracticeComponent implements OnInit {
+  selected = '';
+  investType = new InvestType();
+  fieldInvestType = new Map<number, InvestType>();
+
+
   investmentForm: FormGroup;
   investmentOptions = [
     { type: 'cdb', interestRate: 6, compoundedPeriodsPerYear: 12 },
@@ -22,35 +28,43 @@ export class PracticeComponent implements OnInit {
   timePeriod: number = 0;
 
   constructor(private fb: FormBuilder) {
-    this.investmentForm = this.fb.group({
-      investmentType: ['', Validators.required],
-      investmentAmount: ['', Validators.required],
-      monthlyInvestment: ['', Validators.required],
-      investmentTerm: ['', [Validators.required, Validators.min(1)]],
-    });
+    this.investmentForm = this.createForm();
   }
 
   ngOnInit() {
     this.createForm();
+    this.fieldInvestType = this._fillFields(this.investType);
+
   }
 
-  createForm() {
-    this.investmentForm = this.fb.group({
+  createForm(): FormGroup<any> {
+    return this.fb.group({
       investmentType: ['', Validators.required],
       investmentAmount: ['', Validators.required],
       monthlyInvestment: ['', Validators.required],
       investmentTerm: ['', [Validators.required, Validators.min(1)]]
     });
+
   }
 
   onSubmit() {
     // Verificação se os campos foram preenchidos corretamente
-    if (!this.investmentForm.valid) {
-      console.log('Formulário inválido.');
-      return;
-    }
 
-    const selectedInvestmentType = this.investmentForm.controls['investmentType'].value;
+    if (!this.investmentForm.valid) {
+      console.error('Formulário inválido.');
+      return;
+    } else {
+      //change investmentType from rate to value.
+      this.fieldInvestType.forEach(
+        v => {
+          if (v.interestRate == this.investmentForm.value.investmentType) {
+            this.investmentForm.value.investmentType = v.value;
+          }
+        }
+      );
+
+    }
+    const selectedInvestmentType = this.investmentForm.value.investmentType;
     this.selectedInvestment = this.investmentOptions.find(investment => investment.type === selectedInvestmentType);
 
     // Verificação se foi selecionado um tipo de investimento
@@ -101,5 +115,28 @@ export class PracticeComponent implements OnInit {
     } else {
         return 'col-md-6'
     }
+  }
+
+  private _fillFields (investType: InvestType | Set<InvestType>): Map<number,InvestType> {
+    let fieldInvestType = new Map<number,InvestType>();
+
+    if (investType instanceof InvestType) {
+      investType.name = "CDB";
+      investType.value = "cdb";
+      investType.interestRate = "6% ao ano";
+      fieldInvestType.set(0,new InvestType(investType));
+
+      investType.name = "Poupança";
+      investType.value = "poupanca";
+      investType.interestRate = "4,5% ao ano";
+      fieldInvestType.set(1,new InvestType(investType));
+
+      investType.name = "Fundo de investimento";
+      investType.value = "fundo";
+      investType.interestRate = "8% ao ano";
+      fieldInvestType.set(2,new InvestType(investType));
+    }
+
+    return fieldInvestType;
   }
 }

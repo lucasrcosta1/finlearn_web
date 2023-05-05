@@ -14,6 +14,11 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +26,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { SimpleRegisterComponent } from './components/authentication/simple-register/simple-register.component';
 import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
 import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
@@ -39,7 +43,6 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     HomeComponent,
     HeaderComponent,
     SuporteComponent,
-    FooterComponent,
     SimpleRegisterComponent,
     SimpleLoginComponent,
     SimpleAuthComponent,
@@ -69,6 +72,10 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     MatRadioModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    NgbModule,
+    MatExpansionModule,
+    MatStepperModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
