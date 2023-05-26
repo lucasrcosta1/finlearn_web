@@ -4,7 +4,7 @@
   <input type="radio" name="toggle" id="toggle2">
   <input type="radio" name="toggle" id="toggle3">
 
-  <section id="section-1">
+  <section id="section-1"  style="background-color: var(--shadow)">
     <div class="row section-style">
       <div class="col-4">
           <app-simple-login (spinner)="changeSpinnerValue($event)"></app-simple-login>
@@ -16,7 +16,7 @@
     </div>
   </section>
 
-  <section id="section-2">
+  <section id="section-2"  style="background-color: var(--shadow)">
     <div class="row section-style">
       <div class="col-4">
           <app-simple-register (spinner)="changeSpinnerValue($event)"></app-simple-register>
@@ -33,7 +33,7 @@
   <div class="row  d-flex justify-content-center align-items-end ">
     <img src="../../../../../assets/images/finlearnLogo.png" style="height: 125px; width: 300px;">
   </div>
-  <div class="row d-flex justify-content-center align-items-start ">
-    <mat-spinner></mat-spinner>
+  <div class="row d-flex justify-content-center align-items-start mt-2">
+    <mat-spinner [diameter]="50"></mat-spinner>
   </div>
 </div>

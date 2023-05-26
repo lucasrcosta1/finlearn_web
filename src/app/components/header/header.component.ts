@@ -28,7 +28,13 @@ export class HeaderComponent implements OnInit {
     this.tabs = this._addAllTabs(this.tabs);
     this._getLabelActive();
     console.log(this.tabs);
+  }
 
+  /**
+   * Manage client.
+   */
+  public manageUser (): void {
+    console.log("manage user.");
   }
 
   /**
@@ -42,6 +48,7 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Change color clicked tab.
+   * @param label
    */
   public activateTab(label: string): void {
     this.tabs.forEach(
@@ -64,6 +71,8 @@ export class HeaderComponent implements OnInit {
 
   /**
    * Add all tabs to the Set tab.
+   * @param tabs
+   * @returns
    */
   private _addAllTabs (tabs: Set<Tab>): Set<Tab> {
     tabs.add(new Tab(0,'fa fa-graduation-cap', '/learn', 'learn', false));
@@ -72,5 +81,14 @@ export class HeaderComponent implements OnInit {
     tabs.add(new Tab(3,'fa fa-users', '/community', 'community', false));
     tabs.add(new Tab(4,'fa fa-search', '/support', 'support', false));
     return tabs;
+  }
+
+  /**
+   * Change tab to the tab passed as parameter.
+   * @param tabName
+   */
+  goTo (tabName: string): void {
+    this.activateTab(tabName);
+    this._router.navigate([`/${tabName}`]);
   }
 }

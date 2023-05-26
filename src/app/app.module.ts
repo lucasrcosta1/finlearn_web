@@ -12,17 +12,20 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
-
 import { CommunityComponent } from './components/community/community.component';
-import { FormsModule } from '@angular/forms';
-
-import { FooterComponent } from './components/footer/footer.component';
 import { SimpleRegisterComponent } from './components/authentication/simple-register/simple-register.component';
 import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
 import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
@@ -33,6 +36,7 @@ import { ProgressBarComponent } from './components/aux_components/progress-bar/p
 import { ClassModuleComponent } from './components/aux_components/class-module/class-module/class-module.component';
 import { NewsComponent } from './components/aux_components/news/news/news.component';
 import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,6 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     HomeComponent,
     HeaderComponent,
     SuporteComponent,
-    FooterComponent,
     SimpleRegisterComponent,
     SimpleLoginComponent,
     SimpleAuthComponent,
@@ -51,7 +54,8 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     ProgressBarComponent,
     ClassModuleComponent,
     NewsComponent,
-    StorieCarrouselComponent
+    StorieCarrouselComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,11 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     MatButtonModule,
     MatRadioModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
+    NgbModule,
+    MatExpansionModule,
+    MatStepperModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
