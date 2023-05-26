@@ -77,7 +77,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     NgbModule,
     MatExpansionModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
