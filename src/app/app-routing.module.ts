@@ -14,10 +14,6 @@ import { LearnComponent } from './components/learn/learn.component';
 
 
 const routes: Routes = [
-  // {path: 'login', component: LoginComponent},
-  // { path: '**', redirectTo: 'home'}, // create a not found page.
-
-  //test new login
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'learn', component: LearnComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},

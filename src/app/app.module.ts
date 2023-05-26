@@ -36,6 +36,7 @@ import { ProgressBarComponent } from './components/aux_components/progress-bar/p
 import { ClassModuleComponent } from './components/aux_components/class-module/class-module/class-module.component';
 import { NewsComponent } from './components/aux_components/news/news/news.component';
 import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { StorieCarrouselComponent } from './components/aux_components/storie-car
     ProgressBarComponent,
     ClassModuleComponent,
     NewsComponent,
-    StorieCarrouselComponent
+    StorieCarrouselComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,71 @@
+<div class="sidebar">
+  <div class="logo">
+    <!-- <img src="logo.png" alt="Logo"> -->
+    <div>
+      <span class="logo_head">F</span>
+      <span class="logo_body"><span>inlearn</span></span>
+    </div>
+  </div>
+  <div class="menu">
+    <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/home')" >
+      <div class="page" [ngClass]="{ selected: activeRoute === '/home' }">
+        <i class="fa fa-home"></i>
+        <span>Início</span>
+      </div>
+    </a>
+
+    <a routerLink="/learn" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/learn')">
+      <div class="page ft-larger" [ngClass]="{ selected: activeRoute === '/learn' }">
+        <i class="fa fa-book"></i>
+        <span>Aprenda</span>
+      </div>
+    </a>
+
+    <a routerLink="/practice" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/practice')">
+      <div class="page" [ngClass]="{ selected: activeRoute === '/practice' }">
+        <!-- <i class="fa fa-laptop"></i> -->
+        <i class="fa fa-line-chart"></i>
+        <span>Pratique</span>
+      </div>
+    </a>
+
+    <a routerLink="/community" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/community')">
+      <div class="page" [ngClass]="{ selected: activeRoute === '/community' }">
+        <i class="fa fa-users"></i>
+        <span>Comunidade</span>
+      </div>
+    </a>
+
+    <a routerLink="/community" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/support')">
+      <div class="page" [ngClass]="{ selected: activeRoute === '/support' }">
+        <i class="fa fa-question-circle"></i>
+        <span>Central de ajuda</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- <div class="user-profile ">
+    <div class="user-icon">
+      <i class="fa fa-user"></i>
+    </div>
+    <div class="user-info">
+      <span class="name">John Doe</span>
+      <span class="email">johndoe@example.com</span>
+    </div>
+  </div> -->
+  <div class="user-info">
+    <div class="user-icon">
+      <i class="fa fa-user-circle" style="font-size: 40px;"></i>
+    </div>
+    <div class="user-details">
+      <span class="user-name">Leonardo</span>
+      <span class="user-email">leonardo@gmail.com</span>
+    </div>
+  </div>
+
+</div>

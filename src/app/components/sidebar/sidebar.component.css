@@ -1,0 +1,108 @@
+
+.sidebar {
+  width: 20%;
+  min-width: 150px;
+  background-color: #F9FAFB;
+  border-right: 1px solid #E2E2E2;
+  color: #6D7279;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.sidebar a {
+  text-decoration: none;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.menu {
+  padding: 20px 0;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  padding-left: 30px;
+  font-family: 'Roboto', sans-serif;
+  color: #6D7279;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  font-size: larger;
+}
+
+.page:hover {
+  background-color: #e0e0e0;
+  /* background-color: #bdbdbd; */
+  color: black;
+}
+
+.page.selected {
+  background-color: rgba(5, 159, 48, 0.2);
+  border-right: 4px solid #059F30;
+  color: #059F30;
+}
+
+.page.selected:hover {
+  background-color: #059F30;
+  color: #FFFFFF;
+}
+
+.page i {
+  margin-right: 10px;
+}
+
+.logo_body {
+  color: #534A4A;
+  font-size: 35px;
+  font-style: Regular;
+  text-align: center;
+  font-family: PT Mono;
+}
+
+.logo_head {
+  background: linear-gradient(to bottom, #059F30, #13C9C9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 80px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.user-icon {
+  margin-right: 10px;
+}
+
+.user-icon i {
+  font-size: 24px;
+}
+
+.user-details {
+  text-align: left;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #6D7279;
+  display: block;
+}
