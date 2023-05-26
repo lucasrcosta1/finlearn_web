@@ -40,7 +40,7 @@
       </div>
     </a>
 
-    <a routerLink="/community" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+    <a routerLink="/support" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
       (click)="setActiveRoute('/support')">
       <div class="page" [ngClass]="{ selected: activeRoute === '/support' }">
         <i class="fa fa-question-circle"></i>
@@ -49,22 +49,20 @@
     </a>
   </div>
 
-  <!-- <div class="user-profile ">
-    <div class="user-icon">
-      <i class="fa fa-user"></i>
-    </div>
-    <div class="user-info">
-      <span class="name">John Doe</span>
-      <span class="email">johndoe@example.com</span>
-    </div>
-  </div> -->
-  <div class="user-info">
+  <div class="user-info clickable" (click)="togglePopUp()">
     <div class="user-icon">
       <i class="fa fa-user-circle" style="font-size: 40px;"></i>
     </div>
     <div class="user-details">
       <span class="user-name">Leonardo</span>
       <span class="user-email">leonardo@gmail.com</span>
+    </div>
+    <div class="popup" id="user-popup">
+      <ul>
+        <li>Editar perfil</li>
+        <li>Alterar senha</li>
+        <li (click)="logout()">Sair</li>
+      </ul>
     </div>
   </div>
 

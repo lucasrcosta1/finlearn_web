@@ -27,7 +27,7 @@
 
 .header-bg {
   background-color: var(--classic-color);
-  color: var(--shadow);
+  color: var(--secondary-color);
 }
 
 .field {
