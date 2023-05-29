@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Comunidade</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="community.component.css">
-</head>
-
-<body>
+<!-- <body>
     <div class="comunidade bg">
         <div class="container">
             <div class="row">
@@ -33,8 +25,8 @@
             <div class="input-group mb-3" *ngIf="!newTitle">
                 <input type="text" [(ngModel)]="searchTerm" (keyup)="search()" id="search-bar" class="form-control"
                     placeholder="Pesquisar conversas" aria-label="Pesquisar conversas">
-                <!-- Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
-                    função search() é chamada para filtrar as conversas com base no valor atual da propriedade searchTerm. -->
+                Quando o valor na barra de pesquisa é alterado, a propriedade searchTerm é atualizada automaticamente. Em seguida, a
+                    função search() é chamada para filtrar as conversas com base no valor atual da propriedade searchTerm.
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
                     <button type="button" class="btn btn-outline-secondary" (click)="clearSearch()">Limpar</button>
@@ -63,6 +55,19 @@
         </div>
     </div>
 
+</body> -->
+
+<body>
+  <div class="conversation-container border-around">
+    inputs
+  </div>
+  <div class="conversation-container ">
+    <p class="ft-larger">Minhas Conversas</p>
+  </div>
+  <div class="conversation-container border-around">
+    dropdown
+  </div>
 </body>
 
 </html>
+
