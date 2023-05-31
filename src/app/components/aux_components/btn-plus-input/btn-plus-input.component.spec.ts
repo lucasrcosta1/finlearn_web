@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NewsComponent } from './news.component';
+import { BtnPlusInputComponent } from './btn-plus-input.component';
 
-describe('NewsComponent', () => {
-  let component: NewsComponent;
-  let fixture: ComponentFixture<NewsComponent>;
+describe('BtnPlusInputComponent', () => {
+  let component: BtnPlusInputComponent;
+  let fixture: ComponentFixture<BtnPlusInputComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsComponent ]
+      declarations: [ BtnPlusInputComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(NewsComponent);
+    fixture = TestBed.createComponent(BtnPlusInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

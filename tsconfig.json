@@ -26,6 +26,10 @@
     "useDefineForClassFields": false,
     "skipLibCheck": true
   },
+  "exclude": [
+    // ... other exclude patterns
+    "node_modules/body-parser"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,

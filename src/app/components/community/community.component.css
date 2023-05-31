@@ -1,54 +1,9 @@
-*{
-    margin: 0;
-    padding: 0;
+html,body{
+  padding: 0;
+  margin: .8rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
-
-.comunidade {
-    padding-top: 2rem;
-    margin-top: 4em;
-}
-
-h2{
-    padding-bottom: 2rem;
-}
-
-.my-button{
-    background-color: green;
-    color: white;
-}
-
-/* Estilo para a barra de pesquisa */
-.search-bar {
-    margin-bottom: 20px;
-}
-
-.list-group-header, .list-group-item.list-group-header:hover {
-    background-color: green;
-    border-color: green;
-    color: white;
-}
-
-.list-group-item:hover {
-    background-color: rgba(143, 247, 79, 0.281);
-}
-
-/* Estilo para a lista de conversas */
-.conversation-list {
-    width: 400px;
-    margin: 0 auto;
-}
-
-.conversation-list .list-group-item.active {
-    background-color: #007bff;
-    border-color: #007bff;
-    color: #fff;
-}
-
-.bg {
-  margin: 1rem;
-  box-shadow: .3rem .3rem .3rem var(--shadow);
-  border-radius: 2rem;
-  background-color: var(--medium-green);
-  min-height: 25rem;
+.conversation-container {
+  margin-top: 3rem;
 }

@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { catchError } from 'rxjs';
 
 import { AuthenticationService } from 'src/app/components/authentication/authentication.service';
+import { PostError } from 'src/app/models/PostError.model';
 import { User } from 'src/app/models/user/User.model';
 import { LoginService } from 'src/app/service/login/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-simple-login',
@@ -40,8 +42,8 @@ export class SimpleLoginComponent {
   ngOnInit () {
     /**Don't think I need loginForm anymore */
     this.loginForm = this.formBuilder.group({
-      email           : [this.email, [Validators.required, Validators.email]],
-      password        : [this.password, [Validators.required, Validators.minLength(6)]],
+      email        : [this.email, [Validators.required, Validators.email]],
+      password     : [this.password, [Validators.required, Validators.minLength(6)]],
       // password        : [null, [Validators.required]],
     });
   }
@@ -51,33 +53,89 @@ export class SimpleLoginComponent {
    * @todo User type to be sent should be this.http.post<User> instead of this.http.post<any>.
    */
   onSubmit (): void {
-    let user = this._createUser(this.email.value, this.password.value);
-    this.spinner.emit(false);
-    this.loginService.isLogged(user)
-    .pipe (
-      catchError((error, caught) => {
-        console.log('An error occurred:', error);
-        // this.spinner.emit(true);
-        return of(null);
-      })
-    )
-    .subscribe({
-      next: (data) => {
-          if(data) {
-            console.log(data);
-            console.log("Should open a modal/snack bar to tell the user that operation was successful.");
-            this.spinner.emit(true);
+    const url = environment.HTTP_REQUEST + '/auth/login'
+    const loginData = {
+      username: "adm@adm.com.br",
+      password: "Admin123@"
+    };
+    console.log(loginData);
 
-          }
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
       },
-      error: (error) => {
-        if (error) {
-          console.log(error);
-          console.log("Should open a modal/snack bar to tell the user that an error happend.");
-          this.spinner.emit(true);
+      body: JSON.stringify(loginData)
+    })
+      .then(response => {
+        if (response.ok) {
+          // Login successful
+          return response.json();
+        } else {
+          // Login failed
+          console.log(response);
+          throw new Error("Login failed");
         }
-      }
-    });
+      })
+      .then(data => {
+        // Handle the response data
+        console.log("Login successful. Response data:", data);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error("Error occurred during login:", error);
+      });
+
+
+    // bellow is the other way of create a http post:
+
+    // let user = this._createUser(this.email.value, this.password.value);
+    // this.spinner.emit(false);
+    // this.loginService.isLogged(user).pipe (
+    //   catchError((error, caught) => {
+    //     let e;
+    //     if (error instanceof Array<Object>) {
+    //       e =  new Array<PostError>();
+    //       error.forEach(
+    //         err => {
+    //           e.push(new PostError(err.loc, err.msg, err.type));
+    //         }
+    //       );
+    //     } else {
+    //       e = new PostError(error.loc,error.msg,error.type);
+    //     }
+    //     this._showErrorMessage(e);
+    //     return e;
+    //   })
+    // )
+    // .subscribe({
+    //   next: (data) => {
+    //     //trying to access the right data to prevent and show errors.
+    //     // if (data) {
+    //       // let tryout = new Array<PostError>(data);
+    //       // if(tryout instanceof Array<PostError>) {
+    //       //     console.log("handle error");
+    //       // } else {
+    //       //   console.log("inside else", data);
+    //       //   console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+    //       //   // this.spinner.emit(true);
+    //       // }
+    //       // this.spinner.emit(true);
+    //     // }
+    //     if (data) {
+    //       console.log(data);
+    //       console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+    //       this.spinner.emit(true);
+    //     }
+    //   },
+    //   error: (error) => {
+    //     if (error) {
+    //       console.log(error);
+    //       console.log("Should open a modal/snack bar to tell the user that an error happend.");
+    //       this.spinner.emit(true);
+    //     }
+    //   }
+    // });
   }
 
   /**
@@ -121,4 +179,20 @@ export class SimpleLoginComponent {
     return user;
   }
 
+  /**
+   * Treat error message received and display it in log.
+   * @param error
+   */
+  private _showErrorMessage (error: Array<PostError> | PostError): void {
+    if (error instanceof Array<PostError>) {
+      error.forEach(
+        err => {
+          console.error('ERROR_RETURNED_FROM_POST: [', err.msg , '- error on', `${err.loc[1]}'s`, err.loc[0] , ']');
+        }
+      );
+
+    } else {
+      console.error('ERROR_RETURNED_FROM_POST: [', error.msg , '- error on', `${error.loc[1]}'s`, error.loc[0] , ']');
+    }
+  }
 }
