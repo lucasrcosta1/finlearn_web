@@ -34,8 +34,6 @@ import { PracticeComponent } from './components/practice/practice.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
 import { ClassModuleComponent } from './components/aux_components/class-module/class-module/class-module.component';
-import { NewsComponent } from './components/aux_components/news/news/news.component';
-import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
 import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
@@ -56,8 +54,6 @@ import { BtnPlusInputComponent } from './components/aux_components/btn-plus-inpu
     LearnComponent,
     ProgressBarComponent,
     ClassModuleComponent,
-    NewsComponent,
-    StorieCarrouselComponent,
     SidebarComponent,
     MyConversationsComponent,
     BtnPlusInputComponent,
