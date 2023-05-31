@@ -3,6 +3,7 @@
 
 :root {
   --classic-color: #1f761f;
+  --primary-color: #059F30;
   --secondary-color: #FFFFFF;
   --contrast-color: #F4A130;
   --medium-green: #ebf7e3;
@@ -70,6 +71,10 @@ input {
   font-size: x-large;
 }
 
+.ft-xx-lg {
+  font-size: xx-large;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -92,5 +97,6 @@ input {
   width: 100vw;
   height: 100vh;
 }
+
 
 

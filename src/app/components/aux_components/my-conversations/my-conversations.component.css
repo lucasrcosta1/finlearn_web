@@ -1,0 +1,56 @@
+html,body {
+  padding: 0;
+}
+
+
+.border-around {
+  margin-top: 1rem;
+  border: .1rem solid var(--grayish);
+  border-radius: .3rem;
+}
+
+.conversation-header {
+  margin: 0.8rem 1rem;
+}
+
+.conversation-body {
+  margin: 1rem 1.5rem;
+}
+
+.see {
+  color: #059F30;
+  font-size: large;
+  cursor: pointer;
+}
+
+.border-top {
+  border-top: .1rem solid var(--grayish);
+}
+
+#comment-input {
+  border: 0;
+
+  width: 1500px;
+  outline: none;
+}
+
+#comment-btn {
+  background-color: rgba(5, 159, 48, 0.2);
+  color: var(--primary-color);
+  border: 0;
+  border-radius: .2rem;
+  padding: .4rem 1rem .4rem 1rem;
+}
+
+input::placeholder {
+  padding: 0;
+  margin: 0;
+}
+
+#border-padding {
+  padding: 10px 20px 10px 0;
+}
+
+#conversation-max-size {
+  max-width: 80%;
+}

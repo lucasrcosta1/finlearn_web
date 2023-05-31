@@ -7,8 +7,3 @@ html,body{
 .conversation-container {
   margin-top: 3rem;
 }
-
-.border-around {
-  border: .1rem solid var(--grayish);
-  border-radius: .3rem;
-}

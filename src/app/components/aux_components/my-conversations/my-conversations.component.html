@@ -1,0 +1,32 @@
+<body>
+  <div class="border-around" *ngFor="let conversation of conversations">
+    <div class="conversation-header row justify-content-between">
+      <div class="col d-flex align-items-center p-0" >
+        <i class="fa fa-user-circle ft-xx-lg" style="color:#D6B542;"></i>
+        <p class="m-0 ms-2 ft-larger">{{conversation.title}}</p>
+      </div>
+      <div class="col d-flex justify-content-end align-items-center">
+        <p class="m-0 see" (click)="conversation.showContent = !conversation.showContent">
+          {{conversation.showContent ? "Ver menos ..." : "Ver mais ..."}}
+        </p>
+      </div>
+    </div>
+    <div class="border-top m-0" *ngIf="conversation.showContent">
+      <div id="conversation-max-size" >
+        <div class="conversation-body" *ngFor="let content of convertSetToArray(conversation.content)">
+          <div class="col d-flex align-items-center p-0" >
+            <i class="fa fa-user-circle ft-x-lg"></i>
+            <p class="m-0 ms-2 ft-lg">{{content.username}}</p>
+          </div>
+          <p class="mt-2 ft-lg">{{content.commentary}}</p>
+        </div>
+        <div class="conversation-body border-around" id="border-padding">
+          <div class="d-flex justify-content-between mr-3 pr-5 pl-0">
+            <input type="text" id="comment-input" placeholder="Comente algo interessante!">
+            <button id="comment-btn">Comentar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

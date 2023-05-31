@@ -37,6 +37,8 @@ import { ClassModuleComponent } from './components/aux_components/class-module/c
 import { NewsComponent } from './components/aux_components/news/news/news.component';
 import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ClassModuleComponent,
     NewsComponent,
     StorieCarrouselComponent,
-    SidebarComponent
+    SidebarComponent,
+    MyConversationsComponent,
   ],
   imports: [
     BrowserModule,
