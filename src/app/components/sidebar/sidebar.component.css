@@ -109,14 +109,26 @@
 
 .popup {
   position: absolute;
-  bottom: 100%;
-  right: 10px;
-  left: 10px;
+  bottom: 125%;
+  right: 5%;
+  left: 5%;
   display: none;
-  background-color: #ffffff;
+  background-color: var(--secondary-color);
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+}
+
+.popup::before {
+  content: "";
+  position: absolute;
+  bottom: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 25px;
+  border-style: solid;
+  /* border-color: #ffffff transparent transparent transparent; */
+  border-color: var(--secondary-color) transparent transparent transparent;
 }
 
 .popup ul {
