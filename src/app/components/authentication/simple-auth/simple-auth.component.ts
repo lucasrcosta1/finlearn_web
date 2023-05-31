@@ -25,8 +25,6 @@ export class SimpleAuthComponent {
    * @param value
    */
   public changeSpinnerValue (value: boolean): void {
-    console.log(this.spinner)
     this.spinner = value;
-    console.log(this.spinner)
   }
 }

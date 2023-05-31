@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError, of } from 'rxjs';
+import { catchError } from 'rxjs';
 
 import { AuthenticationService } from 'src/app/components/authentication/authentication.service';
+import { PostError } from 'src/app/models/PostError.model';
 import { User } from 'src/app/models/user/User.model';
 import { LoginService } from 'src/app/service/login/login.service';
 
@@ -40,8 +41,8 @@ export class SimpleLoginComponent {
   ngOnInit () {
     /**Don't think I need loginForm anymore */
     this.loginForm = this.formBuilder.group({
-      email           : [this.email, [Validators.required, Validators.email]],
-      password        : [this.password, [Validators.required, Validators.minLength(6)]],
+      email        : [this.email, [Validators.required, Validators.email]],
+      password     : [this.password, [Validators.required, Validators.minLength(6)]],
       // password        : [null, [Validators.required]],
     });
   }
@@ -53,22 +54,42 @@ export class SimpleLoginComponent {
   onSubmit (): void {
     let user = this._createUser(this.email.value, this.password.value);
     this.spinner.emit(false);
-    this.loginService.isLogged(user)
-    .pipe (
+    this.loginService.isLogged(user).pipe (
       catchError((error, caught) => {
-        console.log('An error occurred:', error);
-        // this.spinner.emit(true);
-        return of(null);
+        let e;
+        if (error instanceof Array<Object>) {
+          e =  new Array<PostError>();
+          error.forEach(
+            err => {
+              e.push(new PostError(err.loc, err.msg, err.type));
+            }
+          );
+        } else {
+          e = new PostError(error.loc,error.msg,error.type);
+        }
+        this._showErrorMessage(e);
+        return e;
       })
     )
     .subscribe({
       next: (data) => {
-          if(data) {
-            console.log(data);
-            console.log("Should open a modal/snack bar to tell the user that operation was successful.");
-            this.spinner.emit(true);
-
-          }
+        //trying to access the right data to prevent and show errors.
+        // if (data) {
+          // let tryout = new Array<PostError>(data);
+          // if(tryout instanceof Array<PostError>) {
+          //     console.log("handle error");
+          // } else {
+          //   console.log("inside else", data);
+          //   console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+          //   // this.spinner.emit(true);
+          // }
+          // this.spinner.emit(true);
+        // }
+        if (data) {
+          console.log(data);
+          console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+          this.spinner.emit(true);
+        }
       },
       error: (error) => {
         if (error) {
@@ -121,4 +142,20 @@ export class SimpleLoginComponent {
     return user;
   }
 
+  /**
+   * Treat error message received and display it in log.
+   * @param error
+   */
+  private _showErrorMessage (error: Array<PostError> | PostError): void {
+    if (error instanceof Array<PostError>) {
+      error.forEach(
+        err => {
+          console.error('ERROR_RETURNED_FROM_POST: [', err.msg , '- error on', `${err.loc[1]}'s`, err.loc[0] , ']');
+        }
+      );
+
+    } else {
+      console.error('ERROR_RETURNED_FROM_POST: [', error.msg , '- error on', `${error.loc[1]}'s`, error.loc[0] , ']');
+    }
+  }
 }

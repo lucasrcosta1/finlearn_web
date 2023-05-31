@@ -38,6 +38,7 @@ import { NewsComponent } from './components/aux_components/news/news/news.compon
 import { StorieCarrouselComponent } from './components/aux_components/storie-carrousel/storie-carrousel/storie-carrousel.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
+import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { MyConversationsComponent } from './components/aux_components/my-convers
     StorieCarrouselComponent,
     SidebarComponent,
     MyConversationsComponent,
+    BtnPlusInputComponent,
   ],
   imports: [
     BrowserModule,

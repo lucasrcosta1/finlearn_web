@@ -19,9 +19,9 @@
   --practice: #d6d6d6;
 }
 
-input {
+/* input {
   text-indent: 1rem;
-}
+} */
 
 .clickable {
   cursor: pointer;
@@ -98,5 +98,12 @@ input {
   height: 100vh;
 }
 
+.conversation-body {
+  margin: 1rem 1.5rem;
+}
 
-
+.border-around {
+  margin-top: 1rem;
+  border: .1rem solid var(--grayish);
+  border-radius: .3rem;
+}
