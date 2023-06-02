@@ -37,6 +37,8 @@ import { ClassModuleComponent } from './components/aux_components/class-module/c
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
 import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
+import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
+import { ModuleComponent } from './components/aux_components/topic/module/module.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { BtnPlusInputComponent } from './components/aux_components/btn-plus-inpu
     SidebarComponent,
     MyConversationsComponent,
     BtnPlusInputComponent,
+    DropdownComponent,
+    ModuleComponent,
   ],
   imports: [
     BrowserModule,

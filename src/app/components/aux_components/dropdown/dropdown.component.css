@@ -1,0 +1,40 @@
+
+.drop-down {
+  min-width: 120px;
+  border: .1rem solid var(--grayish);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.drop-down:hover .popup {
+  display: block;
+}
+
+.popup {
+  min-width: 120px;
+  position: absolute;
+  top: 100%;
+  /* right: 3%; */
+  display: none;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.popup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.popup ul li {
+  padding: 10px 15px 15px 15px;
+  cursor: pointer;
+}
+
+.popup ul li:hover {
+  background-color: #f2f2f2;
+  color: black;
+}
