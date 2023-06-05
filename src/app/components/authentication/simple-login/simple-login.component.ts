@@ -17,8 +17,6 @@ import { environment } from 'src/environments/environment';
 })
 export class SimpleLoginComponent {
   public loginForm?       : FormGroup;
-  public email            : FormControl;
-  public password         : FormControl;
   public hide             = true;
   @Output()
   public spinner = new EventEmitter<boolean>();
@@ -34,17 +32,13 @@ export class SimpleLoginComponent {
   ) {
     this.loginService = new LoginService(this.router,this.http);
     this.authService  = new AuthenticationService();
-    this.email        = new FormControl('', [Validators.required, Validators.email]);
-    this.password     = new FormControl('', [Validators.required, Validators.minLength(6)]);
-
   }
 
   ngOnInit () {
     /**Don't think I need loginForm anymore */
     this.loginForm = this.formBuilder.group({
-      email        : [this.email, [Validators.required, Validators.email]],
-      password     : [this.password, [Validators.required, Validators.minLength(6)]],
-      // password        : [null, [Validators.required]],
+      username     : ['', [Validators.required, Validators.email]],
+      password     : ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -52,39 +46,51 @@ export class SimpleLoginComponent {
    * Check whether user is logged or not.
    * @todo User type to be sent should be this.http.post<User> instead of this.http.post<any>.
    */
-  onSubmit (): void {
-    const url = environment.HTTP_REQUEST + '/auth/login'
-    const loginData = {
-      username: "adm@adm.com.br",
-      password: "Admin123@"
-    };
-    console.log(loginData);
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(loginData)
-    })
-      .then(response => {
-        if (response.ok) {
-          // Login successful
-          return response.json();
-        } else {
-          // Login failed
-          console.log(response);
-          throw new Error("Login failed");
-        }
-      })
-      .then(data => {
-        // Handle the response data
-        console.log("Login successful. Response data:", data);
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error("Error occurred during login:", error);
+  login (): void {
+    if (this.loginForm?.value.username && this.loginForm?.value.username) {
+      const data = this.loginForm?.getRawValue();
+      console.log(data);
+      this.loginService.login(data).subscribe((response) => {
+        console.log(response);
       });
+    } else {
+      console.warn("WARNING: Login form is not valid.");
+    }
+
+
+    //second trial
+    // const url = environment.HTTP_REQUEST + '/auth/login'
+    // const loginData = {
+    //   username: "adm@adm.com.br",
+    //   password: "Admin123@"
+    // };
+    // console.log(loginData);
+
+    // fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify(loginData)
+    // })
+    //   .then(response => {
+    //     if (response.ok) {
+    //       // Login successful
+    //       return response.json();
+    //     } else {
+    //       // Login failed
+    //       console.log(response);
+    //       throw new Error("Login failed");
+    //     }
+    //   })
+    //   .then(data => {
+    //     // Handle the response data
+    //     console.log("Login successful. Response data:", data);
+    //   })
+    //   .catch(error => {
+    //     // Handle any errors
+    //     console.error("Error occurred during login:", error);
+    //   });
 
 
     // bellow is the other way of create a http post:
@@ -155,7 +161,7 @@ export class SimpleLoginComponent {
    * @returns
    */
   public getEmailMessage (): string {
-    return this.authService.getEmailMessage(this.loginForm?.value.email);
+    return this.authService.getEmailMessage(this.loginForm?.value.username);
   }
 
   /**
