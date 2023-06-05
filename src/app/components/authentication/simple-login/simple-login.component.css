@@ -64,3 +64,14 @@
   background-color: var(--classic-color);
   color: var(--secondary-color);
 }
+
+
+.specialist {
+  color: green;
+  text-decoration: none;
+}
+
+.forgot-password {
+  color: red;
+  text-decoration: none;
+}

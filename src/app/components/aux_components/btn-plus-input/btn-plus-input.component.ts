@@ -10,4 +10,6 @@ export class BtnPlusInputComponent {
   public iconClass = "";
   @Input()
   public commentary = "";
+  @Input()
+  public value = "null";
 }
