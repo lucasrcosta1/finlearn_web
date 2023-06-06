@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private _loginService : LoginService,
-    private router        : Router,
+    private _router        : Router,
   ) { }
 
   /**
@@ -22,7 +22,10 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
     if (localStorage.getItem('token'))
       return true;
-    else return false;
+    else {
+      this._router.navigate(['/auth/login']);
+      return false;
+    }
     // if (localStorage.getItem('currentUser')) {
     //   let user = JSON.parse(localStorage.getItem('currentUser')!);
     //   console.log("user",user)
