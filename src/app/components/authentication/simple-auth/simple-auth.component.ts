@@ -16,9 +16,7 @@ export class SimpleAuthComponent {
   login = new EventEmitter<boolean>();
   loggedIn: any;
 
-  constructor () {
-
-  }
+  constructor () {}
 
   /**
    * Change spinner's value.

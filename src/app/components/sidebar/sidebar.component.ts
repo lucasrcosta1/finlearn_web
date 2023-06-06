@@ -9,18 +9,30 @@ import { LoginService } from 'src/app/service/login/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  activeRoute: string = '';
-
-  private _loginService: LoginService;
+  activeRoute: string = "";
+  username = "";
+  email = "";
 
   constructor(
     private _http: HttpClient,
     private _router: Router,
+    private _loginService: LoginService
   ) {
-    this._loginService = new LoginService(_router,_http);
   }
 
   ngOnInit (): void {
+    if (localStorage.getItem('username') && localStorage.getItem('email')) { // Already logged
+      this.username = localStorage.getItem('username')!;
+      this.email = localStorage.getItem('email')!;
+    } else { // Not logged yet.
+      console.error("ERROR: Username or email is null");
+      this._loginService.getUser().subscribe(
+        user => {
+          this.username = user.name;
+          this.email    = user.email;
+        }
+      );
+    }
     this._getLabelActive();
   }
 

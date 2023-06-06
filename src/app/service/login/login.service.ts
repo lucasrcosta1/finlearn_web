@@ -1,17 +1,25 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, observable } from 'rxjs';
+import { BehaviorSubject, Observable, observable } from 'rxjs';
 import { AppComponent } from 'src/app/app.component';
 import { Login } from 'src/app/models/login/login.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   private token: string = '';
+  private user = new BehaviorSubject<User>(new User());
+
   public appComponent = new AppComponent();
 
   constructor(
@@ -19,34 +27,6 @@ export class LoginService {
     private http: HttpClient,
   ) { }
 
-  public setToken (token: string) {
-    this.token = token;
-  }
-  public getToken () {
-    return this.token!;
-  }
-
-  /**
-   * Check whether user is logged or not.
-   * @todo User type to be sent should be this.http.post<User> instead of this.http.post<any>.
-   */
-  isLogged (user: User): Observable<any> {
-    return new Observable((observer) => {
-      this.http.post<any>(environment.HTTP_REQUEST + '/auth/login', user).subscribe({
-        next: (response) => {
-          if (response.user) {
-            this.appComponent.login = false;
-            this.redirectToHome();
-            localStorage.setItem("auth-key",`Bearer ${response.access_token}`);
-            observer.next(response.user.id);
-          }
-        },
-        error: (error) => {
-          observer.error(error.error.detail);
-        }
-      });
-    });
-  }
 
   /**
    * Register a new user.
@@ -102,8 +82,35 @@ export class LoginService {
    * @todo create logic to remove token once user is logged out.
    */
   public logout (): void {
-    localStorage.removeItem('auth-key');
-    // window.location.reload();
+    localStorage.removeItem('id');
+    localStorage.removeItem('email');
+    localStorage.removeItem('username');
+    localStorage.removeItem('token');
   }
 
+  /**
+   * Login user.
+   * @param data
+   * @returns
+   */
+  login(data) {
+    let user  = new FormData(); // form url-encoded not JSON.
+    user.append('username', data.username);
+    user.append('password', data.password);
+    return this.http.post(environment.HTTP_REQUEST + '/auth/login', user);
+  }
+
+  public setToken (token: string) {
+    this.token = token;
+  }
+  public getToken () {
+    return this.token!;
+  }
+
+  public setUser (user: User) {
+    this.user.next(user);
+  }
+  public getUser (): Observable<User> {
+    return this.user.asObservable();
+  }
 }
