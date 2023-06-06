@@ -37,11 +37,14 @@ export class LoginService {
     return new Observable((observer) => {
       this.http.post<any>(environment.HTTP_REQUEST + '/user/create', user).subscribe({
         next: (response) => {
-          console.log(response);
           if (response) {
-            this.appComponent.login = false;
+            // this.appComponent.login = false;
             this.redirectToHome();
-            localStorage.setItem("auth-key",`Bearer ${response.access_token}`);
+            console.log(response);
+            localStorage.setItem('id', response);
+            localStorage.setItem('email', user.email);
+            localStorage.setItem('username', user.name);
+            localStorage.setItem("token",`Bearer ${response.access_token}`);
             observer.next(response);
           }
         },
@@ -50,6 +53,10 @@ export class LoginService {
         }
       });
     });
+  }
+
+  registerUserAlternative (user: User) {
+    return this.http.post(environment.HTTP_REQUEST + '/user/create', user);
   }
 
 

@@ -73,6 +73,14 @@ export class SimpleLoginComponent {
         next: (response: any) => {
           if (response) {
             // console.log(response);
+            if (
+              localStorage.getItem('id') &&
+              localStorage.getItem('email') &&
+              localStorage.getItem('token') &&
+              localStorage.getItem('username')
+            ) {
+              this.loginService.logout();
+            }
 
             localStorage.setItem('id', response.user.id);
             localStorage.setItem('email', response.user.email);

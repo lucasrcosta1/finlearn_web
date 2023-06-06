@@ -32,12 +32,12 @@ export class SimpleRegisterComponent {
 
 
 
-  private loginService  : LoginService = new LoginService(this.router, this.http);
 
   constructor (
     private router        : Router,
     private formBuilder   : FormBuilder,
     private http          : HttpClient,
+    private loginService  : LoginService,
   ) {
     this.authService      = new AuthenticationService();
     this.email            = new FormControl('', [Validators.required, Validators.email]);
@@ -75,7 +75,7 @@ export class SimpleRegisterComponent {
 
     console.log(user);
 
-    this.loginService.registerUser(user)
+    this.loginService.registerUserAlternative(user)
     .pipe (
       catchError((error, caught) => {
         console.log('An error occurred:', error);
@@ -83,19 +83,93 @@ export class SimpleRegisterComponent {
         return of(null);
       })
     )
-    .subscribe({
-      next: (data) => {
-          console.log(data);
-          console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+    .subscribe(
+      (response) => {
+        console.log(response);
+        if (response) {
           this.spinner.emit(true);
-      },
-      error: (error) => {
-        console.log(error);
-        console.log("Should open a modal/snack bar to tell the user that an error happend.");
-        this.spinner.emit(true);
-        this.loginService.logout();
+          // const data = this.registerForm?.getRawValue();
+          const data = {
+            username: this.registerForm?.value.email,
+            password: this.registerForm?.value.password,
+          }
+          // console.log(data);
+          this.loginService.login(data).pipe (
+            catchError((error, caught) => {
+              console.log("treat error",error);
+              return of(null);
+              // let e;
+              // if (error instanceof Array<Object>) {
+              //   e =  new Array<PostError>();
+              //   error.forEach(
+              //     err => {
+              //       e.push(new PostError(err.loc, err.msg, err.type));
+              //     }
+              //   );
+              // } else {
+              //   e = new PostError(error.loc,error.msg,error.type);
+              // }
+              // this._showErrorMessage(e);
+              // return e;
+            })
+          )
+          .subscribe({
+            next: (response: any) => {
+              if (response) {
+                // console.log(response);
+                if (
+                  localStorage.getItem('id') &&
+                  localStorage.getItem('email') &&
+                  localStorage.getItem('token') &&
+                  localStorage.getItem('username')
+                ) {
+                  this.loginService.logout();
+                }
+                localStorage.setItem('id', response.user.id);
+                localStorage.setItem('email', response.user.email);
+                localStorage.setItem('token', JSON.stringify(response.access_token));
+                localStorage.setItem('username', response.user.name);
+
+                this.loginService.setUser(new User(response.user));
+
+                this.spinner.emit(true);
+                this.router.navigate(['/']);
+              }
+            },
+            error: (error) => {
+              if (error) {
+                console.log(error);
+                console.log("Should open a modal/snack bar to tell the user that an error happend.");
+              }
+            }
+          });
+        } else {
+          console.error("ERROR: Response null on register.");
+        }
       }
-    });
+    )
+
+    // this.loginService.registerUser(user)
+    // .pipe (
+    //   catchError((error, caught) => {
+    //     console.log('An error occurred:', error);
+    //     // this.spinner.emit(true);
+    //     return of(null);
+    //   })
+    // )
+    // .subscribe({
+    //   next: (response) => {
+    //     console.log(response);
+    //     console.log("Should open a modal/snack bar to tell the user that operation was successful.");
+    //     this.spinner.emit(true);
+    //   },
+    //   error: (error) => {
+    //     console.log(error);
+    //     console.log("Should open a modal/snack bar to tell the user that an error happend.");
+    //     this.spinner.emit(true);
+    //     this.loginService.logout();
+    //   }
+    // });
   }
 
   /**
