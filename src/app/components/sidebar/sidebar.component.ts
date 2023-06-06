@@ -22,8 +22,22 @@ export class SidebarComponent {
 
   ngOnInit (): void {
     if (localStorage.getItem('username') && localStorage.getItem('email')) { // Already logged
-      this.username = localStorage.getItem('username')!;
-      this.email = localStorage.getItem('email')!;
+      this._loginService.getUser().subscribe(
+        user => {
+          if (user) {
+
+            if (user.name != localStorage.getItem('username')!) {
+              localStorage.setItem('username', user.name);
+            }
+            if (user.email != localStorage.getItem('email')!) {
+              localStorage.setItem('username', user.email);
+            }
+
+            this.username = user.name;
+            this.email    = user.email;
+          }
+        }
+      );
     } else { // Not logged yet.
       console.error("ERROR: Username or email is null");
       this._loginService.getUser().subscribe(
