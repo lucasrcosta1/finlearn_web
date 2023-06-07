@@ -11,6 +11,20 @@ export class PracticeComponent implements OnInit {
   selected = '';
   investType = new InvestType();
   fieldInvestType = new Map<number, InvestType>();
+  currentStep = 1;
+
+  goBack() {
+    if (this.currentStep > 1) {
+      this.currentStep--; // Decrement the step
+    }
+  }
+
+  goForward() {
+    if (this.currentStep < 4) {
+      this.currentStep++; // Increment the step
+    }
+  }
+
 
 
   investmentForm: FormGroup;
@@ -37,6 +51,7 @@ export class PracticeComponent implements OnInit {
 
   }
 
+  
   createForm(): FormGroup<any> {
     return this.fb.group({
       investmentType: ['', Validators.required],
@@ -139,4 +154,10 @@ export class PracticeComponent implements OnInit {
 
     return fieldInvestType;
   }
+
+  timeInputChanged(e) {
+    const years = document.querySelector("#years")
+    years!.textContent = e.target.value
+  }
+
 }
