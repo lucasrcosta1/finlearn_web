@@ -17,15 +17,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 
 const routes: Routes = [
-  {path: 'auth/login', component: SimpleAuthComponent},
-  {path: 'page_not_found', component: PageNotFoundComponent},
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'page_not_found', component: PageNotFoundComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'learn', component: LearnComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
   {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
   {path: 'practice', component: PracticeComponent, canActivate: [AuthGuard]},
   {path: 'route_test', component: RouteTestComponent, canActivate: [AuthGuard]},
+  {path: 'auth/login', component: SimpleAuthComponent},
   {path: '**', redirectTo: 'page_not_found'}, // create a not found page.
 
 ];
