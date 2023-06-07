@@ -48,92 +48,99 @@
 
 
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-<div class="row bg justify-content-center">
-  <div class="col-sm-6 mt-3 " id="pratique">
-    <div class="row">
-      <div class="col-12">
-        <h1 style="text-align: center; margin-bottom:0;" >Simulador de Investimentos</h1>
-        <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
-          <mat-stepper class="col-8" style="background-color: var(--practice);" orientation="vertical" [linear]="true"  #stepper>
-            <mat-step >
-              <ng-template matStepLabel >Passo 1</ng-template>
-              <ng-template matStepContent>
-                <mat-form-field appearance="fill" class="col-12">
-                  <mat-label>Tipo de investimento</mat-label>
-                  <mat-select [(value)]="selected" formControlName="investmentType" required>
-                    <mat-option *ngFor="let field of fieldInvestType | keyvalue; let i = index;" [value]="field.value.interestRate">{{field.value.name}}</mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <span *ngIf="selected != ''" class="m-0 mb-3 p-0 d-flex justify-content-center bold text-primary" >
-                  Rendimento = {{selected}}
-                </span>
-                <div class="col-12 p-0 m-0 d-flex justify-content-end">
-                  <button  mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
-                </div>
-              </ng-template>
-            </mat-step>
-            <mat-step >
-              <ng-template matStepLabel>Passo 2</ng-template>
-              <ng-template matStepContent>
-                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
-                  <mat-label>Valor inicial</mat-label>
-                  <input matInput class="example-right-align" formControlName="investmentAmount" >
-                  <span matTextPrefix>$&nbsp;</span>
-                  <span matTextSuffix>.00</span>
-                </mat-form-field>
-                <div class="col-12 p-0 m-0 d-flex justify-content-between">
-                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
-                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
-                </div>
-              </ng-template>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Passo 3</ng-template>
-              <ng-template matStepContent>
-                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
-                  <mat-label>Investimento mensal</mat-label>
-                  <input matInput formControlName="monthlyInvestment" class="example-right-align">
-                  <span matTextPrefix>$&nbsp;</span>
-                  <span matTextSuffix style="margin-left: .2rem;">.00</span>
-                </mat-form-field>
-                <div class="col-12 p-0 m-0 d-flex justify-content-between">
-                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
-                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0 stroked" type="button">Próximo</button>
-                </div>
-              </ng-template>
-            </mat-step>
-            <mat-step>
-              <ng-template matStepLabel>Passo 4</ng-template>
-              <ng-template matStepContent>
-                <mat-form-field appearance="fill" class="col-12" floatLabel="always">
-                  <mat-label>Prazo (meses)</mat-label>
-                  <input matInput formControlName="investmentTerm" class="example-right-align" required>
-                  <span matTextPrefix>$&nbsp;</span>
-                  <span matTextSuffix style="margin-left: .2rem;">meses</span>
-                </mat-form-field>
-                <div class="col-12 p-0 m-0 d-flex justify-content-between">
-                  <button mat-stroked-button matStepperPrevious class="col-3 p-0 m-0">Voltar</button>
-                  <button mat-stroked-button matStepperNext class="col-3 p-0 m-0" type="submit" [disabled]="!investmentForm.valid">Simular</button>
-                </div>
-              </ng-template>
-            </mat-step>
-          </mat-stepper>
-        </form>
-      </div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<div class="row bg justify-content-center" id="grad" *ngIf="currentStep === 1">
+  <div class="col-6 mt-5 " id="pratique_home">
+    <div class="container">
+        <h1 style="line-height: 3.5rem;">Simulador de Investimentos</h1>
+        <p style="font-size: 22px;">O simulador de investimentos calcula de forma simples e descomplicada qual será 
+          o retorno do seu dinheiro após uma aplicação a uma determinada taxa e período.</p>
+        <button id="button" type="button" class="simulate" (click)="goForward()" ng-model="button"><b>SIMULAR</b></button>
     </div>
   </div>
-  <div class="col-5 d-flex justify-content-center align-items-center" *ngIf="showResult">
-    <div class="row" id="pratique">
-      <div class="col-12">
-        <div class="container">
-            <h1>Resultado:</h1>
-            <p>Investimento selecionado: {{selectedInvestment.type}}</p>
-            <p>Montante investido: {{formattedPrincipal}}</p>
-            <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
-            <p>Montante final: {{formattedFutureValue}}</p>
-        </div>
-      </div>
+  <div class="col-6 mt-5">
+    <img src="/assets/images/pratique/bro.svg" alt="" width="650" height="500">
   </div>
 </div>
 
+<form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+
+  <div class="col-6 mt-5 d-flex justify-content-center align-items-center" id="pratique1" *ngIf="currentStep === 2">
+    <div class="row" style="border-color: red;">
+      <p id="pergunta1">
+        Qual tipo de investimento você gostaria de realizar?
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button id="opcao1">
+          <img class="optionImg" src="/assets/images/pratique/bank.svg" alt="bank icon">
+          <p class="optionDesc"><b style="font-size: 22px;">CDB</b><br> taxa anual: 6%</p>
+        </button>
+      </div>
+      <div class="col-4">
+        <button id="opcao2">
+          <img class="optionImg" src="/assets/images/pratique/pig.svg" alt="bank icon">
+          <p class="optionDesc"><b style="font-size: 22px;">Poupança</b><br> taxa anual: 4,5%</p>
+        </button>
+      </div>
+      <div class="col-4">
+        <button id="opcao3">
+          <img class="optionImg" src="/assets/images/pratique/success.svg" alt="bank icon">
+          <p class="optionDesc"><b style="font-size: 20px;">Fundo de<br> investimento</b><br> taxa anual: 8%</p>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <button id="voltar" type="button" (click)="goBack()">VOLTAR</button>
+      </div>
+      <div class="col-6">
+        <button id="avancar" type="button" (click)="goForward()"><b>AVANÇAR</b></button>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 mt-5 d-flex justify-content-center align-items-center" id="pratique2" *ngIf="currentStep === 3">
+    <div>
+      <p id="pergunta2">Qual seria seu investimento inicial?</p>
+      <input type="number" placeholder="R$ 0,00" style="top:149px; left: 156px;">
+      <div class="linha" style="left: 156px; top: 190px;"></div>
+      <p id="pergunta3">
+        Por quanto tempo planeja manter esse investimento?
+      </p>
+      <label for="customRange" class="form-label"></label>
+      <input type="range" min="1" max="10" value="2" id="time_input" name="time_input" (input)="timeInputChanged($event)"><br>
+      <p id="pgh_years"><output id="years">2</output> anos.</p><br>
+      <p id="pergunta4">
+        E quanto você planeja investir por mês?
+      </p>
+      <input type="number" placeholder="R$ 0,00" style="top:519px; left: 156px;">
+      <div class="linha"  style="left: 156px; top: 559px;"></div>
+      <p style="color:red">* opcional</p>
+    </div>
+    <button id="voltar" type="button" (click)="goBack()" style="top: 670px;">VOLTAR</button>
+    <button id="avancar" type="button" (click)="goForward()" style="top: 670px;"><b>AVANÇAR</b></button>
+  </div>
+</form>
+
+  <div class="col-5 mt-5 d-flex justify-content-center align-items-center" *ngIf="currentStep === 4">
+    <div class="row" id="pratique_results">
+      <div class="col-12">
+        <div class="container">
+          <button type="button" class="back" (click)="goBack()">VOLTAR</button>
+          <div class="practice-result-container mt-3">
+            <h1 style="text-align: center; margin-bottom: 2rem;"><u>Resultado:</u></h1>
+            <img src="/assets/images/pratique/celular.svg" alt="" class="img-cellphone relative">
+            <div class="practice-result absolute">
+              <p>Logo, ao final de <b>4 anos</b></p>
+              <p>Com um montante inicial de <b>R$ 1.000,00</b></p>
+              <p>E com um investimento mensal de <b>R$ 100,00</b></p>
+              <p>Você terá um montante final de <b>R$ 6.445,20</b></p>
+              <p>Por meio do investimento selecionado: <b>Poupança</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
