@@ -40,6 +40,7 @@ import { BtnPlusInputComponent } from './components/aux_components/btn-plus-inpu
 import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
 import { ModuleComponent } from './components/aux_components/topic/module/module.component';
 import { RouteTestComponent } from './components/route-test/route-test.component';
+import { ClassComponent } from './components/aux_components/class/class.component';
 
 
 @NgModule({
@@ -63,6 +64,7 @@ import { RouteTestComponent } from './components/route-test/route-test.component
     DropdownComponent,
     ModuleComponent,
     RouteTestComponent,
+    ClassComponent,
   ],
   imports: [
     BrowserModule,
