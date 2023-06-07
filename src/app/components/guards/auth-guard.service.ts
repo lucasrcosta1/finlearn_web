@@ -20,27 +20,13 @@ export class AuthGuard implements CanActivate {
    * @returns
    */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
-    if (localStorage.getItem('token'))
-      return true;
-    else {
-      this._router.navigate(['/auth/login']);
-      return false;
-    }
-    // if (localStorage.getItem('currentUser')) {
-    //   let user = JSON.parse(localStorage.getItem('currentUser')!);
-    //   console.log("user",user)
-    //   if (this._loginService.isLoggedIn(user.username, user.password)) {
-    //     return true;
-    //   } else {
-    //     // not logged in so redirect to login page with the return url
-    //     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-    //     return false;
-    //   }
-    // } else {
-    //   // not logged in so redirect to login page with the return url
-    //   this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-    //   return false;
-    // }
 
-}
+    if (localStorage.getItem('email')) {
+      // logged in so return true
+      return true;
+    }
+    this._router.navigate(['/auth/login'],{ queryParams: { returnUrl: state.url }});
+    return false;
+
+  }
 }

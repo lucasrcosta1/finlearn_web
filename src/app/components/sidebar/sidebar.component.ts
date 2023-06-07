@@ -24,9 +24,9 @@ export class SidebarComponent {
     if (localStorage.getItem('username') && localStorage.getItem('email')) { // Already logged
       this._loginService.getUser().subscribe(
         user => {
-          if (user) {
-
-            if (user.name != localStorage.getItem('username')!) {
+          if (user && user.email != '') {
+            console.log(user)
+            if (user.name != localStorage.getItem('username')! ) {
               localStorage.setItem('username', user.name);
             }
             if (user.email != localStorage.getItem('email')!) {
@@ -35,6 +35,9 @@ export class SidebarComponent {
 
             this.username = user.name;
             this.email    = user.email;
+          } else {
+            this.username = localStorage.getItem('username')!;
+            this.email    = localStorage.getItem('email')!;
           }
         }
       );
