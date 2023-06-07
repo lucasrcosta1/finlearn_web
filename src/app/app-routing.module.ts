@@ -11,6 +11,7 @@ import { PracticeComponent } from './components/practice/practice.component';
 import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
 import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
 import { LearnComponent } from './components/learn/learn.component';
+import { RouteTestComponent } from './components/route-test/route-test.component';
 
 
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
   {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
   {path: 'practice', component: PracticeComponent, canActivate: [AuthGuard]},
+  {path: 'route_test', component: RouteTestComponent, canActivate: [AuthGuard]},
   {path: 'auth/login', component: SimpleAuthComponent},
   {path: '**', redirectTo: 'home'}, // create a not found page.
 

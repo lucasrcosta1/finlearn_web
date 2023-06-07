@@ -1,0 +1,101 @@
+<body
+  class="row d-flex justify-content-center align-items-between"
+  style="background-color: white; height: 100vh; width: 100%;"
+>
+  <div>
+
+    <div class="content-container">
+      <div class="m-4">
+        <h5>Authentication</h5>
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="0" (click)="trigger('/auth/login', $event)">/auth/login</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response0" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="1" (click)="trigger('/auth/me', $event)">/auth/me</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response1" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="m-4">
+        <h5>User</h5>
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="2" (click)="trigger('/user/create', $event)">/user/create</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response2" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-container">
+      <div class="m-4">
+
+        <h5>Community</h5>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="3" (click)="trigger('/user/me/talks', $event)">/user/me/talks</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response3" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="4" (click)="trigger('/talk', $event)">/talk</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response4" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="5" (click)="trigger('/talk/create', $event)">/talk/create</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response5" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="6" (click)="trigger('/post/create', $event)">/post/create</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response6" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+        <div class="row my-3">
+          <div class="col-2">
+            <button id="7" (click)="trigger('/post', $event)">/post</button>
+          </div>
+          <div class="col d-flex align-items-center p-0 m-0">
+            <p id="response7" style="padding: 10px;">{{response}}</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</body>
+
+
+

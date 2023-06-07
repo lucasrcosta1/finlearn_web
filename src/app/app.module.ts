@@ -39,6 +39,7 @@ import { MyConversationsComponent } from './components/aux_components/my-convers
 import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
 import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
 import { ModuleComponent } from './components/aux_components/topic/module/module.component';
+import { RouteTestComponent } from './components/route-test/route-test.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ModuleComponent } from './components/aux_components/topic/module/module
     BtnPlusInputComponent,
     DropdownComponent,
     ModuleComponent,
+    RouteTestComponent,
   ],
   imports: [
     BrowserModule,

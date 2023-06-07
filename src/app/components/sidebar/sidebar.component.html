@@ -47,6 +47,14 @@
         <span>Central de ajuda</span>
       </div>
     </a>
+
+    <a routerLink="/route_test" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+      (click)="setActiveRoute('/route_test')">
+      <div class="page" [ngClass]="{ selected: activeRoute === '/route_test' }">
+        <i class="fa fa-map"></i>
+        <span>Teste de Rotas</span>
+      </div>
+    </a>
   </div>
 
   <div class="user-info clickable" (click)="togglePopUp()">

@@ -1,0 +1,40 @@
+.content-container {
+  background-color: rgb(232, 226, 226);
+  border: 1px solid rgb(210, 207, 207);
+  border-radius: 10px;
+  margin:75px;
+  box-shadow: 1px 5px 10px 5px rgba(128, 128, 128, 0.313);
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid rgb(186, 172, 172);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+button:hover {
+  background-color: gray;
+  color: white;
+  border: 1px solid rgb(186, 172, 172);
+  border-radius: 10px;
+}
+
+.content-container:hover {
+  background-color: rgb(232, 226, 226);
+  border: 1px solid rgb(210, 207, 207);
+  border-radius: 10px;
+  margin:75px;
+  box-shadow: 1px 5px 10px 5px #7f7f7f;
+}
+
+#response0,
+#response1,
+#response2,
+#response3,
+#response4,
+#response5,
+#response6,
+#response7 {
+  display: none;
+}
