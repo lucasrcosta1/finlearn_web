@@ -12,18 +12,21 @@ import { SimpleLoginComponent } from './components/authentication/simple-login/s
 import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { RouteTestComponent } from './components/route-test/route-test.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 
 const routes: Routes = [
+  {path: 'auth/login', component: SimpleAuthComponent},
+  {path: 'page_not_found', component: PageNotFoundComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'learn', component: LearnComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
   {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
   {path: 'practice', component: PracticeComponent, canActivate: [AuthGuard]},
   {path: 'route_test', component: RouteTestComponent, canActivate: [AuthGuard]},
-  {path: 'auth/login', component: SimpleAuthComponent},
-  {path: '**', redirectTo: 'home'}, // create a not found page.
+  {path: '**', redirectTo: 'page_not_found'}, // create a not found page.
 
 ];
 

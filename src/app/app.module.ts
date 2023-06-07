@@ -33,7 +33,6 @@ import { SimpleAuthBgComponent } from './components/authentication/simple-auth-b
 import { PracticeComponent } from './components/practice/practice.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
-import { ClassModuleComponent } from './components/aux_components/class-module/class-module/class-module.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
 import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
@@ -41,6 +40,7 @@ import { DropdownComponent } from './components/aux_components/dropdown/dropdown
 import { ModuleComponent } from './components/aux_components/topic/module/module.component';
 import { RouteTestComponent } from './components/route-test/route-test.component';
 import { ClassComponent } from './components/aux_components/class/class.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -57,7 +57,6 @@ import { ClassComponent } from './components/aux_components/class/class.componen
     PracticeComponent,
     LearnComponent,
     ProgressBarComponent,
-    ClassModuleComponent,
     SidebarComponent,
     MyConversationsComponent,
     BtnPlusInputComponent,
@@ -65,6 +64,7 @@ import { ClassComponent } from './components/aux_components/class/class.componen
     ModuleComponent,
     RouteTestComponent,
     ClassComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
