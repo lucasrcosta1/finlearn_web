@@ -10,6 +10,7 @@ import { ConversationData } from 'src/app/models/conversation/ConversationData.m
 export class MyConversationsComponent {
   public dropdown = false;
   public conversations: Array<ConversationData>;
+  public createPostRoute = '/post/create';
 
   constructor () {
     this.conversations = new Array<ConversationData>();
