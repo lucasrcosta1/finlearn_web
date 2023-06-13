@@ -1,9 +1,9 @@
 .content-container {
-  background-color: rgb(232, 226, 226);
-  border: 1px solid rgb(210, 207, 207);
+  background-color: rgb(249, 240, 240);
+  border: 1px solid rgb(199, 198, 198);
   border-radius: 10px;
   margin:75px;
-  box-shadow: 1px 5px 10px 5px rgba(128, 128, 128, 0.313);
+  /* box-shadow: 1px 5px 10px 5px rgba(128, 128, 128, 0.313); */
 }
 
 button {
@@ -21,11 +21,12 @@ button:hover {
 }
 
 .content-container:hover {
-  background-color: rgb(232, 226, 226);
+  background-color: rgb(249, 240, 240);
   border: 1px solid rgb(210, 207, 207);
   border-radius: 10px;
   margin:75px;
-  box-shadow: 1px 5px 10px 5px #7f7f7f;
+  /* box-shadow: 1px 5px 10px 5px #7f7f7f; */
+  box-shadow: 1px 5px 10px 5px rgba(128, 128, 128, 0.313);
 }
 
 #response0,
