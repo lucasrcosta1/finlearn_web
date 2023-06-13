@@ -55,6 +55,7 @@ export class RouteTestComponent {
         r = await this._api.get(route);
         if (r.getSuccess()) { //activate success/error button
           this.response = "GET request was successfully fetched!";
+          console.log("response", r.getResponse());
           document.getElementById("response1")!.style.color = "green";
         } else {
           this.response = r.getResponse().message;
@@ -96,6 +97,7 @@ export class RouteTestComponent {
       case '/talk':
         r = await this._api.get(route);
         if (r.getSuccess()) { //activate success/error button
+          console.log("response", r.getResponse());
           this.response = "GET request was successfully fetched!";
           document.getElementById("response4")!.style.color = "green";
         } else {
@@ -137,6 +139,7 @@ export class RouteTestComponent {
         r = await this._api.get(route);
         if (r.getSuccess()) { //activate success/error button
           this.response = "GET request was successfully fetched!";
+          console.log("response", r.getResponse());
           document.getElementById("response7")!.style.color = "green";
         } else {
           this.response = r.getResponse().message;

@@ -59,7 +59,7 @@ export class SimpleLoginComponent {
         this.spinner.emit(false);
         localStorage.setItem('id', response.getResponse()?.user.id);
         localStorage.setItem('email', response.getResponse()?.user.email);
-        localStorage.setItem('token', JSON.stringify(response.getResponse()?.access_token));
+        localStorage.setItem('token', response.getResponse()?.access_token);
         localStorage.setItem('username', response.getResponse()?.user.name);
         this._loginService.setUser(new User(response.getResponse().user));
 
