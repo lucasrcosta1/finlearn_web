@@ -1,14 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { catchError } from 'rxjs';
 
 import { AuthenticationService } from 'src/app/components/authentication/authentication.service';
 import { PostError } from 'src/app/models/PostError.model';
 import { User } from 'src/app/models/user/User.model';
+import { ApiService } from 'src/app/service/api/api.service';
 import { LoginService } from 'src/app/service/login/login.service';
-import { environment } from 'src/environments/environment';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-simple-login',
@@ -25,17 +25,18 @@ export class SimpleLoginComponent {
 
 
   constructor (
-    private router: Router,
-    private formBuilder  : FormBuilder,
-    private http: HttpClient,
-    private loginService  : LoginService,
+    private _router: Router,
+    private _formBuilder  : FormBuilder,
+    private _loginService  : LoginService,
+    private _snackBarService: SnackbarService,
+    private _api: ApiService,
   ) {
     this.authService  = new AuthenticationService();
   }
 
   ngOnInit () {
     /**Don't think I need loginForm anymore */
-    this.loginForm = this.formBuilder.group({
+    this.loginForm = this._formBuilder.group({
       username     : ['', [Validators.required, Validators.email]],
       password     : ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -43,63 +44,32 @@ export class SimpleLoginComponent {
 
   /**
    * Check whether user is logged or not.
-   * @todo User type to be sent should be this.http.post<User> instead of this.http.post<any>.
    * @todo Test error catch.
-   * @todo Add snackbar to success and error return.
    */
-  login (): void {
+  async login (): Promise<void> {
     if (this.loginForm?.value.username && this.loginForm?.value.username) {
       const data = this.loginForm?.getRawValue();
       // console.log(data);
-      this.spinner.emit(false);
-      this.loginService.login(data).pipe (
-        catchError((error, caught) => {
-          let e;
-          if (error instanceof Array<Object>) {
-            e =  new Array<PostError>();
-            error.forEach(
-              err => {
-                e.push(new PostError(err.loc, err.msg, err.type));
-              }
-            );
-          } else {
-            e = new PostError(error.loc,error.msg,error.type);
-          }
-          this._showErrorMessage(e);
-          return e;
-        })
-      )
-      .subscribe({
-        next: (response: any) => {
-          if (response) {
-            // console.log(response);
-            if (
-              localStorage.getItem('id') &&
-              localStorage.getItem('email') &&
-              localStorage.getItem('token') &&
-              localStorage.getItem('username')
-            ) {
-              this.loginService.logout();
-            }
+      let route = '/auth/login';
+      const body = `username=${encodeURIComponent(data.username)}&password=${encodeURIComponent(data.password)}`;
+      const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-            localStorage.setItem('id', response.user.id);
-            localStorage.setItem('email', response.user.email);
-            localStorage.setItem('token', JSON.stringify(response.access_token));
-            localStorage.setItem('username', response.user.name);
+      let response = await this._api.post(route, body, headers);
+      if (response.getSuccess()) {
+        this.spinner.emit(false);
+        localStorage.setItem('id', response.getResponse()?.user.id);
+        localStorage.setItem('email', response.getResponse()?.user.email);
+        localStorage.setItem('token', JSON.stringify(response.getResponse()?.access_token));
+        localStorage.setItem('username', response.getResponse()?.user.name);
+        this._loginService.setUser(new User(response.getResponse().user));
 
-            this.loginService.setUser(new User(response.user));
+        this.spinner.emit(true);
+        this._snackBarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
+      } else {
+        this._snackBarService.openSnackBar(3,response.getResponse().message);
+      }
 
-            this.spinner.emit(true);
-            this.router.navigate(['/']);
-          }
-        },
-        error: (error) => {
-          if (error) {
-            console.log(error);
-            console.log("Should open a modal/snack bar to tell the user that an error happend.");
-          }
-        }
-      });
+      this._router.navigate(['/']);
     } else {
       console.warn("WARNING: Login form is not valid.");
     }
@@ -112,7 +82,7 @@ export class SimpleLoginComponent {
    */
   public outsideLogin (api: string): void {
     console.log('connect Api');
-    this.loginService.connectApiClicked(api);
+    this._loginService.connectApiClicked(api);
     // this._loginService.isLoggedIn(this.user.email, this.user.password);
   }
 
@@ -133,33 +103,5 @@ export class SimpleLoginComponent {
     return this.authService.getPasswordMessage(this.loginForm?.value.password);
   }
 
-  /**
-   * Create user with given information.
-   * @param email
-   * @param pass
-   * @returns
-   */
-  private _createUser (email: string, pass: string): User {
-    let user = new User();
-    user.email = email;
-    user.password = pass;
-    return user;
-  }
 
-  /**
-   * Treat error message received and display it in log.
-   * @param error
-   */
-  private _showErrorMessage (error: Array<PostError> | PostError): void {
-    if (error instanceof Array<PostError>) {
-      error.forEach(
-        err => {
-          console.error('ERROR_RETURNED_FROM_POST: [', err.msg , '- error on', `${err.loc[1]}'s`, err.loc[0] , ']');
-        }
-      );
-
-    } else {
-      console.error('ERROR_RETURNED_FROM_POST: [', error.msg , '- error on', `${error.loc[1]}'s`, error.loc[0] , ']');
-    }
-  }
 }
