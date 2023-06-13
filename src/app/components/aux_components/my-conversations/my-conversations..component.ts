@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ConversationContent } from 'src/app/models/conversation/ConversationContent.model';
 import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
+import { ApiService } from 'src/app/service/api/api.service';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-my-conversations',
@@ -12,67 +14,75 @@ export class MyConversationsComponent {
   public conversations: Array<ConversationData>;
   public createPostRoute = '/post/create';
 
-  constructor () {
+  private route = "/user/me/talks";
+
+
+  constructor (
+    private _api: ApiService,
+    private _snackBarService: SnackbarService,
+  ) {
     this.conversations = new Array<ConversationData>();
-    //mock conversation
-    //first conversation
-    let aux1 = new Set<ConversationContent> ();
-    aux1.add(
-      new ConversationContent (
-        "Nome usuário 1",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.'
-      )
-    );
-    this.conversations.push(new ConversationData(
-      'Título Conversa 1',
-      aux1,
-      false
-    ));
+  }
 
-    //second conversation
-    let aux2 = new Set<ConversationContent> ();
-    aux2.add(
-      new ConversationContent (
-        "Nome usuário 2",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.'
-      )
-    );
-    aux2.add(
-      new ConversationContent (
-        "Nome usuário 3",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.'
-      )
-    );
-    aux2.add(
-      new ConversationContent (
-        "Nome usuário 1",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.'
-      )
-    );
-    this.conversations.push(new ConversationData(
-      'Título Conversa 2',
-      aux2,
-      false
-    ));
-
-    //third conversation
-    let aux3 = new Set<ConversationContent> ();
-    aux3.add(
-      new ConversationContent (
-        "Nome usuário 3",
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.'
-      )
-    );
-    this.conversations.push(new ConversationData(
-      'Título Conversa 3',
-      aux3,
-      false
-    ));
-
+  async ngOnInit (): Promise<void> {
+    let aux1 = new Set<ConversationContent>();
+    aux1 = await this._fetchMyConversation();
   }
 
   public convertSetToArray(set: Set<ConversationContent>): ConversationContent[] {
     return Array.from(set);
   }
 
+  private async _fetchMyConversation (): Promise<Set<ConversationContent>> {
+    let treatedData = new Set<ConversationContent>();
+    if (this.route != "") {
+      let rs = await this._api.get(this.route);
+      if (rs.getSuccess()) { //activate success/error button
+        // console.log("success",r.getResponse());
+        this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
+        rs.getResponse().forEach(
+          r => {
+            // treatedData.add(new ConversationContent(r));
+            if (r.post_data.length > 0) {
+              r.post_data.forEach(
+                post => {
+                  console.log(post);
+                  treatedData.add(new ConversationContent(this._getUserNameById(r.user_id), post.base_text))
+                  this.conversations.push(new ConversationData(
+                    r.title,
+                    treatedData,
+                    false
+                  ));
+                }
+              );
+            } else {
+              this.conversations.push(new ConversationData(
+                r.title,
+                new Set<ConversationContent>(),
+                false
+              ));
+            }
+          }
+        );
+
+      } else {
+        // console.log("error",r.getResponse());
+        this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas.");
+      }
+    } else {
+      this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas.");
+    }
+    return treatedData;
+  }
+
+
+  /**
+   * Get user name by given id.
+   * @todo fix method to fetch from backend instead of getting user from localstorage.
+   * @param id
+   * @returns
+   */
+  private _getUserNameById (id: number) {
+    return localStorage.getItem('username')!;
+  }
 }
