@@ -1,9 +1,16 @@
 <body>
-  <div class="conversation-body border-around px-4 py-2">
-    <div class="d-flex justify-content-between align-items-center">
-      <i [class]="iconClass" id="icon-style"></i>
-      <input type="text" id="comment-input" [placeholder]="commentary">
-      <button id="comment-btn">{{value}}</button>
+
+  <form name="commentForm" [formGroup]="commentForm">
+    <div class="conversation-body border-around px-4 py-2">
+      <div class="d-flex justify-content-between align-items-center">
+        <i [class]="iconClass" id="icon-style"></i>
+        <input type="text" id="comment-input" [placeholder]="commentary" formControlName="commentInput" required>
+        <button
+          id="comment-btn"
+          [disabled]="commentForm.invalid"
+          (click)="submitForm()"
+        >{{value}}</button>
+      </div>
     </div>
-  </div>
+  </form>
 </body>

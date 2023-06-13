@@ -17,6 +17,8 @@ const httpOptions = {
 export class CommunityComponent {
   newTitle = false;
   conversation = "Nova Conversa";
+  createConversationRoute = "/talk/create";
+  searchRoute = "";
 
   conversations: { title: string }[] = [
     { title: 'Conversation 1' },
@@ -71,6 +73,6 @@ export class CommunityComponent {
   }
 
   public getConversation () {
-    
+
   }
 }
