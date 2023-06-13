@@ -1,14 +1,13 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatRadioChange } from '@angular/material/radio';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/User.model';
 import { LoginService } from 'src/app/service/login/login.service';
 import { AuthenticationService } from '../authentication.service';
-import { catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
   selector: 'app-simple-register',
@@ -27,24 +26,18 @@ export class SimpleRegisterComponent {
   @Output()
   public spinner = new EventEmitter<boolean>();
 
-  private authService   : AuthenticationService;
-
-
-
-
-
   constructor (
-    private router        : Router,
-    private formBuilder   : FormBuilder,
-    private http          : HttpClient,
-    private loginService  : LoginService,
+    private _router        : Router,
+    private _formBuilder   : FormBuilder,
+    private _loginService  : LoginService,
+    private _snackBarService: SnackbarService,
+    private _api: ApiService,
   ) {
-    this.authService      = new AuthenticationService();
     this.email            = new FormControl('', [Validators.required, Validators.email]);
     this.confirmEmail     = new FormControl('', [Validators.required, Validators.email]);
     this.password         = new FormControl('', [Validators.required, Validators.minLength(8)]);
     this.confirmPassword  = new FormControl('', [Validators.required, Validators.minLength(8)]);
-    this.registerForm     = this.formBuilder.group({
+    this.registerForm     = this._formBuilder.group({
       name            : [null, [Validators.required]],
       telephone       : [null, [Validators.required]],
       email           : [null, [Validators.required, Validators.email]],
@@ -52,8 +45,23 @@ export class SimpleRegisterComponent {
       password        : [null, [Validators.required, Validators.minLength(6)]],
       confirmPassword : [null, [Validators.required, Validators.minLength(6)]],
       // birthDate    : [null, [Validators.required]],
-      role            : [null, Validators.required],
+      // role            : [null, Validators.required],
     });
+  }
+
+
+  /**
+   * Check whether the inputs are the same
+   * @param group
+   * @returns
+   */
+  public checkInputEquality(group: FormGroup) {
+    const input1Value = group.get('email')?.value;
+    const input2Value = group.get('confirmEmail')?.value;
+    // console.log(input1Value);
+    // console.log(input2Value);
+
+    return input1Value === input2Value ? null : { mismatch: true };
   }
 
   /**
@@ -62,114 +70,53 @@ export class SimpleRegisterComponent {
    * @todo verify whether password and confirmPassword fields are the same. Same to email.
    * @todo validators should give user an error message in the screen
    */
-  public onSubmit (): void{
+  public async onSubmit (): Promise<void>{
     // console.log( this.registerForm.value.role)
-    this.spinner.emit(false);
-    let user: User = {
+    let route = '/user/create';
+    let requestBody: User = {
       name: this.registerForm.value.name,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
-      role: this.registerForm.value.role,
+      role: "NORMAL_USER",
       telephone: this.registerForm.value.telephone
     };
+    // console.log(user);
 
-    console.log(user);
+    let firstR = await this._api.post(route, requestBody);
+    // console.log(firstR);
+    if (firstR.getSuccess()) {
+      this.spinner.emit(false);
+      route = '/auth/login';
+      const body = `username=${encodeURIComponent(requestBody.email)}&password=${encodeURIComponent(requestBody.password)}`;
+      const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-    this.loginService.registerUserAlternative(user)
-    .pipe (
-      catchError((error, caught) => {
-        console.log('An error occurred:', error);
+      let secondR = await this._api.post(route, body, headers);
+      // console.log(secondR);
+      if (secondR.getSuccess()) {
+        // console.log(secondR);
+
+        localStorage.setItem('id', secondR.getResponse()?.user.id);
+        localStorage.setItem('email', secondR.getResponse()?.user.email);
+        localStorage.setItem('token', JSON.stringify(secondR.getResponse()?.access_token));
+        localStorage.setItem('username', secondR.getResponse()?.user.name);
+
+        this._loginService.setUser(new User(secondR.getResponse().user));
+
         // this.spinner.emit(true);
-        return of(null);
-      })
-    )
-    .subscribe(
-      (response) => {
-        console.log(response);
-        if (response) {
-          this.spinner.emit(true);
-          // const data = this.registerForm?.getRawValue();
-          const data = {
-            username: this.registerForm?.value.email,
-            password: this.registerForm?.value.password,
-          }
-          // console.log(data);
-          this.loginService.login(data).pipe (
-            catchError((error, caught) => {
-              console.log("treat error",error);
-              return of(null);
-              // let e;
-              // if (error instanceof Array<Object>) {
-              //   e =  new Array<PostError>();
-              //   error.forEach(
-              //     err => {
-              //       e.push(new PostError(err.loc, err.msg, err.type));
-              //     }
-              //   );
-              // } else {
-              //   e = new PostError(error.loc,error.msg,error.type);
-              // }
-              // this._showErrorMessage(e);
-              // return e;
-            })
-          )
-          .subscribe({
-            next: (response: any) => {
-              if (response) {
-                // console.log(response);
-                if (
-                  localStorage.getItem('id') &&
-                  localStorage.getItem('email') &&
-                  localStorage.getItem('token') &&
-                  localStorage.getItem('username')
-                ) {
-                  this.loginService.logout();
-                }
-                localStorage.setItem('id', response.user.id);
-                localStorage.setItem('email', response.user.email);
-                localStorage.setItem('token', JSON.stringify(response.access_token));
-                localStorage.setItem('username', response.user.name);
+        // this._router.navigate(['/']);
 
-                this.loginService.setUser(new User(response.user));
-
-                this.spinner.emit(true);
-                this.router.navigate(['/']);
-              }
-            },
-            error: (error) => {
-              if (error) {
-                console.log(error);
-                console.log("Should open a modal/snack bar to tell the user that an error happend.");
-              }
-            }
-          });
-        } else {
-          console.error("ERROR: Response null on register.");
-        }
+        this._snackBarService.openSnackBar(2, `Bem vindo ${secondR.getResponse()?.user.name}!`);
+      } else {
+        this._snackBarService.openSnackBar(3,'Internal Error');
       }
-    )
+    } else {
+      this._snackBarService.openSnackBar(3, firstR.getResponse().message);
+    }
 
-    // this.loginService.registerUser(user)
-    // .pipe (
-    //   catchError((error, caught) => {
-    //     console.log('An error occurred:', error);
-    //     // this.spinner.emit(true);
-    //     return of(null);
-    //   })
-    // )
-    // .subscribe({
-    //   next: (response) => {
-    //     console.log(response);
-    //     console.log("Should open a modal/snack bar to tell the user that operation was successful.");
-    //     this.spinner.emit(true);
-    //   },
-    //   error: (error) => {
-    //     console.log(error);
-    //     console.log("Should open a modal/snack bar to tell the user that an error happend.");
-    //     this.spinner.emit(true);
-    //     this.loginService.logout();
-    //   }
-    // });
+    this.spinner.emit(true);
+    this._router.navigate(['/']);
+
+
   }
 
   /**
