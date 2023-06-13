@@ -18,13 +18,14 @@
             <i class="fa fa-user-circle ft-x-lg"></i>
             <p class="m-0 ms-2 ft-lg">{{content.username}}</p>
           </div>
-          <p class="mt-2 ft-lg">{{content.commentary}}</p>
+          <p class="mt-2 ft-lg">{{content.base_text}}</p>
         </div>
         <app-btn-plus-input
           [iconClass]="'fa fa-comment'"
           [commentary]="'Comente algo interessante!'"
           [value]="'Comentar'"
           [route]="createPostRoute"
+          [talk_id]="conversation.id"
         ></app-btn-plus-input>
       </div>
     </div>

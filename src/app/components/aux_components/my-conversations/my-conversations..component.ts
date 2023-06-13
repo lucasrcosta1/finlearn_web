@@ -42,21 +42,23 @@ export class MyConversationsComponent {
         this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
         rs.getResponse().forEach(
           r => {
-            // treatedData.add(new ConversationContent(r));
             if (r.post_data.length > 0) {
+              let auxSet = new Set<ConversationContent>();
               r.post_data.forEach(
                 post => {
-                  console.log(post);
-                  treatedData.add(new ConversationContent(this._getUserNameById(r.user_id), post.base_text))
-                  this.conversations.push(new ConversationData(
-                    r.title,
-                    treatedData,
-                    false
-                  ));
+                  // console.log(post);
+                  auxSet.add(post);
                 }
               );
+              this.conversations.push(new ConversationData(
+                r.id,
+                r.title,
+                auxSet,
+                false
+              ));
             } else {
               this.conversations.push(new ConversationData(
+                r.id,
                 r.title,
                 new Set<ConversationContent>(),
                 false
