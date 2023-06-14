@@ -1,0 +1,25 @@
+
+.dot-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #059F30;
+  margin: 0 5px;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 50%, 100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.2);
+  }
+}

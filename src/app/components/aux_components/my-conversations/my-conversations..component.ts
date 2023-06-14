@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ConversationContent } from 'src/app/models/conversation/ConversationContent.model';
+import { BehaviorSubject } from 'rxjs';
+import { PostData } from 'src/app/models/conversation/PostData.model';
 import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
 import { ApiService } from 'src/app/service/api/api.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
@@ -13,46 +14,129 @@ export class MyConversationsComponent {
   public dropdown = false;
   public conversations: Array<ConversationData>;
   public createPostRoute = '/post/create';
+  public loaded$ = new BehaviorSubject(false);
 
   private route = "/user/me/talks";
-
 
   constructor (
     private _api: ApiService,
     private _snackBarService: SnackbarService,
   ) {
     this.conversations = new Array<ConversationData>();
+
+    //test
+    // //mock conversation
+    // //first conversation
+    // let aux1 = new Set<PostData> ();
+    // aux1.add(
+    //   new PostData (
+    //     "Nome usuário 1",
+    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
+    //     1
+    //   )
+    // );
+    // this.conversations.push(new ConversationData(
+    //   1,
+    //   'Título Conversa 1',
+    //   aux1,
+    //   false
+    // ));
+    // //second conversation
+    // let aux2 = new Set<PostData> ();
+    // aux2.add(
+    //   new PostData (
+    //     "Nome usuário 2",
+    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
+    //     2
+    //   )
+    // );
+    // aux2.add(
+    //   new PostData (
+    //     "Nome usuário 3",
+    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
+    //     3
+    //   )
+    // );
+    // aux2.add(
+    //   new PostData (
+    //     "Nome usuário 1",
+    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
+    //     3
+    //   )
+    // );
+    // this.conversations.push(new ConversationData(
+    //   2,
+    //   'Título Conversa 2',
+    //   aux2,
+    //   false
+    // ));
+
+    // //third conversation
+    // let aux3 = new Set<PostData> ();
+    // aux3.add(
+    //   new PostData (
+    //     "Nome usuário 3",
+    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
+    //     4
+    //   )
+    // );
+    // this.conversations.push(new ConversationData(
+    //   3,
+    //   'Título Conversa 3',
+    //   aux3,
+    //   false
+    // ));
+    //\test
   }
 
   async ngOnInit (): Promise<void> {
-    let aux1 = new Set<ConversationContent>();
-    aux1 = await this._fetchMyConversation();
+    await this._fetchMyConversation();
   }
 
-  public convertSetToArray(set: Set<ConversationContent>): ConversationContent[] {
-    return Array.from(set);
+  /**
+   * Change heart's color, like's value and create the POST request to persist click.
+   * @param userId
+   * @param position
+   */
+  public async countLike (userId: PostData, position: number): Promise<void> {
+    // console.log(userId);
+    userId.likes_data?.push(userId);
+    (<HTMLInputElement>document.getElementById(`heart${position}`))!.style.color = 'red';
+    if (userId.id) {
+      let rs = await this._api.post('/post/like', null, userId.id);
+      if (rs.getSuccess()) {
+        this._snackBarService.openSnackBar(1,"Post curtido!");
+      } else {
+
+        this._snackBarService.openSnackBar(1,rs.getResponse());
+      }
+    }
+
   }
 
-  private async _fetchMyConversation (): Promise<Set<ConversationContent>> {
-    let treatedData = new Set<ConversationContent>();
+  /**
+   * Get conversations from api.
+   * @returns
+   */
+  private async _fetchMyConversation (): Promise<void> {
     if (this.route != "") {
       let rs = await this._api.get(this.route);
       if (rs.getSuccess()) { //activate success/error button
         // console.log("success",r.getResponse());
-        this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
         rs.getResponse().forEach(
           r => {
             if (r.post_data.length > 0) {
-              let auxSet = new Set<ConversationContent>();
+              let auxSet = new Array<PostData>();
               r.post_data.forEach(
                 post => {
                   // console.log(post);
-                  auxSet.add(post);
+                  auxSet.push(post);
                 }
               );
               this.conversations.push(new ConversationData(
                 r.id,
                 r.title,
+                r.user,
                 auxSet,
                 false
               ));
@@ -60,31 +144,27 @@ export class MyConversationsComponent {
               this.conversations.push(new ConversationData(
                 r.id,
                 r.title,
-                new Set<ConversationContent>(),
+                r.user,
+                new Array<PostData>(),
                 false
               ));
             }
           }
         );
 
+        this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
+        this.loaded$.next(true);
+        console.log(this.conversations);
+        // this._updateConversationContent();
+
       } else {
         // console.log("error",r.getResponse());
         this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas.");
       }
     } else {
-      this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas.");
+      this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas na rota.");
     }
-    return treatedData;
   }
 
 
-  /**
-   * Get user name by given id.
-   * @todo fix method to fetch from backend instead of getting user from localstorage.
-   * @param id
-   * @returns
-   */
-  private _getUserNameById (id: number) {
-    return localStorage.getItem('username')!;
-  }
 }

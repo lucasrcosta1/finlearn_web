@@ -54,7 +54,7 @@ export class SimpleLoginComponent {
       const body = `username=${encodeURIComponent(data.username)}&password=${encodeURIComponent(data.password)}`;
       const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-      let response = await this._api.post(route, body, headers);
+      let response = await this._api.post(route, body, null, headers);
       if (response.getSuccess()) {
         this.spinner.emit(false);
         localStorage.setItem('id', response.getResponse()?.user.id);

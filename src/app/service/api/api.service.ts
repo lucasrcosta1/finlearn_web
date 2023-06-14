@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
@@ -15,11 +15,13 @@ export class ApiService {
   ) { }
 
 
-  public async post (route: string, requestBody: any, headers?: HttpHeaders): Promise<ApiResponse> {
+  public async post (route: string, requestBody: any, post_id: number | null, headers?: HttpHeaders): Promise<ApiResponse> {
     let apiResponse = new ApiResponse();
     try {
       if (!headers) headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
-      const response: any = await firstValueFrom(this._http.post(environment.HTTP_REQUEST + route, requestBody, {headers})
+      if (post_id == null) post_id = 0;
+      const params = new HttpParams().set('post_id', post_id!.toString());
+      const response: any = await firstValueFrom(this._http.post(environment.HTTP_REQUEST + route, requestBody, {headers, params})
       .pipe (
         catchError((error: HttpErrorResponse) => {
           // Handle error response
@@ -39,7 +41,7 @@ export class ApiService {
       if (response.access_token) localStorage.setItem('token', response.access_token);
       apiResponse.setSuccess(true);
       apiResponse.setResponse(response);
-      console.log(apiResponse);
+      // console.log(apiResponse);
       return apiResponse;
     } catch (error) {
       console.error('An error occurred:', error);

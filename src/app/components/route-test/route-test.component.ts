@@ -1,8 +1,6 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiService } from 'src/app/service/api/api.service';
-import { environment } from 'src/environments/environment';
 
 
 const httpOptions = {
@@ -40,7 +38,7 @@ export class RouteTestComponent {
         requestBody = new FormData();
         requestBody.append('username', 'adm@adm.com.br');
         requestBody.append('password', 'Admin123@');
-        r = await this._api.post(route, requestBody);
+        r = await this._api.post(route, requestBody, null);
         // console.log(r.getSuccess())
         if (r.getSuccess()) { //activate success/error button
           this.response = "POST request was successfully done!";
@@ -72,7 +70,7 @@ export class RouteTestComponent {
           password: "Teste123@"
         };
         // this._api.post(route,JSON.stringify(requestBody));
-        r = await this._api.post(route, requestBody);
+        r = await this._api.post(route, requestBody, null);
         if (r.getSuccess()) { //activate success/error button
           this.response = "POST request was successfully done!";
           document.getElementById("response2")!.style.color = "green";
@@ -109,7 +107,7 @@ export class RouteTestComponent {
       case '/talk/create':
         requestBody = {title: "title 2"};
         // this._api.post(route,JSON.stringify(requestBody));
-        r = await this._api.post(route, requestBody);
+        r = await this._api.post(route, requestBody, null);
         if (r.getSuccess()) { //activate success/error button
           this.response = "POST request was successfully done!";
           document.getElementById("response5")!.style.color = "green";
@@ -124,8 +122,7 @@ export class RouteTestComponent {
           base_text: "2nd post",
           talk_id: 11
         };
-        // this._api.post(route,JSON.stringify(requestBody));
-        r = await this._api.post(route, requestBody);
+        r = await this._api.post(route, requestBody, null);
         if (r.getSuccess()) { //activate success/error button
           this.response = "POST request was successfully done!";
           document.getElementById("response6")!.style.color = "green";
@@ -146,12 +143,26 @@ export class RouteTestComponent {
           document.getElementById("response7")!.style.color = "red";
         }
         break;
+
+        case '/post/like':
+          let post_id = 14;
+          r = await this._api.post(route, null, post_id);
+          if (r.getSuccess()) { //activate success/error button
+            this.response = "POST request was successfully done!";
+            console.log("response", r.getResponse());
+            document.getElementById("response8")!.style.color = "green";
+          } else {
+            this.response = r.getResponse().message;
+            document.getElementById("response8")!.style.color = "red";
+          }
+          break;
+
     }
   }
 
 
   private _setIdAsNone (): void {
-    for (let i = 0 ; i < 8 ; i++) {
+    for (let i = 0 ; i < 9 ; i++) {
       document.getElementById(`response${i}`)!.style.display = "none";
     }
   }
