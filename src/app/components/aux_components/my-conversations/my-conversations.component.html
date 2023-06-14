@@ -1,6 +1,6 @@
 <body>
   <div *ngIf="(loaded$ | async)">
-    <div class="border-around" *ngFor="let conversation of conversations">
+    <div class="border-around" *ngFor="let conversation of conversations;let i = index;">
       <div class="conversation-header row justify-content-between">
         <div class="col d-flex align-items-center p-0" >
           <i class="fa fa-user-circle ft-xx-lg" style="color:#D6B542;"></i>
@@ -14,7 +14,7 @@
       </div>
       <div class="border-top m-0" *ngIf="conversation.showContent">
         <div id="conversation-max-size" >
-          <div class="conversation-body" *ngFor="let content of conversation.content; let i = index;">
+          <div class="conversation-body" *ngFor="let content of conversation.content; let j = index;">
             <div class="col d-flex align-items-center p-0" >
               <i class="fa fa-user-circle ft-x-lg"></i>
               <p class="m-0 ms-2 ft-lg">{{content.user?.name}}</p>
@@ -26,13 +26,17 @@
               <div class="col-5 d-flex justify-content-end align-items-center" >
                 <div class="row">
                   <div class="col-12 d-flex justify-content-between align-items-center">
-                    <i [id]="'heart'+i" class="fa fa-heart clickable" (click)="countLike(content, i)" style="font-size: 30px; margin-right: 10px;"></i>
+                    <i [id]="'heart'+j" class="fa fa-heart clickable" (click)="countLike(content, j)" style="font-size: 30px; margin-right: 10px;"></i>
                     {{content.likes_data?.length}}
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <button
+          (click)="conversa(i)"
+          > Add new user
+          </button>
           <app-btn-plus-input
             [iconClass]="'fa fa-comment'"
             [commentary]="'Comente algo interessante!'"

@@ -43,7 +43,7 @@ export class BtnPlusInputComponent {
       let r = await this._api.post(this.route, requestBody, null);
       if (r.getSuccess()) { //activate success/error button
         this._snackBarService.openSnackBar(2,"Conversa criada com sucesso!");
-        window.location.reload();
+        // window.location.reload();
       } else {
         console.log("error",r.getResponse());
         this._snackBarService.openSnackBar(2,"Erro ao criar conversa.");

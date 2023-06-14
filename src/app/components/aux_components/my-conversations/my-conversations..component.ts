@@ -93,6 +93,20 @@ export class MyConversationsComponent {
     await this._fetchMyConversation();
   }
 
+  conversa(i:number){
+    let post = new PostData({
+      id: 20,
+      base_text: "1rst post",
+      user: {
+          id: 1,
+          name: "Admin",
+          email: "adm@adm.com.br"
+      },
+      likes_data: []
+    });
+    console.log(this.conversations[i].content.push(post));
+  }
+
   /**
    * Change heart's color, like's value and create the POST request to persist click.
    * @param userId
