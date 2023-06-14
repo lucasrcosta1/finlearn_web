@@ -42,6 +42,8 @@ import { ModuleComponent } from './components/aux_components/topic/module/module
 import { RouteTestComponent } from './components/route-test/route-test.component';
 import { ClassComponent } from './components/aux_components/class/class.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AllConversationsComponent } from './components/aux_components/all-conversations/all-conversations.component';
+import { LoadingComponent } from './components/aux_components/loading/loading.component';
 
 
 @NgModule({
@@ -66,6 +68,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     RouteTestComponent,
     ClassComponent,
     PageNotFoundComponent,
+    AllConversationsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

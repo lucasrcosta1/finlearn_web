@@ -82,7 +82,7 @@ export class SimpleRegisterComponent {
     };
     // console.log(user);
 
-    let firstR = await this._api.post(route, requestBody);
+    let firstR = await this._api.post(route, requestBody, null);
     // console.log(firstR);
     if (firstR.getSuccess()) {
       this.spinner.emit(false);
@@ -90,14 +90,14 @@ export class SimpleRegisterComponent {
       const body = `username=${encodeURIComponent(requestBody.email)}&password=${encodeURIComponent(requestBody.password)}`;
       const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-      let secondR = await this._api.post(route, body, headers);
+      let secondR = await this._api.post(route, body, null, headers);
       // console.log(secondR);
       if (secondR.getSuccess()) {
         // console.log(secondR);
 
         localStorage.setItem('id', secondR.getResponse()?.user.id);
         localStorage.setItem('email', secondR.getResponse()?.user.email);
-        localStorage.setItem('token', JSON.stringify(secondR.getResponse()?.access_token));
+        localStorage.setItem('token', secondR.getResponse()?.access_token);
         localStorage.setItem('username', secondR.getResponse()?.user.name);
 
         this._loginService.setUser(new User(secondR.getResponse().user));

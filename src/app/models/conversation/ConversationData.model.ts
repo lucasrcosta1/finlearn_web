@@ -1,20 +1,24 @@
-import { ConversationContent } from "./ConversationContent.model";
+import { UserInfo } from "../user/UserInfo.model";
+import { PostData } from "./PostData.model";
 
 export class ConversationData {
-  id: number;
-  title: string;
-  content: Set<ConversationContent>; //key: n
-  showContent: boolean; // ver mais == false | ver menos == true
+  id          : number;
+  title       : string;
+  user        : UserInfo;
+  content     : Array<PostData>;
+  showContent : boolean; // 'ver mais' == false | 'ver menos' == true
 
   constructor (
-    id: number,
-    title: string,
-    content: Set<ConversationContent>,
-    showContent: boolean
+    id          : number,
+    title       : string,
+    user        : UserInfo,
+    content     : Array<PostData>,
+    showContent : boolean
   ) {
-    this.id = id;
-    this.title = title;
-    this.content = content;
-    this.showContent = showContent;
+    this.id           = id;
+    this.title        = title;
+    this.user         = user;
+    this.content      = content;
+    this.showContent  = showContent;
   }
 }

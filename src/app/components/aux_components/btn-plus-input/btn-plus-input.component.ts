@@ -40,7 +40,7 @@ export class BtnPlusInputComponent {
       let requestBody;
       if (this.talk_id > -1) requestBody = {base_text: this.commentForm.value.commentInput, talk_id: this.talk_id};
       else requestBody = {title: this.commentForm.value.commentInput};
-      let r = await this._api.post(this.route, requestBody);
+      let r = await this._api.post(this.route, requestBody, null);
       if (r.getSuccess()) { //activate success/error button
         this._snackBarService.openSnackBar(2,"Conversa criada com sucesso!");
         window.location.reload();
