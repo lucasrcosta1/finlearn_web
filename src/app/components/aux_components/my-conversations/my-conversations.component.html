@@ -33,16 +33,13 @@
               </div>
             </div>
           </div>
-          <button
-          (click)="conversa(i)"
-          > Add new user
-          </button>
           <app-btn-plus-input
             [iconClass]="'fa fa-comment'"
             [commentary]="'Comente algo interessante!'"
             [value]="'Comentar'"
             [route]="createPostRoute"
             [talk_id]="conversation.id"
+            (postContent)="addNewPost(i, $event)"
           ></app-btn-plus-input>
         </div>
       </div>
