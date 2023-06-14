@@ -1,0 +1,9 @@
+html,body{
+  padding: 0;
+  margin: .8rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.conversation-container {
+  margin-top: 2rem;
+}

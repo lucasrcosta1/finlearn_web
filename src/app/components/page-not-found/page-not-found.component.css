@@ -1,0 +1,30 @@
+.main-container {
+  height: 100vh;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  background: linear-gradient(to bottom, #059F30, #13C9C9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 70px;
+}
+
+.typing-animation::after {
+  content: "";
+  display: inline-block;
+  animation: typing 2s steps(10, end) infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}

@@ -1,29 +1,37 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { LearnRoutingModule } from './components/learn/learn-routing.module';
+
 import { AuthGuard } from './components/guards/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
-
-
 import { SuporteComponent } from './components/suporte/suporte.component';
+import { CommunityComponent } from './components/community/community.component';
+import { PracticeComponent } from './components/practice/practice.component';
+import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
+import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
+import { LearnComponent } from './components/learn/learn.component';
+import { RouteTestComponent } from './components/route-test/route-test.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
-import { LoginComponent } from './components/login_page/login/login.component';
-import { RegisterComponent } from './components/login_page/register/register.component';
 
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'page_not_found', component: PageNotFoundComponent, canActivate: [AuthGuard]},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-
+  {path: 'learn', component: LearnComponent, canActivate: [AuthGuard]},
   {path: 'support', component: SuporteComponent, canActivate: [AuthGuard]},
-
-  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
-
-  { path: '**', redirectTo: 'home'}, // create a not found page.
+  {path: 'community', component: CommunityComponent, canActivate: [AuthGuard]},
+  {path: 'practice', component: PracticeComponent, canActivate: [AuthGuard]},
+  {path: 'route_test', component: RouteTestComponent, canActivate: [AuthGuard]},
+  {path: 'auth/login', component: SimpleAuthComponent},
+  {path: '**', redirectTo: 'page_not_found'}, // create a not found page.
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), LearnRoutingModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

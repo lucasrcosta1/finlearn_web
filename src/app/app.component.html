@@ -1,4 +1,7 @@
-<app-header *ngIf="login"></app-header>
-<app-sidebar *ngIf="login"></app-sidebar>
-<router-outlet></router-outlet>
-<app-footer *ngIf="login"></app-footer>
+<!-- <app-header *ngIf="login"></app-header> -->
+<app-sidebar></app-sidebar>
+<div id="main-content">
+  <router-outlet></router-outlet>
+</div>
+
+  <!-- <router-outlet></router-outlet> -->

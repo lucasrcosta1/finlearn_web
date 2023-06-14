@@ -1,0 +1,23 @@
+html,body {
+  padding: 0;
+}
+
+.conversation-header {
+  margin: 0.8rem 1rem;
+}
+
+.see {
+  color: #059F30;
+  font-size: large;
+  cursor: pointer;
+}
+
+.border-top {
+  border-top: .1rem solid var(--grayish);
+}
+
+#conversation-max-size {
+  max-width: 80%;
+}
+
+

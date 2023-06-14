@@ -1,0 +1,33 @@
+<body style="overflow-x: hidden;">
+
+  <div class="header">
+    <img src="assets/images/learn/investBg.png" alt="Header Image" id="image">
+  </div>
+
+  <div class="row d-flex justify-content-center align-items-center mt-4">
+    <div class="border-around d-flex justify-content-between align-items-center p-2" style="max-width: 25%;">
+
+      <input type="text" placeholder="Busca por curso" id="input-style">
+      <button type="submit" id="btn-style"><i class="fa fa-search"></i></button>
+
+    </div>
+    <div class="d-flex justify-content-end" style="position: absolute; right: 0; max-width: 30%;">
+
+      <app-dropdown class="mx-2" [dropdown]="dropdowns[0]"></app-dropdown>
+      <app-dropdown class="mx-2" [dropdown]="dropdowns[1]"></app-dropdown>
+
+    </div>
+  </div>
+
+  <div class="card-container">
+    <div class="card" *ngFor="let card of cards">
+      <div class="card-image">
+        <img [src]="card.imageUrl" alt="Card Image">
+      </div>
+      <div class="card-content">
+        <h3 (click)="openModule(card.route)">{{ card.title }}</h3>
+        <p>{{ card.description }}</p>
+      </div>
+    </div>
+  </div>
+</body>

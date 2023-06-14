@@ -1,5 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+:root {
+  --classic-color: #1f761f;
+  --primary-color: #059F30;
+  --secondary-color: #FFFFFF;
+  --contrast-color: #F4A130;
+  --medium-green: #ebf7e3;
+  --light-green: #5bbc1e77;
+  --border-light-btn: #a1b6a1;
+  --grayish: #d2d2d2;
+  --gray: #6D7279;
+  --progress-to-do: #ffffff;
+  --progress-done: #869c8d;
+  --shadow: #d8d4d4;
+  --whiter: #e9f9f2;
+  --select-box: #9f9f9f;
+  --news-color: #31315c;
+  --practice: #d6d6d6;
+}
+
+/* input {
+  text-indent: 1rem;
+} */
+
 .clickable {
   cursor: pointer;
 }
@@ -14,4 +38,73 @@
 .field-center {
   display: flex;
   justify-content: center;
+}
+
+.ft-xx-small {
+  font-size: xx-small;
+}
+
+.ft-x-small {
+  font-size: x-small;
+}
+
+.ft-smaller {
+  font-size: smaller;
+}
+
+.ft-small {
+  font-size: small;
+}
+
+.ft-med {
+  font-size: medium;
+}
+
+.ft-lg {
+  font-size: large;
+}
+
+.ft-larger {
+  font-size: larger;
+}
+
+.ft-x-lg {
+  font-size: x-large;
+}
+
+.ft-xx-lg {
+  font-size: xx-large;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.position {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+}
+
+.conversation-body {
+  margin: 1rem 1.5rem;
+}
+
+.border-around {
+  margin-top: 1rem;
+  border: .1rem solid var(--grayish);
+  border-radius: .3rem;
 }

@@ -2,35 +2,56 @@
   overflow-x: hidden;
 }
 
-.main-content {
-	margin-top: 3.75rem;
-	margin-left: 9.4rem;
-	padding: 0.625rem;
+
+.main-content{
+  padding: 0.625rem;
 }
 
-.topic {
-  height: 12rem;
-  width: (100%-9.4rem);
-  border: 1px solid rgb(122, 122, 122);
-  background-color: #e7fce7;
-  box-shadow: 0.313rem 0.188rem 0.625rem rgb(122, 122, 122);
-  border-radius: 0.938rem;
+.bg {
   margin: 1rem;
+  box-shadow: .3rem .3rem .3rem var(--shadow);
+  border-radius: 2rem;
+  background-color: var(--medium-green);
 }
 
-.sub-topic {
-  height: 7rem;
-  border: 1px solid rgb(122, 122, 122);
-  border-radius: 0.938rem;
-  font-size: 1.7vw;
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem 6rem;
 }
 
-.centralize {
-  margin-left: 1rem;
-  margin-top: 1.5rem;
-  font-size: 1.7vw;
+
+.content div {
+  padding: 2rem;
+  background: var(--classic-color);
+  border-radius: 0.935rem;
+  width: 45%;
+  height: 22rem;
+  color: white;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: bold;
+  overflow: hidden;
 }
 
-.center {
-  text-align: center;
+.content div div {
+  padding: 2rem;
+  width: 100%;
+  background: var(--secondary-color);
+  border-radius: 0.935rem;
+  color: black;
+  text-align: left;
+  font-size: large;
+}
+
+#noticias {
+  width: 95%;
+}
+
+@media screen and (max-height: 768px){
+  .topic{
+    height: 16rem;
+  }
 }

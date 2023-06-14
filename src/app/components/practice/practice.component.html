@@ -1,0 +1,159 @@
+<!-- <div class="row justify-content-center bg">
+  <div class="col-5" id="pratique">
+    <div class="row">
+      <div class="col-sm-12">
+        <h1 style="text-align: center;" >Simulador de Investimentos</h1>
+        <form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+            <div class="form-floating mb-3">
+                <select class="form-select" id="investmentType" formControlName="investmentType" required>
+                    <option value="cdb">CDB (taxa anual: 6%)</option>
+                    <option value="poupanca">Poupança (taxa anual: 4,5%)</option>
+                    <option value="fundo">Fundo de investimento (taxa anual: 8%)</option>
+                </select>
+                <label for="investmentType">Tipo de investimento</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="investmentAmount" formControlName="investmentAmount"
+                    placeholder="Apenas números" required />
+                <label for="investmentAmount">Valor inicial</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="monthlyInvestment" formControlName="monthlyInvestment"
+                    placeholder="Apenas números" required />
+                <label for="monthlyInvestment">Investimento mensal</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" type="number" id="investmentTerm" formControlName="investmentTerm"
+                    placeholder="Apenas números" required />
+                <label for="investmentAmount">Prazo em meses</label>
+            </div>
+            <button type="submit">Simular</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 d-flex justify-content-center align-items-center" *ngIf="showResult">
+    <div class="row" id="pratique">
+      <div class="col-12">
+        <div class="container">
+            <h1>Resultado:</h1>
+            <p>Investimento selecionado: {{selectedInvestment.type}}</p>
+            <p>Montante investido: {{formattedPrincipal}}</p>
+            <p>Investimento mensal: {{formattedMonthlyInvestment}}</p>
+            <p>Montante final: {{formattedFutureValue}}</p>
+        </div>
+      </div>
+  </div>
+</div> -->
+
+
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<div class="row bg justify-content-center" id="grad" *ngIf="currentStep === 1">
+  <div class="col-6" id="pratique_home">
+    <div class="container">
+        <h1 style="line-height: 3.5rem;">Simulador de Investimentos</h1>
+        <p >O simulador de investimentos calcula de forma simples e descomplicada qual será 
+          o retorno do seu dinheiro após uma aplicação a uma determinada taxa e período.</p>
+        <button id="button" type="button" class="simulate" (click)="goForward()" ng-model="button"><b>SIMULAR</b></button>
+    </div>
+  </div>
+  <div class="col-6">
+    <img src="/assets/images/pratique/bro.svg" alt="" width="550" height="400">
+  </div>
+</div>
+
+<form [formGroup]="investmentForm" (ngSubmit)="onSubmit()">
+
+  <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;" *ngIf="currentStep === 2">
+    <div class="row" id="pratique1">
+      <div id="pergunta1">
+        <p>Qual tipo de investimento você gostaria de realizar?</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div style="padding: 20px;">
+          <button id="opcao1">
+            <img style="padding: 20px;" src="/assets/images/pratique/bank.svg" alt="bank icon">
+            <p class=""><b style="font-size: 20px;">CDB</b><br> taxa anual: 6%</p>
+          </button>
+        </div>
+        <div style="padding: 20px;">
+          <button id="opcao2">
+            <img class="" style="padding: 20px;" src="/assets/images/pratique/pig.svg" alt="bank icon">
+            <p class=""><b style="font-size: 20px;">Poupança</b><br> taxa anual: 4,5%</p>
+          </button>
+        </div>
+        <div style="padding: 20px;">
+          <button id="opcao3">
+            <img class="" style="padding: 13px;" src="/assets/images/pratique/success.svg" alt="bank icon">
+            <p><b style="font-size: 20px;">Fundo de<br> investimento</b><br> taxa anual: 8%</p>
+          </button>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between" style="padding: 18px;">
+        <div>
+          <button id="voltar" type="button" (click)="goBack()">VOLTAR</button>
+        </div>
+        <div>
+          <button id="avancar" type="button" (click)="goForward()"><b>AVANÇAR</b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;" *ngIf="currentStep === 3">
+    <div class="row" id="pratique2">
+      <div id="pergunta2">
+        <p>Qual seria seu investimento inicial?</p>
+      </div>
+      <div>
+        <input type="number" placeholder="R$ 0,00">
+        <div class="linha"></div>
+      </div> 
+      <div id="pergunta3">
+        <p>Por quanto tempo planeja manter esse investimento?</p>
+      </div>
+      <div>
+        <label for="customRange" class="form-label"></label>
+        <input type="range" min="1" max="10" value="2" id="time_input" name="time_input" (input)="timeInputChanged($event)"><br>
+        <p id="pgh_years"><output id="years">2</output> anos.</p><br>
+      </div>
+      <div id="pergunta4">
+        <p>E quanto você planeja investir por mês?</p>
+      </div>
+      <div>
+        <input type="number" placeholder="R$ 0,00">
+        <div class="linha"></div>
+        <p style="color:red">* opcional</p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <div>
+          <button id="voltar" type="button" (click)="goBack()">VOLTAR</button>
+        </div>
+        <div>
+          <button id="avancar" type="button" (click)="goForward()"><b>AVANÇAR</b></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+  <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 100vh; max-width: 80vw;" *ngIf="currentStep === 4">
+    <div class="row" id="pratique_results">
+        <div class="d-flex justify-content-start">
+            <button type="button" class="back" (click)="goBack()">VOLTAR</button>
+        </div>
+        <div class="container practice-result-container">
+          <h1 style="text-align:justify;"><u>Resultado:</u></h1>
+            <img src="/assets/images/pratique/celular.svg" alt="" class="img-cellphone relative">
+            <div class="practice-result absolute">
+              <p>Logo, ao final de <b>4 anos</b></p>
+              <p>Com um montante inicial de <b>R$ 1.000,00</b></p>
+              <p>E com um investimento mensal de <b>R$ 100,00</b></p>
+              <p>Você terá um montante final de <b>R$ 6.445,20</b></p>
+              <p>Por meio do investimento selecionado: <b>Poupança</b></p>
+            </div>  
+        </div>
+    </div>
+  </div>
