@@ -93,6 +93,11 @@ export class MyConversationsComponent {
     this._fetchMyConversation();
   }
 
+  /**
+   * Create new post data to be added in the array of posts of the conversation.
+   * @param i
+   * @param postContent
+   */
   public addNewPost(i:number, postContent: string): void{
     let post_id, numberOfPostInConversation = this.conversations[i].content.length;
     if (numberOfPostInConversation > 1)
