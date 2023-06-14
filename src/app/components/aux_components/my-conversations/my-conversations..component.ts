@@ -89,8 +89,31 @@ export class MyConversationsComponent {
     //\test
   }
 
-  async ngOnInit (): Promise<void> {
-    await this._fetchMyConversation();
+  ngOnInit (): void {
+    this._fetchMyConversation();
+  }
+
+  public addNewPost(i:number, postContent: string): void{
+    console.log(postContent);
+    let numberOfPostInConversation = this.conversations[i].content.length;
+    let post_id = this.conversations[i].content[numberOfPostInConversation-1].id! + 1
+
+    let user_id = Number(localStorage.getItem('id')!);
+    let name    = localStorage.getItem('username')!;
+    let email    = localStorage.getItem('email')!;
+
+    let post = new PostData({
+      id: post_id,
+      base_text: postContent,
+      user: {
+          id: user_id,
+          name: name,
+          email: email
+      },
+      likes_data: []
+    });
+
+    this.conversations[i].content.push(post);
   }
 
   /**

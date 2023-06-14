@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/service/api/api.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
@@ -19,6 +19,8 @@ export class BtnPlusInputComponent {
   public route = "";
   @Input()
   public talk_id = -1;
+  @Output()
+  postContent = new EventEmitter<string>();
 
   commentForm: FormGroup;
 
@@ -43,7 +45,8 @@ export class BtnPlusInputComponent {
       let r = await this._api.post(this.route, requestBody, null);
       if (r.getSuccess()) { //activate success/error button
         this._snackBarService.openSnackBar(2,"Conversa criada com sucesso!");
-        window.location.reload();
+        this.postContent.emit(this.commentForm.value.commentInput);
+        this.commentForm.get('commentInput')?.reset();
       } else {
         console.log("error",r.getResponse());
         this._snackBarService.openSnackBar(2,"Erro ao criar conversa.");
