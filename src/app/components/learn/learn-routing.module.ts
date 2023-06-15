@@ -5,8 +5,8 @@ import { ModuleComponent } from '../aux_components/topic/module/module.component
 import { ClassComponent } from '../aux_components/class/class.component';
 
 const routes: Routes = [
-  { path: 'topic/:id', component: ModuleComponent },
-  { path: 'topic/:id/:class', component: ClassComponent },
+  { path: 'learn/:id', component: ModuleComponent },
+  { path: 'learn/:id/:class', component: ClassComponent },
 ];
 
 @NgModule({

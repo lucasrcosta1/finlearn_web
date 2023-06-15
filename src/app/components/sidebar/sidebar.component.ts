@@ -75,7 +75,8 @@ export class SidebarComponent {
    * Get the actual tab and add mark it as active.
    */
   private _getLabelActive (): void {
-    let url = window.location.pathname;
-    this.setActiveRoute(url);
+    let url = window.location.pathname.split('/')[1];
+    if (url == "page_not_found") url = '';
+    this.setActiveRoute(`/${url}`);
   }
 }
