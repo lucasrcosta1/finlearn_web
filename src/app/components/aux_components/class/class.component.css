@@ -1,7 +1,35 @@
+*{
+  margin: 0 auto;
+}
 
 #back-button {
   font-size: 30px;
   background-color: transparent;
   outline: none;
   border: 0;
+}
+
+.container, h2{
+  font-family: 'Montserrat';
+}
+
+.videoplayer{
+  background-color: #3C3535;
+  height: 80vh;
+  width: 50vw;
+  border-radius: 3px;
+}
+.video{
+  justify-content: center;
+  background-color:#6d6868;
+  height: 7vh;
+  width: 50vw;
+  border-bottom: 0.1px solid #FFFF;
+  color: #FFFF;
+  padding-left: 15px;
+}
+
+.video:hover{
+  background-color: #3C3535;
+  cursor: pointer;
 }
