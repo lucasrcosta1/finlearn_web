@@ -1,7 +1,63 @@
+#content{
+  font-family: 'Montserrat';
+  margin: 0 auto;
+  justify-content: center;
+}
 
 #back-button {
   font-size: 30px;
   background-color: transparent;
   outline: none;
   border: 0;
+}
+
+.accordion-item {
+  margin-top: 1rem!important;
+  vertical-align: top;
+  margin: 0 1.5%;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid #6D7279;
+}
+
+.accordion-button{
+  color: #059F30;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.statics{
+  text-align: center;
+  border: 1px solid #6d727953;
+  border-radius: 5px;
+  padding: 15px;
+  width: 30%;
+  margin-left: 22px;
+}
+
+.course{
+  text-align: center;
+  border: 1px solid #6d727953;
+  border-radius: 5px;
+  padding: 20px;
+  width: 60%;
+}
+
+#accordionModules{
+  border: 1px solid #6d727953;
+  width: 90%;
+  border-radius: 5px;
+  margin-top: 22px;
+}
+
+.module3{
+  border-radius: 5px;
+  padding: 26px;
+}
+
+.aula{
+  margin-top: 8px;
+  border-radius: 5px;
+  border: 1px solid #6d727953;
 }
