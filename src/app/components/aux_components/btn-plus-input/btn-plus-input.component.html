@@ -7,7 +7,7 @@
         <input type="text" id="comment-input" [placeholder]="commentary" formControlName="commentInput" required>
         <button
           id="comment-btn"
-          [disabled]="commentForm.invalid"
+          [disabled]="commentForm.invalid || ((disableClick$ | async) && (value == 'Criar' || value == 'Procurar'))"
           (click)="submitForm()"
         >{{value}}</button>
       </div>

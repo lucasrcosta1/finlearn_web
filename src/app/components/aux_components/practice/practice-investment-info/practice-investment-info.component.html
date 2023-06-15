@@ -4,19 +4,20 @@
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <form [formGroup]="formInvestmentInfo" (ngSubmit)="onSubmit()">
     <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;">
-      <div class="row" id="pratique2">
-        <div id="pergunta2">
-          <p>Qual seria seu investimento inicial?</p>
-        </div>
-        <div>
-          <input type="number" formControlName="initialInvestment" placeholder="R$ 0,00">
+      <div class="col-12" id="pratique2">
+        <div class="row" id="pergunta2">
+          <p>Investimento inicial:</p>
+          <input
+            formControlName="initialInvestment"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+            required
+          >
           <div class="linha"></div>
         </div>
-        <div id="pergunta3">
-          <p>Por quanto tempo planeja manter esse investimento?</p>
-        </div>
-        <div>
-          <label for="customRange" class="form-label"></label>
+        <div class="row mt-5" id="pergunta3">
+          <p >Tempo de investimento:</p>
           <input
             type="range"
             min="1"
@@ -24,18 +25,23 @@
             id="time_input"
             name="time_input"
             formControlName="howLong"
-          ><br>
-          <p id="pgh_years"><output id="years">64</output> meses.</p><br>
+            (input)="onRangeInput($event)"
+            required
+          >
+          <p id="pgh_years">{{rangeValue}} meses.</p><br>
         </div>
-        <div id="pergunta4">
-          <p>E quanto você planeja investir por mês?</p>
-        </div>
-        <div>
-          <input type="number" formControlName="howMany" placeholder="R$ 0,00">
+        <div class="row mt-4" id="pergunta4">
+          <p>Investimento mensal:</p>
+          <input
+            formControlName="howMany"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+            required
+          >
           <div class="linha"></div>
-          <p style="color:red">* opcional</p>
         </div>
-        <div class="d-flex justify-content-between">
+        <div class="mt-4 d-flex justify-content-between">
           <div>
             <button id="voltar" type="button" (click)="goTo(1)">VOLTAR</button>
           </div>

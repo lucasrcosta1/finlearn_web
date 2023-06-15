@@ -25,8 +25,10 @@ export class PracticeTypeComponent {
    * Save form value in the service and go to next page.
    */
   public onSubmit (): void {
-    this._pratiqueService.setRate(this.investmentInfoForm.value.rate);
-    this.goTo(2);
+    if (this.investmentInfoForm.valid) {
+      this._pratiqueService.setRate(this.investmentInfoForm.value.rate);
+      this.goTo(2);
+    }
   }
 
   /**
@@ -45,5 +47,12 @@ export class PracticeTypeComponent {
     this._pratiqueService.goTo(page);
   }
 
+  /**
+   * Return button's status based on the form validity.
+   * @returns
+   */
+  public btnStatus (): boolean {
+    return !this.investmentInfoForm.valid;
+  }
 }
 

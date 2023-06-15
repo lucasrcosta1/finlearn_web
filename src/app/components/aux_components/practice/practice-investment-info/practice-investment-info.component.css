@@ -12,6 +12,7 @@ p{
     font-family: 'Montserrat';
     font-size: larger;
     text-align: justify;
+    margin: 0;
 }
 
 .container {
@@ -189,4 +190,6 @@ input{
 #pgh_years {
     color:#059F30;
     font-size: 22px;
+    margin: 0;
 }
+

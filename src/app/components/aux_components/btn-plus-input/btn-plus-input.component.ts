@@ -1,5 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
+import { LikeData } from 'src/app/models/conversation/LikeData.model';
+import { PostData } from 'src/app/models/conversation/PostData.model';
+import { UserInfo } from 'src/app/models/user/UserInfo.model';
 import { ApiService } from 'src/app/service/api/api.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
@@ -19,8 +24,12 @@ export class BtnPlusInputComponent {
   public route = "";
   @Input()
   public talk_id = -1;
+  @Input()
+  public disableClick$ = new BehaviorSubject(true);
   @Output()
-  postContent = new EventEmitter<string>();
+  postContent = new EventEmitter<PostData>();
+  @Output()
+  conversation = new EventEmitter<ConversationData>();
 
   commentForm: FormGroup;
 
@@ -44,15 +53,54 @@ export class BtnPlusInputComponent {
       else requestBody = {title: this.commentForm.value.commentInput};
       let r = await this._api.post(this.route, requestBody, null);
       if (r.getSuccess()) { //activate success/error button
-        this._snackBarService.openSnackBar(2,"Conversa criada com sucesso!");
-        this.postContent.emit(this.commentForm.value.commentInput);
+        let user = this._createUser();
+        if (this.route == '/talk/create') {
+          this._snackBarService.openSnackBar(2,`Conversa criada com sucesso!`);
+          this.conversation.emit(this._createConversation(r.getResponse().id,this.commentForm.value.commentInput, user));
+        } else if (this.route == '/post/create') {
+          this._snackBarService.openSnackBar(2,`Post criado com sucesso!`);
+          this.postContent.emit(this._createPost(r.getResponse().id,this.commentForm.value.commentInput, user));
+        }
         this.commentForm.get('commentInput')?.reset();
       } else {
         console.log("error",r.getResponse());
-        this._snackBarService.openSnackBar(2,"Erro ao criar conversa.");
+        if (this.route == '/talk/create') {
+          this._snackBarService.openSnackBar(2,"Erro ao criar conversa.");
+        } else if (this.route == '/post/create') {
+          this._snackBarService.openSnackBar(2,"Erro ao criar post.");
+        }
       }
     } else {
       this._snackBarService.openSnackBar(2,"Erro ao pesquisar.");
     }
+  }
+
+  private _createConversation (id: number,title: string, userInfo: UserInfo): ConversationData {
+    let conversation = new ConversationData();
+    conversation.id = id;
+    conversation.user = new UserInfo();
+    conversation.title = title;
+    conversation.user = userInfo;
+    conversation.content = new Array<PostData>();
+    conversation.showContent = false;
+    return conversation;
+  }
+
+  private _createPost (id: number, base_text: string, userInfo: UserInfo): PostData {
+    let postData = new PostData();
+    postData.id = id;
+    postData.base_text = base_text;
+    postData.user = userInfo;
+    postData.likes_data = new Array<LikeData>();
+    return postData;
+  }
+
+  private _createUser (): UserInfo {
+    let userInfo = new UserInfo();
+    userInfo.id = Number(localStorage.getItem("id")!);
+    userInfo.name = localStorage.getItem("username")!;
+    userInfo.likes_data = new Array<UserInfo>();
+    userInfo.email = localStorage.getItem("email")!
+    return userInfo;
   }
 }
