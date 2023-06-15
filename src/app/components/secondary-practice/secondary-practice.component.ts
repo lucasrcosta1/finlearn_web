@@ -13,8 +13,12 @@ export class SecondaryPracticeComponent {
     private _pratiqueService: PratiqueService,
   ) {}
 
+  /**
+   * Send user to the requested page.
+   * @param page
+   */
   public goTo (page: number): void {
     this._pratiqueService.goTo(page);
   }
-  
+
 }

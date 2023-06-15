@@ -76,7 +76,7 @@ export class SidebarComponent {
    */
   private _getLabelActive (): void {
     let url = window.location.pathname.split('/')[1];
-    if (url == "page_not_found") url = '';
+    if (url == "page_not_found") this.setActiveRoute('');
     this.setActiveRoute(`/${url}`);
   }
 }

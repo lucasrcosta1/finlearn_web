@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { InvestType } from 'src/app/models/InvestType.model';
+import { InvestType } from 'src/app/models/practice/InvestType.model';
 
 @Component({
   selector: 'app-practice',
@@ -51,7 +51,7 @@ export class PracticeComponent implements OnInit {
 
   }
 
-  
+
   createForm(): FormGroup<any> {
     return this.fb.group({
       investmentType: ['', Validators.required],
