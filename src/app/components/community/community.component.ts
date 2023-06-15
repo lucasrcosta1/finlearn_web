@@ -59,7 +59,7 @@ export class CommunityComponent {
    * @param conversation
    */
   public handleClickValue (clickValue: boolean): void {
-    console.log(this.activeTab,clickValue);
+    // console.log(this.activeTab,clickValue);
     this.disableClick$.next(clickValue);
   }
 

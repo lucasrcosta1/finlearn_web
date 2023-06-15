@@ -36,11 +36,9 @@ export class AllConversationsComponent {
   ngOnChanges (changes: SimpleChanges) {
     if (changes['conversation']) {
       if (changes['conversation'].currentValue) {
-        let conversation = changes['conversation'].currentValue;
         let size = this.conversations.length-1;
         if (size >= 0) {
-          // console.log(size, this.conversations[size].id! + 1);
-          conversation.id = (this.conversations[size].id! + 1);
+          let conversation = changes['conversation'].currentValue;
           this.conversations.push(conversation);
         }
       }
@@ -73,27 +71,8 @@ export class AllConversationsComponent {
    * @param i
    * @param postContent
    */
-  public addNewPost(i:number, postContent: string): void{
-    let post_id, numberOfPostInConversation = this.conversations[i].content!.length;
-    if (numberOfPostInConversation > 1)
-      post_id = this.conversations[i].content![numberOfPostInConversation-1].id! + 1
-    else post_id = 1;
-    let user_id = Number(localStorage.getItem('id')!);
-    let name    = localStorage.getItem('username')!;
-    let email    = localStorage.getItem('email')!;
-
-    let post = new PostData({
-      id: post_id,
-      base_text: postContent,
-      user: {
-          id: user_id,
-          name: name,
-          email: email
-      },
-      likes_data: []
-    });
-
-    this.conversations[i].content!.push(post);
+  public addNewPost(i:number, postData: PostData): void{
+    this.conversations[i].content!.push(new PostData(postData));
   }
 
 
