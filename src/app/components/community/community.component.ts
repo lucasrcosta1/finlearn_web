@@ -43,6 +43,7 @@ export class CommunityComponent {
 
   public activateTab(tab: string) {
     this.activeTab = tab;
+    this.disableClick$.next(true);
   }
 
   /**
@@ -58,6 +59,7 @@ export class CommunityComponent {
    * @param conversation
    */
   public handleClickValue (clickValue: boolean): void {
+    console.log(this.activeTab,clickValue);
     this.disableClick$.next(clickValue);
   }
 
