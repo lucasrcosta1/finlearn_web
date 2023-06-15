@@ -20,6 +20,10 @@ export class ModuleComponent {
     this.router.navigate(['/learn']);
   }
 
+  /**
+   * Send user to the requested page.
+   * @param page
+   */
   goToClass (className: string): void {
     const route = `/${this.module[0]}/${this.module[1]}/${className}`;
     this.router.navigate([route]);

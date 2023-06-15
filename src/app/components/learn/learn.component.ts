@@ -40,7 +40,7 @@ export class LearnComponent {
   ) {}
 
   openModule (moduleRouteName: string) {
-    this.router.navigate([`/topic${moduleRouteName}`]);
+    this.router.navigate([`/learn${moduleRouteName}`]);
     console.log("open route", moduleRouteName);
   }
 
