@@ -56,9 +56,9 @@ export class AllConversationsComponent {
    * @param postContent
    */
   public addNewPost(i:number, postContent: string): void{
-    let post_id, numberOfPostInConversation = this.conversations[i].content.length;
+    let post_id, numberOfPostInConversation = this.conversations[i].content!.length;
     if (numberOfPostInConversation > 1)
-      post_id = this.conversations[i].content[numberOfPostInConversation-1].id! + 1
+      post_id = this.conversations[i].content![numberOfPostInConversation-1].id! + 1
     else post_id = 1;
     let user_id = Number(localStorage.getItem('id')!);
     let name    = localStorage.getItem('username')!;
@@ -75,7 +75,7 @@ export class AllConversationsComponent {
       likes_data: []
     });
 
-    this.conversations[i].content.push(post);
+    this.conversations[i].content!.push(post);
   }
 
 

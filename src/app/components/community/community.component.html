@@ -9,6 +9,7 @@
             [commentary]="'Procure uma conversa...'"
             [value]="'Procurar'"
             [route]="searchRoute"
+            [disableClick$]="disableClick$"
           ></app-btn-plus-input>
         </div>
         <div class="col">
@@ -17,6 +18,8 @@
             [commentary]="'Crie uma conversa!'"
             [value]="'Criar'"
             [route]="createConversationRoute"
+            (conversation)="handleNewConversation($event)"
+            [disableClick$]="disableClick$"
           ></app-btn-plus-input></div>
       </div>
     </div>
@@ -40,7 +43,10 @@
       </div>
       <div class="container-body p-3">
         <div *ngIf="activeTab === 'tab1'">
-          <app-my-conversations></app-my-conversations>
+          <app-my-conversations
+            [conversation]="conversation"
+            (disableClick)="handleClickValue($event)"
+          ></app-my-conversations>
         </div>
         <div *ngIf="activeTab === 'tab2'">
           <app-all-conversations></app-all-conversations>
