@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -101,6 +102,7 @@ import { PracticeResultComponent } from './components/aux_components/practice/pr
     MatStepperModule,
     MatSelectModule,
     MatSnackBarModule,
+    CurrencyMaskModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

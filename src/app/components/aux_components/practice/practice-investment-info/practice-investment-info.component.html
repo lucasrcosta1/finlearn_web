@@ -9,7 +9,12 @@
           <p>Qual seria seu investimento inicial?</p>
         </div>
         <div>
-          <input type="number" formControlName="initialInvestment" placeholder="R$ 0,00">
+          <input
+            formControlName="initialInvestment"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+          >
           <div class="linha"></div>
         </div>
         <div id="pergunta3">
@@ -32,7 +37,12 @@
           <p>E quanto você planeja investir por mês?</p>
         </div>
         <div>
-          <input type="number" formControlName="howMany" placeholder="R$ 0,00">
+          <input
+            formControlName="howMany"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+          >
           <div class="linha"></div>
           <p style="color:red">* opcional</p>
         </div>
