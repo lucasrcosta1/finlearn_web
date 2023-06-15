@@ -32,7 +32,7 @@
             <button id="voltar" type="button" (click)="goTo(0)">VOLTAR</button>
           </div>
           <div>
-            <button id="avancar" type="submit"><b>AVANÇAR</b></button>
+            <button id="avancar" type="submit" [disabled]="btnStatus()"><b>AVANÇAR</b></button>
           </div>
         </div>
       </div>
