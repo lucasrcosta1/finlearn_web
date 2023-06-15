@@ -10,6 +10,7 @@ import { PratiqueService } from 'src/app/service/pratique/pratique.service';
 })
 export class PracticeInvestmentInfoComponent {
   public formInvestmentInfo: FormGroup;
+  public rangeValue = 64;
 
   constructor (
     private _pratiqueService: PratiqueService,
@@ -17,7 +18,7 @@ export class PracticeInvestmentInfoComponent {
   ) {
     this.formInvestmentInfo = this._formBuilder.group({
       initialInvestment: ['', Validators.required],
-      howLong: [64, Validators.required],
+      howLong: [this.rangeValue, Validators.required],
       howMany: ['', Validators.required]
     });
   }
@@ -40,5 +41,13 @@ export class PracticeInvestmentInfoComponent {
    */
   public goTo (page: number): void {
     this._pratiqueService.goTo(page);
+  }
+
+  /**
+   * Listen for range's value from input.
+   * @param event
+   */
+  public onRangeInput(event: any): void {
+    this.rangeValue = event.target.value;
   }
 }

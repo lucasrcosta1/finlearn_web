@@ -24,8 +24,9 @@
             id="time_input"
             name="time_input"
             formControlName="howLong"
+            (input)="onRangeInput($event)"
           ><br>
-          <p id="pgh_years"><output id="years">64</output> meses.</p><br>
+          <p id="pgh_years">{{rangeValue}} meses.</p><br>
         </div>
         <div id="pergunta4">
           <p>E quanto você planeja investir por mês?</p>
