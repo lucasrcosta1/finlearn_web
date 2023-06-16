@@ -181,6 +181,7 @@ input{
     background: transparent;
     border: none;
     font-family: 'Montserrat';
+    outline: 0;
 }
 
 #pgh_years {
@@ -188,4 +189,6 @@ input{
     font-size: 22px;
     margin: 0;
 }
+
+
 
