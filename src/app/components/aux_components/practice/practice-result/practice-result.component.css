@@ -63,7 +63,7 @@ button.back{
 }
 
 button.back:hover {
-  background-color: rgb(200, 29, 200);
+  background-color: #8bc34a;
   /* background-color: var(--border-light-btn-whiter); */
   color: white;
 }
@@ -215,9 +215,62 @@ input{
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--border-light-btn-whiter); /* Replace with your desired background color */
+  background-color: white; /* Replace with your desired background color */
+
 }
 
 .circle:hover {
-  background-color: rgb(200, 29, 200);
+  background-color: #8bc34a;
+}
+
+.init-btn {
+  position: absolute; margin-top: 676px; margin-left: 25px;
+}
+
+
+@media screen and (max-height: 910px){
+  img{
+    max-height: 600px;
+  }
+  #content-cnt{
+    position: absolute; margin-top: 130px !important; margin-left: 20px;
+  }
+  .init-btn {
+    position: absolute; margin-top: 530px; margin-left: 21px;
+  }
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
+  p{
+    font-size: medium;
+  }
+  button.back{
+    padding: 15px 30px 15px 30px;
+  }
+  .popup-content{
+    max-width: 210px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+}
+
+.popup-content {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  background-color: #f9f9f9;
+  border: 1px solid rgb(194, 191, 191);
+  color: gray;
+  width: 250px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.init-btn:hover .popup-content {
+  visibility: visible;
+  opacity: 1;
 }

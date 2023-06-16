@@ -7,34 +7,37 @@
     <div class="row " >
         <div class="container practice-result-container" >
             <img src="/assets/images/pratique/celular.svg" alt="" class="">
-            <div class="practice-result d-flex justify-content-center" style="position: absolute; margin-top: 175px; margin-left: 20px;">
+            <div class="practice-result d-flex justify-content-center" id="content-cnt" style="position: absolute; margin-top: 175px; margin-left: 20px;">
               <div class="col-12">
+                <h2 class="text-center">RESULTADO</h2>
                 <div class="result-content">
-                  <p>Tempo de investimento:</p>
-                  <p><b>{{duration || 120}} meses</b></p>
+                  <p>Investindo em:</p>
+                  <p><b>{{rate || 'Tipo de investimento'}}</b></p>
                 </div>
                 <div class="result-content">
-                  <p>Montante inicial:</p>
-                  <p><b>{{initial_investment || 0}}</b></p>
+                  <p>Com valor inicial de:</p>
+                  <p><b>{{initial_investment || 'R$ 0,00'}}</b></p>
                 </div>
                 <div class="result-content">
-                  <p>Investimento mensal:</p>
-                  <p><b>{{monthly_investment || 0}}</b></p>
+                  <p>E incremento mensal de:</p>
+                  <p><b>{{monthly_investment || 'R$ 0,00'}}</b></p>
                 </div>
                 <div class="result-content">
-                  <p>Montante final: </p>
-                  <p><b>{{final_return || 0}}</b></p>
+                  <p>Você acumulará um montante de: </p>
+                  <p><b>{{final_return || 'R$ 0,00'}}</b></p>
                 </div>
                 <div class="result-content">
-                  <p>Tipo de investimento: </p>
-                  <p><b>{{rate || 'Escolha um tipo de investimento'}}</b></p>
+                  <p>No final de <b>{{duration || 120}} meses</b>.</p>
                 </div>
               </div>
             </div>
-            <div style="position: absolute; margin-top: 676px; margin-left: 25px;">
+            <div class="init-btn">
               <span class="circle clickable" (click)="goTo(0)"></span>
+              <div class="popup-content d-flex justify-content-center">
+                <p>Fazer outra simulação.</p>
+              </div>
             </div>
-            <div class="row d-flex justify-content-center mt-5" >
+            <div class="row d-flex justify-content-center mt-4" >
                 <button type="button" class="back" (click)="goTo(0)">TENTAR NOVAMENTE</button>
             </div>
         </div>

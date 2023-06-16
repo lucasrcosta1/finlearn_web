@@ -19,7 +19,7 @@ export class PracticeInvestmentInfoComponent {
     this.formInvestmentInfo = this._formBuilder.group({
       initialInvestment: ['', Validators.required],
       howLong: [this.rangeValue, Validators.required],
-      howMany: ['', Validators.required]
+      monthlyInvestment: ['', null]
     });
   }
 
@@ -30,7 +30,7 @@ export class PracticeInvestmentInfoComponent {
     if (this.formInvestmentInfo.valid) {
       this._pratiqueService.setInitialInvestment(this.formInvestmentInfo.value.initialInvestment);
       this._pratiqueService.setDuration(this.formInvestmentInfo.value.howLong);
-      this._pratiqueService.setMonthlyInvestment(this.formInvestmentInfo.value.howMany);
+      this._pratiqueService.setMonthlyInvestment((this.formInvestmentInfo.value.monthlyInvestment == '') ? this.formInvestmentInfo.value.monthlyInvestment = 0 : this.formInvestmentInfo.value.monthlyInvestment);
       this.goTo(3);
     }
   }
