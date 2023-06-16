@@ -121,9 +121,9 @@ div.absolute {
     border-radius: 19px;
 }
 
-/* #opcao1.hover, #opcao2.hover, #opcao3.hover{
+#opcao1:hover, #opcao2:hover, #opcao3:hover{
     background-color: #6D7279;
-} */
+}
 
 #voltar{
     font-family: 'Montserrat';

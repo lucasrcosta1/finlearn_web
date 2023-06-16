@@ -123,17 +123,17 @@ export class PratiqueService {
     }
     let interestRate,compoundedPeriodsPerYear;
     if (investment.rate == 'cdb') {
-      interestRate = 0.6;
+      interestRate = 0.06;
       investment.rate = 'CDB';
       compoundedPeriodsPerYear = 12;
     } else if (investment.rate == 'poupanca') {
-      interestRate = 0.45;
+      interestRate = 0.045;
       investment.rate = 'Poupança';
       compoundedPeriodsPerYear = 12;
     } else if (investment.rate == 'fundo') {
-      interestRate = 0.8;
+      interestRate = 0.08;
       investment.rate = 'Fundo de investimento';
-      compoundedPeriodsPerYear = 1;
+      compoundedPeriodsPerYear = 12;
     }
 
     const totalMonths = timePeriod;

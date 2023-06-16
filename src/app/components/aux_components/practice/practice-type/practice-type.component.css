@@ -43,10 +43,6 @@ button.simulate {
     cursor: pointer;
 }
 
-button.simulate.hover{
-    background-color: #6D7279;
-}
-
 button.back{
     position: absolute;
     width: 114px;
@@ -121,11 +117,15 @@ div.absolute {
     border-radius: 19px;
 }
 
-/* #opcao1.hover, #opcao2.hover, #opcao3.hover{
-    background-color: #6D7279;
-} */
+#opcao1:hover, #opcao2:hover,#opcao3:hover{
+    background-color: #b2aaaa74;
+}
 
-#voltar{
+#opcao1:focus,#opcao2:focus,#opcao3:focus{
+    background-color: rgba(86, 216, 123, 0.15);
+}
+
+.voltar{
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: bold;
@@ -137,7 +137,7 @@ div.absolute {
     padding: 10px;
 }
 
-#avancar{
+.avancar{
     padding: 10px;
     font-size: 20px;
     background-color: #059F30;
