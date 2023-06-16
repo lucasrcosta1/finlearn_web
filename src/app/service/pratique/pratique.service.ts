@@ -73,6 +73,71 @@ export class PratiqueService {
     }
   }
 
+  /**
+   * Check if all the required fields are valid
+   * @param investment
+   * @returns
+   */
+  private _checkValidityOfFields (investment: Investment): boolean {
+    if (
+      this.getRate() &&
+      this.getInitialInvestment() &&
+      this.getDuration()
+    ) { return true; }
+    else return false;
+  }
+
+  /**
+   * Calculate result of the chosen investment.
+   * @param investment
+   * @returns
+   */
+  private _calculateResult (investment: Investment): void {
+
+    const principal = +investment.initial_investment!;
+    const monthlyInvestment = +investment.monthly_investment!;
+    const timePeriod = investment.duration!;
+    // console.log(timePeriod);
+    if (isNaN(timePeriod) || timePeriod <= 0) {
+      console.log('Período de tempo inválido.');
+      return;
+    }
+    let interestRate,compoundedPeriodsPerYear;
+    if (investment.rate == 'cdb') {
+      interestRate = 6/100;
+      investment.rate = 'CDB';
+      compoundedPeriodsPerYear = 12;
+    } else if (investment.rate == 'poupanca') {
+      interestRate = 4.5/100;
+      investment.rate = 'Poupança';
+      compoundedPeriodsPerYear = 12;
+    } else if (investment.rate == 'fundo') {
+      interestRate = 8/100;
+      investment.rate = 'Fundo de investimento';
+      compoundedPeriodsPerYear = 12;
+    }
+
+    const totalMonths = timePeriod;
+    const monthlyInterestRate = interestRate / compoundedPeriodsPerYear;
+    const totalCompoundedPeriods = compoundedPeriodsPerYear * (timePeriod / 12);
+    const futureValue = (principal * (1 + monthlyInterestRate) ** totalCompoundedPeriods) + (monthlyInvestment * (((1 + monthlyInterestRate) ** totalCompoundedPeriods - 1) / monthlyInterestRate));
+
+    const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+    this.formattedPrincipal = formatter.format(principal);
+    this.formattedMonthlyInvestment = formatter.format(monthlyInvestment);
+    this.formattedFutureValue = formatter.format(futureValue);
+  }
+
+  /**
+   * Return all page loading from practice page to root path.
+   */
+  private _checkValidPage () : void {
+    let pageUrl = window.location.pathname.split('/');
+    if (pageUrl[1] == 'practice' && pageUrl.length > 2){
+      window.location.replace("/practice");
+    }
+  }
+
   public setRate (rate: string): void {
     this.investment.rate = rate;
   }
@@ -99,69 +164,5 @@ export class PratiqueService {
   }
   public getMonthlyInvestment (): number | undefined {
     return this.investment.monthly_investment;
-  }
-
-  private _checkValidityOfFields (investment: Investment): boolean {
-    if (
-      this.getRate() &&
-      this.getInitialInvestment() &&
-      this.getDuration() &&
-      this.getMonthlyInvestment()
-    ) { return true; }
-    else return false;
-  }
-
-  private _calculateResult (investment: Investment): void {
-
-    const principal = +investment.initial_investment!;
-    const monthlyInvestment = +investment.monthly_investment!;
-    const timePeriod = investment.duration!;
-    // console.log(timePeriod);
-    if (isNaN(timePeriod) || timePeriod <= 0) {
-      console.log('Período de tempo inválido.');
-      return;
-    }
-    let interestRate,compoundedPeriodsPerYear;
-    if (investment.rate == 'cdb') {
-      interestRate = 0.06;
-      investment.rate = 'CDB';
-      compoundedPeriodsPerYear = 12;
-    } else if (investment.rate == 'poupanca') {
-      interestRate = 0.045;
-      investment.rate = 'Poupança';
-      compoundedPeriodsPerYear = 12;
-    } else if (investment.rate == 'fundo') {
-      interestRate = 0.08;
-      investment.rate = 'Fundo de investimento';
-      compoundedPeriodsPerYear = 12;
-    }
-
-    const totalMonths = timePeriod;
-    const monthlyInterestRate = interestRate / compoundedPeriodsPerYear;
-    const totalCompoundedPeriods = compoundedPeriodsPerYear * (timePeriod / 12);
-    const futureValue = (principal * (1 + monthlyInterestRate) ** totalCompoundedPeriods) + (monthlyInvestment * (((1 + monthlyInterestRate) ** totalCompoundedPeriods - 1) / monthlyInterestRate));
-
-    // console.log(`Principal: ${principal}`);
-    // console.log(`Monthly Investment: ${monthlyInvestment}`);
-    // console.log(`Interest Rate: ${interestRate}`);
-    // console.log(`Time Period: ${timePeriod}`);
-    // console.log(`Compounded Periods Per Year: ${compoundedPeriodsPerYear}`);
-    // console.log(`Total Months: ${totalMonths}`);
-    // console.log(`Monthly Interest Rate: ${monthlyInterestRate}`);
-    // console.log(`Total Compounded Periods: ${totalCompoundedPeriods}`);
-    // console.log(`Future Value: ${futureValue}`);
-
-    const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-    this.formattedPrincipal = formatter.format(principal);
-    this.formattedMonthlyInvestment = formatter.format(monthlyInvestment);
-    this.formattedFutureValue = formatter.format(futureValue);
-    // console.log("this.formattedPrincipal",this.formattedPrincipal)
-    // console.log("this.formattedMonthlyInvestment",this.formattedMonthlyInvestment)
-    // console.log("this.formattedFutureValue",this.formattedFutureValue)
-  }
-
-  private _checkValidPage () : void {
-    if (window.location.pathname.split('/').length > 2)
-      window.location.replace("/practice");
   }
 }
