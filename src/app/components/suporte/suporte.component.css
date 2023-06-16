@@ -2,6 +2,7 @@
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 h2{
@@ -10,10 +11,6 @@ h2{
     justify-content: center;
     margin: 1em auto;
 }
-
-/* .border-right{
-    border-right: 1px solid;
-} */
 
 .border-left{
     border-left: 0.5px solid #888;
@@ -51,14 +48,13 @@ p {
 
 #contato{
     margin: 0;
-    height: 55.9rem;
+    height: 95vh;
 }
-
 
 #faq-perguntas{
     width: 80%;
     margin-left: 4.688rem;
-    margin-top: 4.688rem;
+    margin-top: 2rem;
 }
 
 .main-content {
