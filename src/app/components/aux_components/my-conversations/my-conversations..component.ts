@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { PostData } from 'src/app/models/conversation/PostData.model';
 import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
@@ -11,6 +11,10 @@ import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
   styleUrls: ['./my-conversations.component.css']
 })
 export class MyConversationsComponent {
+  @Input()
+  public conversation = new ConversationData();
+  @Output()
+  public disableClick = new EventEmitter<boolean>();
   public dropdown = false;
   public conversations: Array<ConversationData>;
   public createPostRoute = '/post/create';
@@ -23,74 +27,22 @@ export class MyConversationsComponent {
     private _snackBarService: SnackbarService,
   ) {
     this.conversations = new Array<ConversationData>();
-
-    //test
-    // //mock conversation
-    // //first conversation
-    // let aux1 = new Set<PostData> ();
-    // aux1.add(
-    //   new PostData (
-    //     "Nome usuário 1",
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
-    //     1
-    //   )
-    // );
-    // this.conversations.push(new ConversationData(
-    //   1,
-    //   'Título Conversa 1',
-    //   aux1,
-    //   false
-    // ));
-    // //second conversation
-    // let aux2 = new Set<PostData> ();
-    // aux2.add(
-    //   new PostData (
-    //     "Nome usuário 2",
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
-    //     2
-    //   )
-    // );
-    // aux2.add(
-    //   new PostData (
-    //     "Nome usuário 3",
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
-    //     3
-    //   )
-    // );
-    // aux2.add(
-    //   new PostData (
-    //     "Nome usuário 1",
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
-    //     3
-    //   )
-    // );
-    // this.conversations.push(new ConversationData(
-    //   2,
-    //   'Título Conversa 2',
-    //   aux2,
-    //   false
-    // ));
-
-    // //third conversation
-    // let aux3 = new Set<PostData> ();
-    // aux3.add(
-    //   new PostData (
-    //     "Nome usuário 3",
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis lectus id sem interdum molestie. Etiam scelerisque tellus vitae lorem faucibus accumsan. Mauris euismod dignissim imperdiet. Maecenas ante arcu, varius a dictum non, interdum sed nisi. In rhoncus, nulla sit amet facilisis molestie, odio nulla pulvinar nibh, sit amet venenatis.',
-    //     4
-    //   )
-    // );
-    // this.conversations.push(new ConversationData(
-    //   3,
-    //   'Título Conversa 3',
-    //   aux3,
-    //   false
-    // ));
-    //\test
   }
 
   ngOnInit (): void {
     this._fetchMyConversation();
+  }
+
+  ngOnChanges (changes: SimpleChanges) {
+    if (changes['conversation']) {
+      if (changes['conversation'].currentValue) {
+        let size = this.conversations.length - 1;
+        if (size >= 0) {
+          let conversation = changes['conversation'].currentValue;
+          this.conversations.push(conversation);
+        }
+      }
+    }
   }
 
   /**
@@ -98,27 +50,8 @@ export class MyConversationsComponent {
    * @param i
    * @param postContent
    */
-  public addNewPost(i:number, postContent: string): void{
-    let post_id, numberOfPostInConversation = this.conversations[i].content.length;
-    if (numberOfPostInConversation > 1)
-      post_id = this.conversations[i].content[numberOfPostInConversation-1].id! + 1
-    else post_id = 1;
-    let user_id = Number(localStorage.getItem('id')!);
-    let name    = localStorage.getItem('username')!;
-    let email    = localStorage.getItem('email')!;
-
-    let post = new PostData({
-      id: post_id,
-      base_text: postContent,
-      user: {
-          id: user_id,
-          name: name,
-          email: email
-      },
-      likes_data: []
-    });
-
-    this.conversations[i].content.push(post);
+  public addNewPost(i:number, postData: PostData): void{
+    this.conversations[i].content!.push(new PostData(postData));
   }
 
   /**
@@ -182,8 +115,8 @@ export class MyConversationsComponent {
 
         this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
         this.loaded$.next(true);
+        this.disableClick.emit(false);
         console.log(this.conversations);
-        // this._updateConversationContent();
 
       } else {
         // console.log("error",r.getResponse());

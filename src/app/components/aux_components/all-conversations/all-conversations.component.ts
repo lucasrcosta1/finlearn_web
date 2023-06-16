@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
 import { PostData } from 'src/app/models/conversation/PostData.model';
@@ -11,6 +11,10 @@ import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
   styleUrls: ['./all-conversations.component.css']
 })
 export class AllConversationsComponent {
+  @Input()
+  public conversation = new ConversationData();
+  @Output()
+  public disableClick = new EventEmitter<boolean>();
   public dropdown = false;
   public conversations: Array<ConversationData>;
   public createPostRoute = '/post/create';
@@ -27,6 +31,18 @@ export class AllConversationsComponent {
 
   async ngOnInit (): Promise<void> {
     await this._fetchMyConversation();
+  }
+
+  ngOnChanges (changes: SimpleChanges) {
+    if (changes['conversation']) {
+      if (changes['conversation'].currentValue) {
+        let size = this.conversations.length-1;
+        if (size >= 0) {
+          let conversation = changes['conversation'].currentValue;
+          this.conversations.push(conversation);
+        }
+      }
+    }
   }
 
   /**
@@ -55,27 +71,8 @@ export class AllConversationsComponent {
    * @param i
    * @param postContent
    */
-  public addNewPost(i:number, postContent: string): void{
-    let post_id, numberOfPostInConversation = this.conversations[i].content.length;
-    if (numberOfPostInConversation > 1)
-      post_id = this.conversations[i].content[numberOfPostInConversation-1].id! + 1
-    else post_id = 1;
-    let user_id = Number(localStorage.getItem('id')!);
-    let name    = localStorage.getItem('username')!;
-    let email    = localStorage.getItem('email')!;
-
-    let post = new PostData({
-      id: post_id,
-      base_text: postContent,
-      user: {
-          id: user_id,
-          name: name,
-          email: email
-      },
-      likes_data: []
-    });
-
-    this.conversations[i].content.push(post);
+  public addNewPost(i:number, postData: PostData): void{
+    this.conversations[i].content!.push(new PostData(postData));
   }
 
 
@@ -119,8 +116,7 @@ export class AllConversationsComponent {
 
         this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
         this.loaded$.next(true);
-        console.log(this.conversations);
-        // this._updateConversationContent();
+        this.disableClick.emit(false);
 
       } else {
         // console.log("error",r.getResponse());

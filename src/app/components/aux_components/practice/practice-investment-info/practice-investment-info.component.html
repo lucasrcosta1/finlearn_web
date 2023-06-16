@@ -1,0 +1,55 @@
+<body>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <form [formGroup]="formInvestmentInfo" (ngSubmit)="onSubmit()">
+    <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;">
+      <div class="col-12" id="pratique2">
+        <div class="row" id="pergunta2">
+          <p>Investimento inicial:</p>
+          <input
+            formControlName="initialInvestment"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+            required
+          >
+          <div class="linha"></div>
+        </div>
+        <div class="row mt-5" id="pergunta3">
+          <p >Tempo de investimento:</p>
+          <input
+            type="range"
+            min="1"
+            max="120"
+            id="time_input"
+            name="time_input"
+            formControlName="howLong"
+            (input)="onRangeInput($event)"
+            required
+          >
+          <p id="pgh_years">{{rangeValue}} meses.</p><br>
+        </div>
+        <div class="row mt-4" id="pergunta4">
+          <p>Investimento mensal:</p>
+          <input
+            formControlName="howMany"
+            currencyMask
+            placeholder="R$ 0,00"
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
+            required
+          >
+          <div class="linha"></div>
+        </div>
+        <div class="mt-4 d-flex justify-content-between">
+          <div>
+            <button class="voltar" type="button" (click)="goTo(1)">VOLTAR</button>
+          </div>
+          <div>
+            <button class="avancar" type="submit" ><b>CALCULAR</b></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>

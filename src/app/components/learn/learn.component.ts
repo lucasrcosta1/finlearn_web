@@ -29,10 +29,10 @@ export class LearnComponent {
   ]
 
   cards: any[] = [
-    { imageUrl: 'assets/images/learn/titulos.png', title: this.titles[0], route: '/titulos', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean cursus tortor nec ante placerat aliquam. Suspendisse malesuada tellus non ante varius egestas. Suspendisse potenti. Aenean ultricies scelerisque ex, sit amet egestas nibh pulvinar eget. Vestibulum in ipsum a urna porttitor hendrerit. Duis mattis sem aliquam vulputate hendrerit. Class aptent taciti.' },
-    { imageUrl: 'assets/images/learn/b3.png', title: this.titles[1], route: '/renda_variavel', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean cursus tortor nec ante placerat aliquam. Suspendisse malesuada tellus non ante varius egestas. Suspendisse potenti. Aenean ultricies scelerisque ex, sit amet egestas nibh pulvinar eget. Vestibulum in ipsum a urna porttitor hendrerit. Duis mattis sem aliquam vulputate hendrerit. Class aptent taciti.' },
-    { imageUrl: 'assets/images/learn/futuro.png', title: this.titles[2], route: '/mercado_futuro', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean cursus tortor nec ante placerat aliquam. Suspendisse malesuada tellus non ante varius egestas. Suspendisse potenti. Aenean ultricies scelerisque ex, sit amet egestas nibh pulvinar eget. Vestibulum in ipsum a urna porttitor hendrerit. Duis mattis sem aliquam vulputate hendrerit. Class aptent taciti.' },
-    { imageUrl: 'assets/images/learn/renda_fixa.jpg', title: this.titles[3], route: '/renda_fixa', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean cursus tortor nec ante placerat aliquam. Suspendisse malesuada tellus non ante varius egestas. Suspendisse potenti. Aenean ultricies scelerisque ex, sit amet egestas nibh pulvinar eget. Vestibulum in ipsum a urna porttitor hendrerit. Duis mattis sem aliquam vulputate hendrerit. Class aptent taciti.' }
+    { imageUrl: 'assets/images/learn/titulos.png', title: this.titles[0], route: '/titulos', description: 'Os títulos públicos são títulos de dívida emitidos pelo Governo Federal. Isso acontece por meio do Tesouro Direto — um programa criado, em 2002, pelo Tesouro Nacional juntamente com a Bolsa brasileira. Existem diferentes tipos de títulos públicos à disposição no Tesouro Direto. Eles são classificados em 3 modalidades: títulos públicos prefixados, pós-fixados e híbridos. Conheça mais sobre cada um deles.' },
+    { imageUrl: 'assets/images/learn/b3.png', title: this.titles[1], route: '/renda_variavel', description: 'Mesmo que você ainda não seja um investidor, certamente já ouviu falar sobre o sobe e desce das bolsas de valores. Isso porque uma das principais características dos ativos de renda variável é justamente a oscilação das cotações. Mas você já parou para pensar como essas negociações acontecem? No Brasil, quem organiza todo esse mercado é a B3, a bolsa de valores brasileira.' },
+    { imageUrl: 'assets/images/learn/futuro.png', title: this.titles[2], route: '/mercado_futuro', description: 'O mercado futuro é uma modalidade de investimento que permite negociar contratos de compra e venda de ativos financeiros, como commodities, moedas e índices. Nele, os investidores podem se proteger contra oscilações de preços ou buscar oportunidades de lucro. É uma forma de investir baseada em expectativas futuras e oferece alavancagem e diversificação de estratégias, mas também envolve riscos.' },
+    { imageUrl: 'assets/images/learn/renda_fixa.jpg', title: this.titles[3], route: '/renda_fixa', description: 'A renda fixa é um tipo de investimento que oferece estabilidade e previsibilidade de retorno. Ao investir em renda fixa, você empresta seu dinheiro para uma instituição, como o governo ou uma empresa, em troca de juros e pagamento futuro. É uma opção segura para quem busca proteção e crescimento gradual do capital.' }
   ];
 
   constructor (
@@ -40,7 +40,7 @@ export class LearnComponent {
   ) {}
 
   openModule (moduleRouteName: string) {
-    this.router.navigate([`/topic${moduleRouteName}`]);
+    this.router.navigate([`/learn${moduleRouteName}`]);
     console.log("open route", moduleRouteName);
   }
 

@@ -38,7 +38,7 @@
             [commentary]="'Comente algo interessante!'"
             [value]="'Comentar'"
             [route]="createPostRoute"
-            [talk_id]="conversation.id"
+            [talk_id]="conversation.id!"
             (postContent)="addNewPost(i, $event)"
           ></app-btn-plus-input>
         </div>

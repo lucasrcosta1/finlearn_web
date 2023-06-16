@@ -1,3 +1,4 @@
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
 <body style="overflow-x: hidden;">
 
   <div class="header">
@@ -19,13 +20,13 @@
     </div>
   </div>
 
-  <div class="card-container">
-    <div class="card" *ngFor="let card of cards">
+  <div class="card-container" >
+    <div class="card" *ngFor="let card of cards" (click)="openModule(card.route)">
       <div class="card-image">
         <img [src]="card.imageUrl" alt="Card Image">
       </div>
       <div class="card-content">
-        <h3 (click)="openModule(card.route)">{{ card.title }}</h3>
+        <h3 ><b>{{ card.title }}</b></h3>
         <p>{{ card.description }}</p>
       </div>
     </div>

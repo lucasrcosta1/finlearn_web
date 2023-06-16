@@ -157,6 +157,18 @@ export class RouteTestComponent {
           }
           break;
 
+        // case '/practice':
+        //   r = await this._api.post(route, requestBody, null);
+        //   if (r.getSuccess()) { //activate success/error button
+        //     this.response = "POST request was successfully done!";
+        //     console.log("response", r.getResponse());
+        //     document.getElementById("response8")!.style.color = "green";
+        //   } else {
+        //     this.response = r.getResponse().message;
+        //     document.getElementById("response8")!.style.color = "red";
+        //   }
+        //   break;
+
     }
   }
 

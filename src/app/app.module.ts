@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -44,6 +45,10 @@ import { ClassComponent } from './components/aux_components/class/class.componen
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AllConversationsComponent } from './components/aux_components/all-conversations/all-conversations.component';
 import { LoadingComponent } from './components/aux_components/loading/loading.component';
+import { SecondaryPracticeComponent } from './components/secondary-practice/secondary-practice.component';
+import { PracticeTypeComponent } from './components/aux_components/practice/practice-type/practice-type.component';
+import { PracticeInvestmentInfoComponent } from './components/aux_components/practice/practice-investment-info/practice-investment-info.component';
+import { PracticeResultComponent } from './components/aux_components/practice/practice-result/practice-result.component';
 
 
 @NgModule({
@@ -70,6 +75,10 @@ import { LoadingComponent } from './components/aux_components/loading/loading.co
     PageNotFoundComponent,
     AllConversationsComponent,
     LoadingComponent,
+    SecondaryPracticeComponent,
+    PracticeTypeComponent,
+    PracticeInvestmentInfoComponent,
+    PracticeResultComponent,
   ],
   imports: [
     BrowserModule,
@@ -93,6 +102,7 @@ import { LoadingComponent } from './components/aux_components/loading/loading.co
     MatStepperModule,
     MatSelectModule,
     MatSnackBarModule,
+    CurrencyMaskModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
