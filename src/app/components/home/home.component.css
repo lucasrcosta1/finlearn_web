@@ -37,6 +37,10 @@
   font-size: x-large;
 }
 
+#ultimo_acesso > .content{
+  padding: 1rem;
+}
+
 #ultimo_acesso > * p{
   font-size: larger;
   text-align: justify;
