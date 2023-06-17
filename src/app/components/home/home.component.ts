@@ -5,10 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  public which_module: string;
 
-  constructor () {
-    this.which_module = "Último"
-  }
+export class HomeComponent {
+
 }
