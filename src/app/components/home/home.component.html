@@ -75,16 +75,30 @@
     </div>
   </div>
 
-  <div class="outline">
-    <div class="low_component">
-      <div class="right_divisor" id="daily_question">Pergunta do dia</div>
-      <div class="right_divisor" id="calendar">Minha agenda</div>
-      <div class="right_divisor" id="progress">Meu progresso</div>
-      <div class="right_divisor" id="wallet">Minha carteira</div>
-      <div class="right_divisor" id="news">Notícias</div>
+  <div class="outline low_component">
+    <div class="tabs">
+      <div class="right_divisor clickable" id="daily_question" [ngClass]="{'active': low_component_tab === 'daily_question_tab'}" (click)="switch_to_tab('daily_question_tab')" [ngStyle]="{'color': low_component_tab === 'daily_question_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'daily_question_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'daily_question_tab' ? 'solid #059F30 0.3rem' : 'none'}">Pergunta do dia</div>
+      <div class="right_divisor clickable" id="calendar" [ngClass]="{'active': low_component_tab === 'calendar_tab'}" (click)="switch_to_tab('calendar_tab')" [ngStyle]="{'color': low_component_tab === 'calendar_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'calendar_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'calendar_tab' ? 'solid #059F30 0.3rem' : 'none'}">Minha agenda</div>
+      <div class="right_divisor clickable" id="progress" [ngClass]="{'active': low_component_tab === 'progress_tab'}" (click)="switch_to_tab('progress_tab')" [ngStyle]="{'color': low_component_tab === 'progress_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'progress_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'progress_tab' ? 'solid #059F30 0.3rem' : 'none'}">Meu progresso</div>
+      <div class="right_divisor clickable" id="wallet" [ngClass]="{'active': low_component_tab === 'wallet_tab'}" (click)="switch_to_tab('wallet_tab')" [ngStyle]="{'color': low_component_tab === 'wallet_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'wallet_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'wallet_tab' ? 'solid #059F30 0.3rem' : 'none'}">Minha carteira</div>
+      <div class="right_divisor clickable" id="news" [ngClass]="{'active': low_component_tab === 'news_tab'}" (click)="switch_to_tab('news_tab')" [ngStyle]="{'color': low_component_tab === 'news_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'news_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'news_tab' ? 'solid #059F30 0.3rem' : 'none'}">Notícias</div>
     </div>
     <div class="content">
-      <img src="../../../assets/images/home/progress.png" alt="progress">
+      <div *ngIf="low_component_tab === 'daily_question_tab'">
+        <img src="../../../assets/images/home/daily_question.png" alt="daily_question">
+      </div>
+      <div *ngIf="low_component_tab === 'calendar_tab'">
+        <img src="../../../assets/images/home/calendar.png" alt="calendar">
+      </div>
+      <div *ngIf="low_component_tab === 'progress_tab'">
+        <img src="../../../assets/images/home/progress.png" alt="progress">
+      </div>
+      <div *ngIf="low_component_tab === 'wallet_tab'">
+        <img src="../../../assets/images/home/wallet.jpg" alt="wallet">
+      </div>
+      <div *ngIf="low_component_tab === 'news_tab'">
+        <img src="../../../assets/images/home/news.jpg" alt="news">
+      </div>
     </div>
   </div>
 </div>

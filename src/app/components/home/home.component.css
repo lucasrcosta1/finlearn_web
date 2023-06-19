@@ -135,26 +135,26 @@
   margin-right: 0.5rem;
 }
 
-.low_component{
+.low_component > .tabs {
   display: grid;
   grid-template-columns: 2fr 2fr 2fr 2fr 2fr;
   border-bottom: #E2E2E2 solid thin;
   color: #E2E2E2;
-
 }
 
-.low_component > div{
+.low_component > .tabs > div{
   padding: 1rem;
 }
 
-#progress{
-  border-bottom: solid #059F30 0.3rem;
-  font-weight: bold;
-  color: #059F30;
-}
-
-#news{
+.low_component > .tabs > div:last-child{
   border-right: none;
 }
 
+.low_component > .content > div{
+  padding: 1rem;
+}
 
+.low_component > .content > div > img{
+  width: 1150px;
+  height: 650px;
+}

@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
 })
 
 export class HomeComponent {
+  low_component_tab: string = 'progress_tab';
 
+  switch_to_tab(tab: string) {
+    this.low_component_tab = tab;
+  }
 }
