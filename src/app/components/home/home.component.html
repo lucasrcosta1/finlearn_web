@@ -1,25 +1,104 @@
-<div class="main-content bg" xmlns:div="http://www.w3.org/1999/html">
-  <div class="content">
-    <div>
-      <p>Último Acesso</p>
-      <div>
-        <p>Iniciando em Títulos Públicos,<br>Aula 02 - O que eles são?</p>
+<div class="bg">
+  <div class="high_component">
+    <div id="ultimo_acesso" class="outline">
+      <div class="title">
+        <div style="border-bottom: #E2E2E2 solid thin">
+          <h3>Último Acesso</h3>
+        </div>
+      </div>
+      <div class="content">
+        <p >Iniciando em Títulos Públicos, Módulo 01, Aula 02:</p>
+        <p>Onde podem ser adquiridos?</p>
+        <div id="button_assistir_wrapper">
+          <button>
+            <div><img src="../../../assets/images/home/play_icon.png" alt="play_icon"></div>
+            <div style="border-left: #E2E2E2 solid thin">ASSISTIR</div>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div>
-      <p>Em Alta na Comunidade</p>
-      <div>
-        <p>Conversation 1</p>
+    <div id="em_alta_na_comunidade" class="outline">
+      <div class="title">
+        <div style="border-bottom: #E2E2E2 solid thin">
+          <h3>Em Alta na Comunidade</h3>
+        </div>
+      </div>
+      <div class="content">
+        <div class="right_divisor">
+          <div class="user_info">
+            <img src="../../../assets/images/home/gcbsamaral.png" alt="user_gcbsamaral">
+            <i>@gcbsamaral</i>
+            <p>iiiiiih as americanas foram de americanas, só sei disso</p>
+          </div>
+          <div>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/like_icon.png" alt="like_icon"><i>367</i></button>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/reply_icon.png" alt="reply_icon"><i>52</i></button>
+            <button class="invisible_button report_join_button"><img src="../../../assets/images/home/report_icon.png" alt="report_icon"></button>
+            <button class="invisible_button report_join_button"><img src="../../../assets/images/home/join_chat_icon.png" alt="join_chat_icon"></button>
+          </div>
+        </div>
+        <div class="right_divisor">
+          <div class="user_info">
+            <img src="../../../assets/images/home/myles_the_dog.png" alt="user_myles_the_dog">
+            <i>@myles_the_dog</i>
+            <p>Podiam abaixar o preço da picanha NÉ</p>
+          </div>
+
+          <div>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/like_icon.png" alt="like_icon"><i>999k</i></button>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/reply_icon.png" alt="reply_icon"><i>7864</i></button>
+            <button class="invisible_button report_join_button"><img src="../../../assets/images/home/report_icon.png" alt="report_icon"></button>
+            <button class="invisible_button report_join_button"><img src="../../../assets/images/home/join_chat_icon.png" alt="join_chat_icon"></button>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id="noticias">
-      <p>Notícias</p>
-      <div>
-        <p>Dow Jones subiu na quinta-feira impulsionado por Salesforce e discurso do Fed de Atlanta oferecer um rali de alívio</p>
+    <div id="notificacoes" class="outline">
+      <div class="title">
+        <div style="border-bottom: #E2E2E2 solid thin">
+          <h3>Notificações</h3>
+        </div>
+      </div>
+      <div class="content">
+        <div class="bottom_divisor notification">
+          <img src="../../../assets/images/home/chat_notification_icon.png" alt="chat_notification_icon">
+         <div>398 novas mensagens de 9 conversas</div>
+        </div>
+        <div class="bottom_divisor notification">
+          <img src="../../../assets/images/home/calendar_notification_icon.png" alt="calendar_notification_icon">
+          <div>“Semana do Investidor, Aula 1” começa hoje daqui a 4 horas</div>
+        </div>
+        <button class="invisible_button"><img src="../../../assets/images/home/dots_icon.png" alt="dots_icon"></button>
       </div>
     </div>
+  </div>
 
+  <div class="outline low_component">
+    <div class="tabs">
+      <div class="right_divisor clickable" id="daily_question" [ngClass]="{'active': low_component_tab === 'daily_question_tab'}" (click)="switch_to_tab('daily_question_tab')" [ngStyle]="{'color': low_component_tab === 'daily_question_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'daily_question_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'daily_question_tab' ? 'solid #059F30 0.3rem' : 'none'}">Pergunta do dia</div>
+      <div class="right_divisor clickable" id="calendar" [ngClass]="{'active': low_component_tab === 'calendar_tab'}" (click)="switch_to_tab('calendar_tab')" [ngStyle]="{'color': low_component_tab === 'calendar_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'calendar_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'calendar_tab' ? 'solid #059F30 0.3rem' : 'none'}">Minha agenda</div>
+      <div class="right_divisor clickable" id="progress" [ngClass]="{'active': low_component_tab === 'progress_tab'}" (click)="switch_to_tab('progress_tab')" [ngStyle]="{'color': low_component_tab === 'progress_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'progress_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'progress_tab' ? 'solid #059F30 0.3rem' : 'none'}">Meu progresso</div>
+      <div class="right_divisor clickable" id="wallet" [ngClass]="{'active': low_component_tab === 'wallet_tab'}" (click)="switch_to_tab('wallet_tab')" [ngStyle]="{'color': low_component_tab === 'wallet_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'wallet_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'wallet_tab' ? 'solid #059F30 0.3rem' : 'none'}">Minha carteira</div>
+      <div class="right_divisor clickable" id="news" [ngClass]="{'active': low_component_tab === 'news_tab'}" (click)="switch_to_tab('news_tab')" [ngStyle]="{'color': low_component_tab === 'news_tab' ? '#059F30' : '#E2E2E2', 'font-weight': low_component_tab === 'news_tab' ? 'bold' : 'normal', 'border-bottom': low_component_tab === 'news_tab' ? 'solid #059F30 0.3rem' : 'none'}">Notícias</div>
+    </div>
+    <div class="content">
+      <div *ngIf="low_component_tab === 'daily_question_tab'">
+        <img src="../../../assets/images/home/daily_question.png" alt="daily_question">
+      </div>
+      <div *ngIf="low_component_tab === 'calendar_tab'">
+        <img src="../../../assets/images/home/calendar.png" alt="calendar">
+      </div>
+      <div *ngIf="low_component_tab === 'progress_tab'">
+        <img src="../../../assets/images/home/progress.png" alt="progress">
+      </div>
+      <div *ngIf="low_component_tab === 'wallet_tab'">
+        <img src="../../../assets/images/home/wallet.jpg" alt="wallet">
+      </div>
+      <div *ngIf="low_component_tab === 'news_tab'">
+        <img src="../../../assets/images/home/news.jpg" alt="news">
+      </div>
+    </div>
   </div>
 </div>

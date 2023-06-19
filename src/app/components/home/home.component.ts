@@ -5,10 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-  public which_module: string;
 
-  constructor () {
-    this.which_module = "Último"
+export class HomeComponent {
+  low_component_tab: string = 'progress_tab';
+
+  switch_to_tab(tab: string) {
+    this.low_component_tab = tab;
   }
 }
