@@ -37,7 +37,7 @@
           <mat-form-field appearance="outline" class="field">
             <mat-label>Senha</mat-label>
             <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
-            <button  class="ft-x-lg remove-border" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button type="button" class="ft-x-lg remove-border" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" >
                 <i *ngIf="!hide" class='fa fa-eye'></i>
                 <i *ngIf="hide" class='fa fa-eye-slash'></i>
             </button>
@@ -58,6 +58,7 @@
             aria-label="LOG IN"
             [disabled]="loginForm?.invalid"
             (click)="login()"
+            id="login-btn"
           >
             ENTRAR
           </button>

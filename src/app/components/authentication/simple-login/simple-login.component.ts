@@ -103,5 +103,19 @@ export class SimpleLoginComponent {
     return this.authService.getPasswordMessage(this.loginForm?.value.password);
   }
 
+  getEnter (): void {
+    var input = document.getElementById("myPass");
+    if(input) {
+        input.addEventListener("keypress", (event) => {
+          console.log(event.key)
+          if (event.key == "Enter") {
+              event.preventDefault();
+              document.getElementById("login-btn")!.click();
+          }
+        });
+    }
+  }
+
+
 
 }

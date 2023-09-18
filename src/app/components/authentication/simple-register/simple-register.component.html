@@ -21,7 +21,7 @@
       </mat-form-field>
     </div>
 
-    
+
     <div class="col-md-5 col-lg-12 d-flex justify-content-center" >
       <mat-form-field appearance="outline" class="field">
         <mat-label>Telefone</mat-label>
@@ -75,7 +75,7 @@
         <mat-error *ngIf="registerForm?.get('confirmEmail')?.hasError('required')">
           Confirmação do e-mail é obrigatória.
         </mat-error>
- 
+
         <mat-error
         *ngIf="!registerForm?.get('confirmEmail')?.hasError('required') &&
                 (registerForm?.get('confirmEmail')?.hasError('confirmEmail') || registerForm?.get('confirmEmail')?.hasError('pattern'))">
@@ -145,7 +145,7 @@
         type="submit"
         color="primary"
         class="field"
-      >Entrar</button>
+      >Cadastrar</button>
     </div>
 
   </div>
