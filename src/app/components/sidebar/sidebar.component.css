@@ -544,3 +544,10 @@ body {
   background: transparent;
 }
 
+.btn-style {
+
+  border: 1px solid #059F30;
+  border-left: transparent;
+  background-color: white;
+
+}
