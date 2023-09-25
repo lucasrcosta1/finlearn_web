@@ -3,11 +3,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div>
-    <button id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button>
+<div class="m-0 p-0">
+    <div class="row m-0 p-0">
+        <button class="d-flex justify-content-start" id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button>
+    </div>
+    
+    <div class="row d-flex justify-content-between m-0 p-0">
+        <div class="col-lg-8 col-md-12">
+            <app-module-description [topic]="topic" [stoppedAt]="stoppedAt">
+            </app-module-description>
+        </div>
+        <div class="col-lg-4 col-md-12">
+            <app-module-stats [overallProgress]="topic ? topic.overallProgress : null"></app-module-stats>
+        </div>
+    </div>
 </div>
 
-<div id="content" class="row" style="padding: 20px;">
+<!-- <div id="content" class="row" style="padding: 20px;">
     <div class="col-8 d-flex course">
         <div class="row" class="justify-content-between text-align-center">
             <div>
@@ -135,4 +147,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

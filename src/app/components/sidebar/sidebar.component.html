@@ -1,77 +1,82 @@
-<div class="sidebar">
-  <div class="logo">
-    <!-- <img src="logo.png" alt="Logo"> -->
-    <div>
-      <span class="logo_head">F</span>
-      <span class="logo_body"><span>inlearn</span></span>
+<div class="page-wrapper" [ngClass]="{'toggled': isSidebarToggled}">
+  <a id="show-sidebar" class="btn btn-sm btn-style" (click)="openSidebar()">
+    <i class="fa fa-bars" id="icon-show-sidebar"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper sidebar">
+    <div class="logo">
+      <div>
+        <span class="logo_head">F</span>
+        <span class="logo_body"><span>inlearn</span></span>
+      </div>
     </div>
-  </div>
-  <div class="menu">
-    <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/home')" >
-      <div class="page" [ngClass]="{ selected: activeRoute === '/home' }">
-        <i class="fa fa-home"></i>
-        <span>Início</span>
-      </div>
-    </a>
-
-    <a routerLink="/learn" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/learn')">
-      <div class="page ft-larger" [ngClass]="{ selected: activeRoute === '/learn' }">
-        <i class="fa fa-book"></i>
-        <span>Aprenda</span>
-      </div>
-    </a>
-
-    <a routerLink="/practice" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/practice')">
-      <div class="page" [ngClass]="{ selected: activeRoute === '/practice' }">
-        <!-- <i class="fa fa-laptop"></i> -->
-        <i class="fa fa-line-chart"></i>
-        <span>Pratique</span>
-      </div>
-    </a>
-
-    <a routerLink="/community" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/community')">
-      <div class="page" [ngClass]="{ selected: activeRoute === '/community' }">
-        <i class="fa fa-users"></i>
-        <span>Comunidade</span>
-      </div>
-    </a>
-
-    <a routerLink="/support" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/support')">
-      <div class="page" [ngClass]="{ selected: activeRoute === '/support' }">
-        <i class="fa fa-question-circle"></i>
-        <span>Central de ajuda</span>
-      </div>
-    </a>
-
-    <a routerLink="/route_test" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
-      (click)="setActiveRoute('/route_test')">
-      <div class="page" [ngClass]="{ selected: activeRoute === '/route_test' }">
-        <i class="fa fa-map"></i>
-        <span>Teste de Rotas</span>
-      </div>
-    </a>
-  </div>
-
-  <div class="user-info clickable" (click)="togglePopUp()">
-    <div class="user-icon">
-      <i class="fa fa-user-circle" style="font-size: 40px;"></i>
+    <div class="menu">
+      <a routerLink="/home" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/home')" >
+        <div class="page" [ngClass]="{ selected: activeRoute === '/home' }">
+          <i class="fa fa-home"></i>
+          <span>Início</span>
+        </div>
+      </a>
+  
+      <a routerLink="/learn" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/learn')">
+        <div class="page ft-larger" [ngClass]="{ selected: activeRoute === '/learn' }">
+          <i class="fa fa-book"></i>
+          <span>Aprenda</span>
+        </div>
+      </a>
+  
+      <a routerLink="/practice" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/practice')">
+        <div class="page" [ngClass]="{ selected: activeRoute === '/practice' }">
+          <i class="fa fa-line-chart"></i>
+          <span>Pratique</span>
+        </div>
+      </a>
+  
+      <a routerLink="/community" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/community')">
+        <div class="page" [ngClass]="{ selected: activeRoute === '/community' }">
+          <i class="fa fa-users"></i>
+          <span>Comunidade</span>
+        </div>
+      </a>
+  
+      <a routerLink="/support" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/support')">
+        <div class="page" [ngClass]="{ selected: activeRoute === '/support' }">
+          <i class="fa fa-question-circle"></i>
+          <span>Central de ajuda</span>
+        </div>
+      </a>
+  
+      <a routerLink="/route_test" [routerLinkActiveOptions]="{ exact: true }" [routerLinkActive]="['active']"
+        (click)="setActiveRoute('/route_test')">
+        <div class="page" [ngClass]="{ selected: activeRoute === '/route_test' }">
+          <i class="fa fa-map"></i>
+          <span>Teste de Rotas</span>
+        </div>
+      </a>
     </div>
-    <div class="user-details">
-      <span class="user-name">{{username}}</span>
-      <span class="user-email">{{email}}</span>
+  
+    <div class="user-info clickable" (click)="openUserPopup()" id="manage-user-div">
+      <div class="user-icon"  id="manage-user-icon-div">
+        <i class="fa fa-user-circle" style="font-size: 40px;"  id="manage-user-icon"></i>
+      </div>
+      <div class="user-details"  id="manage-user-details-div">
+        <span class="user-name"  id="manage-user-details-name">{{username}}</span>
+        <span class="user-email"  id="manage-user-details-email">{{email}}</span>
+      </div>
+      <div class="popup" id="user-popup">
+        <ul>
+          <li>Editar perfil</li>
+          <li>Alterar senha</li>
+          <li (click)="logout()">Sair</li>
+        </ul>
+      </div>
     </div>
-    <div class="popup" id="user-popup">
-      <ul>
-        <li>Editar perfil</li>
-        <li>Alterar senha</li>
-        <li (click)="logout()">Sair</li>
-      </ul>
-    </div>
-  </div>
-
+  </nav>
+  <main class="page-content">
+    <ng-content></ng-content>
+  </main>
 </div>
