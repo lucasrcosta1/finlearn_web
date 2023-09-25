@@ -49,6 +49,8 @@ import { SecondaryPracticeComponent } from './components/secondary-practice/seco
 import { PracticeTypeComponent } from './components/aux_components/practice/practice-type/practice-type.component';
 import { PracticeInvestmentInfoComponent } from './components/aux_components/practice/practice-investment-info/practice-investment-info.component';
 import { PracticeResultComponent } from './components/aux_components/practice/practice-result/practice-result.component';
+import { ModuleDescriptionComponent } from './components/aux_components/topic/module/module-description/module-description.component';
+import { ModuleStatsComponent } from './components/aux_components/topic/module/module-stats/module-stats.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { PracticeResultComponent } from './components/aux_components/practice/pr
     PracticeTypeComponent,
     PracticeInvestmentInfoComponent,
     PracticeResultComponent,
+    ModuleDescriptionComponent,
+    ModuleStatsComponent,
   ],
   imports: [
     BrowserModule,

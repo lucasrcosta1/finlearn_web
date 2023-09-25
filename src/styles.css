@@ -12,6 +12,7 @@
   --border-light-btn-whiter: #9de09d;
   --grayish: #d2d2d2;
   --gray: #6D7279;
+  --blue: #01579B;
   --progress-to-do: #ffffff;
   --progress-done: #869c8d;
   --shadow: #d8d4d4;
@@ -108,4 +109,30 @@
   margin-top: 1rem;
   border: .1rem solid var(--grayish);
   border-radius: .3rem;
+}
+
+.clear-button {
+
+  outline: none;
+  background-color: transparent;
+  border: 0;
+
+}
+
+.red {
+
+  color: red;
+
+}
+
+.green {
+
+  color: var(--primary-color);
+
+}
+
+.white {
+
+  color: white;
+
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DropDown } from 'src/app/models/dropdown/DropDown.model';
-import { Module } from 'src/app/models/modules/Module.model';
 
 @Component({
   selector: 'app-learn',
@@ -41,7 +40,6 @@ export class LearnComponent {
 
   openModule (moduleRouteName: string) {
     this.router.navigate([`/learn${moduleRouteName}`]);
-    console.log("open route", moduleRouteName);
   }
 
 

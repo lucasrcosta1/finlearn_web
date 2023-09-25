@@ -20,15 +20,22 @@
     </div>
   </div>
 
-  <div class="card-container" >
-    <div class="card" *ngFor="let card of cards" (click)="openModule(card.route)">
-      <div class="card-image">
-        <img [src]="card.imageUrl" alt="Card Image">
-      </div>
-      <div class="card-content">
-        <h3 ><b>{{ card.title }}</b></h3>
-        <p>{{ card.description }}</p>
+  <div class="card-container">
+    <div class="row">
+      <div class="col-lg-4 mb-3" *ngFor="let card of cards" (click)="openModule(card.route)">
+        <div class="card" >
+          <div class="card-image">
+            <img [src]="card.imageUrl" alt="Card Image">
+          </div>
+          <div class="card-content">
+            <h3><b>{{ card.title }}</b></h3>
+            <p class="description-container">
+              <span class="description-text">{{ card.description }}</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  
 </body>
