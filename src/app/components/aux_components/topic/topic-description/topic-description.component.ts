@@ -4,11 +4,11 @@ import { StoppedAt } from 'src/app/models/topic/StoppedAt.model';
 import { Topic } from 'src/app/models/topic/Topic.model';
 
 @Component({
-  selector: 'app-module-description',
-  templateUrl: './module-description.component.html',
-  styleUrls: ['./module-description.component.css']
+  selector: 'app-topic-description',
+  templateUrl: './topic-description.component.html',
+  styleUrls: ['./topic-description.component.css']
 })
-export class ModuleDescriptionComponent {
+export class TopicDescriptionComponent {
 
   @Input()
   topic: Topic | null = null;

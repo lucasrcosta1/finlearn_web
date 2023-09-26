@@ -7,11 +7,11 @@ import { StoppedAt } from 'src/app/models/topic/StoppedAt.model';
 import { Topic } from 'src/app/models/topic/Topic.model';
 
 @Component({
-  selector: 'app-module',
-  templateUrl: './module.component.html',
-  styleUrls: ['./module.component.css']
+  selector: 'app-topic',
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.css']
 })
-export class ModuleComponent {
+export class TopicComponent {
   
   topic: Topic | null = null;
   module: Module | null = null;
