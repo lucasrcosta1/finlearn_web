@@ -2,7 +2,7 @@
 <body style="overflow-x: hidden;">
 
   <div class="header">
-    <img src="assets/images/learn/investBg.png" alt="Header Image" id="image">
+    <img src="assets/images/learn/investBg.png" alt="Header Image" id="image" loading="lazy">
   </div>
 
   <div class="row justify-content-center mt-4">
@@ -27,7 +27,7 @@
       <div class="col-lg-4 mb-3" *ngFor="let card of cards" (click)="openModule(card.route)">
         <div class="card" >
           <div class="card-image">
-            <img [src]="card.imageUrl" alt="Card Image">
+            <img [src]="card.imageUrl" alt="Card Image" loading="lazy">
           </div>
           <div class="card-content">
             <h3><b>{{ card.title }}</b></h3>
