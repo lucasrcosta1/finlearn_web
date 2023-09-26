@@ -39,7 +39,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
 import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
 import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
-import { ModuleComponent } from './components/aux_components/topic/module/module.component';
+
 import { RouteTestComponent } from './components/route-test/route-test.component';
 import { ClassComponent } from './components/aux_components/class/class.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -49,8 +49,9 @@ import { SecondaryPracticeComponent } from './components/secondary-practice/seco
 import { PracticeTypeComponent } from './components/aux_components/practice/practice-type/practice-type.component';
 import { PracticeInvestmentInfoComponent } from './components/aux_components/practice/practice-investment-info/practice-investment-info.component';
 import { PracticeResultComponent } from './components/aux_components/practice/practice-result/practice-result.component';
-import { ModuleDescriptionComponent } from './components/aux_components/topic/module/module-description/module-description.component';
-import { ModuleStatsComponent } from './components/aux_components/topic/module/module-stats/module-stats.component';
+import { TopicDescriptionComponent } from './components/aux_components/topic/topic-description/topic-description.component';
+import { TopicComponent } from './components/aux_components/topic/topic.component';
+import { TopicStatsComponent } from './components/aux_components/topic/topic-stats/topic-stats.component';
 
 
 @NgModule({
@@ -71,7 +72,6 @@ import { ModuleStatsComponent } from './components/aux_components/topic/module/m
     MyConversationsComponent,
     BtnPlusInputComponent,
     DropdownComponent,
-    ModuleComponent,
     RouteTestComponent,
     ClassComponent,
     PageNotFoundComponent,
@@ -81,8 +81,9 @@ import { ModuleStatsComponent } from './components/aux_components/topic/module/m
     PracticeTypeComponent,
     PracticeInvestmentInfoComponent,
     PracticeResultComponent,
-    ModuleDescriptionComponent,
-    ModuleStatsComponent,
+    TopicDescriptionComponent, 
+    TopicComponent, 
+    TopicStatsComponent
   ],
   imports: [
     BrowserModule,

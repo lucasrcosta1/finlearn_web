@@ -3,18 +3,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="m-0 p-0">
-    <div class="row m-0 p-0">
-        <button class="d-flex justify-content-start" id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button>
+<div class="m-5 p-0">
+    <div class="row my-2 mx-1 p-0">
+        <span class="d-flex justify-content-start" id="back-button"><i class='fa fa-arrow-left clickable'(click)="goBack()"></i></span>
     </div>
     
     <div class="row d-flex justify-content-between m-0 p-0">
         <div class="col-lg-8 col-md-12">
-            <app-module-description [topic]="topic" [stoppedAt]="stoppedAt">
-            </app-module-description>
+            <app-topic-description [topic]="topic" [stoppedAt]="stoppedAt">
+            </app-topic-description>
         </div>
         <div class="col-lg-4 col-md-12">
-            <app-module-stats [overallProgress]="topic ? topic.overallProgress : null"></app-module-stats>
+            <app-topic-stats [overallProgress]="topic ? topic.overallProgress : null"></app-topic-stats>
         </div>
     </div>
 </div>

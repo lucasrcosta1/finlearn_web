@@ -48,26 +48,28 @@ export class SimpleLoginComponent {
    */
   async login (): Promise<void> {
     if (this.loginForm?.value.username && this.loginForm?.value.username) {
-      const data = this.loginForm?.getRawValue();
-      // console.log(data);
-      let route = '/auth/login';
-      const body = `username=${encodeURIComponent(data.username)}&password=${encodeURIComponent(data.password)}`;
+      const route   = '/auth/login';
+      const data    = this.loginForm?.getRawValue();
+      const body    = `username=${encodeURIComponent(data.username)}&password=${encodeURIComponent(data.password)}`;
       const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
-      let response = await this._api.post(route, body, null, headers);
-      if (response.getSuccess()) {
-        this.spinner.emit(false);
-        localStorage.setItem('id', response.getResponse()?.user.id);
-        localStorage.setItem('email', response.getResponse()?.user.email);
-        localStorage.setItem('token', response.getResponse()?.access_token);
-        localStorage.setItem('username', response.getResponse()?.user.name);
-        this._loginService.setUser(new User(response.getResponse().user));
+      localStorage.setItem('email', data.email);
+      localStorage.setItem('username', data.email);
 
-        this.spinner.emit(true);
-        this._snackBarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
-      } else {
-        this._snackBarService.openSnackBar(3,response.getResponse().message);
-      }
+      // let response = await this._api.post(route, body, null, headers);
+      // if (response.getSuccess()) {
+      //   this.spinner.emit(false);
+      //   localStorage.setItem('id', response.getResponse()?.user.id);
+      //   localStorage.setItem('email', response.getResponse()?.user.email);
+      //   localStorage.setItem('token', response.getResponse()?.access_token);
+      //   localStorage.setItem('username', response.getResponse()?.user.name);
+      //   this._loginService.setUser(new User(response.getResponse().user));
+
+      //   this.spinner.emit(true);
+      //   this._snackBarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
+      // } else {
+      //   this._snackBarService.openSnackBar(3,response.getResponse().message);
+      // }
 
       this._router.navigate(['/']);
     } else {

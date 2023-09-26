@@ -67,11 +67,16 @@ h3 {
 }
 
 .description-container {
-  max-height: 200px; /* Set the maximum height for the description */
+  max-height: 200px;
   overflow: hidden;
 }
 
 .description-text {
-  text-overflow: ellipsis; /* Add ellipsis (...) for overflow text */
-  white-space: initial; /* Allow text to wrap */
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
 }
+
