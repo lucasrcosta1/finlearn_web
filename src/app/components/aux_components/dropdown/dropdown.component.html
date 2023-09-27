@@ -1,15 +1,11 @@
 <body>
-  <div class="drop-down">
-    <div class="w-100">
-      <div class="d-flex justify-content-between align-items-center ml-2">
-        {{dropdown!.name}}
-        <i class="fa fa-caret-down"></i>
-      </div>
-    </div>
-    <div class="popup">
-      <ul *ngFor="let d of dropdown!.content">
-        <li>{{d}}</li>
-      </ul>
+  <div class="dropdown">
+    <button class="dropbtn">
+      <span style="margin: 10px;">{{ dropdown?.name }}</span>
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+        <a href="#" *ngFor="let content of dropdown?.content">{{content}}</a>
     </div>
   </div>
 </body>
