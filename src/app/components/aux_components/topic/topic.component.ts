@@ -119,9 +119,9 @@ export class TopicComponent {
       case "Módulo 3": 
         return [
           new Lecture({
-            title      : "Como comprar títulos por meio da XP",
+            title      : "Como comprar títulos na conta XP",
             difficulty : 2,
-            lectureSize: 10800000,
+            lectureSize: 1800000,
             seenAlready: true,
             stoppedAt: null,
             videoPath: null,
@@ -130,7 +130,16 @@ export class TopicComponent {
           new Lecture({
             title      : "Como comprar títulos na conta Inter",
             difficulty : 2,
-            lectureSize: 10800000,
+            lectureSize: 1800000,
+            seenAlready: false,
+            stoppedAt: 720000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/interLogo.svg"
+          }),
+          new Lecture({
+            title      : "Como comprar títulos na conta Pagbank",
+            difficulty : 2,
+            lectureSize: 1800000,
             seenAlready: false,
             stoppedAt: null,
             videoPath: null,

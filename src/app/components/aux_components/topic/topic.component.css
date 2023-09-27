@@ -74,5 +74,16 @@
   border: 1px solid #ccc; 
   border-radius: 5px;
   box-sizing: border-box;
-  margin: 5px; 
+}
+
+.component1 {
+
+  margin-right: 8px;
+
+}
+
+.component2 {
+
+  margin-left: 8px;
+
 }
