@@ -92,34 +92,31 @@ body {
 
 }
 
-@media (max-width:400px) {
 
-    .module-description-header-title {
+@media (max-width: 767px) {
 
-        font-size: x-large;
+    .continue-button {
+
+        padding: 5px;
 
     }
 
-}
-
-@media (max-width: 300px) {
-
     .module-description-header-title {
 
-        font-size: large;
+        font-size: 15px;
 
     }
 
     .icon-commentary {
         
-        font-size: 9px;
+        font-size: 6px;
 
     }
 
     .icon-size {
 
-        font-size: 12px;
+        font-size: 8px;
 
     }
-
+  
 }

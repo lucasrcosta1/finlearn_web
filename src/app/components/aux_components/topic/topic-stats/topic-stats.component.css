@@ -75,3 +75,33 @@
       }
 
 }
+
+
+
+@media (max-width: 767px) {
+
+    .progress-container {
+        position: relative;
+        width: 14vh;
+        height: 14vh;
+    }
+
+    .progress-label {
+
+        font-size: 9px;
+
+    }
+
+    .statistics-btn {
+
+        font-size: 10px;
+
+    }
+
+    .progress-text {
+
+        font-size: 20px;
+
+    }
+  
+}

@@ -5,6 +5,7 @@ export class Module {
   title     : string | null;
   lectures  : Lecture[] | null;
   progress  : number | null;
+  expanded  : boolean;
 
   /**
    * Constructor
@@ -15,5 +16,6 @@ export class Module {
     this.title    = module?.title     || null;
     this.lectures = module?.lectures  || null;
     this.progress = module?.progress  || null;
+    this.expanded = module?.expanded  || false;
   }
 }
