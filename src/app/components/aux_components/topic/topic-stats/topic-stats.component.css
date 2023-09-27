@@ -2,7 +2,7 @@
     position: relative;
     width: 150px;
     height: 150px;
-  }
+}
   
 .progress {
     width: 100%;
@@ -63,5 +63,15 @@
         font-size: 16px;
 
     }
+
+}
+
+@media (min-width: 1347px) {
+
+    .progress-container {
+        position: relative;
+        width: 14vh;
+        height: 14vh;
+      }
 
 }

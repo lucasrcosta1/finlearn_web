@@ -60,3 +60,19 @@
   border-radius: 5px;
   border: 1px solid #6d727953;
 }
+
+.container {
+  display: flex;
+  flex-wrap: wrap; 
+}
+
+.component1,
+.component2 {
+  flex: 1; 
+  min-width: 100%;
+  min-height: 100%; 
+  border: 1px solid #ccc; 
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 5px; 
+}

@@ -8,12 +8,12 @@
         <span class="d-flex justify-content-start" id="back-button"><i class='fa fa-arrow-left clickable'(click)="goBack()"></i></span>
     </div>
     
-    <div class="row d-flex justify-content-between m-0 p-0">
-        <div class="col-lg-8 col-md-8 col-sm-12" >
+    <div class="container">
+        <div class="component1 border-around" style="min-width: 65%;">
             <app-topic-description [topic]="topic" [stoppedAt]="stoppedAt">
             </app-topic-description>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-12"  >
+        <div class="component2 border-around" style="min-width: 30%;">
             <app-topic-stats [overallProgress]="topic ? topic.overallProgress : null"></app-topic-stats>
         </div>
     </div>
