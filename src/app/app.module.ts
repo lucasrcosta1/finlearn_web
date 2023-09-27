@@ -52,6 +52,9 @@ import { PracticeResultComponent } from './components/aux_components/practice/pr
 import { TopicDescriptionComponent } from './components/aux_components/topic/topic-description/topic-description.component';
 import { TopicComponent } from './components/aux_components/topic/topic.component';
 import { TopicStatsComponent } from './components/aux_components/topic/topic-stats/topic-stats.component';
+import { ModuleAccordeonComponent } from './components/aux_components/topic/module-accordeon/module-accordeon.component';
+import { LectureCardComponent } from './components/aux_components/topic/lecture-card/lecture-card.component';
+import { DurationFormatPipe } from './models/pipe/DurationFormatPipe.model';
 
 
 @NgModule({
@@ -83,7 +86,10 @@ import { TopicStatsComponent } from './components/aux_components/topic/topic-sta
     PracticeResultComponent,
     TopicDescriptionComponent, 
     TopicComponent, 
-    TopicStatsComponent
+    TopicStatsComponent,
+    ModuleAccordeonComponent, 
+    LectureCardComponent,
+    DurationFormatPipe,
   ],
   imports: [
     BrowserModule,

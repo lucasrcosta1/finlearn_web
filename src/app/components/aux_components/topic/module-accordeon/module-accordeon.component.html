@@ -1,0 +1,29 @@
+
+<body>
+    
+    <div *ngFor="let module of topic?.modules; let i=index;">
+        <div class="row d-flex justify-content-between align-items-center clickable w-100 m-0 p-0" (click)="expandModule(module, i)">
+            <div class="col-10 m-0 p-0">
+                <h2 class="accordion-header">
+                    <div *ngIf="module.progress ? module.progress == 100 : false">
+                        <i class="fa fa-check-square-o p-2 green"></i>
+                        <span class="m-0 p-0 text-center green">{{module.title}}</span>
+                    </div>
+                    <div *ngIf="module.progress ? module.progress < 100 : true">
+                        <i class="fa fa-square-o p-2 gray"></i>
+                        <span class="m-0 p-0 text-center gray">{{module.title}}</span>
+                    </div>
+                </h2>
+            </div>
+            <div class="col-2 d-flex justify-content-end align-items-center">
+                <i class="fa fa-angle-down" style="font-size: 30px;" *ngIf="!module.expanded"></i>
+                <i class="fa fa-angle-up blue" style="font-size: 30px;" *ngIf="module.expanded"></i>
+            </div>
+            <hr class="m-0">
+        </div>
+        <div class="row m-0 p-0 w-100" *ngIf="module.expanded">
+            <app-lecture-card [lectures]="module.lectures"></app-lecture-card>
+        </div>
+    </div>
+
+</body>

@@ -14,7 +14,6 @@ import { Topic } from 'src/app/models/topic/Topic.model';
 export class TopicComponent {
   
   topic: Topic | null = null;
-  module: Module | null = null;
   stoppedAt: StoppedAt | null = null;
 
   private url: UrlSegment[];
@@ -33,6 +32,9 @@ export class TopicComponent {
     }
   }
 
+  /**
+   * Return to previous page.
+   */
   goBack (): void {
     this.router.navigate(['/learn']);
   }
@@ -45,6 +47,8 @@ export class TopicComponent {
     const route = `/${this.url[0]}/${this.url[1]}/${className}`;
     this.router.navigate([route]);
   }
+
+
 
   /**
    * Fetch topic by given url path.
@@ -59,10 +63,43 @@ export class TopicComponent {
           title: "Títulos Públicos",
           description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
           difficulty: new DifficultyLevel({difficultyLevelName: "Intermediáro", difficultyLevelScore: 2}),
-          modules: this._getModules("Títulos Públicos"),
-          topicImagePath: "/assets/images/learn/logoTitulos.svg",
-          overallProgress: 35.8,
+          modules: this._getModules("titulos"),
+          topicImagePath: "/assets/images/learn/titulos/logoTitulos.svg",
+          overallProgress: 52.7,
           totalHours: 100,
+        });
+
+      case "renda_variavel": 
+        return new Topic({
+          title: "Renda variável",
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+          difficulty: new DifficultyLevel({difficultyLevelName: "Difícil", difficultyLevelScore: 3}),
+          modules: this._getModules("renda_variavel"),
+          topicImagePath: "/assets/images/learn/renda_variavel/logoRendaVariavel.svg",
+          overallProgress: 68.7,
+          totalHours: 320,
+        });
+
+      case "mercado_futuro": 
+        return new Topic({
+          title: "Mercado futuro",
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+          difficulty: new DifficultyLevel({difficultyLevelName: "Difícil", difficultyLevelScore: 3}),
+          modules: this._getModules("mercado_futuro"),
+          topicImagePath: "/assets/images/learn/mercado_futuro/logoMercadoFuturo.svg",
+          overallProgress: 37.2,
+          totalHours: 236,
+        });
+
+      case "renda_fixa": 
+        return new Topic({
+          title: "Renda fixa",
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+          difficulty: new DifficultyLevel({difficultyLevelName: "Fácil", difficultyLevelScore: 1}),
+          modules: this._getModules("renda_fixa"),
+          topicImagePath: "/assets/images/learn/renda_fixa/logoRendaFixa.svg",
+          overallProgress: 95.4,
+          totalHours: 208,
         });
 
       default: 
@@ -82,27 +119,49 @@ export class TopicComponent {
 
     switch(topicName) {
 
-      case "Títulos Públicos": 
+      case "titulos": 
         return [
           new Module({
             title      : "Módulo 1",
             lectures   : this._getLectures("Módulo 1"),
             progress   : 100,
+            expanded   : false
           }),
           new Module({
             title      : "Módulo 2",
             lectures   : this._getLectures("Módulo 2"),
-            progress   : 70,
+            progress   : 50,
+            expanded   : false
           }),
           new Module({
             title      : "Módulo 3",
             lectures   : this._getLectures("Módulo 3"),
-            progress   : 30,
+            progress   : 33.3,
+            expanded   : false
           }),
         ];
 
       default: 
-        return null; 
+        return [
+          new Module({
+            title      : "Módulo 1",
+            lectures   : this._getLectures("Módulo 1"),
+            progress   : 100,
+            expanded   : false
+          }),
+          new Module({
+            title      : "Módulo 2",
+            lectures   : this._getLectures("Módulo 2"),
+            progress   : 50,
+            expanded   : false
+          }),
+          new Module({
+            title      : "Módulo 3",
+            lectures   : this._getLectures("Módulo 3"),
+            progress   : 33.3,
+            expanded   : false
+          }),
+        ];  
 
     }
 
@@ -116,6 +175,41 @@ export class TopicComponent {
 
     switch(moduleName) {
 
+      case "Módulo 1": 
+        return [
+          new Lecture({
+            title      : "Conheca a plataforma",
+            difficulty : 1,
+            lectureSize: 300000,
+            seenAlready: true,
+            stoppedAt: null,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/conheca_plataforma.svg"
+          }),
+          new Lecture({
+            title      : "O que são títulos públicos",
+            difficulty : 1,
+            lectureSize: 600000,
+            seenAlready: true,
+            stoppedAt: null,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+          }),
+        ];
+
+      case "Módulo 2": 
+        return [
+          new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+        ];
+  
       case "Módulo 3": 
         return [
           new Lecture({
@@ -129,7 +223,7 @@ export class TopicComponent {
           }),
           new Lecture({
             title      : "Como comprar títulos na conta Inter",
-            difficulty : 2,
+            difficulty : 3,
             lectureSize: 1800000,
             seenAlready: false,
             stoppedAt: 720000,
@@ -143,7 +237,7 @@ export class TopicComponent {
             seenAlready: false,
             stoppedAt: null,
             videoPath: null,
-            lectureLogo: "/assets/images/learn/interLogo.svg"
+            lectureLogo: "/assets/images/learn/pagSeguroLogo.svg"
           }),
         ];
 
