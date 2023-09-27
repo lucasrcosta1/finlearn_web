@@ -80,3 +80,12 @@ h3 {
   white-space: normal;
 }
 
+@media (max-width: 300px) {
+
+  #input-style {
+
+    max-width: 80% !important;
+
+  }
+
+}
