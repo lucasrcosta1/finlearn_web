@@ -9,8 +9,8 @@ body {
 
 .module-description-container {
 
-    border: 1px solid var(--grayish);
-    border-radius: 16px;
+    /* border: 1px solid var(--grayish);
+    border-radius: 16px; */
     padding: 15px;
 
 }
