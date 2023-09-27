@@ -3,17 +3,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="m-5 p-0">
+<div class="m-lg-5 m-md-5 m-sm-4 m-xs-4 m-2 mt-5 p-0">
     <div class="row my-2 mx-1 p-0">
         <span class="d-flex justify-content-start" id="back-button"><i class='fa fa-arrow-left clickable'(click)="goBack()"></i></span>
     </div>
     
     <div class="row d-flex justify-content-between m-0 p-0">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-8 col-md-8 col-sm-12">
             <app-topic-description [topic]="topic" [stoppedAt]="stoppedAt">
             </app-topic-description>
         </div>
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-4 col-md-4 col-sm-12">
             <app-topic-stats [overallProgress]="topic ? topic.overallProgress : null"></app-topic-stats>
         </div>
     </div>
