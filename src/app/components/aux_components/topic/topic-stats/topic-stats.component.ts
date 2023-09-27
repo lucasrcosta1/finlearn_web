@@ -10,4 +10,10 @@ export class TopicStatsComponent {
   @Input()
   overallProgress: number | null = null;
 
+  ngOnInit (): void {
+
+    document.documentElement.style.setProperty('--percentage', `${this.overallProgress}`);
+
+  }
+  
 }

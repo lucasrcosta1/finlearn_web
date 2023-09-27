@@ -9,8 +9,8 @@ body {
 
 .module-description-container {
 
-    border: 1px solid var(--grayish);
-    border-radius: 16px;
+    /* border: 1px solid var(--grayish);
+    border-radius: 16px; */
     padding: 15px;
 
 }
@@ -89,5 +89,37 @@ body {
 .continue-label {
     
     font-size: 10px;
+
+}
+
+@media (max-width:400px) {
+
+    .module-description-header-title {
+
+        font-size: x-large;
+
+    }
+
+}
+
+@media (max-width: 300px) {
+
+    .module-description-header-title {
+
+        font-size: large;
+
+    }
+
+    .icon-commentary {
+        
+        font-size: 9px;
+
+    }
+
+    .icon-size {
+
+        font-size: 12px;
+
+    }
 
 }
