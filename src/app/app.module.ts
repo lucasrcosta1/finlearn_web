@@ -41,7 +41,7 @@ import { BtnPlusInputComponent } from './components/aux_components/btn-plus-inpu
 import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
 
 import { RouteTestComponent } from './components/route-test/route-test.component';
-import { ClassComponent } from './components/aux_components/class/class.component';
+import { LectureComponent } from './components/aux_components/lecture/lecture.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AllConversationsComponent } from './components/aux_components/all-conversations/all-conversations.component';
 import { LoadingComponent } from './components/aux_components/loading/loading.component';
@@ -76,7 +76,7 @@ import { DurationFormatPipe } from './models/pipe/DurationFormatPipe.model';
     BtnPlusInputComponent,
     DropdownComponent,
     RouteTestComponent,
-    ClassComponent,
+    LectureComponent,
     PageNotFoundComponent,
     AllConversationsComponent,
     LoadingComponent,

@@ -10,7 +10,7 @@
     
     <div class="container">
         <div class="component1 border-around" style="min-width: 65%;">
-            <app-topic-description [topic]="topic" [stoppedAt]="stoppedAt">
+            <app-topic-description [topic]="topic" [stoppedAt]="this.topic ? this.topic.stoppedAt : null" (triggerLectureDesiredToBeWatched)="redirectToLecture($event)">
             </app-topic-description>
         </div>
         <div class="component2 border-around d-flex align-items-center justify-content-center" style="min-width: 30%; ">
@@ -20,7 +20,7 @@
 
     <div class="container">
         <div class="border-around w-100" style="margin: 5px;">
-            <app-module-accordeon [topic]="topic"></app-module-accordeon>
+            <app-module-accordeon [topic]="topic" (triggerLectureDesiredToBeWatched)="redirectToLecture($event)"></app-module-accordeon>
         </div>
     </div>
 

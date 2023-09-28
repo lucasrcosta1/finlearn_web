@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
-import { StoppedAt } from 'src/app/models/topic/StoppedAt.model';
 import { Topic } from 'src/app/models/topic/Topic.model';
 
 @Component({
@@ -13,7 +12,9 @@ export class TopicDescriptionComponent {
   @Input()
   topic: Topic | null = null;
   @Input()
-  stoppedAt: StoppedAt | null = null;
+  stoppedAt: Lecture | null = null;
+  @Output()
+  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
 
   hide = true;
 
@@ -56,9 +57,26 @@ export class TopicDescriptionComponent {
 
   }
 
-  private _redirectToLastUsedClass (continueFrom: StoppedAt | null): void {
 
-    console.log("Should redirect user to the class in the last point it stopped", continueFrom);
+  /**
+   * 
+   * @param continueFrom 
+   */
+  private _redirectToLastUsedClass (continueFrom: Lecture | null): void {
+
+    if (continueFrom && continueFrom.title) {
+
+      //Remove it once the back-end is implemented.
+      localStorage.setItem("clickedLecture", JSON.stringify(continueFrom)); 
+      //\Remove it once the back-end is implemented.
+  
+      this.triggerLectureDesiredToBeWatched.emit(continueFrom.title);
+
+    } else {
+
+      console.error("Figure out a way to start from first lession");
+
+    }
 
   }
 

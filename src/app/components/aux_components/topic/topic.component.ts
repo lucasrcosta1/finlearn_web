@@ -3,7 +3,6 @@ import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { DifficultyLevel } from 'src/app/models/topic/DifficultyLevel.model';
 import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
 import { Module } from 'src/app/models/topic/module/Module.model';
-import { StoppedAt } from 'src/app/models/topic/StoppedAt.model';
 import { Topic } from 'src/app/models/topic/Topic.model';
 
 @Component({
@@ -14,7 +13,6 @@ import { Topic } from 'src/app/models/topic/Topic.model';
 export class TopicComponent {
   
   topic: Topic | null = null;
-  stoppedAt: StoppedAt | null = null;
 
   private url: UrlSegment[];
 
@@ -27,8 +25,7 @@ export class TopicComponent {
 
       const urlPath = this.url[1].path;
       this.topic = this._getTopic(urlPath);
-      this.stoppedAt = this._continueFrom(this.topic); 
-      
+
     }
   }
 
@@ -48,13 +45,17 @@ export class TopicComponent {
     this.router.navigate([route]);
   }
 
+  redirectToLecture (lectureTitle: string): void {
 
+    this.goToClass(lectureTitle)
+    
+  }
 
   /**
    * Fetch topic by given url path.
    * @param urlPath 
    */
-  private _getTopic (urlPath: string): Topic {
+  private _getTopic (urlPath: string): Topic | null {
 
     switch(urlPath) {
 
@@ -67,6 +68,15 @@ export class TopicComponent {
           topicImagePath: "/assets/images/learn/titulos/logoTitulos.svg",
           overallProgress: 52.7,
           totalHours: 100,
+          stoppedAt: new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          })
         });
 
       case "renda_variavel": 
@@ -78,6 +88,15 @@ export class TopicComponent {
           topicImagePath: "/assets/images/learn/renda_variavel/logoRendaVariavel.svg",
           overallProgress: 68.7,
           totalHours: 320,
+          stoppedAt: new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          })
         });
 
       case "mercado_futuro": 
@@ -89,6 +108,15 @@ export class TopicComponent {
           topicImagePath: "/assets/images/learn/mercado_futuro/logoMercadoFuturo.svg",
           overallProgress: 37.2,
           totalHours: 236,
+          stoppedAt: new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          })
         });
 
       case "renda_fixa": 
@@ -100,10 +128,19 @@ export class TopicComponent {
           topicImagePath: "/assets/images/learn/renda_fixa/logoRendaFixa.svg",
           overallProgress: 95.4,
           totalHours: 208,
+          stoppedAt: new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          })
         });
 
       default: 
-        return new Topic(); 
+        return null; 
 
 
     }
@@ -247,14 +284,6 @@ export class TopicComponent {
     }
 
   }
-
-  private _continueFrom (topic: Topic): StoppedAt {
-
-    console.log("Figure out a way to get last stopped in the video", topic);
-    return new StoppedAt();
-
-  }
-
 
 
 }

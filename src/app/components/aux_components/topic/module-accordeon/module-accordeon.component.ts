@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Topic } from 'src/app/models/topic/Topic.model';
 import { Module } from 'src/app/models/topic/module/Module.model';
 
@@ -11,6 +11,8 @@ export class ModuleAccordeonComponent {
 
   @Input()
   topic: Topic | null = null;
+  @Output()
+  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
 
   expanded = false;
 
@@ -24,6 +26,12 @@ export class ModuleAccordeonComponent {
 
     console.log(module, index);
     module.expanded = !module.expanded;
+
+  }
+
+  redirectToLecture (lectureTitle: string): void {
+
+    this.triggerLectureDesiredToBeWatched.emit(lectureTitle);
 
   }
 

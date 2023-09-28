@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TopicComponent } from '../aux_components/topic/topic.component';
-import { ClassComponent } from '../aux_components/class/class.component';
+import { LectureComponent } from '../aux_components/lecture/lecture.component';
 
 const routes: Routes = [
   { path: 'learn/:id', component: TopicComponent },
-  { path: 'learn/:id/:class', component: ClassComponent },
+  { path: 'learn/:id/:lectureTitle', component: LectureComponent },
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@
             <hr class="m-0">
         </div>
         <div class="row m-0 p-0 w-100" *ngIf="module.expanded">
-            <app-lecture-card [lectures]="module.lectures"></app-lecture-card>
+            <app-lecture-card [lectures]="module.lectures" (triggerLectureDesiredToBeWatched)="redirectToLecture($event)"></app-lecture-card>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
 
 @Component({
@@ -10,6 +10,8 @@ export class LectureCardComponent {
 
   @Input()
   lectures: Lecture[] | null = null;
+  @Output()
+  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
 
   /**
    * Get difficulty level string.
@@ -27,9 +29,22 @@ export class LectureCardComponent {
    * Open clicked lecture.
    * @param lecture 
    */
-  openLecture (lecture): void {
+  openLecture (lecture: Lecture | null): void {
 
-    console.log("open lecture", lecture);
+    if (lecture && lecture.title) {
+
+      //Remove it once the back-end is implemented.
+      localStorage.setItem("clickedLecture", JSON.stringify(lecture)); 
+      //\Remove it once the back-end is implemented.
+  
+      this.triggerLectureDesiredToBeWatched.emit(lecture.title);
+
+    } else {
+
+      console.error("Figure out a way to start from first lession");
+
+    }
+
   }
 
 }
