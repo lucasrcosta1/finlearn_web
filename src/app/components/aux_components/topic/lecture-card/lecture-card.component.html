@@ -5,7 +5,7 @@
         <div class="col-2 m-0 p-0 d-flex justify-content-center align-items-center">
             <img [src]="lecture.lectureLogo" [alt]="lecture.title" class="image-size">
         </div>
-        <div class="col-6 col-xs-6 col-sm-6 col-md-8 col-lg-8">
+        <div class="col-5 col-xs-6 col-sm-6 col-md-8 col-lg-8">
             <div class="row">
                 <span class="title"><b>{{lecture.title}}</b></span>
                 <div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4 col-xs-4 col-sm-3 col-md-2 col-lg-2">
+        <div class="col-5 col-xs-4 col-sm-4 col-md-2 col-lg-2">
 
             <button class="rewatch-btn" *ngIf="lecture.seenAlready" (click)="openLecture(lecture)">Rever aula</button>
             <button class="watch-btn" *ngIf="!lecture.seenAlready && !lecture.stoppedAt" (click)="openLecture(lecture)">Iniciar aula</button>
