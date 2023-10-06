@@ -224,7 +224,7 @@ export class TopicComponent {
             lectureLogo: "/assets/images/learn/titulos/conheca_plataforma.svg"
           }),
           new Lecture({
-            title      : "O que são títulos públicos",
+            title      : "O que são títulos públicos?",
             difficulty : 1,
             lectureSize: 600000,
             seenAlready: true,
@@ -232,12 +232,84 @@ export class TopicComponent {
             videoPath: null,
             lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
           }),
+          new Lecture({
+            title      : "Vantagens de investir em títulos públicos",
+            difficulty : 1,
+            lectureSize: 600000,
+            seenAlready: true,
+            stoppedAt: null,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+          }),
+          new Lecture({
+            title      : "Desvantagens de investir em títulos públicos",
+            difficulty : 1,
+            lectureSize: 600000,
+            seenAlready: true,
+            stoppedAt: null,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+          }),
+          new Lecture({
+            title      : "Tipos de títulos públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+          new Lecture({
+            title      : "Entendendo os Rendimentos dos Títulos Públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
         ];
 
       case "Módulo 2": 
         return [
           new Lecture({
-            title      : "Tipos de títulos públicos",
+            title      : "Riscos associados aos Títulos Públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+          new Lecture({
+            title      : "Estratégias de Investimento em Títulos Públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+          new Lecture({
+            title      : "Cálculo de Rendimento e Impostos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+          new Lecture({
+            title      : "Exemplos Práticos de Investimento em Títulos Públicos",
+            difficulty : 1,
+            lectureSize: 1200000,
+            seenAlready: false,
+            stoppedAt: 600000,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+          }),
+          new Lecture({
+            title      : "Dicas para Maximizar seus Investimentos em Títulos Públicos",
             difficulty : 1,
             lectureSize: 1200000,
             seenAlready: false,
@@ -269,6 +341,15 @@ export class TopicComponent {
           }),
           new Lecture({
             title      : "Como comprar títulos na conta Pagbank",
+            difficulty : 2,
+            lectureSize: 1800000,
+            seenAlready: false,
+            stoppedAt: null,
+            videoPath: null,
+            lectureLogo: "/assets/images/learn/pagSeguroLogo.svg"
+          }),
+          new Lecture({
+            title      : "Dúvidas frequentes",
             difficulty : 2,
             lectureSize: 1800000,
             seenAlready: false,

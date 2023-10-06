@@ -239,6 +239,8 @@ body {
   border-radius: 0 4px 4px 0px;
   width: 35px;
   transition-delay: 0.3s;
+  border: 1px solid var(--gray);
+  border-left: none;
 }
 .page-wrapper.toggled #show-sidebar {
   left: -40px;
@@ -252,7 +254,7 @@ body {
   position: fixed;
   top: 0;
   left: -300px;
-  z-index: 999;
+  z-index: 4;
 }
 
 .sidebar-wrapper ul {

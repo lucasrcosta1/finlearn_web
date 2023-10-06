@@ -23,10 +23,6 @@
   --practice: #d6d6d6;
 }
 
-/* input {
-  text-indent: 1rem;
-} */
-
 .clickable {
   cursor: pointer;
 }
@@ -120,6 +116,135 @@
 
 }
 
+
+/* ----------------------------------STYLES: NEW AUTHENTICATION STRUCTURE----------------------------------------------- */
+
+.auth-container {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--classic-color);
+
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  min-height: 100vh; 
+  height: 100vh; 
+  max-height: 100vh; 
+
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  width: 50%;
+  min-width: 30%;
+}
+
+.logo-style {
+
+  max-width: 175px;
+
+}
+
+.title-header-color {
+
+  background-color: var(--classic-color);
+
+}
+
+.tab-title {
+
+  color: white; 
+  font-weight: bolder; 
+  font-size: 18px; 
+  padding: 0; 
+  margin: 0;
+
+}
+
+.classic-input {
+
+  outline: none;
+  border: 1px solid var(--gray);
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 10px;
+
+}
+
+.no-border-for-input {
+
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+}
+
+.login-register-btn {
+
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: #673AB7;
+  padding: 5px !important;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+
+}
+
+.login-register-btn:hover {
+
+  background-color: #452381;
+
+}
+
+.specialist {
+  color: green;
+  text-decoration: none;
+}
+
+.specialist:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.forgot-password {
+  color: red;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.black-border-btn {
+
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  background-color: transparent;
+  padding: 10px 25px !important;
+
+}
+.black-border-btn:hover {
+
+  background-color: black;
+  color: white;
+
+}
+
 .red {
 
   color: red;
@@ -147,5 +272,131 @@
 .blue {
 
   color: var(--blue);
+
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 300px) {
+
+  .card {
+
+    width: 90%;
+
+  }
+  
+  .tab-title {
+
+    font-size: 12px; 
+
+  }
+
+  .specialist {
+    
+    font-size: 8px !important;
+
+  }
+  
+  .forgot-password {
+
+    font-size: 8px !important;
+
+  }
+
+  .black-border-btn {
+  
+    font-size: 8px !important;
+    padding: 8px 12px !important;
+  
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .card {
+
+    min-width: 80%;
+
+  }
+
+  .logo-style {
+
+    max-width: 120px;
+
+  }
+
+  .tab-title {
+
+    font-size: 15px; 
+
+  }
+
+  .classic-input {
+   
+    height: 2rem;
+  
+  }
+
+  .classic-input::placeholder {
+   
+    font-size: 13px;
+  
+  }
+
+  .no-border-for-input::placeholder {
+   
+    font-size: 13px;
+  
+  }
+
+  .login-register-btn {
+   
+    font-size: 13px;
+  
+  }
+
+  .forgot-password {
+
+    font-size: 10px;
+
+  }
+
+  .specialist {
+    
+    font-size: 10px;
+
+  }
+
+  .black-border-btn {
+  
+    font-size: 10px;
+    padding: 8px 13px !important;
+  
+  }  
+
+}
+
+@media (max-width: 800px) {
+
+  .card {
+
+    min-width: 70%;
+
+  }
+
+}
+
+@media (min-width: 1300px) {
+
+  .card {
+
+    max-width: 30%;
+
+  }
 
 }

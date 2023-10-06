@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+
+#register-section {
+
+    display: none;
+
+}
+
+@media (min-width: 993px) {
+  #smaller-screens {
+      display: none;
+  }
+  #bigger-screens {
+      display: block;
+  }
+}
+
+@media (max-width: 992px) {
+  #smaller-screens {
+      display: block;
+  }
+  #bigger-screens {
+      display: none;
+  }
+}

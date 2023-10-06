@@ -1,0 +1,21 @@
+<body>
+        
+    <section id="login-section">
+        <div id="smaller-screens">
+            <app-login-smaller-screen (triggerRegistry)="handleRegistrationRequest($event)"></app-login-smaller-screen>
+        </div>
+        <div id="bigger-screens" style="background-color: greenyellow;">
+            <app-login-bigger-screen (triggerRegistry)="handleRegistrationRequest($event)"></app-login-bigger-screen>
+        </div>
+    </section>
+
+    <section id="register-section">
+        <div id="smaller-screens" style="background-color: red;">
+            <app-register-smaller-screen (triggerLogin)="handleLoginRequest($event)"></app-register-smaller-screen>
+        </div>
+        <div id="bigger-screens" style="background-color: greenyellow;">
+            <app-register-bigger-screen (triggerLogin)="handleLoginRequest($event)"></app-register-bigger-screen>
+        </div>
+    </section>
+
+</body>

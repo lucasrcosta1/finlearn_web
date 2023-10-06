@@ -10,8 +10,10 @@ import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
 export class LectureComponent {
 
   lecture: Lecture| null = null;
+  nextLectures: Lecture[] | null = null;
 
   private module: UrlSegment[];
+
 
   constructor (
     private router: Router,
@@ -19,7 +21,10 @@ export class LectureComponent {
   ) {
     
     this.module = this.route.snapshot.url;
-    this.lecture = this._getLecture(this.module[2].path); 
+    const clickedTitle = this.module[2].path;
+    this.lecture = this._getLecture(clickedTitle); 
+    this.nextLectures = this._getNextLecture(clickedTitle);
+    console.log(this.lecture, this.nextLectures);
 
   }
 
@@ -31,6 +36,11 @@ export class LectureComponent {
     this.router.navigate([route]);
   }
 
+  /**
+   * Get actual lecture info.
+   * @param lectureTitle 
+   * @returns 
+   */
   private _getLecture (lectureTitle: string): Lecture | null {
 
     console.log("Lecture title: " + lectureTitle);
@@ -40,5 +50,63 @@ export class LectureComponent {
     return null;
 
   }
+
+  /**
+   * Get next 4 lecture's preview data.
+   * @param actualLectureTitle 
+   */
+  private _getNextLecture (actualLectureTitle: string): Lecture[] | null {
+
+    const route = "/next-lectures-preview";
+    return [
+      new Lecture({
+        title      : "O que são títulos públicos?",
+        difficulty : 1,
+        lectureSize: 600000,
+        seenAlready: true,
+        stoppedAt: null,
+        videoPath: null,
+        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+      }),
+      new Lecture({
+        title      : "Vantagens de investir em títulos públicos",
+        difficulty : 1,
+        lectureSize: 600000,
+        seenAlready: true,
+        stoppedAt: null,
+        videoPath: null,
+        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+      }),
+      new Lecture({
+        title      : "Desvantagens de investir em títulos públicos",
+        difficulty : 1,
+        lectureSize: 600000,
+        seenAlready: true,
+        stoppedAt: null,
+        videoPath: null,
+        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+      }),
+      new Lecture({
+        title      : "Tipos de títulos públicos",
+        difficulty : 1,
+        lectureSize: 1200000,
+        seenAlready: false,
+        stoppedAt: 600000,
+        videoPath: null,
+        lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+      }),
+      new Lecture({
+        title      : "Entendendo os Rendimentos dos Títulos Públicos",
+        difficulty : 1,
+        lectureSize: 1200000,
+        seenAlready: false,
+        stoppedAt: 600000,
+        videoPath: null,
+        lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+      })]
+
+  }
+
+
 
 }
