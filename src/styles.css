@@ -296,6 +296,12 @@
 
 }
 
+.hide {
+
+  display: none;
+
+}
+
 @media (max-width: 300px) {
 
   .card {
