@@ -12,12 +12,14 @@ html, body {
   margin: 50px;
 }
 
-.card {
+.learn-card {
   margin-top: 20px; 
   margin-bottom: 10px;
   height: 100%; 
   display: flex;
   flex-direction: column;
+  border: 1px solid var(--grayish);
+  border-radius: 5px;
 }
 
 
