@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-login-smaller-screen',
@@ -9,8 +9,10 @@ export class LoginSmallerScreenComponent {
 
   @Output() 
   triggerRegistry = new EventEmitter<boolean>();
-  imagePath = "../../../../../assets/images/finlearnLogo.png";
-  tabTitle = "Login";
+  @Input()
+  imagePath: string | null = null;
+  @Input()
+  tabTitle: string | null = null
 
   /**
    * Emit event and enable register page.

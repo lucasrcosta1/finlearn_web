@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AuthenticationComponent {
 
+  logoImagePath =  "../../../../../assets/images/finlearnLogo.png";
+  tabTitle = "Login";
+
   constructor () {}
 
   /**
@@ -47,11 +50,13 @@ export class AuthenticationComponent {
 
         this._enableLogin();
         this._disableRegister();
+        this.tabTitle = "Login";
         
     } else if (route == "register") {
         
         this._disableLogin();
         this._enableRegister();
+        this.tabTitle = "Cadastro";
 
     }
 
