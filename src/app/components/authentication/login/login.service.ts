@@ -1,5 +1,6 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
@@ -43,6 +44,59 @@ export class LoginService {
     // }
     this._snackBarService.openSnackBar(2, `Seja bem vindo, ${username}!`);
     this._router.navigate(['/']);
+
+  }
+
+  /**
+   * Create login form.
+   * @param formBuilder 
+   * @returns 
+   */
+  createLoginForm (formBuilder: FormBuilder): FormGroup {
+
+    return formBuilder.group({
+
+      username: [null, Validators.email],
+      password: [null, Validators.minLength(6)],
+
+    });
+
+  }
+
+  /**
+   * Check whether user fields are correctly filled. 
+   * @param username 
+   * @param password 
+   * @returns 
+   */
+  checkUseFieldsrAreCorrectlyFilled (usernameFieldId: string, passwordFieldId: string, formValueForUsername: string, formValueForPassword): boolean{
+
+    let isUsernameFieldOk = false, isPasswordFieldOk = false;
+    if (this.usernameMatchPattern(formValueForUsername)){
+      
+      this.removeFieldError(usernameFieldId);
+      this.hideErrorMessage(usernameFieldId+"-error");
+      isUsernameFieldOk = true;
+
+    } else {
+
+      this.markFieldError(usernameFieldId);
+      this.showErrorMessage(usernameFieldId+"-error");
+
+    }
+    if (this.passwordMatchPattern(formValueForPassword)) {
+
+      this.removeFieldError(passwordFieldId);
+      this.hideErrorMessage(passwordFieldId+"-error");
+      isPasswordFieldOk = true;
+
+    } else {
+
+      this.markFieldError(passwordFieldId);
+      this.showErrorMessage(passwordFieldId+"-error");
+
+    }
+    return isUsernameFieldOk && isPasswordFieldOk;
 
   }
 

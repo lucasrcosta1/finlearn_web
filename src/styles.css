@@ -145,12 +145,12 @@
 
 .card {
   background-color: white;
-  padding: 20px;
   border-radius: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
   max-width: 80%;
   width: 50%;
   min-width: 30%;
+  border: none;
 }
 
 .logo-style {

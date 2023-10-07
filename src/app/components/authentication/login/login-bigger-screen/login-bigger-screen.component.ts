@@ -23,7 +23,7 @@ export class LoginBiggerScreenComponent {
     private _loginService: LoginService,
   ) {
 
-    this.loginForm = this._createLoginForm(this._formBuilder);
+    this.loginForm = this._loginService.createLoginForm(this._formBuilder);
 
   }
 
@@ -42,59 +42,12 @@ export class LoginBiggerScreenComponent {
    */
   submit (): void {
 
-    if (this._checkFieldsCorrectlyFilled()) {
+    const username = this.loginForm.value.username, password = this.loginForm.value.password;
+    if (this._loginService.checkUseFieldsrAreCorrectlyFilled("loginBiggerScreenUsername", "loginBiggerScreenPasswordDiv", username, password)) {
       
-      const username = this.loginForm.value.username, password = this.loginForm.value.password;
       this._loginService.login(username, password);
 
     }
-
-  }
-
-  /**
-   * Create login form.
-   * @param formBuilder 
-   * @returns 
-   */
-  private _createLoginForm (formBuilder: FormBuilder): FormGroup {
-
-    return formBuilder.group({
-
-      username: [null, Validators.email],
-      password: [null, Validators.minLength(6)],
-
-    });
-
-  }
-
-  private _checkFieldsCorrectlyFilled (): boolean{
-
-    let isUsernameFieldOk = false, isPasswordFieldOk = false;
-    if (this._loginService.usernameMatchPattern(this.loginForm.value.username)){
-      
-      this._loginService.removeFieldError("loginBiggerScreenUsername");
-      this._loginService.hideErrorMessage("loginBiggerScreenUsername"+"-error");
-      isUsernameFieldOk = true;
-
-    } else {
-
-      this._loginService.markFieldError("loginBiggerScreenUsername");
-      this._loginService.showErrorMessage("loginBiggerScreenUsername"+"-error");
-
-    }
-    if (this._loginService.passwordMatchPattern(this.loginForm.value.password)) {
-
-      this._loginService.removeFieldError("loginBiggerScreenPasswordDiv");
-      this._loginService.hideErrorMessage("loginBiggerScreenPasswordDiv"+"-error");
-      isPasswordFieldOk = true;
-
-    } else {
-
-      this._loginService.markFieldError("loginBiggerScreenPasswordDiv");
-      this._loginService.showErrorMessage("loginBiggerScreenPasswordDiv"+"-error");
-
-    }
-    return isUsernameFieldOk && isPasswordFieldOk;
 
   }
 
