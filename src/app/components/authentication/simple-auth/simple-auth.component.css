@@ -15,9 +15,7 @@
   height: 100vh;
 }
 
-input {
-  display: none;
-}
+
 
 #section-1, #section-2 {
   display: flex;
@@ -49,7 +47,7 @@ input {
   transition: all 1s 0.7s;
 }
 
-label {
+.label-config {
   display: block;
   border: solid 2px black;
   padding: 1em 2em;
@@ -81,5 +79,22 @@ label {
 #toggle3:checked ~ #section-2 .image-container,
 #toggle3:checked ~ #section-2 .info-container {
   transition: top transform 0.5s, opacity 0.5s;
+}
+
+
+/* -------second option------ */
+
+
+
+body {
+
+  margin: 0;
+  padding: 0;
+  background-color: #1f761f;
+
+}
+
+input {
+  padding-left: 15px;
 }
 

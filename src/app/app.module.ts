@@ -55,6 +55,13 @@ import { TopicStatsComponent } from './components/aux_components/topic/topic-sta
 import { ModuleAccordeonComponent } from './components/aux_components/topic/module-accordeon/module-accordeon.component';
 import { LectureCardComponent } from './components/aux_components/topic/lecture-card/lecture-card.component';
 import { DurationFormatPipe } from './models/pipe/DurationFormatPipe.model';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
+import { LoginSmallerScreenComponent } from './components/authentication/login/login-smaller-screen/login-smaller-screen.component';
+import { LoginBiggerScreenComponent } from './components/authentication/login/login-bigger-screen/login-bigger-screen.component';
+import { RegisterBiggerScreenComponent } from './components/authentication/register/register-bigger-screen/register-bigger-screen.component';
+import { RegisterSmallerScreenComponent } from './components/authentication/register/register-smaller-screen/register-smaller-screen.component';
+import { LoginThroughComponent } from './components/aux_components/authentication/login-through/login-through.component';
+import { LineComponent } from './components/aux_components/authentication/login-through/line/line.component';
 
 
 @NgModule({
@@ -90,6 +97,13 @@ import { DurationFormatPipe } from './models/pipe/DurationFormatPipe.model';
     ModuleAccordeonComponent, 
     LectureCardComponent,
     DurationFormatPipe,
+    AuthenticationComponent,
+    LoginSmallerScreenComponent,
+    LoginBiggerScreenComponent,
+    RegisterBiggerScreenComponent,
+    RegisterSmallerScreenComponent,
+    LoginThroughComponent,
+    LineComponent,
   ],
   imports: [
     BrowserModule,
