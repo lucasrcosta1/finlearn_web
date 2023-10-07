@@ -4,8 +4,8 @@
         <div id="smaller-screens">
             <app-login-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-smaller-screen>
         </div>
-        <div id="bigger-screens" style="background-color: greenyellow;">
-            <app-login-bigger-screen (triggerRegistry)="handleRegistrationRequest($event)"></app-login-bigger-screen>
+        <div id="bigger-screens">
+            <app-login-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-bigger-screen>
         </div>
     </section>
 
@@ -14,7 +14,7 @@
             <app-register-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-smaller-screen>
         </div>
         <div id="bigger-screens" style="background-color: greenyellow;">
-            <app-register-bigger-screen (triggerLogin)="handleLoginRequest($event)"></app-register-bigger-screen>
+            <app-register-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-bigger-screen>
         </div>
     </section>
 

@@ -1,2 +1,76 @@
-<p>register-bigger-screen works!</p>
-<button (click)="enableLoginPage()">enable Login</button>
+<body>
+    <div class="row register-bigger-screen-container m-0 p-0">
+        <div class="col-5 col-xl-4 auth-form-bg">
+            <div class="row d-flex justify-content-center align-items-center p-3">
+                <img [src]="imagePath" class="logo-style">
+            </div>
+            <div class="row m-0 p-1 title-header-color">
+                <label class="bold white ft-small text-center">{{tabTitle}}</label>
+            </div>
+            <div class="row m-0 p-4">
+                
+                <div class="row m-0 p-0">
+                    <label class="m-0 p-0 ft-lg text-center" for="callToAction"><b>Não é um usuário?</b></label>
+                    <label id="introRegister" for="introRegister">Siga o formulário abaixo para se cadastrar. É grátis!</label>
+                </div>
+                
+                <form class="m-0 p-0">
+                    <div class=" mb-2">
+                    <input type="text" id="fullName" name="fullName" placeholder="Nome completo*" class="classic-input">
+                    </div>
+                    <div class="mb-2">
+                    <input type="text" id="phone" name="phone" placeholder="Telefone*" class="classic-input">
+                    </div>
+                    <div class="row mb-2 justify-content-between m-0 p-0">
+                        <div class="m-0 p-0" style="max-width: 48%; ">
+                            <input type="userName" id="userName" name="userName" placeholder="Email*"  class="classic-input">
+                        </div>
+                        <div class="m-0 p-0" style="max-width: 48%;">
+                            <input type="userNameCheck" id="userNameCheck" name="userNameCheck" placeholder="Confirme seu email*" class="classic-input">
+                        </div>
+                    </div>
+                    <div class="row mb-2 justify-content-between m-0 p-0">
+                        <div class="classic-input" style="max-width: 48%;">
+                            <input type="password" id="password" name="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
+                
+                        </div>
+                        <div class="classic-input" style="max-width: 48%;">
+                            <input type="passwordCheck" id="passwordCheck" name="passwordCheck" placeholder="Confirme sua senha*" class="no-border-for-input w-100 h-100">
+                
+                        </div>
+                    </div>
+                    <button type="submit" class="login-register-btn">CADASTRAR</button>
+                </form>
+            
+                <!-- <div class="row pt-2 m-0 p-0 ">
+                  <div class="col-12 d-flex justify-content-between m-0 p-0 ">
+                        <a class="forgot-password clickable">Esqueci minha senha</a>
+                        <a class="specialist clickable">Sou um especialista</a>
+                  </div>
+                </div> -->
+            
+                <div class="row my-4 m-0 p-0">
+                    <app-line></app-line>
+                    <app-login-through ></app-login-through>
+                </div>
+            
+                <div class="row m-0 p-0" style="position:fixed; bottom: 20px;">
+                  <div class=" d-flex align-items-center m-0 p-0">
+                    <button class="no-border-for-input black-border-btn" (click)="enableLoginPage()">Já tenho conta</button>
+                  </div>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-7 col-xl-8 d-flex justify-content-center align-items-center">
+            <div class="col-md-8 p-2 mx-2 white">
+                <span class="center text-center ft-larger"><b>Pronto para aumentar seu conhecimento em investimento?</b></span>
+                <span class="mx-4 center ft-larger text-center">Multiplique o seu dinheiro de forma consciente.</span>
+                <div class="center">
+                    <img src="../../assets/images/register.png" alt="" height="300" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+  

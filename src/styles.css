@@ -137,6 +137,10 @@
   height: 100vh; 
   max-height: 100vh; 
 
+  min-width: 100vw; 
+  width: 100vw; 
+  max-width: 100vw; 
+
 }
 
 .card {
@@ -279,6 +283,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.auth-form-bg {
+
+    background-color: white;
+    border-right: 1px solid var(--gray);
+    box-shadow: 3px 1px 30px black;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
 }
 
 @media (max-width: 300px) {
