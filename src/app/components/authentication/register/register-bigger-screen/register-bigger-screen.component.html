@@ -14,41 +14,46 @@
                     <label id="introRegister" for="introRegister">Siga o formulário abaixo para se cadastrar. É grátis!</label>
                 </div>
                 
-                <form class="m-0 p-0">
+                <form class="m-0 p-0" [formGroup]="registerForm" (ngSubmit)="submit()">
                     <div class=" mb-2">
-                    <input type="text" id="registerFullnameBiggerScreen" name="fullName" placeholder="Nome completo*" class="classic-input">
+                      <input type="text" id="registerBiggerScreenFullname" name="fullName" formControlName="fullname" placeholder="Nome completo*" class="classic-input">
+                      <span class="red bold ft-smaller hide" id="registerBiggerScreenFullname-error">Digite um nome válido.</span>
                     </div>
                     <div class="mb-2">
-                    <input type="text" id="registerPhoneBiggerScreen" name="phone" placeholder="Telefone*" class="classic-input">
+                      <input type="text" id="registerBiggerScreenPhone" name="phone" formControlName="phone" placeholder="Telefone*" class="classic-input" #telephoneInput (input)="applyPhoneMask(telephoneInput)" maxlength="14" placeholder="(xx) x xxxx-xxxx">
+                      <span class="red bold ft-smaller hide" id="registerBiggerScreenPhone-error">Digite um telefone válido (XX) XXXXX-XXXX.</span>
+                    </div>
+                    <div class="row mb-2 justify-content-between m-0 p-0" >
+                      <div style="max-width: 48%;" class="m-0 p-0">
+                        <input type="email" id="registerBiggerScreenUsername" name="username" formControlName="username" placeholder="Email*"  class="classic-input">
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenNonValidUsername-error">Digite um email válido.</span>
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenDoNotMatchUsername-error">Emails não coincidem.</span>
+                      </div>
+                      <div style="max-width: 48%;" class="m-0 p-0">
+                        <input type="email" id="registerBiggerScreenUsernameCheck" name="usernameCheck" formControlName="usernameCheck" placeholder="Confirme seu email*" class="classic-input">
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenNonValidUsernameCheck-error">Digite um email válido.</span>
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenDoNotMatchUsernameCheck-error">Emails não coincidem.</span>
+                      </div>
                     </div>
                     <div class="row mb-2 justify-content-between m-0 p-0">
-                        <div class="m-0 p-0" style="max-width: 48%; ">
-                            <input id="registerUserNameBiggerScreen" type="userName" name="userName" placeholder="Email*"  class="classic-input">
+                      <div style="max-width: 48%;" class="m-0 p-0">
+                        <div class="classic-input" id="registerBiggerScreenPasswordDiv">
+                          <input id="registerBiggerScreenPassword" type="password" name="password" formControlName="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
                         </div>
-                        <div class="m-0 p-0" style="max-width: 48%;">
-                            <input id="registerUserNameCheckBiggerScreen" type="userNameCheck" name="userNameCheck" placeholder="Confirme seu email*" class="classic-input">
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenNonValidPassword-error">Digite uma senha válida.</span>
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenDoNotMatchPassword-error">Senhas não coincidem.</span>
+                      </div>
+                      <div style="max-width: 48%;" class="m-0 p-0">
+                        <div class="classic-input" id="registerBiggerScreenPasswordCheckDiv">
+                          <input id="registerBiggerScreenPasswordCheck" type="password" name="passwordCheck" formControlName="passwordCheck" placeholder="Confirme sua senha*" class="no-border-for-input w-100 h-100">
                         </div>
-                    </div>
-                    <div class="row mb-2 justify-content-between m-0 p-0">
-                        <div class="classic-input" style="max-width: 48%;">
-                            <input id="registerPasswordBiggerScreen" type="password" name="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
-                
-                        </div>
-                        <div class="classic-input" style="max-width: 48%;">
-                            <input id="registerPasswordCheckBiggerScreen" type="passwordCheck"  name="passwordCheck" placeholder="Confirme sua senha*" class="no-border-for-input w-100 h-100">
-                
-                        </div>
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenNonValidPasswordCheck-error">Digite uma senha válida.</span>
+                        <span class="red bold ft-smaller hide" id="registerBiggerScreenDoNotMatchPasswordCheck-error">Senhas não coincidem.</span>
+                      </div>
                     </div>
                     <button type="submit" class="login-register-btn">CADASTRAR</button>
                 </form>
-            
-                <!-- <div class="row pt-2 m-0 p-0 ">
-                  <div class="col-12 d-flex justify-content-between m-0 p-0 ">
-                        <a class="forgot-password clickable">Esqueci minha senha</a>
-                        <a class="specialist clickable">Sou um especialista</a>
-                  </div>
-                </div> -->
-            
+                        
                 <div class="row my-4 m-0 p-0">
                     <app-line></app-line>
                     <app-login-through ></app-login-through>

@@ -47,20 +47,26 @@ export class RegisterService {
 
         this._loginService.markFieldError(usernameFieldId);
         this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
+        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
         this._loginService.markFieldError(usernameCheckFieldId);
         this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
+        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
 
       } else {
       
         isUsernameFieldOk = true;
         this._loginService.removeFieldError(usernameFieldId);
         this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
+        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
         this._loginService.removeFieldError(usernameCheckFieldId);
         this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
+        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
       
       }
       this._loginService.hideErrorMessage("registerSmallerScreenNonValidUsername-error");
       this._loginService.hideErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
+      this._loginService.hideErrorMessage("registerBiggerScreenNonValidUsername-error");
+      this._loginService.hideErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
 
     } else {
 
@@ -68,6 +74,8 @@ export class RegisterService {
       this._loginService.markFieldError(usernameCheckFieldId);
       this._loginService.showErrorMessage("registerSmallerScreenNonValidUsername-error");
       this._loginService.showErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
+      this._loginService.showErrorMessage("registerBiggerScreenNonValidUsername-error");
+      this._loginService.showErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
 
     }
 
@@ -77,20 +85,26 @@ export class RegisterService {
 
         this._loginService.markFieldError(passwordFieldId);
         this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
+        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
         this._loginService.markFieldError(passwordCheckFieldId);
         this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
+        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
 
       } else {
       
         isPasswordFieldOk = true;
         this._loginService.removeFieldError(passwordFieldId);
         this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
+        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
         this._loginService.removeFieldError(passwordCheckFieldId);
         this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
+        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
       
       }
       this._loginService.hideErrorMessage("registerSmallerScreenNonValidPassword-error");
       this._loginService.hideErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
+      this._loginService.hideErrorMessage("registerBiggerScreenNonValidPassword-error");
+      this._loginService.hideErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
 
     } else {
 
@@ -98,6 +112,8 @@ export class RegisterService {
       this._loginService.markFieldError(passwordCheckFieldId);
       this._loginService.showErrorMessage("registerSmallerScreenNonValidPassword-error");
       this._loginService.showErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
+      this._loginService.showErrorMessage("registerBiggerScreenNonValidPassword-error");
+      this._loginService.showErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
 
     }
 
