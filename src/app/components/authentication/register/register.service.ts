@@ -21,12 +21,12 @@ export class RegisterService {
 
     return formBuilder.group({
 
-      fullname: [null, Validators.minLength(3)],
-      phone: [null, Validators.pattern("(XX) XXXXX-XXXX")],
-      username: [null, Validators.email],
-      usernameCheck: [null, Validators.email],
-      password: [null, Validators.minLength(6)],
-      passwordCheck: [null, Validators.minLength(6)],
+      fullname: [null, [Validators.required, Validators.minLength(3)]],
+      phone: [null, [Validators.required, Validators.pattern("(XX) XXXXX-XXXX")]],
+      username: [null, [Validators.required, Validators.email]],
+      usernameCheck: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      passwordCheck: [null, [Validators.required, Validators.minLength(6)]],
 
     });
 
