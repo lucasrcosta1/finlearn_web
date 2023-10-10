@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterSmallerScreenComponent } from './register-smaller-screen.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('RegisterSmallerScreenComponent', () => {
   let component: RegisterSmallerScreenComponent;
@@ -8,7 +9,8 @@ describe('RegisterSmallerScreenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterSmallerScreenComponent ]
+      declarations: [ RegisterSmallerScreenComponent ],
+      imports: [MatSnackBarModule],
     })
     .compileComponents();
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginSmallerScreenComponent } from './login-smaller-screen.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('LoginSmallerScreenComponent', () => {
   let component: LoginSmallerScreenComponent;
@@ -8,7 +9,8 @@ describe('LoginSmallerScreenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginSmallerScreenComponent ]
+      declarations: [ LoginSmallerScreenComponent ],
+      imports: [MatSnackBarModule],
     })
     .compileComponents();
 

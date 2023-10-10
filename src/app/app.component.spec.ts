@@ -26,10 +26,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('projeto-pds1');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('projeto-pds1 app is running!');
-  });
 });

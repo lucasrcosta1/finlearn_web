@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http'; 
 import { SimpleLoginComponent } from './simple-login.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('SimpleLoginComponent', () => {
   let component: SimpleLoginComponent;
@@ -8,9 +9,9 @@ describe('SimpleLoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleLoginComponent ]
-    })
-    .compileComponents();
+      declarations: [SimpleLoginComponent],
+      imports: [HttpClientModule, MatSnackBarModule], 
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleLoginComponent);
     component = fixture.componentInstance;
@@ -20,4 +21,5 @@ describe('SimpleLoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
