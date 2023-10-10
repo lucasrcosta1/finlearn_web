@@ -12,12 +12,14 @@
             
         <form class="m-0 p-3" [formGroup]="loginForm" (ngSubmit)="submit()">
             <div class="mt-2 mb-3">
-              <input type="text" id="loginSmallerScreenUsername" name="username" formControlName="username" placeholder="Email*" class="classic-input">
+              <input type="email" id="loginSmallerScreenUsername" name="username" formControlName="username" placeholder="Email*" class="classic-input">
+              <span class="red bold ft-xx-small hide" id="loginSmallerScreenUsername-error">Digite um email válido.</span>
             </div>
             <div class="mb-3">
-              <div class="classic-input">
+              <div class="classic-input" id="loginSmallerScreenPasswordDiv">
                 <input type="password" id="loginSmallerScreenPassword" name="password" formControlName="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
               </div>
+              <span class="red bold ft-xx-small hide" id="loginSmallerScreenPasswordDiv-error">Digite uma senha com pelo menos 6 caracteres.</span>
             </div>
             <button type="submit" class="login-register-btn">ENTRAR</button>
         </form>

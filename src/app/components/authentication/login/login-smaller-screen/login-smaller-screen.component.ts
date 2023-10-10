@@ -42,7 +42,7 @@ export class LoginSmallerScreenComponent {
   submit (): void {
 
     const username = this.loginForm.value.username, password = this.loginForm.value.password;
-    if (this._loginService.checkUseFieldsrAreCorrectlyFilled("loginBiggerScreenUsername", "loginBiggerScreenPasswordDiv", username, password)) {
+    if (this._loginService.checkLoginFieldsAreCorrectlyFilled("loginSmallerScreenUsername", "loginSmallerScreenPasswordDiv", username, password)) {
       
       this._loginService.login(username, password);
 

@@ -39,6 +39,10 @@
   justify-content: center;
 }
 
+.ft-xxx-small {
+  font-size: 7px;
+}
+
 .ft-xx-small {
   font-size: xx-small;
 }

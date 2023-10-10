@@ -64,12 +64,12 @@ export class LoginService {
   }
 
   /**
-   * Check whether user fields are correctly filled. 
+   * Check whether login fields are correctly filled. 
    * @param username 
    * @param password 
    * @returns 
    */
-  checkUseFieldsrAreCorrectlyFilled (usernameFieldId: string, passwordFieldId: string, formValueForUsername: string, formValueForPassword): boolean{
+  checkLoginFieldsAreCorrectlyFilled (usernameFieldId: string, passwordFieldId: string, formValueForUsername: string, formValueForPassword: string): boolean{
 
     let isUsernameFieldOk = false, isPasswordFieldOk = false;
     if (this.usernameMatchPattern(formValueForUsername)){
@@ -120,7 +120,7 @@ export class LoginService {
    */
   passwordMatchPattern (password: string | null): boolean {
 
-    return (password && password.length > 6) ? true : false ;
+    return (password && password.length >= 6) ? true : false ;
 
   }
 
