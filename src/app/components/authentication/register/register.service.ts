@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login/login.service';
+import { SharedService } from 'src/app/service/shared/shared.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { LoginService } from '../login/login.service';
 export class RegisterService {
 
   constructor(
-    private _loginService: LoginService
+    private _sharedService: SharedService,
   ) { }
 
 
@@ -41,105 +42,105 @@ export class RegisterService {
   checkRegisterFieldsAreCorrectlyFilled (fullnameFieldId: string, phoneFieldId: string, usernameFieldId: string, usernameCheckFieldId: string, passwordFieldId: string, passwordCheckFieldId: string, formValueForFullname: string | null, formValueForPhone: string | null, formValueForUsername: string | null, formValueForPassword: string | null, formValueForUsernameCheck: string | null, formValueForPasswordCheck: string | null): boolean{
 
     let isFullnameOk = false, isPhoneOk = false, isUsernameFieldOk = false, isPasswordFieldOk = false;
-    if (this._loginService.usernameMatchPattern(formValueForUsername) && this._loginService.usernameMatchPattern(formValueForUsernameCheck)){
+    if (this._sharedService.usernameMatchPattern(formValueForUsername) && this._sharedService.usernameMatchPattern(formValueForUsernameCheck)){
       
       if (formValueForUsername !== formValueForUsernameCheck) {
 
-        this._loginService.markFieldError(usernameFieldId);
-        this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
-        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
-        this._loginService.markFieldError(usernameCheckFieldId);
-        this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
-        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
+        this._sharedService.markFieldError(usernameFieldId);
+        this._sharedService.showErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
+        this._sharedService.showErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
+        this._sharedService.markFieldError(usernameCheckFieldId);
+        this._sharedService.showErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
+        this._sharedService.showErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
 
       } else {
       
         isUsernameFieldOk = true;
-        this._loginService.removeFieldError(usernameFieldId);
-        this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
-        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
-        this._loginService.removeFieldError(usernameCheckFieldId);
-        this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
-        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
+        this._sharedService.removeFieldError(usernameFieldId);
+        this._sharedService.hideErrorMessage("registerSmallerScreenDoNotMatchUsername-error");
+        this._sharedService.hideErrorMessage("registerBiggerScreenDoNotMatchUsername-error");
+        this._sharedService.removeFieldError(usernameCheckFieldId);
+        this._sharedService.hideErrorMessage("registerSmallerScreenDoNotMatchUsernameCheck-error");
+        this._sharedService.hideErrorMessage("registerBiggerScreenDoNotMatchUsernameCheck-error");
       
       }
-      this._loginService.hideErrorMessage("registerSmallerScreenNonValidUsername-error");
-      this._loginService.hideErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
-      this._loginService.hideErrorMessage("registerBiggerScreenNonValidUsername-error");
-      this._loginService.hideErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
+      this._sharedService.hideErrorMessage("registerSmallerScreenNonValidUsername-error");
+      this._sharedService.hideErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
+      this._sharedService.hideErrorMessage("registerBiggerScreenNonValidUsername-error");
+      this._sharedService.hideErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
 
     } else {
 
-      this._loginService.markFieldError(usernameFieldId);
-      this._loginService.markFieldError(usernameCheckFieldId);
-      this._loginService.showErrorMessage("registerSmallerScreenNonValidUsername-error");
-      this._loginService.showErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
-      this._loginService.showErrorMessage("registerBiggerScreenNonValidUsername-error");
-      this._loginService.showErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
+      this._sharedService.markFieldError(usernameFieldId);
+      this._sharedService.markFieldError(usernameCheckFieldId);
+      this._sharedService.showErrorMessage("registerSmallerScreenNonValidUsername-error");
+      this._sharedService.showErrorMessage("registerSmallerScreenNonValidUsernameCheck-error");
+      this._sharedService.showErrorMessage("registerBiggerScreenNonValidUsername-error");
+      this._sharedService.showErrorMessage("registerBiggerScreenNonValidUsernameCheck-error");
 
     }
 
-    if (this._loginService.passwordMatchPattern(formValueForPassword) && this._loginService.passwordMatchPattern(formValueForPasswordCheck)){
+    if (this._sharedService.passwordMatchPattern(formValueForPassword) && this._sharedService.passwordMatchPattern(formValueForPasswordCheck)){
       
       if (formValueForPassword !== formValueForPasswordCheck) {
 
-        this._loginService.markFieldError(passwordFieldId);
-        this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
-        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
-        this._loginService.markFieldError(passwordCheckFieldId);
-        this._loginService.showErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
-        this._loginService.showErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
+        this._sharedService.markFieldError(passwordFieldId);
+        this._sharedService.showErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
+        this._sharedService.showErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
+        this._sharedService.markFieldError(passwordCheckFieldId);
+        this._sharedService.showErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
+        this._sharedService.showErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
 
       } else {
       
         isPasswordFieldOk = true;
-        this._loginService.removeFieldError(passwordFieldId);
-        this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
-        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
-        this._loginService.removeFieldError(passwordCheckFieldId);
-        this._loginService.hideErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
-        this._loginService.hideErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
+        this._sharedService.removeFieldError(passwordFieldId);
+        this._sharedService.hideErrorMessage("registerSmallerScreenDoNotMatchPassword-error");
+        this._sharedService.hideErrorMessage("registerBiggerScreenDoNotMatchPassword-error");
+        this._sharedService.removeFieldError(passwordCheckFieldId);
+        this._sharedService.hideErrorMessage("registerSmallerScreenDoNotMatchPasswordCheck-error");
+        this._sharedService.hideErrorMessage("registerBiggerScreenDoNotMatchPasswordCheck-error");
       
       }
-      this._loginService.hideErrorMessage("registerSmallerScreenNonValidPassword-error");
-      this._loginService.hideErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
-      this._loginService.hideErrorMessage("registerBiggerScreenNonValidPassword-error");
-      this._loginService.hideErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
+      this._sharedService.hideErrorMessage("registerSmallerScreenNonValidPassword-error");
+      this._sharedService.hideErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
+      this._sharedService.hideErrorMessage("registerBiggerScreenNonValidPassword-error");
+      this._sharedService.hideErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
 
     } else {
 
-      this._loginService.markFieldError(passwordFieldId);
-      this._loginService.markFieldError(passwordCheckFieldId);
-      this._loginService.showErrorMessage("registerSmallerScreenNonValidPassword-error");
-      this._loginService.showErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
-      this._loginService.showErrorMessage("registerBiggerScreenNonValidPassword-error");
-      this._loginService.showErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
+      this._sharedService.markFieldError(passwordFieldId);
+      this._sharedService.markFieldError(passwordCheckFieldId);
+      this._sharedService.showErrorMessage("registerSmallerScreenNonValidPassword-error");
+      this._sharedService.showErrorMessage("registerSmallerScreenNonValidPasswordCheck-error");
+      this._sharedService.showErrorMessage("registerBiggerScreenNonValidPassword-error");
+      this._sharedService.showErrorMessage("registerBiggerScreenNonValidPasswordCheck-error");
 
     }
 
     if (formValueForFullname && formValueForFullname.length > 2) {
 
-      this._loginService.removeFieldError(fullnameFieldId);
-      this._loginService.hideErrorMessage(fullnameFieldId+"-error");
+      this._sharedService.removeFieldError(fullnameFieldId);
+      this._sharedService.hideErrorMessage(fullnameFieldId+"-error");
       isFullnameOk = true;
 
     } else {
 
-      this._loginService.markFieldError(fullnameFieldId);
-      this._loginService.showErrorMessage(fullnameFieldId+"-error");
+      this._sharedService.markFieldError(fullnameFieldId);
+      this._sharedService.showErrorMessage(fullnameFieldId+"-error");
 
     }
 
-    if (formValueForPhone && formValueForPhone.length == 14) {
+    if (formValueForPhone && this._sharedService.isPhoneValid(formValueForPhone)) {
 
-      this._loginService.removeFieldError(phoneFieldId);
-      this._loginService.hideErrorMessage(phoneFieldId+"-error");
+      this._sharedService.removeFieldError(phoneFieldId);
+      this._sharedService.hideErrorMessage(phoneFieldId+"-error");
       isPhoneOk = true;
 
     } else {
 
-      this._loginService.markFieldError(phoneFieldId);
-      this._loginService.showErrorMessage(phoneFieldId+"-error");
+      this._sharedService.markFieldError(phoneFieldId);
+      this._sharedService.showErrorMessage(phoneFieldId+"-error");
 
     }
 

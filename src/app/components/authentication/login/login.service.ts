@@ -2,6 +2,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/service/shared/shared.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
 @Injectable({
@@ -12,6 +13,7 @@ export class LoginService {
   constructor(
     private _router: Router,
     private _snackBarService: SnackbarService,
+    private _sharedService: SharedService,
   ) { }
 
   /**
@@ -72,128 +74,34 @@ export class LoginService {
   checkLoginFieldsAreCorrectlyFilled (usernameFieldId: string, passwordFieldId: string, formValueForUsername: string, formValueForPassword: string): boolean{
 
     let isUsernameFieldOk = false, isPasswordFieldOk = false;
-    if (this.usernameMatchPattern(formValueForUsername)){
+    if (this._sharedService.usernameMatchPattern(formValueForUsername)){
       
-      this.removeFieldError(usernameFieldId);
-      this.hideErrorMessage(usernameFieldId+"-error");
+      this._sharedService.removeFieldError(usernameFieldId);
+      this._sharedService.hideErrorMessage(usernameFieldId+"-error");
       isUsernameFieldOk = true;
 
     } else {
 
-      this.markFieldError(usernameFieldId);
-      this.showErrorMessage(usernameFieldId+"-error");
+      this._sharedService.markFieldError(usernameFieldId);
+      this._sharedService.showErrorMessage(usernameFieldId+"-error");
 
     }
-    if (this.passwordMatchPattern(formValueForPassword)) {
+    if (this._sharedService.passwordMatchPattern(formValueForPassword)) {
 
-      this.removeFieldError(passwordFieldId);
-      this.hideErrorMessage(passwordFieldId+"-error");
+      this._sharedService.removeFieldError(passwordFieldId);
+      this._sharedService.hideErrorMessage(passwordFieldId+"-error");
       isPasswordFieldOk = true;
 
     } else {
 
-      this.markFieldError(passwordFieldId);
-      this.showErrorMessage(passwordFieldId+"-error");
+      this._sharedService.markFieldError(passwordFieldId);
+      this._sharedService.showErrorMessage(passwordFieldId+"-error");
 
     }
     return isUsernameFieldOk && isPasswordFieldOk;
 
   }
 
-
-  /**
-   * Username match login pattern.
-   * @param username 
-   * @returns 
-   */
-  usernameMatchPattern (username: string | null): boolean {
-
-    if (username && username != "" && this.usernameIsAnEmail(username)) return true;
-    return false;
-
-  }
-
-  /**
-   * Password match login pattern.
-   * @param password 
-   * @returns 
-   */
-  passwordMatchPattern (password: string | null): boolean {
-
-    return (password && password.length >= 6) ? true : false ;
-
-  }
-
-  /**
-   * Check whether an username is an email or not.
-   * @param username 
-   * @returns 
-   */
-  usernameIsAnEmail (username: string): boolean {
-
-    return username.includes("@") && (username.includes(".com") || username.includes(".org"));
-
-  }
-
-  /**
-   * Set field in error by given id.
-   * @param fieldName
-   */
-  markFieldError (fieldName: string): void {
-
-    const fieldDiv = document.getElementById(fieldName);
-    if (fieldDiv) {
-
-      fieldDiv.style.border = "1px solid red";
-
-    }
-
-  }
-
-  /**
-   * Set field out from error by a given id.
-   * @param fieldName
-   */
-  removeFieldError (fieldName: string): void {
-
-    const fieldDiv = document.getElementById(fieldName);
-    if (fieldDiv) {
-
-      fieldDiv.style.border = "1px solid black";
-
-    }
-
-  }
-
-  /**
-   * Show error message.
-   * @param spanIdName 
-   */
-  showErrorMessage (spanIdName: string): void {
-
-    const span = document.getElementById(spanIdName);
-    if (span) {
-
-      span.style.display = "block";
-
-    }
-
-  }
-
-  /**
-   * Hide error message.
-   * @param spanIdName 
-   */
-  hideErrorMessage (spanIdName: string): void {
-
-    const span = document.getElementById(spanIdName);
-    if (span) {
-
-      span.style.display = "none";
-
-    }
-
-  }
 
   
 }

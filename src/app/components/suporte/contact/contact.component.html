@@ -1,0 +1,36 @@
+<body>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <div class="m-0 p-3">
+        <div class="row d-flex justify-content-center align-items-center w-100 m-3 p-0">
+            <h4 class="title mb-2"><b>Contato</b></h4>
+            <span class="subtitle">Dúvidas sobre a plataforma?</span>
+            <span class="subtitle">Preencha o formulário para entrar em contato conosco.</span>
+        </div>
+    
+        <form [formGroup]="contactForm" (ngSubmit)="submit()">
+    
+            <div class="mb-3 m-0 p-0">
+                <input type="text" id="name" formControlName="name" placeholder="Nome*" class="classic-input">
+                <span class="red bold ft-small hide" id="name-error">Digite um nome válido.</span>
+            </div>
+            <div class="mb-3 m-0 p-0">
+                <input type="email" id="email" formControlName="email" placeholder="Email*" class="classic-input">
+                <span class="red bold ft-small hide" id="email-error">Digite um email válido.</span>
+            </div>
+            <div class="mb-3 m-0 p-0">
+                <input type="text" id="subject" formControlName="subject" placeholder="Assunto*" class="classic-input">
+                <span class="red bold ft-small hide" id="subject-error">Digite um assunto válido.</span>
+            </div>
+            <div class="mb-3 m-0 p-0">
+                <textarea name="" id="description" formControlName="description" rows="5" placeholder="Digite sua dúvida:*" class="classic-input-textarea"></textarea>
+                <span class="red bold ft-small hide" id="description-error">Digite uma descrição válida.</span>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center ">
+                <button type="submit" class="green-confirm-button">ENVIAR</button>
+            </div>
+    
+        </form>
+    </div>
+
+
+</body>

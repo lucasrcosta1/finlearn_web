@@ -62,6 +62,8 @@ import { RegisterBiggerScreenComponent } from './components/authentication/regis
 import { RegisterSmallerScreenComponent } from './components/authentication/register/register-smaller-screen/register-smaller-screen.component';
 import { LoginThroughComponent } from './components/aux_components/authentication/login-through/login-through.component';
 import { LineComponent } from './components/aux_components/authentication/login-through/line/line.component';
+import { ContactComponent } from './components/suporte/contact/contact.component';
+import { FrequentQuestionsComponent } from './components/suporte/frequent-questions/frequent-questions.component';
 
 
 @NgModule({
@@ -104,6 +106,8 @@ import { LineComponent } from './components/aux_components/authentication/login-
     RegisterSmallerScreenComponent,
     LoginThroughComponent,
     LineComponent,
+    ContactComponent,
+    FrequentQuestionsComponent,
   ],
   imports: [
     BrowserModule,
