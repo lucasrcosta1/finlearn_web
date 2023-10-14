@@ -32,8 +32,8 @@ export class ContactComponent {
       
       const contactInfo = {name: name, email: email, subject: subject, description: description};
       // this._apiService.post("/contact", contactInfo);
-      this._snackbarService.openSnackBar(10,"Logo responderemos seu contato. Fique de olho no seu email!")
-
+      this._snackbarService.openSnackBar(10,"Logo responderemos seu contato. Fique de olho no seu email!");
+      this.contactForm.reset();
 
     }
 

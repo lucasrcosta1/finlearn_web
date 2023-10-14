@@ -1,0 +1,37 @@
+body {
+
+    margin: 0;
+    padding: 0;
+
+}
+
+.question-description {
+    max-width: 100%;
+    overflow: auto;
+    max-height: 150px;
+    background-color: #dbdada;
+    border: 3px solid #bdbbbb;
+    padding: 10px;
+}
+
+.expanded-border {
+
+    border-radius: 5px 5px 0 0;
+
+}
+
+.description-border-color {
+
+    border: 1px solid #BDBDBD;
+
+}
+
+@media (max-width: 400px) {
+
+    .question-description {
+
+        font-size: 12px;
+
+    }
+
+}

@@ -2,6 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ContactComponent } from './contact.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+
+class MockSnackbarService {
+  open(message: string, action: string) {}
+}
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -11,6 +16,9 @@ describe('ContactComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ ContactComponent ],
       imports: [ReactiveFormsModule],
+      providers: [
+        { provide: SnackbarService, useClass: MockSnackbarService }, // Provide the mock service
+      ],
     })
     .compileComponents();
 

@@ -1,0 +1,35 @@
+<body>
+    <div class="my-2 p-0">
+        <div class="m-0 p-3 d-flex justify-content-between align-items-center clickable" [style]="style" (click)="openDropDown()" [ngStyle]="{'border-radius': frequentQuestion?.expanded == true ? '5px 5px 0 0' : '5px' }">
+            <span>{{frequentQuestion ? frequentQuestion.subject : "-"}}</span>
+            <i class="fa fa-angle-down" *ngIf="!frequentQuestion?.expanded"></i>
+            <i class="fa fa-angle-up" *ngIf="frequentQuestion?.expanded"></i>
+        </div>
+        <div *ngIf="frequentQuestion?.expanded" class="m-0 p-0 description-border-color">
+            <div class="m-0 p-4 w-100">
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                    <span> {{frequentQuestion ? frequentQuestion.name : "-"}} </span>
+                </div>
+                <div class="d-flex justify-content-center mx-3 mt-2 p-0">
+                    <div class="question-description">
+                        {{frequentQuestion ? frequentQuestion.description : "-"}}
+                    </div>
+                </div>
+        
+            </div>
+            <div class="m-0 p-4 w-100">
+                <div class="user">
+                    <i class="fa fa-user-circle"></i>
+                    <span> FinLearn </span>
+                </div>
+                <div class="d-flex justify-content-center mx-3 mt-2 p-0">
+                    <div class="question-description" >
+                        {{frequentQuestion ? frequentQuestion.answer : "-"}}
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</body>

@@ -8,3 +8,17 @@ body {
     font-family: 'Montserrat';
 
 }
+
+@media (max-width: 400px) {
+
+
+    .title {
+
+        font-size: 18px !important;
+
+    }
+    .subtitle {
+        font-size: 13px !important;
+    }
+
+}

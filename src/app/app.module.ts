@@ -64,6 +64,7 @@ import { LoginThroughComponent } from './components/aux_components/authenticatio
 import { LineComponent } from './components/aux_components/authentication/login-through/line/line.component';
 import { ContactComponent } from './components/suporte/contact/contact.component';
 import { FrequentQuestionsComponent } from './components/suporte/frequent-questions/frequent-questions.component';
+import { DropdownQuestionComponent } from './components/aux_components/contact/frequent-questions/dropdown-question/dropdown-question.component';
 
 
 @NgModule({
@@ -108,6 +109,7 @@ import { FrequentQuestionsComponent } from './components/suporte/frequent-questi
     LineComponent,
     ContactComponent,
     FrequentQuestionsComponent,
+    DropdownQuestionComponent,
   ],
   imports: [
     BrowserModule,

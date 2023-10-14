@@ -1,19 +1,19 @@
 <body>
         
     <section id="login-section">
-        <div id="smaller-screens">
+        <div class="smaller-screens">
             <app-login-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-smaller-screen>
         </div>
-        <div id="bigger-screens">
+        <div class="bigger-screens">
             <app-login-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-bigger-screen>
         </div>
     </section>
 
     <section id="register-section">
-        <div id="smaller-screens" style="background-color: red;">
+        <div class="smaller-screens">
             <app-register-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-smaller-screen>
         </div>
-        <div id="bigger-screens" style="background-color: greenyellow;">
+        <div class="bigger-screens">
             <app-register-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-bigger-screen>
         </div>
     </section>

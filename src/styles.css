@@ -465,3 +465,23 @@
   }
 
 }
+
+
+
+@media (min-width: 993px) {
+  .smaller-screens {
+      display: none;
+  }
+  .bigger-screens {
+      display: block;
+  }
+}
+
+@media (max-width: 992px) {
+  .smaller-screens {
+      display: block;
+  }
+  .bigger-screens {
+      display: none;
+  }
+}
