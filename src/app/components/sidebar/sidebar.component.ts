@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/service/login/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  isSidebarToggled = false;
+  isSidebarToggled: boolean;
   activeRoute = "";
   username = "";
   email = "";
@@ -20,6 +20,9 @@ export class SidebarComponent {
     private _loginService: LoginService,
     private el: ElementRef,
   ) {
+
+    this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+
   }
 
   ngOnInit (): void {
@@ -121,6 +124,12 @@ export class SidebarComponent {
 
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+
+    this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+  }
+
   /**
    * Get the actual tab and add mark it as active.
    */
@@ -189,6 +198,19 @@ export class SidebarComponent {
       }
     )
     return canBeClicked;
+
+  }
+
+
+  /**
+   * Check whether sidebar should be closed or opened, based on screen's width.
+   * @param windowWidth 
+   * @returns 
+   */
+  private _checkWhetherSidebarShoudBeClosedBasedOnScreenWidth (windowWidth: number): boolean {
+
+    if (windowWidth >= 992) return true;
+    else return false;
 
   }
 
