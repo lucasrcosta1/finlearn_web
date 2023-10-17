@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LearnRoutingModule } from './components/learn/learn-routing.module';
 
-import { AuthGuard } from './components/guards/auth-guard.service';
+import { AuthGuard } from './components/authentication/guards/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';

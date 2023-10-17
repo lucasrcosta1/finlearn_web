@@ -25,7 +25,6 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/header/header.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
 import { PracticeComponent } from './components/practice/practice.component';
@@ -67,7 +66,6 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
   declarations: [
     AppComponent,
     HomeComponent,
-    HeaderComponent,
     SuporteComponent,
     CommunityComponent,
     PracticeComponent,

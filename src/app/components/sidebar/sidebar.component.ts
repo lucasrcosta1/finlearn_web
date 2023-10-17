@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ import { LoginService } from 'src/app/service/login/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  isSidebarToggled: boolean;
+  isSidebarToggled = false;
   activeRoute = "";
   username = "";
   email = "";
@@ -21,7 +22,7 @@ export class SidebarComponent {
     private el: ElementRef,
   ) {
 
-    this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+    // this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
 
   }
 
@@ -124,11 +125,11 @@ export class SidebarComponent {
 
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event): void {
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event): void {
 
-    this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
-  }
+  //   this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+  // }
 
   /**
    * Get the actual tab and add mark it as active.
@@ -209,8 +210,14 @@ export class SidebarComponent {
    */
   private _checkWhetherSidebarShoudBeClosedBasedOnScreenWidth (windowWidth: number): boolean {
 
-    if (windowWidth >= 992) return true;
-    else return false;
+    const actualPath = (window.location.pathname).split("/");
+    if (actualPath[1] != environment.AUTHENTICATION) {
+      if (windowWidth >= 992) {
+        return true;
+      } else {
+       return false;
+      }
+    } return false;
 
   }
 
