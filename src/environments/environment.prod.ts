@@ -7,6 +7,7 @@ const SUBJECT             = 'Subject=';
 const BODY                = 'body=';
 
 const ACCESS              = 'finlearn-api-production.up.railway.app/v1';
+const AUTH_ROUTE          = "auth";
 
 export const environment = {
   production: true,
@@ -19,6 +20,7 @@ export const environment = {
   FB            : HTTP_API + 'facebook.com',
   TWITTER       : HTTP_API + 'twitter.com',
   MAIL_TO       : MAIL_TO + PROJECT_EMAIL + SUBJECT + 'Email de contato&' + BODY + "Digite o motivo do contato.",
+  AUTHENTICATION: AUTH_ROUTE,
 
   HTTP_REQUEST : HTTP_API + ACCESS,
 
