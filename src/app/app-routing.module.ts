@@ -7,7 +7,6 @@ import { AuthGuard } from './components/guards/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
-import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { RouteTestComponent } from './components/route-test/route-test.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';

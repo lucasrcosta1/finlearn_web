@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
 import { FrequentQuestion } from 'src/app/models/contact/FrequentQuestion.model';
+import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -111,4 +112,72 @@ export class ApiService {
     );
 
   }
+
+  /**
+   * Authenticate user.
+   * @param user 
+   * @todo Organize method.
+   */
+  login (user: User) {
+
+    const route   = '/auth/login';
+    // const body    = `username=${encodeURIComponent(user.username)}&password=${encodeURIComponent(user.password)}`;
+    // const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    // this._http.post<FrequentQuestion[]>(environment.HTTP_REQUEST + route, requestBody, {headers, params});
+
+  }
+
+  /**
+   * Create user.
+   * @param user 
+   * @todo Organize method.
+   */
+  createUser (user: User) {
+    const route = '/user/create';
+    // // console.log( this.registerForm.value.role)
+    // let requestBody: User = {
+    //   name: this.registerForm.value.name,
+    //   email: this.registerForm.value.email,
+    //   password: this.registerForm.value.password,
+    //   role: "NORMAL_USER",
+    //   telephone: this.registerForm.value.telephone
+    // };
+    // // console.log(user);
+
+    // let firstR = await this._api.post(route, requestBody, null);
+    // // console.log(firstR);
+    // if (firstR.getSuccess()) {
+    //   this.spinner.emit(false);
+    //   route = '/auth/login';
+    //   const body = `username=${encodeURIComponent(requestBody.email)}&password=${encodeURIComponent(requestBody.password)}`;
+    //   const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    //   let secondR = await this._api.post(route, body, null, headers);
+    //   // console.log(secondR);
+    //   if (secondR.getSuccess()) {
+    //     // console.log(secondR);
+
+    //     localStorage.setItem('id', secondR.getResponse()?.user.id);
+    //     localStorage.setItem('email', secondR.getResponse()?.user.email);
+    //     localStorage.setItem('token', secondR.getResponse()?.access_token);
+    //     localStorage.setItem('username', secondR.getResponse()?.user.name);
+
+    //     this._loginService.setUser(new User(secondR.getResponse().user));
+
+    //     // this.spinner.emit(true);
+    //     // this._router.navigate(['/']);
+
+    //     this._snackBarService.openSnackBar(2, `Bem vindo ${secondR.getResponse()?.user.name}!`);
+    //   } else {
+    //     this._snackBarService.openSnackBar(3,'Internal Error');
+    //   }
+    // } else {
+    //   this._snackBarService.openSnackBar(3, firstR.getResponse().message);
+    // }
+
+    // this.spinner.emit(true);
+    // this._router.navigate(['/']);
+
+  }
+
 }

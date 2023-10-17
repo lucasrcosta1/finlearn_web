@@ -28,10 +28,6 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
-import { SimpleRegisterComponent } from './components/authentication/simple-register/simple-register.component';
-import { SimpleLoginComponent } from './components/authentication/simple-login/simple-login.component';
-import { SimpleAuthComponent } from './components/authentication/simple-auth/simple-auth.component';
-import { SimpleAuthBgComponent } from './components/authentication/simple-auth-bg/simple-auth-bg.component';
 import { PracticeComponent } from './components/practice/practice.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
@@ -73,10 +69,6 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
     HomeComponent,
     HeaderComponent,
     SuporteComponent,
-    SimpleRegisterComponent,
-    SimpleLoginComponent,
-    SimpleAuthComponent,
-    SimpleAuthBgComponent,
     CommunityComponent,
     PracticeComponent,
     LearnComponent,
