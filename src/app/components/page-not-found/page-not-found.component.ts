@@ -12,6 +12,15 @@ export class PageNotFoundComponent {
     this._runTypingEffect();
   }
 
+  /**
+   * Redirect user to home page.
+   */
+  backToHome (): void {
+
+    window.location.replace("/");
+
+  }
+
   private _runTypingEffect(): void {
     const typingEffectElement = document.getElementById('typing-effect');
     const textToType = '...';
