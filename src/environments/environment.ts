@@ -15,10 +15,6 @@ const AUTH_ROUTE          = "auth";
 
 export const environment = {
   production: false,
-  login: {
-    email: 'adm@adm.com.br',
-    password: 'Admin123@',
-  },
 
   INSTA         : HTTP_API + 'instagram.com',
   FB            : HTTP_API + 'facebook.com',
