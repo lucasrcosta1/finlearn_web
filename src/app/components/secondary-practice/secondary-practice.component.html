@@ -1,4 +1,4 @@
-<body>
+<!-- <body>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
   <div class="row bg justify-content-center">
@@ -12,6 +12,23 @@
     </div>
     <div class="col-6">
       <img src="/assets/images/pratique/bro.svg" alt="" width="550" height="400" loading="lazy">
+    </div>
+  </div>
+</body> -->
+<body>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <div class="bg">
+    <div class="first-content">
+      <img [src]="image" alt="" class="simulate-image" loading="lazy">
+    </div>
+    <div class="second-content">
+      <div class="practice-container">
+          <h1 class="practice-title">Simulador de Investimentos</h1>
+          <p class="practice-content">O simulador de investimentos calcula de forma simples e descomplicada qual será
+            o retorno do seu dinheiro após uma aplicação a uma determinada taxa e período.</p>
+          <button id="simulateBtn" type="button" class="green-confirm-button" (click)="goTo(1)"><b>SIMULAR</b></button>
+      </div>
     </div>
   </div>
 </body>

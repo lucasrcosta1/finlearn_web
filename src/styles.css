@@ -343,6 +343,13 @@
   color: white;
   border-radius: 5px;
   padding: 5px 30px 5px 30px;
+  box-shadow: 5px 5px 5px #bdbdbd;
+
+}
+
+.green-confirm-button:hover {
+
+  background-color: var(--classic-color);
 
 }
 
