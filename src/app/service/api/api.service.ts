@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
 import { FrequentQuestion } from 'src/app/models/contact/FrequentQuestion.model';
+import { InvestType } from 'src/app/models/practice/InvestType.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
@@ -108,6 +109,32 @@ export class ApiService {
           {id: 6, name: "Usuário 7", subject: " Pergunta 7", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
           {id: 7, name: "Usuário 8", subject: " Pergunta 8", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
         ]);
+      }
+    );
+
+  }
+
+  /**
+   * Get investment types from api.
+   * @returns 
+   */
+  getInvestmentTypes (): Promise<Map<number, InvestType>> {
+
+    return new Promise(
+      resolve => {
+        resolve(
+          new Map<number, InvestType>([
+            [0, {id: 0, name: "Tesouro Selic", redemptionPeriod: "1 ano", interestRate: 0.1275}],
+            [1, {id: 1, name: "Tesouro IPCA", redemptionPeriod: "3 anos", interestRate: 0.465}],
+            [2, {id: 2, name: "Tesouro Prefixado", redemptionPeriod: "3 anos", interestRate: 0.3348}],
+            [3, {id: 3, name: "CDB - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.15}],
+            [4, {id: 4, name: "Letra de Crédito Imobiliário - liquidez diária", redemptionPeriod: "1 ano", interestRate: 13.65}],
+            [5, {id: 5, name: "Letra de Crédito do Agronegócio - liquidez diária", redemptionPeriod: "1 ano", interestRate: 13.65}],
+            [6, {id: 6, name: "Certificado de Recebíveis Imobiliários - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.12}],
+            [7, {id: 7, name: "Certificado de Recebíveis do Agronegócio - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.13}],
+            [8, {id: 8, name: "Poupança - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.45}],
+          ])
+        );
       }
     );
 

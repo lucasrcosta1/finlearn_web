@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DropdownQuestionComponent } from './dropdown-question.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('DropdownQuestionComponent', () => {
   let component: DropdownQuestionComponent;
@@ -8,7 +9,8 @@ describe('DropdownQuestionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DropdownQuestionComponent ]
+      declarations: [ DropdownQuestionComponent ],
+      imports: [MatSnackBarModule],
     })
     .compileComponents();
 

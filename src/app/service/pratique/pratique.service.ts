@@ -141,28 +141,28 @@ export class PratiqueService {
   public setRate (rate: string): void {
     this.investment.rate = rate;
   }
-  public getRate (): string | undefined {
+  public getRate (): string | null {
     return this.investment.rate;
   }
 
   public setInitialInvestment (initial_investment: number): void {
     this.investment.initial_investment = initial_investment;
   }
-  public getInitialInvestment (): number | undefined {
+  public getInitialInvestment (): number | null {
     return this.investment.initial_investment;
   }
 
   public setDuration (duration: number): void {
     this.investment.duration = duration;
   }
-  public getDuration (): number | undefined {
+  public getDuration (): number | null {
     return this.investment.duration;
   }
 
   public setMonthlyInvestment (monthly_investment: number): void {
     this.investment.monthly_investment = monthly_investment;
   }
-  public getMonthlyInvestment (): number | undefined {
+  public getMonthlyInvestment (): number | null {
     return this.investment.monthly_investment;
   }
 }

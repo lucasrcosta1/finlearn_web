@@ -25,7 +25,7 @@ describe('FrequentQuestionsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should fetch api', async () => {
+  it('should fetch api to get frequent questions', async () => {
     const apiService = TestBed.inject(ApiService);
 
     const expectedPattern = {
