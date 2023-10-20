@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InvestType } from 'src/app/models/practice/InvestType.model';
+import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
   selector: 'app-practice',
@@ -12,21 +13,6 @@ export class PracticeComponent implements OnInit {
   investType = new InvestType();
   fieldInvestType = new Map<number, InvestType>();
   currentStep = 1;
-
-  goBack() {
-    if (this.currentStep > 1) {
-      this.currentStep--; // Decrement the step
-    }
-  }
-
-  goForward() {
-    if (this.currentStep < 4) {
-      this.currentStep++; // Increment the step
-    }
-  }
-
-
-
   investmentForm: FormGroup;
   investmentOptions = [
     { type: 'cdb', interestRate: 6, compoundedPeriodsPerYear: 12 },
@@ -41,14 +27,29 @@ export class PracticeComponent implements OnInit {
   simulationResult: any;
   timePeriod: number = 0;
 
-  constructor(private fb: FormBuilder) {
+  constructor (
+    private _apiService: ApiService,
+    private fb: FormBuilder,
+  ) {
     this.investmentForm = this.createForm();
   }
 
-  ngOnInit() {
-    this.createForm();
-    this.fieldInvestType = this._fillFields(this.investType);
+  async ngOnInit() {
+    
+    this.fieldInvestType =  await this._apiService.getInvestmentTypes();
 
+  }
+
+  goBack() {
+    if (this.currentStep > 1) {
+      this.currentStep--; // Decrement the step
+    }
+  }
+
+  goForward() {
+    if (this.currentStep < 4) {
+      this.currentStep++; // Increment the step
+    }
   }
 
 
@@ -73,7 +74,7 @@ export class PracticeComponent implements OnInit {
       this.fieldInvestType.forEach(
         v => {
           if (v.interestRate == this.investmentForm.value.investmentType) {
-            this.investmentForm.value.investmentType = v.value;
+            this.investmentForm.value.investmentType = v.id;
           }
         }
       );
@@ -130,29 +131,6 @@ export class PracticeComponent implements OnInit {
     } else {
         return 'col-md-6'
     }
-  }
-
-  private _fillFields (investType: InvestType | Set<InvestType>): Map<number,InvestType> {
-    let fieldInvestType = new Map<number,InvestType>();
-
-    if (investType instanceof InvestType) {
-      investType.name = "CDB";
-      investType.value = "cdb";
-      investType.interestRate = "6% ao ano";
-      fieldInvestType.set(0,new InvestType(investType));
-
-      investType.name = "Poupança";
-      investType.value = "poupanca";
-      investType.interestRate = "4,5% ao ano";
-      fieldInvestType.set(1,new InvestType(investType));
-
-      investType.name = "Fundo de investimento";
-      investType.value = "fundo";
-      investType.interestRate = "8% ao ano";
-      fieldInvestType.set(2,new InvestType(investType));
-    }
-
-    return fieldInvestType;
   }
 
   timeInputChanged(e) {

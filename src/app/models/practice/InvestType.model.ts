@@ -1,11 +1,13 @@
 export class InvestType {
-  name        : string;
-  value       : string;
-  interestRate: string;
+  id          : number | null;
+  name        : string | null;
+  redemptionPeriod   : string | null;
+  interestRate: number | null;
 
   constructor (investType?: InvestType) {
-    this.name         = investType?.name         || '';
-    this.value        = investType?.value        || '';
-    this.interestRate = investType?.interestRate || '';
+    this.id           = investType?.id           || null;
+    this.name         = investType?.name         || null;
+    this.redemptionPeriod    = investType?.redemptionPeriod    || null;
+    this.interestRate = investType?.interestRate || null;
   }
 }
