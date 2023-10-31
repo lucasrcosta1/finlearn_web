@@ -1,23 +1,23 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { HttpClientModule } from '@angular/common/http'; 
-// import { PracticeResultComponent } from './practice-result.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// describe('PracticeResultComponent', () => {
-//   let component: PracticeResultComponent;
-//   let fixture: ComponentFixture<PracticeResultComponent>;
+import { PracticeResultComponent } from './practice-result.component';
 
-//   beforeEach(async () => {
-//     await TestBed.configureTestingModule({
-//       declarations: [PracticeResultComponent],
-//       imports: [HttpClientModule], 
-//     }).compileComponents();
+describe('PracticeResultComponent', () => {
+  let component: PracticeResultComponent;
+  let fixture: ComponentFixture<PracticeResultComponent>;
 
-//     fixture = TestBed.createComponent(PracticeResultComponent);
-//     component = fixture.componentInstance;
-//     fixture.detectChanges();
-//   });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ PracticeResultComponent ]
+    })
+    .compileComponents();
 
-//   it('should create', () => {
-//     expect(component).toBeTruthy();
-//   });
-// });
+    fixture = TestBed.createComponent(PracticeResultComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

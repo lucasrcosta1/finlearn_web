@@ -1,0 +1,138 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div>
+    <button id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button>
+</div>
+
+<div id="content" class="row" style="padding: 20px;">
+    <div class="col-8 d-flex course">
+        <div class="row" class="justify-content-between text-align-center">
+            <div>
+                <div class="d-flex justify-content-center text-align-center">
+                    <img src="/assets/images/learn/logoCurso.svg" alt="logo curso títulos públicos"
+                        style="height: 10vh;">
+                    <h2 style="padding: 15px;">Títulos Públicos</h2>
+                </div>
+                <div class="d-flex justify-content-center text-align-center">
+                    <i class="fa fa-bar-chart" style="font-size:22px; color: red;"></i>
+                    <p style="padding-right: 5px;">Intermediário</p>
+                    <i class="fa fa-clock-o" style="font-size:25px; color: green;"></i>
+                    <p style="padding-left: 5px;">100 horas</p>
+                </div>
+            </div>
+            <div style="text-align: justify; font-size: 13.5px;">
+                Hora de aprender como funciona o mercado de títulos públicos! Se você já pensou em colocar suas
+                economias em um
+                investimento fora do tradicional das instituições bancárias, chegou a hora de conhecer os títulos
+                públicos. Além de
+                contar com uma rentabilidade atrativa e um baixo risco de crédito e de liquidez...
+            </div>
+            <div>
+                <button class="btn btn-primary" type="button" (click)="goToClass('aula_01')"><i class="fa fa-play"
+                        style="padding: 3px;"></i>Continuar de onde parei</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4 statics">
+        <div class="row" style="height: 35vh;text-align: center; justify-content: center;">
+            <h3>Progresso no curso</h3>
+            <div>
+                <img src="/assets/images/aprenda/progresso.svg" alt="Gráfico do progresso no curso">
+            </div>
+            <div style="padding: 7px;">
+                <button class="btn btn-primary" type="button">Estatísticas</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="accordion" id="accordionModules">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <i class="fa fa-check-square" style="font-size:24px; padding:5px;"></i> Módulo #1
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                data-bs-parent="#accordionModules">
+                <div class="accordion-body">
+                    Esse módulo já foi concluído.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="fa fa-check-square" style="font-size:24px; padding:5px;"></i> Módulo #2
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionModules">
+                <div class="accordion-body">
+                    Esse módulo já foi concluído.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fa fa-square-o" style="font-size:24px; padding:5px;"></i>Módulo #3
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+                data-bs-parent="#accordionModules">
+                <div class="row accordion-body module3">
+                    <div class="row container aula">
+                        <div class="col-1 logoxp">
+                            <img src="/assets/images/learn/xpLogo.svg" alt="Logo Xp">
+
+                        </div>
+                        <div class="col-9">
+                            <p><b>Como comprar títulos por meio da XP</b></p>
+                            <div>
+                                <div class="d-flex">
+                                    <i class="fa fa-bar-chart" style="font-size:22px; color: red;"></i>
+                                    <p style="padding-right: 5px;">Intermediário</p>
+                                    <i class="fa fa-clock-o" style="font-size:25px; color: gray;"></i>
+                                    <p style="padding-left: 5px;">3 horas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2" style="margin-top: 16px;">
+                            <button class="btn btn-secondary" type="button" (click)="goToClass('aula_01')">
+                                <i class="fa fa-play" style="padding: 3px;"></i>Rever aula</button>
+                        </div>
+                    </div>
+                    <div class="row container aula">
+                        <div class="col-1">
+                            <img src="/assets/images/learn/interLogo.svg" alt="Logo Inter" style="margin-top: 16px;">
+                        </div>
+                        <div class="col-9">
+                            <p><b>Como comprar títulos por meio do Inter</b></p>
+                            <div>
+                                <div class="d-flex">
+                                    <i class="fa fa-bar-chart" style="font-size:22px; color: red;"></i>
+                                    <p style="padding-right: 5px;">Intermediário</p>
+                                    <i class="fa fa-clock-o" style="font-size:25px; color: #059F30;"></i>
+                                    <p style="padding-left: 5px;">3 horas</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2" style="margin-top: 16px;">
+                            <button class="btn btn-primary" type="button" (click)="goToClass('aula_01')"><i class="fa fa-play"
+                                    style="padding: 3px;"></i>Iniciar aula</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

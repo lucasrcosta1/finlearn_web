@@ -8,12 +8,12 @@ import { PratiqueService } from 'src/app/service/pratique/pratique.service';
   styleUrls: ['./practice-result.component.css']
 })
 export class PracticeResultComponent {
-  
-  duration: number;
-  initial_investment: string;
-  monthly_investment: string;
-  final_return: string
-  rate: string;
+  public duration: number;
+  public initial_investment: string;
+  public monthly_investment: string;
+  public final_return: string
+  public rate: string;
+
 
   constructor (
     private _pratiqueService: PratiqueService,
@@ -29,7 +29,7 @@ export class PracticeResultComponent {
    * Send user to the requested page.
    * @param page
    */
-  goTo (page: number): void {
+  public goTo (page: number): void {
     this._pratiqueService.goTo(page);
   }
 

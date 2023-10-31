@@ -7,8 +7,8 @@ import { PracticeResultComponent } from '../aux_components/practice/practice-res
 
 const routes: Routes = [
   { path: 'practice/type', component: PracticeTypeComponent },
-  { path: 'practice/:id/investmentInfo', component: PracticeInvestmentInfoComponent },
-  { path: 'practice/:id/investmentInfo/result', component: PracticeResultComponent },
+  { path: 'practice/type/investmentInfo', component: PracticeInvestmentInfoComponent },
+  { path: 'practice/type/investmentInfo/result', component: PracticeResultComponent },
 ];
 
 @NgModule({

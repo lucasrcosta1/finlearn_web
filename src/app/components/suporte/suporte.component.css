@@ -1,4 +1,4 @@
-/* * {
+* {
     font-family: 'Montserrat';
     margin: 0;
     padding: 0;
@@ -97,30 +97,4 @@ button.accordion-button:hover{
 
 div.accordion-collapse{
     font-size: 16px;
-} */
-
-
-/* ----------- */
-
-
-.card-container {
-
-    border: 1px solid #bdbdbd; 
-    border-radius: 10px; 
-    box-shadow: 10px 10px 20px gray; 
-    padding: 0; 
-    margin: 20px 20px 30px 20px; 
-
-}
-
-@media (max-width: 400px) {
-    
-    .card-container {
-
-        margin: 20px 10px 20px 10px; 
-
-    }
-
-
-
 }

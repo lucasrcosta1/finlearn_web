@@ -59,6 +59,17 @@ export class LoginService {
     return this.http.post(environment.HTTP_REQUEST + '/user/create', user);
   }
 
+
+  /**
+   * Connect to the API clicked.
+   * @todo Connect with the API (Google, Fb, Microsoft, Apple) instead of returning user in env var.
+   * @param api
+   * @returns
+   */
+  public connectApiClicked (api: string): Login {
+    return environment.login;
+  }
+
   /**
    * Once login was successfully checked, user is redirect to the home page.
    */
