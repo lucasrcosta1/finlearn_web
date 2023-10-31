@@ -1,40 +1,22 @@
 <body>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-  <form [formGroup]="investmentInfoForm" (ngSubmit)="onSubmit()">
-    <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;">
-      <div class="row" id="pratique1">
-        <div id="pergunta1">
-          <p>Qual tipo de investimento você gostaria de realizar?</p>
-        </div>
-        <div class="d-flex justify-content-between">
-          <div style="padding: 20px;">
-            <button id="opcao1" type="button" (click)="setRate('cdb')">
-              <img style="padding: 20px;" src="/assets/images/pratique/bank.svg" alt="bank icon">
-              <p class=""><b style="font-size: 20px;">CDB</b><br> taxa anual: 6%</p>
-            </button>
+  <form [formGroup]="choosenInvestmentForm" (ngSubmit)="onSubmit()">
+    <div class="row practice-type-container m-0 p-0">
+      <div class="row options-container gray-square">
+        <div class="gray-square option-container" *ngFor="let fieldInvestmentType of fieldInvestmentTypes" [id]="'option-container'+fieldInvestmentType.id" (click)="investmentTypeSelected(fieldInvestmentType.id)" [ngClass]="{'investment-selected': fieldInvestmentType.clicked == true}">
+          <div class="row d-flex justify-content-end align-items-center">
+            <img [src]="fieldInvestmentType.investmentLogoPath" [alt]="fieldInvestmentType.name" class="option-image">
           </div>
-          <div style="padding: 20px;">
-            <button id="opcao2" type="button" (click)="setRate('poupanca')">
-              <img class="" style="padding: 20px;" src="/assets/images/pratique/pig.svg" alt="bank icon">
-              <p class=""><b style="font-size: 20px;">Poupança</b><br> taxa anual: 4,5%</p>
-            </button>
-          </div>
-          <div style="padding: 20px;">
-            <button id="opcao3" type="button" (click)="setRate('fundo')">
-              <img class="" style="padding: 13px;" src="/assets/images/pratique/success.svg" alt="bank icon">
-              <p><b style="font-size: 20px;">Fundo de<br> investimento</b><br> taxa anual: 8%</p>
-            </button>
+          <div class="row">
+            <span class="option-title break-overflow-with-ellipsis"><b>{{ fieldInvestmentType.name }}</b></span>
+            <span class="option-rate break-overflow-with-ellipsis">{{ calculateInterestRate(fieldInvestmentType) }}</span>
           </div>
         </div>
-        <div class="d-flex justify-content-between" style="padding: 18px;">
-          <div>
-            <button class="voltar" type="button" (click)="goTo(0)">VOLTAR</button>
-          </div>
-          <div>
-            <button class="avancar" type="submit" [disabled]="btnStatus()"><b>AVANÇAR</b></button>
-          </div>
-        </div>
+      </div>
+      <div class="m-0 p-0 d-flex justify-content-between align-items-center" style="max-width: 80%;">
+        <button (click)="goTo(0)" class="white-go-back-button"><b>VOLTAR</b></button>
+        <button type="submit" class="green-confirm-button" *ngIf="clicked"><b>SALVAR</b></button>
       </div>
     </div>
   </form>

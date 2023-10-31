@@ -1,9 +1,21 @@
+body {
+
+  margin: 0;
+  padding: 0;
+
+}
+
 .main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 100vh;
-  /* background-color: antiquewhite; */
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
 }
 
 .content {

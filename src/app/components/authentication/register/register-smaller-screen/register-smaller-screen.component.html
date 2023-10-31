@@ -1,0 +1,67 @@
+<body>
+
+  <div class="auth-container" >
+
+    <div class="row card d-flex justify-content-center align-items-center m-0 p-0">
+      <div class="p-3 d-flex justify-content-center align-items-center">
+        <img [src]="imagePath" class="logo-style">
+      </div>
+      <div class="row m-0 p-0 py-1 d-flex title-header-color">
+          <label class="tab-title text-center">{{tabTitle}}</label>
+      </div>
+          
+      <div class="row my-3">
+        <app-login-through ></app-login-through>
+        <app-line></app-line>
+    </div>
+    <form class="m-0 px-3" [formGroup]="registerForm" (ngSubmit)="submit()">
+        <div class=" mb-2">
+          <input type="text" id="registerSmallerScreenFullname" name="fullName" formControlName="fullname" placeholder="Nome completo*" class="classic-input">
+          <span class="red bold ft-xxx-small hide" id="registerSmallerScreenFullname-error">Digite um nome válido.</span>
+        </div>
+        <div class="mb-2">
+          <input type="text" id="registerSmallerScreenPhone" name="phone" formControlName="phone" placeholder="Telefone*" class="classic-input" #telephoneInput (input)="applyPhoneMask(telephoneInput)" maxlength="14" placeholder="(xx) x xxxx-xxxx">
+          <span class="red bold ft-xxx-small hide" id="registerSmallerScreenPhone-error">Digite um telefone válido (XX) XXXXX-XXXX.</span>
+        </div>
+        <div class="row mb-2 justify-content-between">
+          <div style="max-width: 48%;">
+            <input type="email" id="registerSmallerScreenUsername" name="username" formControlName="username" placeholder="Email*"  class="classic-input">
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenNonValidUsername-error">Digite um email válido.</span>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenDoNotMatchUsername-error">Emails não coincidem.</span>
+          </div>
+          <div style="max-width: 48%;">
+            <input type="email" id="registerSmallerScreenUsernameCheck" name="usernameCheck" formControlName="usernameCheck" placeholder="Confirme seu email*" class="classic-input">
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenNonValidUsernameCheck-error">Digite um email válido.</span>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenDoNotMatchUsernameCheck-error">Emails não coincidem.</span>
+          </div>
+        </div>
+        <div class="row mb-2 justify-content-between">
+          <div style="max-width: 48%;">
+            <div class="classic-input" id="registerSmallerScreenPasswordDiv">
+              <input id="registerSmallerScreenPassword" type="password" name="password" formControlName="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
+            </div>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenNonValidPassword-error">Digite uma senha válida.</span>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenDoNotMatchPassword-error">Senhas não coincidem.</span>
+          </div>
+          <div style="max-width: 48%;">
+            <div class="classic-input" id="registerSmallerScreenPasswordCheckDiv">
+              <input id="registerSmallerScreenPasswordCheck" type="password" name="passwordCheck" formControlName="passwordCheck" placeholder="Confirme sua senha*" class="no-border-for-input w-100 h-100">
+            </div>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenNonValidPasswordCheck-error">Digite uma senha válida.</span>
+            <span class="red bold ft-xxx-small hide" id="registerSmallerScreenDoNotMatchPasswordCheck-error">Senhas não coincidem.</span>
+          </div>
+        </div>
+        <button type="submit" class="login-register-btn">CADASTRAR</button>
+    </form>
+
+
+    <div class="row p-3">
+      <div class=" d-flex justify-content-start align-items-center ">
+        <button class="no-border-for-input black-border-btn" (click)="enableLoginPage()">Já tenho conta</button>
+      </div>
+    </div>
+      
+    </div>
+
+  </div>
+</body>

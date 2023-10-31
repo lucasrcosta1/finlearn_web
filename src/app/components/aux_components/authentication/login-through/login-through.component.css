@@ -1,0 +1,66 @@
+body {
+
+    margin: 0;
+    padding: 0;
+
+}
+
+.circle {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+.border-red {
+
+    border: 1px solid rgb(167, 35, 35);
+
+}
+  
+.border-blue {
+    
+    border: 1px solid rgb(88, 88, 220);
+
+}
+  
+.border-gray {
+    
+    border: 1px solid rgb(173, 173, 173);
+
+}
+
+.icon-size {
+  
+    font-size: 12px;
+
+}
+
+@media (max-width: 300px) {
+
+    .circle {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .icon-size {
+  
+      font-size: 9px;
+  
+    }
+
+}
+
+@media (max-width: 560px) {
+
+    .circle {
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .icon-size {
+  
+      font-size: 10px;
+  
+    }
+
+}

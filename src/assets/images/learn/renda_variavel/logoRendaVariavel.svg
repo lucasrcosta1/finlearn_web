@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512 512" xml:space="preserve">
+<circle style="fill:#E6E5E5;" cx="256" cy="256" r="256"/>
+<g>
+	<path style="fill:#232323;" d="M459.96,398.704v-275.96c0-6.6-5.4-12-12-12H64.112c-6.6,0-12,5.4-12,12v275.952
+		C52.112,398.704,460.968,398.704,459.96,398.704z"/>
+	<rect x="67.112" y="125.744" style="fill:#232323;" width="377.84" height="257.92"/>
+</g>
+<rect x="16" y="398.704" style="fill:#D8D8D8;" width="479.92" height="7.504"/>
+<polygon style="fill:#AAAAAA;" points="472.008,421.192 40.08,421.192 16.08,406.2 496,406.2 "/>
+<g style="opacity:0.7;">
+	<path style="fill:#FFFFFF;" d="M296.304,398.704h-80.688c0.768,4.208,4.52,7.504,9.216,7.504h62.248
+		C291.784,406.2,295.544,402.912,296.304,398.704z"/>
+</g>
+<g>
+	<rect x="368" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="316.8" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="265.6" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="214.4" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="163.2" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="112" y="351.752" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="368" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="316.8" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="265.6" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="214.4" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="163.2" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+	<rect x="112" y="149.696" style="fill:#E6E5E5;" width="32" height="8"/>
+</g>
+<rect x="273.6" y="274.72" style="fill:#DB2B42;" width="15.784" height="34.616"/>
+<rect x="299.28" y="254.944" style="fill:#8AD5DD;" width="15.784" height="54.4"/>
+<rect x="324.888" y="232.72" style="fill:#DB2B42;" width="15.784" height="76.656"/>
+<rect x="350.536" y="210.44" style="fill:#8AD5DD;" width="15.784" height="98.912"/>
+<rect x="376.16" y="195.6" style="fill:#DB2B42;" width="15.784" height="113.744"/>
+<circle style="fill:#E6E5E5;" cx="171.2" cy="254.72" r="60.408"/>
+<path style="fill:#8AD5DD;" d="M171.2,254.72l-50.528,33.088c10.792,16.448,29.384,27.32,50.528,27.32
+	c33.36,0,60.408-27.048,60.408-60.408L171.2,254.72L171.2,254.72z"/>
+<path style="fill:#DB2B42;" d="M192.52,198.2l-21.32,56.52h60.408C231.608,228.864,215.36,206.816,192.52,198.2z"/>
+</svg>

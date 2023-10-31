@@ -1,0 +1,27 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="m-lg-5 m-md-5 m-sm-4 m-xs-4 m-2 mt-5 p-0">
+    <div class="row my-2 mx-1 p-0">
+        <span class="d-flex justify-content-start" id="back-button"><i class='fa fa-arrow-left clickable'(click)="goBack()"></i></span>
+    </div>
+    
+    <div class="container">
+        <div class="component1 border-around" style="min-width: 65%;">
+            <app-topic-description [topic]="topic" [stoppedAt]="this.topic ? this.topic.stoppedAt : null" (triggerLectureDesiredToBeWatched)="redirectToLecture($event)">
+            </app-topic-description>
+        </div>
+        <div class="component2 border-around d-flex align-items-center justify-content-center" style="min-width: 30%; ">
+            <app-topic-stats [overallProgress]="topic ? topic.overallProgress : null"></app-topic-stats>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="border-around w-100" style="margin: 5px;">
+            <app-module-accordeon [topic]="topic" (triggerLectureDesiredToBeWatched)="redirectToLecture($event)"></app-module-accordeon>
+        </div>
+    </div>
+
+</div>

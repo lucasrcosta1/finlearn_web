@@ -1,0 +1,21 @@
+<body>
+        
+    <section id="login-section">
+        <div class="smaller-screens">
+            <app-login-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-smaller-screen>
+        </div>
+        <div class="bigger-screens">
+            <app-login-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerRegistry)="handleRegistrationRequest($event)"></app-login-bigger-screen>
+        </div>
+    </section>
+
+    <section id="register-section">
+        <div class="smaller-screens">
+            <app-register-smaller-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-smaller-screen>
+        </div>
+        <div class="bigger-screens">
+            <app-register-bigger-screen [imagePath]="logoImagePath" [tabTitle]="tabTitle" (triggerLogin)="handleLoginRequest($event)"></app-register-bigger-screen>
+        </div>
+    </section>
+
+</body>

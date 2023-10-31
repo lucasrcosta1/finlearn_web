@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/service/login/login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,15 +10,20 @@ import { LoginService } from 'src/app/service/login/login.service';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  activeRoute: string = "";
+  isSidebarToggled = false;
+  activeRoute = "";
   username = "";
   email = "";
 
   constructor(
     private _http: HttpClient,
     private _router: Router,
-    private _loginService: LoginService
+    private _loginService: LoginService,
+    private el: ElementRef,
   ) {
+
+    // this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+
   }
 
   ngOnInit (): void {
@@ -53,16 +59,41 @@ export class SidebarComponent {
     this._getLabelActive();
   }
 
+  /**
+   * Set active route.
+   * @param route 
+   */
   setActiveRoute(route: string): void {
     if (route == "/") route = "/home";
     this.activeRoute = route;
   }
 
-  togglePopUp (): void {
-    let popup = document.getElementById("user-popup");
+  /**
+   * Toogle user popup.
+   */
+  openUserPopup (): void {
+
+    const popup = document.getElementById("user-popup");
     if (popup) {
-      popup.style.display = (popup.style.display === "block") ? "none" : "block";
+
+      popup.style.display = "block";
+    
     } else console.error ("ERROR_DIV_NULL: user-popup");
+
+  }
+
+  /**
+   * Close user edition's popup.
+   */
+  closeUserPopup (): void {
+
+    const popup = document.getElementById("user-popup");
+    if (popup) {
+
+      popup.style.display = "none";
+    
+    } else console.error ("ERROR_DIV_NULL: user-popup");
+
   }
 
   logout () {
@@ -70,6 +101,35 @@ export class SidebarComponent {
     this.setActiveRoute("/");
     this._loginService.logout();
   }
+
+  openSidebar(): void {
+    
+    this.isSidebarToggled = true;
+
+  }
+
+  closeSidebar (): void {
+
+    this.isSidebarToggled = false;
+
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+
+    const divClicked = event.target as HTMLElement;
+    if (divClicked) {
+      this._handleSidebarStatus(divClicked);
+      this._handleUserEditionPopup(divClicked);
+    }
+
+  }
+
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event): void {
+
+  //   this.isSidebarToggled = this._checkWhetherSidebarShoudBeClosedBasedOnScreenWidth(window.innerWidth);
+  // }
 
   /**
    * Get the actual tab and add mark it as active.
@@ -79,4 +139,86 @@ export class SidebarComponent {
     if (url == "page_not_found") this.setActiveRoute('');
     this.setActiveRoute(`/${url}`);
   }
+
+  /**
+   * Handle click on sidebar.
+   * @param divClicked 
+   */
+  private _handleSidebarStatus (divClicked: HTMLElement): void {
+
+    if (this._checkWhetherSidebarShoudBeClosed(divClicked.id)) {
+        
+      this.closeSidebar();
+
+    }
+
+  }
+
+  /**
+   * Handle click on user edition popup.
+   * @param divClicked 
+   */
+  private _handleUserEditionPopup (divClicked: HTMLElement): void {
+
+    this._checkWhetherUserEditionPopupShoudBeClosed(divClicked.id) ? this.openUserPopup() : this.closeUserPopup();
+
+  }
+
+  /**
+   * Check whether sidebar should be closed.
+   * @param id 
+   */
+  private _checkWhetherSidebarShoudBeClosed(id: string): boolean {
+
+    const enableSpotsToBeClicked = ["manage-user-div", "manage-user-icon-div", "manage-user-icon", "manage-user-details-div", "manage-user-details-name", "manage-user-details-email", "user-popup", "sidebar", "show-sidebar", "icon-show-sidebar"];
+    let canBeClicked = true;
+    enableSpotsToBeClicked.forEach (
+      enabledSpot => {
+
+        if (enabledSpot == id) canBeClicked = false; 
+
+      }
+    )
+    return canBeClicked;
+
+  }
+
+  /**
+   * Check whether user edition popup should be closed.
+   * @param id 
+   */
+  private _checkWhetherUserEditionPopupShoudBeClosed (id: string): boolean {
+
+    const enableSpotsToBeClicked = ["manage-user-div", "manage-user-icon-div", "manage-user-icon", "manage-user-details-div", "manage-user-details-name", "manage-user-details-email", "user-popup"];
+    let canBeClicked = false;
+    enableSpotsToBeClicked.forEach (
+      enabledSpot => {
+
+        if (enabledSpot == id) canBeClicked = true;
+
+      }
+    )
+    return canBeClicked;
+
+  }
+
+
+  /**
+   * Check whether sidebar should be closed or opened, based on screen's width.
+   * @param windowWidth 
+   * @returns 
+   */
+  private _checkWhetherSidebarShoudBeClosedBasedOnScreenWidth (windowWidth: number): boolean {
+
+    const actualPath = (window.location.pathname).split("/");
+    if (actualPath[1] != environment.AUTHENTICATION) {
+      if (windowWidth >= 992) {
+        return true;
+      } else {
+       return false;
+      }
+    } return false;
+
+  }
+
 }

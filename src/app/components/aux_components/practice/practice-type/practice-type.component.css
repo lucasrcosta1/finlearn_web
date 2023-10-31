@@ -1,192 +1,102 @@
-.bg {
-  margin: 10rem;
-  margin-left: 0;
-}
-
-h1{
-    font-weight: bolder;
-    font-family: 'Montserrat';
-}
-
-p{
-    font-family: 'Montserrat';
-    font-size: larger;
-    text-align: justify;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    width: 70%;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* #grad{
-    background-color: #059F30;
-    /* For browsers that do not support gradients
-    background-image: linear-gradient(to top right, #059F30, #FFFFFF);
-} */
 
 
-/* Estilo do botão de submit */
-button.simulate {
-    padding: 10px;
-    background-color: #059F30;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 20px;
-    cursor: pointer;
-}
+body {
 
-button.back{
-    position: absolute;
-    width: 114px;
-    height: 48px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-size: 20px;
-    color: #444444;
-    border-radius: 10px;
-}
-
-.practice-result-container{
-    justify-content: center;
-    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 99vh;
+    font-family: "montserrat";
 
 }
 
-img.relative {
-    width: 40vw;
-    position: relative;
-}
+.options-container {
 
-div.absolute {
-    font-size: 17px;
-    width: 18vw;
-    position: absolute;
-    margin-left: 1.5rem;
-    justify-content: center;
-    align-items: center;
-}
-
-.practice-result b{
-    color: #059F30;
-    font-size: larger;
-}
-
-#pratique1{
+    max-height: 80%;
+    width: 80%;
     padding: 30px;
-    background: rgba(5, 159, 48, 0.15);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-y: auto;
+    margin: 0;
+
 }
 
-#pergunta1{
-    font-family: 'Montserrat';
-    font-size: 26px;
-    color: #000000;
+.option-container {
+
+    padding: 20px;
+    margin: 5px;
+    width: 30%;
+    min-width: 100px;
+    min-height: 240px;
+
 }
 
-#opcao1{
-    height: 26vh;
-    width: 15vw;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 19px;
-    align-items: end;
+.option-container:hover {
+
+    background-color: var(--light-green);
+    border: 3px solid black;
+    box-shadow: none;
+    cursor: pointer;
+
 }
 
-#opcao2 {
-    height: 26vh;
-    width: 15vw;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 19px;
+.option-image {
+
+    width: 7vw;
+
 }
 
-#opcao3 {
-    height: 26vh;
-    width: 15vw;
-    background: #FFFFFF;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 19px;
+.option-title {
+
+    font-size: 18px;
+    margin: 5px 0 5px 0;
+
 }
 
-#opcao1:hover, #opcao2:hover,#opcao3:hover{
-    background-color: #b2aaaa74;
+.investment-selected {
+
+    background-color: var(--light-green);
+    box-shadow: none;
+    border: 1px solid black;
+
 }
 
-#opcao1:focus,#opcao2:focus,#opcao3:focus{
-    background-color: rgba(86, 216, 123, 0.15);
-}
+@media (max-width: 560px) {
 
-.voltar{
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    color: #444444;
-    border-radius: 10px;
-    border: none;
-    background-color: rgba(0,0,0,0);
-    padding: 10px;
-}
 
-.avancar{
-    padding: 10px;
-    font-size: 20px;
-    background-color: #059F30;
-    color: #fff;
-    border-radius: 10px;
-    font-weight:normal;
-}
+    .options-container {
+    
+        padding: 15px;
 
-#pratique2{
-    padding: 40px;
-    background: rgba(5, 159, 48, 0.15);
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
-}
+    }
 
-#pergunta2{
-    font-family: 'Montserrat';
-    font-size: 24px;
-    color: #000000;
-}
+    .option-container {
 
-#pergunta3{
-    font-family: 'Montserrat';
-    font-size: 24px;
-    color: #000000;
-    margin-top: 1rem;
-}
+        padding: 10px;
+        margin: 5px;
+        width: 90%;
+        min-width: 100px;
+        min-height: 240px;
 
-#pergunta4 {
-    font-family: 'Montserrat';
-    font-size: 24px;
-    color: #000000;
-}
+    }
 
-.linha{
-    width: 50vw;
-    height: 0px;
-    border: 1px solid #000000;
-}
+    .option-image {
+    
+        width: 30vw;
+    
+    }
 
-input{
-    width: 50vw;
-    font-size: 26px;
-    background: transparent;
-    border: none;
-    font-family: 'Montserrat';
-}
+    .option-title {
 
-#pgh_years {
-    color:#059F30;
-    font-size: 22px;
+        font-size: 16px;
+
+    }
+
+    .option-rate {
+
+        font-size: 12px;
+    
+    }
+
 }

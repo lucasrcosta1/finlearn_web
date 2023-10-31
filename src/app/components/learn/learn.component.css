@@ -9,36 +9,33 @@ html, body {
 }
 
 .card-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 50px;
   margin: 50px;
 }
 
-.card {
+.learn-card {
+  margin-top: 20px; 
+  margin-bottom: 10px;
+  height: 100%; 
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  border: 1px solid var(--grayish);
+  border-radius: 5px;
 }
+
 
 .card-image {
   height: 50%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }
 
 .card-content {
   padding: 20px;
+  overflow: hidden;
 }
 
 .card-content h3 {
@@ -69,4 +66,28 @@ h3 {
 #input-style {
   border: 0;
   outline: none;
+}
+
+.description-container {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.description-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+}
+
+@media (max-width: 300px) {
+
+  #input-style {
+
+    max-width: 80% !important;
+
+  }
+
 }

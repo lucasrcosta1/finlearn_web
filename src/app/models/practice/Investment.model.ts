@@ -1,14 +1,18 @@
 export class Investment {
-  public rate?: string;
-  public initial_investment?: number;
-  public duration?: number;
-  public monthly_investment?: number;
+  id: number | null;
+  idInvestmentType: number | null;
+  initialInvestment: number | null;
+  investmentDurationInYears: number | null;
+  valueInvestedMonthly: number | null;
 
   constructor (investment?: Investment) {
-    this.rate = investment?.rate;
-    this.initial_investment = investment?.initial_investment;
-    this.duration = investment?.duration;
-    this.monthly_investment = investment?.monthly_investment;
+
+    this.id = investment?.id || null;
+    this.idInvestmentType = investment?.idInvestmentType || null;
+    this.initialInvestment = investment?.initialInvestment || null;
+    this.investmentDurationInYears = investment?.investmentDurationInYears || null;
+    this.valueInvestedMonthly = investment?.valueInvestedMonthly || null;
+    
   }
 
 }

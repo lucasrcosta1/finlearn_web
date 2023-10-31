@@ -10,8 +10,10 @@
   --light-green: #5bbc1e77;
   --border-light-btn: #a1b6a1;
   --border-light-btn-whiter: #9de09d;
+  --progress-green: #107859;
   --grayish: #d2d2d2;
   --gray: #6D7279;
+  --blue: #01579B;
   --progress-to-do: #ffffff;
   --progress-done: #869c8d;
   --shadow: #d8d4d4;
@@ -20,10 +22,6 @@
   --news-color: #31315c;
   --practice: #d6d6d6;
 }
-
-/* input {
-  text-indent: 1rem;
-} */
 
 .clickable {
   cursor: pointer;
@@ -39,6 +37,10 @@
 .field-center {
   display: flex;
   justify-content: center;
+}
+
+.ft-xxx-small {
+  font-size: 7px;
 }
 
 .ft-xx-small {
@@ -108,4 +110,449 @@
   margin-top: 1rem;
   border: .1rem solid var(--grayish);
   border-radius: .3rem;
+}
+
+.clear-button {
+
+  outline: none;
+  background-color: transparent;
+  border: 0;
+
+}
+
+
+/* ----------------------------------STYLES: NEW AUTHENTICATION STRUCTURE----------------------------------------------- */
+
+.auth-container {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--classic-color);
+
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  min-height: 100vh; 
+  height: 100vh; 
+  max-height: 100vh; 
+
+  min-width: 100vw; 
+  width: 100vw; 
+  max-width: 100vw; 
+
+}
+
+.card {
+  background-color: white;
+  border-radius: 0;
+  box-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+  max-width: 80%;
+  width: 50%;
+  min-width: 30%;
+  border: none;
+}
+
+.logo-style {
+
+  max-width: 175px;
+
+}
+
+.title-header-color {
+
+  background-color: var(--classic-color);
+
+}
+
+.tab-title {
+
+  color: white; 
+  font-weight: bolder; 
+  font-size: 18px; 
+  padding: 0; 
+  margin: 0;
+
+}
+
+.classic-input {
+
+  outline: none;
+  border: 1px solid var(--gray);
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 10px;
+
+}
+
+.no-border-for-input {
+
+  border: none;
+  outline: none;
+  border-radius: 5px;
+
+}
+
+.login-register-btn {
+
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+  background-color: #673AB7;
+  padding: 5px !important;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+
+}
+
+.login-register-btn:hover {
+
+  background-color: #452381;
+
+}
+
+.specialist {
+  color: green;
+  text-decoration: none;
+}
+
+.specialist:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.forgot-password {
+  color: red;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.black-border-btn {
+
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  background-color: transparent;
+  padding: 10px 25px !important;
+
+}
+.black-border-btn:hover {
+
+  background-color: black;
+  color: white;
+
+}
+
+.red {
+
+  color: red;
+
+}
+
+.green {
+
+  color: var(--primary-color);
+
+}
+
+.white {
+
+  color: white;
+
+}
+
+.gray {
+
+  color: var(--gray);
+
+}
+
+.blue {
+
+  color: var(--blue);
+
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form-bg {
+
+    background-color: white;
+    border-right: 1px solid var(--gray);
+    box-shadow: 3px 1px 30px black;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+
+.hide {
+
+  display: none;
+
+}
+
+.classic-input-textarea {
+
+  outline: none;
+  border: 1px solid var(--gray);
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 10px;
+
+}
+
+.title {
+
+  text-align: center;
+  font-size: 25px;
+  margin: 0;
+  padding: 0;
+
+}
+
+.subtitle {
+
+  text-align: center;
+  font-size: 15px;
+  margin: 0;
+  padding: 0;
+
+}
+
+.green-confirm-button {
+
+  outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 30px 5px 30px;
+  box-shadow: 5px 5px 5px #bdbdbd;
+
+}
+
+.green-confirm-button:hover {
+
+  background-color: var(--classic-color);
+  box-shadow: none;
+
+}
+
+.white-go-back-button {
+
+  outline: none;
+  border: 1px solid #bdbdbd;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 30px 5px 30px;
+  box-shadow: 5px 5px 5px #bdbdbd;
+
+}
+
+.white-go-back-button:hover {
+
+  background-color: var(--grayish);
+  box-shadow: none;
+
+}
+
+.break-overflow-with-ellipsis {
+
+  display: block; 
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.practice-type-container {
+
+    height: 99vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.gray-square {
+
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    box-shadow: 5px 5px 30px gray;
+    background-color: var(--grayish);
+
+}
+
+@media (max-width: 300px) {
+
+  .card {
+
+    width: 90%;
+
+  }
+  
+  .tab-title {
+
+    font-size: 12px; 
+
+  }
+
+  .specialist {
+    
+    font-size: 8px !important;
+
+  }
+  
+  .forgot-password {
+
+    font-size: 8px !important;
+
+  }
+
+  .black-border-btn {
+  
+    font-size: 8px !important;
+    padding: 8px 12px !important;
+  
+  }
+
+}
+
+@media (max-width: 560px) {
+
+  .card {
+
+    min-width: 80%;
+
+  }
+
+  .logo-style {
+
+    max-width: 120px;
+
+  }
+
+  .tab-title {
+
+    font-size: 15px; 
+
+  }
+
+  .classic-input {
+   
+    height: 2rem;
+  
+  }
+
+  .classic-input::placeholder {
+   
+    font-size: 13px;
+  
+  }
+
+  .no-border-for-input::placeholder {
+   
+    font-size: 13px;
+  
+  }
+
+  .login-register-btn {
+   
+    font-size: 13px;
+  
+  }
+
+  .forgot-password {
+
+    font-size: 10px;
+
+  }
+
+  .specialist {
+    
+    font-size: 10px;
+
+  }
+
+  .black-border-btn {
+  
+    font-size: 10px;
+    padding: 8px 13px !important;
+  
+  }  
+
+  .white-go-back-button {
+  
+    font-size: 12px;
+    padding: 5px 15px 5px 15px;
+
+  }
+
+  .green-confirm-button {
+  
+    font-size: 12px;
+    padding: 5px 15px 5px 15px;
+    
+  }
+
+}
+
+@media (max-width: 800px) {
+
+  .card {
+
+    min-width: 70%;
+
+  }
+
+}
+
+@media (min-width: 1300px) {
+
+  .card {
+
+    max-width: 30%;
+
+  }
+
+}
+
+
+
+@media (min-width: 993px) {
+  .smaller-screens {
+      display: none;
+  }
+  .bigger-screens {
+      display: block;
+  }
+}
+
+@media (max-width: 992px) {
+  .smaller-screens {
+      display: block;
+  }
+  .bigger-screens {
+      display: none;
+  }
 }

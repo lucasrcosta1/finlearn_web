@@ -1,7 +1,10 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, firstValueFrom, throwError } from 'rxjs';
+import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
+import { FrequentQuestion } from 'src/app/models/contact/FrequentQuestion.model';
+import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
+import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -9,6 +12,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiService {
   response = "";
+  
+  private investmentTypes = [
+    {id: 0, name: "Tesouro Selic", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 1, interestRate: 0.1275, clicked: false},
+    {id: 1, name: "Tesouro IPCA", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 3, interestRate: 0.465, clicked: false},
+    {id: 2, name: "Tesouro Prefixado", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 3, interestRate: 0.3348, clicked: false},
+    {id: 3, name: "CDB", investmentLogoPath: "/assets/images/pratique/cdb.svg", redemptionPeriodInYears: 1, interestRate: 0.15, clicked: false},
+    {id: 4, name: "Carta de Crédito Imobiliário", investmentLogoPath: "/assets/images/pratique/credit_letter.svg", redemptionPeriodInYears: 1, interestRate: 0.1365, clicked: false},
+    {id: 5, name: "Carta de Crédito do Agronegócio", investmentLogoPath: "/assets/images/pratique/credit_letter.svg", redemptionPeriodInYears: 1, interestRate: 0.1365, clicked: false},
+    {id: 6, name: "Certificado de Recebíveis Imobiliários", investmentLogoPath: "/assets/images/pratique/credit_certified.svg", redemptionPeriodInYears: 1, interestRate: 0.12, clicked: false},
+    {id: 7, name: "Certificado de Recebíveis do Agronegócio", investmentLogoPath: "/assets/images/pratique/credit_certified.svg", redemptionPeriodInYears: 1, interestRate: 0.13, clicked: false},
+    {id: 8, name: "Poupança",investmentLogoPath: "/assets/images/pratique/pig.svg", redemptionPeriodInYears: 1, interestRate: 0.45, clicked: false},
+  ]; //should be temporary until the DB is populated with that information
 
   constructor(
     private _http: HttpClient,
@@ -84,4 +99,131 @@ export class ApiService {
       return apiResponse;
     }
   }
+
+  /**
+   * Get frequent questions from api.
+   * @returns 
+   */
+  getFrequentQuestions (): Promise<FrequentQuestion[]> {
+
+    // const apiUrl = 'https://your-api-url/frequent-questions';
+
+    // return this._http.get<FrequentQuestion[]>(apiUrl);
+    return new Promise(
+      (resolve, error) => {
+        resolve([
+          {id: 0, name: "Usuário 1", subject: " Pergunta 1", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", expanded: false},
+          {id: 1, name: "Usuário 2", subject: " Pergunta 2", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 2, name: "Usuário 3", subject: " Pergunta 3", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 3, name: "Usuário 4", subject: " Pergunta 4", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 4, name: "Usuário 5", subject: " Pergunta 5", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 5, name: "Usuário 6", subject: " Pergunta 6", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 6, name: "Usuário 7", subject: " Pergunta 7", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+          {id: 7, name: "Usuário 8", subject: " Pergunta 8", description: "Aliquam laoreet pellentesque ligula, nec tristique justo gravida at. Vivamus a risus consequat ante vulputate dapibus vel in erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed blandit placerat felis, id condimentum sapien facilisis sed. Nam et diam dui. Proin quis nibh at libero pellentesque sollicitudin vitae fringilla mi. Aliquam et tincidunt augue. Donec eleifend ligula sed mauris posuere, vitae tincidunt mauris porttitor. Nullam tempus augue velit, dignissim semper odio feugiat vel?", answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vestibulum accumsan volutpat. Nulla facilisi. Duis rhoncus iaculis turpis, at congue velit egestas venenatis. Suspendisse eu sapien sed ipsum rutrum efficitur. Fusce luctus elementum hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris euismod interdum purus ut tempor. Suspendisse ut rutrum dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.", expanded: false},
+        ]);
+      }
+    );
+
+  }
+
+  /**
+   * Get investment types from api.
+   * @returns 
+   */
+  getInvestmentTypes (): Promise<InvestmentType[]> {
+
+    return new Promise(
+      resolve => {
+        resolve(this.investmentTypes);
+      }
+    );
+
+  }
+
+  /**
+   * Get investment type based on id
+   * @param id 
+   * @returns 
+   */
+  getInvestmentTypeBasedOnId (id: number): Promise<InvestmentType> {
+
+    return new Promise(
+      resolve => {
+        this.investmentTypes.forEach(
+          investmentType => {
+            if (investmentType.id == id) resolve(investmentType);
+          }
+        );
+      }
+    );
+
+  } 
+
+  /**
+   * Authenticate user.
+   * @param user 
+   * @todo Organize method.
+   */
+  login (user: User) {
+
+    const route   = '/auth/login';
+    // const body    = `username=${encodeURIComponent(user.username)}&password=${encodeURIComponent(user.password)}`;
+    // const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    // this._http.post<FrequentQuestion[]>(environment.HTTP_REQUEST + route, requestBody, {headers, params});
+
+  }
+
+  /**
+   * Create user.
+   * @param user 
+   * @todo Organize method.
+   */
+  createUser (user: User) {
+    const route = '/user/create';
+    // // console.log( this.registerForm.value.role)
+    // let requestBody: User = {
+    //   name: this.registerForm.value.name,
+    //   email: this.registerForm.value.email,
+    //   password: this.registerForm.value.password,
+    //   role: "NORMAL_USER",
+    //   telephone: this.registerForm.value.telephone
+    // };
+    // // console.log(user);
+
+    // let firstR = await this._api.post(route, requestBody, null);
+    // // console.log(firstR);
+    // if (firstR.getSuccess()) {
+    //   this.spinner.emit(false);
+    //   route = '/auth/login';
+    //   const body = `username=${encodeURIComponent(requestBody.email)}&password=${encodeURIComponent(requestBody.password)}`;
+    //   const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    //   let secondR = await this._api.post(route, body, null, headers);
+    //   // console.log(secondR);
+    //   if (secondR.getSuccess()) {
+    //     // console.log(secondR);
+
+    //     localStorage.setItem('id', secondR.getResponse()?.user.id);
+    //     localStorage.setItem('email', secondR.getResponse()?.user.email);
+    //     localStorage.setItem('token', secondR.getResponse()?.access_token);
+    //     localStorage.setItem('username', secondR.getResponse()?.user.name);
+
+    //     this._loginService.setUser(new User(secondR.getResponse().user));
+
+    //     // this.spinner.emit(true);
+    //     // this._router.navigate(['/']);
+
+    //     this._snackBarService.openSnackBar(2, `Bem vindo ${secondR.getResponse()?.user.name}!`);
+    //   } else {
+    //     this._snackBarService.openSnackBar(3,'Internal Error');
+    //   }
+    // } else {
+    //   this._snackBarService.openSnackBar(3, firstR.getResponse().message);
+    // }
+
+    // this.spinner.emit(true);
+    // this._router.navigate(['/']);
+
+  }
+
 }

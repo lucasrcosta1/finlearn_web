@@ -8,6 +8,6 @@ import { DropDown } from 'src/app/models/dropdown/DropDown.model';
 })
 export class DropdownComponent {
   @Input()
-  dropdown?: DropDown;
+  dropdown: DropDown | null = null;
 
 }

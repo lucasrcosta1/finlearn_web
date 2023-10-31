@@ -1,0 +1,59 @@
+<body>
+    <div class="row login-bigger-screen-container m-0 p-0">
+        <div class="col-5 col-xl-4 auth-form-bg">
+            <div class="row d-flex justify-content-center align-items-center p-3">
+                <img [src]="imagePath" class="logo-style">
+            </div>
+            <div class="row m-0 p-1 title-header-color">
+                <label class="bold white ft-small text-center">{{tabTitle}}</label>
+            </div>
+            <div class="row m-0 p-4">
+                
+                <div class="row m-0 p-0">
+                    <label id="introLogin" for="introLogin">Preencha seus dados de usuário abaixo para acessar a plataforma.</label>
+                </div>
+                <form class="m-0 p-0" [formGroup]="loginForm" (ngSubmit)="submit()">
+                    <div class="mt-2 mb-3" >
+                      <input type="email" id="loginBiggerScreenUsername" name="username" formControlName="username" placeholder="Email*" class="classic-input">
+                      <span class="red bold ft-small hide" id="loginBiggerScreenUsername-error">Digite um email válido.</span>
+                    </div>
+                    <div class="mb-3">
+                      <div class="classic-input" id="loginBiggerScreenPasswordDiv">
+                        <input type="password" id="loginBiggerScreenPassword" name="password" formControlName="password" placeholder="Senha*" class="no-border-for-input w-100 h-100">
+                      </div>
+                      <span class="red bold ft-small hide" id="loginBiggerScreenPasswordDiv-error">Digite uma senha com pelo menos 6 caracteres.</span>
+                    </div>
+                    <button type="submit" class="login-register-btn">ENTRAR</button>
+                </form>
+            
+                <div class="row pt-2 m-0 p-0 ">
+                  <div class="col-12 d-flex justify-content-between m-0 p-0 ">
+                        <a class="forgot-password clickable">Esqueci minha senha</a>
+                        <a class="specialist clickable">Sou um especialista</a>
+                  </div>
+                </div>
+            
+                <div class="row my-4 m-0 p-0">
+                    <app-line></app-line>
+                    <app-login-through class="mt-2"></app-login-through>
+                </div>
+            
+                <div class="row m-0 p-0" style="position:fixed; bottom: 20px;">
+                  <div class=" d-flex align-items-center m-0 p-0">
+                    <button class="no-border-for-input black-border-btn" (click)="enableRegisterPage()">Não tenho conta</button>
+                  </div>
+                </div>
+            
+            </div>
+        </div>
+        <div class="col-7 col-xl-8 d-flex justify-content-center align-items-center">
+            <div class="col-md-8 p-2 mx-2 white">
+                <span class="center text-center ft-larger"><b>Aprenda finanças de forma descomplicada</b></span>
+                <span class="mx-4 center ft-larger text-center">Domine as finanças e tome as rédeas do seu futuro com a plataforma "FinLearn"</span>
+                <div class="center">
+                    <img src="../../assets/images/login.png" alt="" height="250" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

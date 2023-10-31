@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { PratiqueService } from 'src/app/service/pratique/pratique.service';
 
 @Component({
@@ -9,30 +8,39 @@ import { PratiqueService } from 'src/app/service/pratique/pratique.service';
   styleUrls: ['./practice-investment-info.component.css']
 })
 export class PracticeInvestmentInfoComponent {
-  public formInvestmentInfo: FormGroup;
-  public rangeValue = 64;
+  
+  public formInvestmentInfo: FormGroup | null = null;
+  public rangeValue = 1;
+  public clicked = false;
 
   constructor (
     private _pratiqueService: PratiqueService,
     private _formBuilder: FormBuilder,
-  ) {
-    this.formInvestmentInfo = this._formBuilder.group({
-      initialInvestment: ['', Validators.required],
-      howLong: [this.rangeValue, Validators.required],
-      monthlyInvestment: ['', null]
-    });
+  ) {}
+
+  async ngOnInit (): Promise<void> {
+
+    const investmentTypeId = Number(this._pratiqueService.getIdForThePage());
+    // const formInvestmentTypeSelected = await this._pratiqueService.getInvestmentTypeBasedOnId(investmentTypeId);
+    this.formInvestmentInfo = this._createForm(this._formBuilder, investmentTypeId);
+
   }
 
   /**
    * Submit investment info to the service.
    */
   public onSubmit (): void {
-    if (this.formInvestmentInfo.valid) {
-      this._pratiqueService.setInitialInvestment(this.formInvestmentInfo.value.initialInvestment);
-      this._pratiqueService.setDuration(this.formInvestmentInfo.value.howLong);
-      this._pratiqueService.setMonthlyInvestment((this.formInvestmentInfo.value.monthlyInvestment == '') ? this.formInvestmentInfo.value.monthlyInvestment = 0 : this.formInvestmentInfo.value.monthlyInvestment);
+
+    if (this.formInvestmentInfo) {
+      console.log(this.formInvestmentInfo.value);
       this.goTo(3);
     }
+    // if (this.formInvestmentInfo.valid) {
+    //   this._pratiqueService.setInitialInvestment(this.formInvestmentInfo.value.initialInvestment);
+    //   this._pratiqueService.setDuration(this.formInvestmentInfo.value.howLong);
+    //   this._pratiqueService.setMonthlyInvestment((this.formInvestmentInfo.value.monthlyInvestment == '') ? this.formInvestmentInfo.value.monthlyInvestment = 0 : this.formInvestmentInfo.value.monthlyInvestment);
+    //   this.goTo(3);
+    // }
   }
 
   /**
@@ -49,5 +57,51 @@ export class PracticeInvestmentInfoComponent {
    */
   public onRangeInput(event: any): void {
     this.rangeValue = event.target.value;
+    this._canSubmitButtonBeReleased(this.formInvestmentInfo);
+  }
+
+  /**
+   * Listen for inputs on the initial investment's field.
+   */
+  public onInitialInvestmentInput (event: any): void {
+
+    this._canSubmitButtonBeReleased(this.formInvestmentInfo);
+
+  }
+
+  /**
+   * Create form.
+   * @param formBuilder 
+   * @param investmentType 
+   */
+  private _createForm (formBuilder: FormBuilder, id: number): FormGroup {
+
+    return formBuilder.group({
+      investmentTypeId: [id, Validators.required],
+      initialInvestment: [null, Validators.required],
+      howLongInYears: [1, Validators.required], 
+      monthlyInvestment: [null]
+    });
+
+  }
+
+  /**
+   * Check whether the submit button should be displayed or hidden.
+   * @param form 
+   */
+  private _canSubmitButtonBeReleased (form: FormGroup | null): void {
+
+    if (form) {
+      if ((form.value.initialInvestment != null && form.value.initialInvestment != "") && (form.value.howLongInYears != null && form.value.howLongInYears != "")) {
+
+        this.clicked = true;
+
+      } else {
+
+        this.clicked = false;
+
+      }
+    }
+
   }
 }
