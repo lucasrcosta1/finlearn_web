@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
 import { FrequentQuestion } from 'src/app/models/contact/FrequentQuestion.model';
-import { InvestType } from 'src/app/models/practice/InvestType.model';
+import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
@@ -12,6 +12,18 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiService {
   response = "";
+  
+  private investmentTypes = [
+    {id: 0, name: "Tesouro Selic", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 1, interestRate: 0.1275, clicked: false},
+    {id: 1, name: "Tesouro IPCA", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 3, interestRate: 0.465, clicked: false},
+    {id: 2, name: "Tesouro Prefixado", investmentLogoPath: "/assets/images/pratique/public_treasure.svg", redemptionPeriodInYears: 3, interestRate: 0.3348, clicked: false},
+    {id: 3, name: "CDB", investmentLogoPath: "/assets/images/pratique/cdb.svg", redemptionPeriodInYears: 1, interestRate: 0.15, clicked: false},
+    {id: 4, name: "Carta de Crédito Imobiliário", investmentLogoPath: "/assets/images/pratique/credit_letter.svg", redemptionPeriodInYears: 1, interestRate: 0.1365, clicked: false},
+    {id: 5, name: "Carta de Crédito do Agronegócio", investmentLogoPath: "/assets/images/pratique/credit_letter.svg", redemptionPeriodInYears: 1, interestRate: 0.1365, clicked: false},
+    {id: 6, name: "Certificado de Recebíveis Imobiliários", investmentLogoPath: "/assets/images/pratique/credit_certified.svg", redemptionPeriodInYears: 1, interestRate: 0.12, clicked: false},
+    {id: 7, name: "Certificado de Recebíveis do Agronegócio", investmentLogoPath: "/assets/images/pratique/credit_certified.svg", redemptionPeriodInYears: 1, interestRate: 0.13, clicked: false},
+    {id: 8, name: "Poupança",investmentLogoPath: "/assets/images/pratique/pig.svg", redemptionPeriodInYears: 1, interestRate: 0.45, clicked: false},
+  ]; //should be temporary until the DB is populated with that information
 
   constructor(
     private _http: HttpClient,
@@ -118,27 +130,34 @@ export class ApiService {
    * Get investment types from api.
    * @returns 
    */
-  getInvestmentTypes (): Promise<Map<number, InvestType>> {
+  getInvestmentTypes (): Promise<InvestmentType[]> {
 
     return new Promise(
       resolve => {
-        resolve(
-          new Map<number, InvestType>([
-            [0, {id: 0, name: "Tesouro Selic", redemptionPeriod: "1 ano", interestRate: 0.1275}],
-            [1, {id: 1, name: "Tesouro IPCA", redemptionPeriod: "3 anos", interestRate: 0.465}],
-            [2, {id: 2, name: "Tesouro Prefixado", redemptionPeriod: "3 anos", interestRate: 0.3348}],
-            [3, {id: 3, name: "CDB - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.15}],
-            [4, {id: 4, name: "Letra de Crédito Imobiliário - liquidez diária", redemptionPeriod: "1 ano", interestRate: 13.65}],
-            [5, {id: 5, name: "Letra de Crédito do Agronegócio - liquidez diária", redemptionPeriod: "1 ano", interestRate: 13.65}],
-            [6, {id: 6, name: "Certificado de Recebíveis Imobiliários - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.12}],
-            [7, {id: 7, name: "Certificado de Recebíveis do Agronegócio - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.13}],
-            [8, {id: 8, name: "Poupança - liquidez diária", redemptionPeriod: "1 ano", interestRate: 0.45}],
-          ])
-        );
+        resolve(this.investmentTypes);
       }
     );
 
   }
+
+  /**
+   * Get investment type based on id
+   * @param id 
+   * @returns 
+   */
+  getInvestmentTypeBasedOnId (id: number): Promise<InvestmentType> {
+
+    return new Promise(
+      resolve => {
+        this.investmentTypes.forEach(
+          investmentType => {
+            if (investmentType.id == id) resolve(investmentType);
+          }
+        );
+      }
+    );
+
+  } 
 
   /**
    * Authenticate user.

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
 import { Investment } from 'src/app/models/practice/Investment.model';
 import { ApiService } from '../api/api.service';
+import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,10 @@ export class PratiqueService {
 
   constructor(
     private _router: Router,
-    private _api: ApiService,
+    private _apiService: ApiService,
     private route: ActivatedRoute,
   ) {;
-    this._checkValidPage();
+    // this._checkValidPage();
     this.investment = new Investment();
 
   }
@@ -29,7 +30,7 @@ export class PratiqueService {
    * Send user to the requested page.
    * @param page
    */
-  public async goTo (page: number): Promise<void> {
+  public async goTo (page: number, id?: number): Promise<void> {
     let route;
     switch (page) {
       case 0:
@@ -39,7 +40,7 @@ export class PratiqueService {
         route = "/practice/type";
         break;
       case 2:
-        route = "/practice/type/investmentInfo";
+        route = `/practice/${id}/investmentInfo`;
         break;
       case 3:
         route = "/practice/type/investmentInfo/result";
@@ -74,6 +75,45 @@ export class PratiqueService {
   }
 
   /**
+   * Get investment types from the api service.
+   * @returns 
+   */
+  public async getInvestmentTypes (): Promise<InvestmentType[]> {
+
+    return await this._apiService.getInvestmentTypes();
+
+  }
+
+  /**
+   * Get investment type based on id.
+   * @param id 
+   */
+  public getInvestmentTypeBasedOnId (id: number): Promise<InvestmentType> {
+
+    return this._apiService.getInvestmentTypeBasedOnId(id);
+
+  }
+
+  /**
+   * Get id for the page when on simulation info.
+   * @returns 
+   */
+  getIdForThePage (): string {
+
+    return this._getActualPath().split("/")[2];
+  }
+
+  /**
+   * Get actual path
+   * @returns 
+   */
+  private _getActualPath (): string {
+  
+    return window.location.pathname;
+
+  }
+
+  /**
    * Check if all the required fields are valid
    * @param investment
    * @returns
@@ -94,28 +134,28 @@ export class PratiqueService {
    */
   private _calculateResult (investment: Investment): void {
 
-    const principal = +investment.initial_investment!;
-    const monthlyInvestment = +investment.monthly_investment!;
-    const timePeriod = investment.duration!;
+    const principal = +investment.initialInvestment!;
+    const monthlyInvestment = +investment.valueInvestedMonthly!;
+    const timePeriod = investment.investmentDurationInYears!;
     // console.log(timePeriod);
     if (isNaN(timePeriod) || timePeriod <= 0) {
       console.log('Período de tempo inválido.');
       return;
     }
     let interestRate,compoundedPeriodsPerYear;
-    if (investment.rate == 'cdb') {
-      interestRate = 6/100;
-      investment.rate = 'CDB';
-      compoundedPeriodsPerYear = 12;
-    } else if (investment.rate == 'poupanca') {
-      interestRate = 4.5/100;
-      investment.rate = 'Poupança';
-      compoundedPeriodsPerYear = 12;
-    } else if (investment.rate == 'fundo') {
-      interestRate = 8/100;
-      investment.rate = 'Fundo de investimento';
-      compoundedPeriodsPerYear = 12;
-    }
+    // if (investment.rate == 'cdb') {
+    //   interestRate = 6/100;
+    //   investment.rate = 'CDB';
+    //   compoundedPeriodsPerYear = 12;
+    // } else if (investment.rate == 'poupanca') {
+    //   interestRate = 4.5/100;
+    //   investment.rate = 'Poupança';
+    //   compoundedPeriodsPerYear = 12;
+    // } else if (investment.rate == 'fundo') {
+    //   interestRate = 8/100;
+    //   investment.rate = 'Fundo de investimento';
+    //   compoundedPeriodsPerYear = 12;
+    // }
 
     const totalMonths = timePeriod;
     const monthlyInterestRate = interestRate / compoundedPeriodsPerYear;
@@ -133,36 +173,38 @@ export class PratiqueService {
    */
   private _checkValidPage () : void {
     let pageUrl = window.location.pathname.split('/');
-    if (pageUrl[1] == 'practice' && pageUrl.length > 2){
+    if (pageUrl[1] == 'practice' && pageUrl.length > 3){
       window.location.replace("/practice");
     }
   }
+  
 
   public setRate (rate: string): void {
-    this.investment.rate = rate;
+    // this.investment.rate = rate;
   }
   public getRate (): string | null {
-    return this.investment.rate;
+    // return this.investment.rate;
+    return null;
   }
 
   public setInitialInvestment (initial_investment: number): void {
-    this.investment.initial_investment = initial_investment;
+    this.investment.initialInvestment = initial_investment;
   }
   public getInitialInvestment (): number | null {
-    return this.investment.initial_investment;
+    return this.investment.initialInvestment;
   }
 
   public setDuration (duration: number): void {
-    this.investment.duration = duration;
+    this.investment.investmentDurationInYears = duration;
   }
   public getDuration (): number | null {
-    return this.investment.duration;
+    return this.investment.investmentDurationInYears;
   }
 
   public setMonthlyInvestment (monthly_investment: number): void {
-    this.investment.monthly_investment = monthly_investment;
+    this.investment.valueInvestedMonthly = monthly_investment;
   }
   public getMonthlyInvestment (): number | null {
-    return this.investment.monthly_investment;
+    return this.investment.valueInvestedMonthly;
   }
 }
