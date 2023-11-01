@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { InvestType } from 'src/app/models/practice/InvestType.model';
+import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
 import { ApiService } from 'src/app/service/api/api.service';
 
 @Component({
@@ -10,8 +10,7 @@ import { ApiService } from 'src/app/service/api/api.service';
 })
 export class PracticeComponent implements OnInit {
   selected = '';
-  investType = new InvestType();
-  fieldInvestType = new Map<number, InvestType>();
+  InvestmentType = new InvestmentType();
   currentStep = 1;
   investmentForm: FormGroup;
   investmentOptions = [
@@ -36,7 +35,6 @@ export class PracticeComponent implements OnInit {
 
   async ngOnInit() {
     
-    this.fieldInvestType =  await this._apiService.getInvestmentTypes();
 
   }
 
@@ -71,13 +69,7 @@ export class PracticeComponent implements OnInit {
       return;
     } else {
       //change investmentType from rate to value.
-      this.fieldInvestType.forEach(
-        v => {
-          if (v.interestRate == this.investmentForm.value.investmentType) {
-            this.investmentForm.value.investmentType = v.id;
-          }
-        }
-      );
+      
 
     }
     const selectedInvestmentType = this.investmentForm.value.investmentType;

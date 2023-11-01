@@ -1,37 +1,36 @@
 <body>
-
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-  <form [formGroup]="formInvestmentInfo" (ngSubmit)="onSubmit()">
-    <div style="display:flex; justify-content: center; align-items: center; height: 100vh; width: 100%; max-width: 55vw;">
-      <div class="col-12" id="pratique2">
-        <div class="row" id="pergunta2">
-          <p>Investimento inicial: <span style="color: red;">*</span></p>
+  <form [formGroup]="formInvestmentInfo" (ngSubmit)="onSubmit()" *ngIf="formInvestmentInfo">
+    <div class="row practice-type-container m-0 p-0">
+      <div class="row options-container gray-square">
+        <div class="row m-0 p-0">
+          <p class="investment-title"><b>Investimento inicial:</b> <span style="color: red;">*</span></p>
           <input
             formControlName="initialInvestment"
             currencyMask
+            type="text"
             placeholder="R$ 0,00"
             [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' , align: 'left'}"
-            required
+            (ngModelChange)="onInitialInvestmentInput($event)"
           >
           <div class="linha"></div>
         </div>
-        <div class="row mt-5" id="pergunta3">
-          <p >Tempo de investimento: <span style="color: red;">*</span></p>
+        <div class="row m-0 p-0">
+          <p class="investment-title">Tempo de investimento: <span style="color: red;">*</span></p>
           <input
             type="range"
             min="1"
-            max="120"
+            max="24"
             id="time_input"
             name="time_input"
-            formControlName="howLong"
+            formControlName="howLongInYears"
             (input)="onRangeInput($event)"
-            required
           >
-          <p id="pgh_years">{{rangeValue}} meses.</p><br>
+          <p id="pgh_years">{{rangeValue > 1 ? rangeValue + " anos." : rangeValue + " ano."}}</p><br>
         </div>
-        <div class="row mt-4" id="pergunta4">
-          <p>Investimento mensal:</p>
+        <div class="row m-0 p-0">
+          <p class="investment-title">Investimento mensal:</p>
           <input
             formControlName="monthlyInvestment"
             currencyMask
@@ -40,14 +39,10 @@
           >
           <div class="linha"></div>
         </div>
-        <div class="mt-4 d-flex justify-content-between">
-          <div>
-            <button class="voltar" type="button" (click)="goTo(1)">VOLTAR</button>
-          </div>
-          <div>
-            <button class="avancar" type="submit" [disabled]="!formInvestmentInfo.valid"><b>CALCULAR</b></button>
-          </div>
-        </div>
+      </div>
+      <div class="m-0 p-0 d-flex justify-content-between align-items-center" style="max-width: 80%;">
+        <button (click)="goTo(0)" class="white-go-back-button"><b>VOLTAR</b></button>
+        <button type="submit" class="green-confirm-button" *ngIf="clicked"><b>SALVAR</b></button>
       </div>
     </div>
   </form>

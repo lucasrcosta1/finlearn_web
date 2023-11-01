@@ -343,6 +343,63 @@
   color: white;
   border-radius: 5px;
   padding: 5px 30px 5px 30px;
+  box-shadow: 5px 5px 5px #bdbdbd;
+
+}
+
+.green-confirm-button:hover {
+
+  background-color: var(--classic-color);
+  box-shadow: none;
+
+}
+
+.white-go-back-button {
+
+  outline: none;
+  border: 1px solid #bdbdbd;
+  background-color: white;
+  color: black;
+  border-radius: 5px;
+  padding: 5px 30px 5px 30px;
+  box-shadow: 5px 5px 5px #bdbdbd;
+
+}
+
+.white-go-back-button:hover {
+
+  background-color: var(--grayish);
+  box-shadow: none;
+
+}
+
+.break-overflow-with-ellipsis {
+
+  display: block; 
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.practice-type-container {
+
+    height: 99vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.gray-square {
+
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    box-shadow: 5px 5px 30px gray;
+    background-color: var(--grayish);
 
 }
 
@@ -443,6 +500,20 @@
     padding: 8px 13px !important;
   
   }  
+
+  .white-go-back-button {
+  
+    font-size: 12px;
+    padding: 5px 15px 5px 15px;
+
+  }
+
+  .green-confirm-button {
+  
+    font-size: 12px;
+    padding: 5px 15px 5px 15px;
+    
+  }
 
 }
 
