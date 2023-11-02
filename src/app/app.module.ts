@@ -27,7 +27,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
 import { CommunityComponent } from './components/community/community.component';
-import { PracticeComponent } from './components/practice/practice.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
@@ -40,7 +39,7 @@ import { LectureComponent } from './components/aux_components/lecture/lecture.co
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AllConversationsComponent } from './components/aux_components/all-conversations/all-conversations.component';
 import { LoadingComponent } from './components/aux_components/loading/loading.component';
-import { SecondaryPracticeComponent } from './components/secondary-practice/secondary-practice.component';
+import { PracticeComponent } from './components/practice/practice.component';
 import { PracticeTypeComponent } from './components/aux_components/practice/practice-type/practice-type.component';
 import { PracticeInvestmentInfoComponent } from './components/aux_components/practice/practice-investment-info/practice-investment-info.component';
 import { PracticeResultComponent } from './components/aux_components/practice/practice-result/practice-result.component';
@@ -68,7 +67,6 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
     HomeComponent,
     SuporteComponent,
     CommunityComponent,
-    PracticeComponent,
     LearnComponent,
     ProgressBarComponent,
     SidebarComponent,
@@ -80,7 +78,7 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
     PageNotFoundComponent,
     AllConversationsComponent,
     LoadingComponent,
-    SecondaryPracticeComponent,
+    PracticeComponent,
     PracticeTypeComponent,
     PracticeInvestmentInfoComponent,
     PracticeResultComponent,
