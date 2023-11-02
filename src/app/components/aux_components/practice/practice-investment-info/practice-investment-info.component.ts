@@ -9,9 +9,10 @@ import { PratiqueService } from 'src/app/service/pratique/pratique.service';
 })
 export class PracticeInvestmentInfoComponent {
   
-  public formInvestmentInfo: FormGroup | null = null;
-  public rangeValue = 1;
-  public clicked = false;
+  formInvestmentInfo: FormGroup | null = null;
+  rangeValue = 1;
+  clicked = false;
+  investmentName: string | null = null;
 
   constructor (
     private _pratiqueService: PratiqueService,
@@ -21,15 +22,16 @@ export class PracticeInvestmentInfoComponent {
   async ngOnInit (): Promise<void> {
 
     const investmentTypeId = Number(this._pratiqueService.getIdForThePage());
-    // const formInvestmentTypeSelected = await this._pratiqueService.getInvestmentTypeBasedOnId(investmentTypeId);
     this.formInvestmentInfo = this._createForm(this._formBuilder, investmentTypeId);
+    const formInvestmentTypeSelected = await this._pratiqueService.getInvestmentTypeBasedOnId(investmentTypeId);
+    this.investmentName = formInvestmentTypeSelected.name;
 
   }
 
   /**
    * Submit investment info to the service.
    */
-  public onSubmit (): void {
+  onSubmit (): void {
 
     if (this.formInvestmentInfo) {
       console.log(this.formInvestmentInfo.value);
@@ -47,7 +49,7 @@ export class PracticeInvestmentInfoComponent {
    * Send user to the requested page.
    * @param page
    */
-  public goTo (page: number): void {
+  goTo (page: number): void {
     this._pratiqueService.goTo(page);
   }
 
@@ -55,7 +57,7 @@ export class PracticeInvestmentInfoComponent {
    * Listen for range's value from input.
    * @param event
    */
-  public onRangeInput(event: any): void {
+  onRangeInput(event: any): void {
     this.rangeValue = event.target.value;
     this._canSubmitButtonBeReleased(this.formInvestmentInfo);
   }
@@ -63,7 +65,7 @@ export class PracticeInvestmentInfoComponent {
   /**
    * Listen for inputs on the initial investment's field.
    */
-  public onInitialInvestmentInput (event: any): void {
+  onInitialInvestmentInput (event: any): void {
 
     this._canSubmitButtonBeReleased(this.formInvestmentInfo);
 

@@ -25,7 +25,8 @@ export class PracticeTypeComponent {
   async ngOnInit (): Promise<void> {
 
     this.fieldInvestmentTypes =  await this._pratiqueService.getInvestmentTypes();
-
+    this._setAllClicksFalse(this.fieldInvestmentTypes);
+    
   }
 
   /**
@@ -119,6 +120,17 @@ export class PracticeTypeComponent {
       }
     );
     return investments;
+
+  }
+
+  private _setAllClicksFalse (fieldInvestmentTypes: InvestmentType[]): InvestmentType[] {
+
+    fieldInvestmentTypes.forEach(
+      fieldInvestmentType => {
+        fieldInvestmentType.clicked = false;
+      }
+    );
+    return fieldInvestmentTypes;
 
   }
 
