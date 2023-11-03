@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, firstValueFrom, throwError } from 'rxjs';
 import { ApiResponse } from 'src/app/models/api/ApiResponse.model';
 import { FrequentQuestion } from 'src/app/models/contact/FrequentQuestion.model';
+import { DifficultyLevel } from 'src/app/models/learn/topic/DifficultyLevel.model';
+import { Topic } from 'src/app/models/learn/topic/Topic.model';
+import { Module } from 'src/app/models/learn/topic/module/Module.model';
+import { Lecture } from 'src/app/models/learn/topic/module/lecture/Lecture.model';
 import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
@@ -24,13 +28,261 @@ export class ApiService {
     {id: 7, name: "Certificado de Recebíveis do Agronegócio", investmentLogoPath: "/assets/images/pratique/credit_certified.svg", redemptionPeriodInYears: 1, interestRate: 0.13, clicked: false},
     {id: 8, name: "Poupança",investmentLogoPath: "/assets/images/pratique/pig.svg", redemptionPeriodInYears: 1, interestRate: 0.45, clicked: false},
   ]; //should be temporary until the DB is populated with that information
-
+  private defaultLectures1 = [
+    new Lecture({
+      id         : 1,
+      title      : "Conheca a plataforma",
+      difficulty : 1,
+      lectureSize: 300000,
+      seenAlready: true,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/conheca_plataforma.svg"
+    }),
+    new Lecture({
+      id         : 2,
+      title      : "O que são títulos públicos?",
+      difficulty : 1,
+      lectureSize: 600000,
+      seenAlready: true,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+    }),
+    new Lecture({
+      id         : 3,
+      title      : "Vantagens de investir em títulos públicos",
+      difficulty : 1,
+      lectureSize: 600000,
+      seenAlready: true,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+    }),
+    new Lecture({
+      id         : 4,
+      title      : "Desvantagens de investir em títulos públicos",
+      difficulty : 1,
+      lectureSize: 600000,
+      seenAlready: true,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
+    }),
+    new Lecture({
+      id         : 5,
+      title      : "Tipos de títulos públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    }),
+    new Lecture({
+      id         : 6,
+      title      : "Entendendo os Rendimentos dos Títulos Públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    })
+  ]; //should be temporary until the DB is populated with that information
+  private defaultLectures2 = [
+    new Lecture({
+      id         : 7,
+      title      : "Riscos associados aos Títulos Públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    }),
+    new Lecture({
+      id         : 8,
+      title      : "Estratégias de Investimento em Títulos Públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    }),
+    new Lecture({
+      id         : 9,
+      title      : "Cálculo de Rendimento e Impostos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    }),
+    new Lecture({
+      id         : 10,
+      title      : "Exemplos Práticos de Investimento em Títulos Públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    }),
+    new Lecture({
+      id         : 11,
+      title      : "Dicas para Maximizar seus Investimentos em Títulos Públicos",
+      difficulty : 1,
+      lectureSize: 1200000,
+      seenAlready: false,
+      stoppedAt: 600000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/titulos/tipos.svg"
+    })
+  ]; //should be temporary until the DB is populated with that information
+  private defaultLectures3 = [
+    new Lecture({
+      id         : 12,
+      title      : "Como comprar títulos na conta XP",
+      difficulty : 2,
+      lectureSize: 1800000,
+      seenAlready: true,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/xpLogo.svg"
+    }),
+    new Lecture({
+      id         : 13,
+      title      : "Como comprar títulos na conta Inter",
+      difficulty : 3,
+      lectureSize: 1800000,
+      seenAlready: false,
+      stoppedAt: 720000,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/interLogo.svg"
+    }),
+    new Lecture({
+      id         : 14,
+      title      : "Como comprar títulos na conta Pagbank",
+      difficulty : 2,
+      lectureSize: 1800000,
+      seenAlready: false,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/pagSeguroLogo.svg"
+    }),
+    new Lecture({
+      id         : 15,
+      title      : "Dúvidas frequentes",
+      difficulty : 2,
+      lectureSize: 1800000,
+      seenAlready: false,
+      stoppedAt: null,
+      videoPath: null,
+      lectureLogo: "/assets/images/learn/pagSeguroLogo.svg"
+    }),
+  ]; //should be temporary until the DB is populated with that information
+  private lecturesMap: Map<number, Lecture[]> = new Map<number, Lecture[]>([
+    [1, this.defaultLectures1],
+    [2, this.defaultLectures2],
+    [3, this.defaultLectures3],
+  ]); //should be temporary until the DB is populated with that information
+  private defaultModules = [
+    new Module({
+      id         : 1,
+      title      : "Módulo 1",
+      lectures   : this.lecturesMap.get(1) ? this.lecturesMap.get(1)! : null,
+      progress   : 100,
+      expanded   : false
+    }),
+    new Module({
+      id         : 2,
+      title      : "Módulo 2",
+      lectures   : this.lecturesMap.get(2) ? this.lecturesMap.get(2)! : null,
+      progress   : 50,
+      expanded   : false
+    }),
+    new Module({
+      id         : 3,
+      title      : "Módulo 3",
+      lectures   : this.lecturesMap.get(3) ? this.lecturesMap.get(3)! : null,
+      progress   : 33.3,
+      expanded   : false
+    }),
+  ]; //should be temporary until the DB is populated with that information
+  private modulesMap: Map<string, Module[]> = new Map<string, Module[]>([
+    ["Títulos Públicos",this.defaultModules],
+    ["Renda variável",this.defaultModules],
+    ["Mercado futuro",this.defaultModules],
+    ["Renda fixa",this.defaultModules],
+  ]); //should be temporary until the DB is populated with that information
+  private topics = [
+    new Topic({
+      id         : 0,
+      title: "Títulos Públicos",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+      difficulty: new DifficultyLevel({difficultyLevelName: "Intermediáro", difficultyLevelScore: 2}),
+      modules: this.modulesMap.get("Títulos Públicos")!,
+      topicLogoPath: "assets/images/learn/titulos/titulos.png",
+      topicImagePath: "/assets/images/learn/titulos/logoTitulos.svg",
+      overallProgress: 52.7,
+      totalHours: 100,
+      stoppedModuleId: 1,
+      stoppedLectureId: 3,
+      route: "/titulos"
+    }), 
+    new Topic({
+      id         : 1,
+      title: "Renda variável",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+      difficulty: new DifficultyLevel({difficultyLevelName: "Difícil", difficultyLevelScore: 3}),
+      modules: this.modulesMap.get("Renda variável")!,
+      topicLogoPath: "assets/images/learn/renda_variavel/b3.png",
+      topicImagePath: "/assets/images/learn/renda_variavel/logoRendaVariavel.svg",
+      overallProgress: 68.7,
+      totalHours: 320,
+      stoppedModuleId: null,
+      stoppedLectureId: null,
+      route: "/renda_variavel"
+    }),
+    new Topic({
+      id         : 2,
+      title: "Mercado futuro",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+      difficulty: new DifficultyLevel({difficultyLevelName: "Difícil", difficultyLevelScore: 3}),
+      modules: this.modulesMap.get("Mercado futuro")!,
+      topicLogoPath: "assets/images/learn/mercado_futuro/futuro.png",
+      topicImagePath: "/assets/images/learn/mercado_futuro/logoMercadoFuturo.svg",
+      overallProgress: 37.2,
+      totalHours: 236,
+      stoppedModuleId: 3,
+      stoppedLectureId: 14,
+      route: "/mercado_futuro"
+    }),
+    new Topic({
+      id         : 3,
+      title: "Renda fixa",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit ex eget massa finibus laoreet. Duis fermentum sed ante quis tincidunt. Nullam euismod, lorem eu cursus dapibus, est nulla pellentesque nunc, vel egestas orci magna non elit. Cras libero quam, ultrices id velit eu, pellentesque semper augue. Nulla porta dui vitae mattis consequat. Maecenas sapien ligula, faucibus non sapien sit amet, rutrum blandit dui. Aenean pulvinar eros a suscipit pretium. Aliquam tristique tortor diam. Donec sit amet maximus ipsum. Aenean nec imperdiet eros. Cras facilisis metus ac libero commodo, vestibulum euismod nunc volutpat. Quisque ullamcorper sodales felis auctor venenatis. Curabitur.",
+      difficulty: new DifficultyLevel({difficultyLevelName: "Fácil", difficultyLevelScore: 1}),
+      modules: this.modulesMap.get("Renda fixa")!,
+      topicLogoPath: "assets/images/learn/renda_fixa/renda_fixa.jpg",
+      topicImagePath: "/assets/images/learn/renda_fixa/logoRendaFixa.svg",
+      overallProgress: 95.4,
+      totalHours: 208,
+      stoppedModuleId: 2,
+      stoppedLectureId: 8,
+      route: "/renda_fixa"
+    })
+  ]; //should be temporary until the DB is populated with that information
+  
   constructor(
     private _http: HttpClient,
   ) { }
 
 
-  public async post (route: string, requestBody: any, post_id: number | null, headers?: HttpHeaders): Promise<ApiResponse> {
+  async post (route: string, requestBody: any, post_id: number | null, headers?: HttpHeaders): Promise<ApiResponse> {
     let apiResponse = new ApiResponse();
     try {
       if (!headers) headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
@@ -67,7 +319,7 @@ export class ApiService {
     }
   }
 
-  public async get (route: string, headers?: HttpHeaders): Promise<ApiResponse> {
+  async get (route: string, headers?: HttpHeaders): Promise<ApiResponse> {
     let apiResponse = new ApiResponse();
     try {
       if (!headers) headers = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')!}`);
@@ -141,7 +393,7 @@ export class ApiService {
   }
 
   /**
-   * Get investment type based on id
+   * Get investment type based on id.
    * @param id 
    * @returns 
    */
@@ -158,6 +410,20 @@ export class ApiService {
     );
 
   } 
+
+  /**
+   * Get topics.
+   * @returns 
+   */
+  getTopics (): Promise<Topic[]> {
+
+    return new Promise(
+      resolve => {
+        resolve(this.topics);
+      }
+    );
+
+  }
 
   /**
    * Authenticate user.
@@ -223,6 +489,80 @@ export class ApiService {
 
     // this.spinner.emit(true);
     // this._router.navigate(['/']);
+
+  }
+
+
+  /**
+   * Fetch topic by given url path.
+   * @param urlPath 
+   */
+  getTopic (urlPath: string): Promise<Topic | null> {
+
+    return new Promise (
+      resolve => {
+        switch(urlPath) {
+          
+          case "titulos":
+            resolve (this.topics[0]);
+            break;
+      
+          case "renda_variavel": 
+            resolve (this.topics[1]);
+            break;
+    
+          case "mercado_futuro": 
+            resolve (this.topics[2]);
+            break;
+          
+          case "renda_fixa": 
+            resolve (this.topics[3]);
+            break;
+            
+          default: 
+            resolve (null);
+            break; 
+      
+      
+        }
+      }
+    );
+
+  }
+
+  /**
+   * Get modules by given topic name.
+   * @param topicName 
+   */
+  getModules (topicName: string): Promise<Module[] | null> {
+
+    const modules = this.modulesMap.get(topicName);
+    return new Promise (
+      resolve => {
+        
+        if (modules != undefined) resolve(modules);
+        else resolve(null);
+      
+      }
+    );
+
+  }
+
+  /**
+   * Get lectures by given module name.
+   * @param moduleId 
+   */
+  getLectures (moduleId: number): Promise<Lecture[] | null> {
+    
+    const lectures = this.lecturesMap.get(moduleId);
+    return new Promise (
+      resolve => {
+        
+        if (lectures != undefined) resolve(lectures);
+        else resolve(null);
+      
+      }
+    );
 
   }
 

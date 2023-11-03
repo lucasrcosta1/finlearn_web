@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
-import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
+import { Lecture } from 'src/app/models/learn/topic/module/lecture/Lecture.model';
+import { LearnService } from 'src/app/service/learn/learn.service';
 
 @Component({
   selector: 'app-lecture',
@@ -11,20 +12,28 @@ export class LectureComponent {
 
   lecture: Lecture| null = null;
   nextLectures: Lecture[] | null = null;
+  dropdownActive = true;
 
   private module: UrlSegment[];
 
 
   constructor (
-    private router: Router,
-    private route: ActivatedRoute
+    private _router: Router,
+    private _route: ActivatedRoute,
+    private _learnService: LearnService,
   ) {
     
-    this.module = this.route.snapshot.url;
-    const clickedTitle = this.module[2].path;
-    this.lecture = this._getLecture(clickedTitle); 
-    this.nextLectures = this._getNextLecture(clickedTitle);
-    console.log(this.lecture, this.nextLectures);
+    this.module = this._route.snapshot.url;
+
+  }
+
+  async ngOnInit (): Promise<void> {
+
+    const clickedModuleId = Number(this.module[2].path);
+    const clickedLectureId = Number(this.module[3].path);
+    this.lecture = await this._getLecture(clickedModuleId, clickedLectureId); 
+    this.nextLectures = await this._getNextLectures(clickedModuleId, clickedLectureId);
+    console.log(this.lecture);
 
   }
 
@@ -33,77 +42,50 @@ export class LectureComponent {
    */
   goBack (): void {
     const route = `/${this.module[0]}/${this.module[1]}`;
-    this.router.navigate([route]);
+    this._router.navigate([route]);
+  }
+
+  /**
+   * Handle whheter dropdown should be open or closed.
+   */
+  handleDropdown (): void {
+
+    this.dropdownActive = !this.dropdownActive;
+
+  }
+
+  goToPage (lectureId: number | null): void {
+
+    if (lectureId != null) {
+
+      const route = `/${this.module[0]}/${this.module[1]}/${this.module[2]}/${lectureId}`;
+      window.location.replace(route);
+
+    } else console.error("lectureid is null");
+    
+
   }
 
   /**
    * Get actual lecture info.
-   * @param lectureTitle 
+   * @param moduleId 
+   * @param lectureId 
    * @returns 
    */
-  private _getLecture (lectureTitle: string): Lecture | null {
+  private async _getLecture (moduleId: number, lectureId: number): Promise<Lecture | null> {
 
-    console.log("Lecture title: " + lectureTitle);
-    const strLecture = localStorage.getItem("clickedLecture");
-    const lecture = strLecture ? JSON.parse(strLecture) : null;
-    if (lecture) return lecture;
-    return null;
+    return this._learnService.getLecture(moduleId, lectureId);
 
   }
 
   /**
    * Get next 4 lecture's preview data.
-   * @param actualLectureTitle 
+   * @param moduleId 
+   * @param lectureId 
    */
-  private _getNextLecture (actualLectureTitle: string): Lecture[] | null {
+  private async _getNextLectures (moduleId: number, lectureId: number): Promise<Lecture[] | null> {
 
-    const route = "/next-lectures-preview";
-    return [
-      new Lecture({
-        title      : "O que são títulos públicos?",
-        difficulty : 1,
-        lectureSize: 600000,
-        seenAlready: true,
-        stoppedAt: null,
-        videoPath: null,
-        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
-      }),
-      new Lecture({
-        title      : "Vantagens de investir em títulos públicos",
-        difficulty : 1,
-        lectureSize: 600000,
-        seenAlready: true,
-        stoppedAt: null,
-        videoPath: null,
-        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
-      }),
-      new Lecture({
-        title      : "Desvantagens de investir em títulos públicos",
-        difficulty : 1,
-        lectureSize: 600000,
-        seenAlready: true,
-        stoppedAt: null,
-        videoPath: null,
-        lectureLogo: "/assets/images/learn/titulos/o_que_sao.svg"
-      }),
-      new Lecture({
-        title      : "Tipos de títulos públicos",
-        difficulty : 1,
-        lectureSize: 1200000,
-        seenAlready: false,
-        stoppedAt: 600000,
-        videoPath: null,
-        lectureLogo: "/assets/images/learn/titulos/tipos.svg"
-      }),
-      new Lecture({
-        title      : "Entendendo os Rendimentos dos Títulos Públicos",
-        difficulty : 1,
-        lectureSize: 1200000,
-        seenAlready: false,
-        stoppedAt: 600000,
-        videoPath: null,
-        lectureLogo: "/assets/images/learn/titulos/tipos.svg"
-      })]
+    return this._learnService.getNextLectures(moduleId, lectureId);
 
   }
 

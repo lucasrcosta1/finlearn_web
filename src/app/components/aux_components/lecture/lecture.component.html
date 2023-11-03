@@ -1,40 +1,31 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<button id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button>
-
-<h2 style="padding-bottom: 15px; text-align: center;"><b>Títulos Públicos</b></h2>
-<div class="container d-flex">
-    <div class="videoplayer">
-        <div>
-            <iframe width="765" height="350" src="https://www.youtube.com/embed/iwnkxjmrCPY">
-            </iframe>
+<body>
+    <div class="video-container">
+        <div class="row my-2 mx-1 p-0">
+            <span class="d-flex justify-content-start" id="back-button"><i class='fa fa-arrow-left clickable'(click)="goBack()"></i></span>
         </div>
-        <div class="video">
-            1
-            <img src="/assets/images/learn/thumbnail.svg" alt="" style="height: 6vh; width: 6vw;" loading="lazy">
-            Como comprar títulos por meio da <b>XP</b>
+        <!-- <button id="back-button" (click)="goBack()"><i class='fa fa-arrow-left'></i></button> -->
+        <div class="video top-rounded-border">
+            <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" title="YouTube Video" frameborder="0" allowfullscreen></iframe>
         </div>
-        <div class="video">
-            2
-            <img src="/assets/images/learn/thumbnail.svg" alt="" style="height: 6vh; width: 6vw;" loading="lazy">
-            Como comprar títulos por meio do <b>Inter</b>
+        <div class="row video-info m-0 shadow"  (click)="handleDropdown()">
+            <div class="col-2 col-sm-1 d-flex align-items-center m-0 p-0">
+                <i class="fa fa-play green icon"></i>
+                <img [src]="lecture?.lectureLogo"  [alt]="lecture?.title" class="image-size w-100">
+            </div>
+            <div class="col-8 col-sm-9 m-0 p-0 d-flex align-items-center lecture-title"> <b>{{lecture?.title}}</b> </div>
+            <div class="col-2 d-flex justify-content-end align-items-center m-0 p-0">
+                <i class="fa fa-angle-down white bold  arrow-style" *ngIf="!dropdownActive"></i>
+                <i class="fa fa-angle-up white bold  arrow-style"  *ngIf="dropdownActive"></i>
+            </div>
         </div>
-        <div class="video">
-            3
-            <img src="/assets/images/learn/thumbnail.svg" alt="" style="height: 6vh; width: 6vw;" loading="lazy">
-            Como comprar títulos por meio do <b>PagBank</b>
-        </div>
-        <div class="video">
-            4
-            <img src="/assets/images/learn/thumbnail.svg" alt="" style="height: 6vh; width: 6vw;" loading="lazy">
-            Como comprar títulos por meio da <b>Caixa</b>
-        </div>
-        <div class="video">
-            5
-            <img src="/assets/images/learn/thumbnail.svg" alt="" style="height: 6vh; width: 6vw;" loading="lazy">
-            Como comprar títulos por meio do <b>C6</b>
+        <div class="related-videos bottom-rounded-border shadow" *ngIf="dropdownActive">
+            <div class="row related-videos-info m-0" *ngFor="let nextLecture of nextLectures; let i = index;" (click)="goToPage(nextLecture.id)">
+                <div class="col-2 col-sm-1 d-flex align-items-center m-0 p-0">
+                    <p class="m-0 p-0 black videoNumber ">{{i}}</p>
+                    <img [src]="nextLecture?.lectureLogo"  [alt]="nextLecture?.title" class="image-size w-100">
+                </div>
+                <div class="col-10 col-sm-10 m-0 p-0 d-flex align-items-center lecture-title black"> <b>{{nextLecture?.title}}</b> </div>
+            </div>
         </div>
     </div>
-</div>
+</body>

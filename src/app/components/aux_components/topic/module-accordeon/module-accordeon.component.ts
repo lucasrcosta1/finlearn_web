@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Topic } from 'src/app/models/topic/Topic.model';
-import { Module } from 'src/app/models/topic/module/Module.model';
+import { Topic } from 'src/app/models/learn/topic/Topic.model';
+import { Module } from 'src/app/models/learn/topic/module/Module.model';
 
 @Component({
   selector: 'app-module-accordeon',
@@ -12,7 +12,7 @@ export class ModuleAccordeonComponent {
   @Input()
   topic: Topic | null = null;
   @Output()
-  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
+  triggerLectureDesiredToBeWatched = new EventEmitter<{moduleId: number, lectureId: number}>();
 
   expanded = false;
 
@@ -24,14 +24,17 @@ export class ModuleAccordeonComponent {
    */
   expandModule (module: Module, index: number): void {
 
-    console.log(module, index);
     module.expanded = !module.expanded;
 
   }
 
-  redirectToLecture (lectureTitle: string): void {
+  /**
+   * Redirect to lecture.
+   * @param clickedLecture 
+   */
+  redirectToLecture (clickedLecture: {moduleId: number, lectureId: number}): void {
 
-    this.triggerLectureDesiredToBeWatched.emit(lectureTitle);
+    this.triggerLectureDesiredToBeWatched.emit(clickedLecture);
 
   }
 

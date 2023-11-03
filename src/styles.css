@@ -271,6 +271,12 @@
 
 }
 
+.black {
+
+  color: black;
+
+}
+
 .gray {
 
   color: var(--gray);
