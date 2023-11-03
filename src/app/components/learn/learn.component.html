@@ -27,7 +27,7 @@
       <div class="col-lg-4 mb-3" *ngFor="let card of cards" (click)="openModule(card.route)">
         <div class="learn-card" >
           <div class="card-image">
-            <img [src]="card.imageUrl" alt="Card Image" loading="lazy">
+            <img [src]="card.topicLogoPath" alt="Card Image" loading="lazy">
           </div>
           <div class="card-content">
             <h3><b>{{ card.title }}</b></h3>

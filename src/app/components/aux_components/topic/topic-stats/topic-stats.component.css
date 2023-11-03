@@ -12,7 +12,7 @@
       #40B491 calc(var(--percentage) * 1%),
       #AAF2D8 calc(var(--percentage) * 1%),
       #AAF2D8 100%
-    );
+    ) ;
     border-radius: 50%;
     animation: fill 3s linear forwards, fadeIn 1s linear;
 }
@@ -52,7 +52,8 @@
     outline: none;
     border-radius: 5px;
     padding: 5px 10px 5px 10px;
-    font-size: 15px;
+    font-size: 12px;
+    font-weight: bold;
 
 }
 

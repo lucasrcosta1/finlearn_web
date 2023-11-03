@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DropDown } from 'src/app/models/dropdown/DropDown.model';
+import { DropDown } from 'src/app/models/learn/dropdown/DropDown.model';
+import { Card } from 'src/app/models/learn/topic/Card.module';
+import { Topic } from 'src/app/models/learn/topic/Topic.model';
+import { LearnService } from 'src/app/service/learn/learn.service';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-learn',
@@ -9,38 +13,76 @@ import { DropDown } from 'src/app/models/dropdown/DropDown.model';
 })
 export class LearnComponent {
 
+
   titles = [
     'Títulos Públicos',
     'Renda variável',
     'Mercado Futuro',
     'Renda Fixa'
   ];
-
   difficulty = [
     'Fácil',
     'Médio',
     'Dificil'
-  ]
-
+  ];
   dropdowns: DropDown[] = [
     {name: 'Aprenda', content: this.titles},
     {name: 'Dificuldade', content: this.difficulty},
-  ]
-
-  cards: any[] = [
-    { imageUrl: 'assets/images/learn/titulos/titulos.png', title: this.titles[0], route: '/titulos', description: 'Os títulos públicos são títulos de dívida emitidos pelo Governo Federal. Isso acontece por meio do Tesouro Direto — um programa criado, em 2002, pelo Tesouro Nacional juntamente com a Bolsa brasileira. Existem diferentes tipos de títulos públicos à disposição no Tesouro Direto. Eles são classificados em 3 modalidades: títulos públicos prefixados, pós-fixados e híbridos. Conheça mais sobre cada um deles.' },
-    { imageUrl: 'assets/images/learn/renda_variavel/b3.png', title: this.titles[1], route: '/renda_variavel', description: 'Mesmo que você ainda não seja um investidor, certamente já ouviu falar sobre o sobe e desce das bolsas de valores. Isso porque uma das principais características dos ativos de renda variável é justamente a oscilação das cotações. Mas você já parou para pensar como essas negociações acontecem? No Brasil, quem organiza todo esse mercado é a B3, a bolsa de valores brasileira.' },
-    { imageUrl: 'assets/images/learn/mercado_futuro/futuro.png', title: this.titles[2], route: '/mercado_futuro', description: 'O mercado futuro é uma modalidade de investimento que permite negociar contratos de compra e venda de ativos financeiros, como commodities, moedas e índices. Nele, os investidores podem se proteger contra oscilações de preços ou buscar oportunidades de lucro. É uma forma de investir baseada em expectativas futuras e oferece alavancagem e diversificação de estratégias, mas também envolve riscos.' },
-    { imageUrl: 'assets/images/learn/renda_fixa/renda_fixa.jpg', title: this.titles[3], route: '/renda_fixa', description: 'A renda fixa é um tipo de investimento que oferece estabilidade e previsibilidade de retorno. Ao investir em renda fixa, você empresta seu dinheiro para uma instituição, como o governo ou uma empresa, em troca de juros e pagamento futuro. É uma opção segura para quem busca proteção e crescimento gradual do capital.' }
   ];
+  topics: Topic[] | null = null;
+  cards: Card[] | null = null;
 
   constructor (
-    private router: Router
-  ) {}
+    private _router: Router,
+    private _learnService: LearnService,
+    private _snackbarService: SnackbarService,
+  ) {
 
-  openModule (moduleRouteName: string) {
-    this.router.navigate([`/learn${moduleRouteName}`]);
+
   }
 
+  async ngOnInit(): Promise<void> {
+
+    this.topics = await this._learnService.getTopics();
+    if (this.topics != null) {
+
+      this.cards = this._createCards(this.topics);
+      
+    } else {
+
+      this._snackbarService.openSnackBar(5, "Nenhum tópico encontrado");
+
+    }
+
+  }
+
+  /**
+   * Open module.
+   * @param moduleRouteName 
+   */
+  openModule (moduleRouteName: string | null) {
+   
+    moduleRouteName ? this._router.navigate([`/learn${moduleRouteName}`]) : this._snackbarService.openSnackBar(5, `Não é possível redirecionar para a página '${moduleRouteName}'.`);
+  
+  }
+
+  /**
+   * Create topics' cards.
+   * @param topics 
+   * @returns 
+   */
+  private _createCards (topics: Topic[]): Card[] {
+
+    let cards: Card[] = [];
+    topics.forEach(
+      topic => {
+
+        cards.push(new Card({topicLogoPath: topic.topicLogoPath, title: topic.title, route: topic.route, description: topic.description}));
+
+      }
+    );
+    return cards;
+
+  }
 
 }

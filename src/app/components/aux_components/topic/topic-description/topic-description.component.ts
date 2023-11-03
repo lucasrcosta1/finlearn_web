@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
-import { Topic } from 'src/app/models/topic/Topic.model';
+import { Lecture } from 'src/app/models/learn/topic/module/lecture/Lecture.model';
+import { Topic } from 'src/app/models/learn/topic/Topic.model';
 
 @Component({
   selector: 'app-topic-description',
@@ -11,12 +11,11 @@ export class TopicDescriptionComponent {
 
   @Input()
   topic: Topic | null = null;
-  @Input()
-  stoppedAt: Lecture | null = null;
   @Output()
-  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
+  triggerLectureDesiredToBeWatched = new EventEmitter<{moduleId: number, lectureId: number}>();
 
   hide = true;
+  learnMessage = "Saiba mais";
 
   /**
    * Handle learn more event.
@@ -31,6 +30,7 @@ export class TopicDescriptionComponent {
       const moduleDescription = document.querySelector('.module-description');
       if (moduleDescription) moduleDescription.classList.add('hide-gradient');
       this.hide = false;
+      this.learnMessage = "Saiba menos";
       
     } else if (divElement && moduleDescription && !this.hide) {
       
@@ -38,6 +38,7 @@ export class TopicDescriptionComponent {
       moduleDescription.classList.remove('hide-gradient');
       moduleDescription.scrollTop = 0;
       this.hide = true;
+      this.learnMessage = "Saiba mais";
 
     } else {
 
@@ -52,31 +53,25 @@ export class TopicDescriptionComponent {
    */
   continueClass (): void {
 
-    if (this.topic) this._redirectToLastUsedClass(this.stoppedAt);
+    if (this.topic) this._redirectToLastUsedClass(this.topic.stoppedModuleId, this.topic.stoppedLectureId);
     else console.error("Error: Module has no value.");
 
   }
 
 
   /**
-   * 
+   * Redirect to last watched class.
    * @param continueFrom 
    */
-  private _redirectToLastUsedClass (continueFrom: Lecture | null): void {
+  private _redirectToLastUsedClass (moduleId: number | null, lectureId: number | null): void {
 
-    if (continueFrom && continueFrom.title) {
+    if (!moduleId && !lectureId) {
+      
+      moduleId = 1;
+      lectureId = 1;
 
-      //Remove it once the back-end is implemented.
-      localStorage.setItem("clickedLecture", JSON.stringify(continueFrom)); 
-      //\Remove it once the back-end is implemented.
-  
-      this.triggerLectureDesiredToBeWatched.emit(continueFrom.title);
-
-    } else {
-
-      console.error("Figure out a way to start from first lession");
-
-    }
+    } 
+    this.triggerLectureDesiredToBeWatched.emit({moduleId: moduleId!, lectureId: lectureId!});
 
   }
 

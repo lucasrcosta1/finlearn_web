@@ -2,6 +2,7 @@ import { Module } from "../Module.model";
 
 export class Lecture {
 
+    id: number | null;
     title: string | null;
     difficulty: number | null;
     lectureSize: number | null;
@@ -12,6 +13,7 @@ export class Lecture {
 
     constructor (moduleClass?: Lecture) {
 
+        this.id = moduleClass?.id || null;
         this.title = moduleClass?.title || null;
         this.difficulty = moduleClass?.difficulty || null;
         this.lectureSize = moduleClass?.lectureSize || null;

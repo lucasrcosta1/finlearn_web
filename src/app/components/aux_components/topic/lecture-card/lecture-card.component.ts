@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
+import { Lecture } from 'src/app/models/learn/topic/module/lecture/Lecture.model';
 
 @Component({
   selector: 'app-lecture-card',
@@ -9,10 +9,12 @@ import { Lecture } from 'src/app/models/topic/module/lecture/Lecture.model';
 export class LectureCardComponent {
 
   @Input()
+  moduleId: number | null = null;
+  @Input()
   lectures: Lecture[] | null = null;
   @Output()
-  triggerLectureDesiredToBeWatched = new EventEmitter<string>();
-
+  triggerLectureDesiredToBeWatched = new EventEmitter<{moduleId: number, lectureId: number}>();
+  
   /**
    * Get difficulty level string.
    * @param level 
@@ -31,13 +33,9 @@ export class LectureCardComponent {
    */
   openLecture (lecture: Lecture | null): void {
 
-    if (lecture && lecture.title) {
-
-      //Remove it once the back-end is implemented.
-      localStorage.setItem("clickedLecture", JSON.stringify(lecture)); 
-      //\Remove it once the back-end is implemented.
+    if (lecture && lecture.id && this.moduleId) {
   
-      this.triggerLectureDesiredToBeWatched.emit(lecture.title);
+      this.triggerLectureDesiredToBeWatched.emit({moduleId: this.moduleId, lectureId: lecture.id});
 
     } else {
 

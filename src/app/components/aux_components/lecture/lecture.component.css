@@ -1,35 +1,265 @@
-*{
-  margin: 0 auto;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
 }
 
 #back-button {
-  font-size: 30px;
+  font-size: 2rem;
   background-color: transparent;
   outline: none;
   border: 0;
+  margin-top: .5rem;
+  padding: 0;
 }
 
-.container, h2{
-  font-family: 'Montserrat';
+.video-container {
+  max-width: 1200px;
+  margin: 0 auto 1rem auto;
+  padding: 0 1.3rem 1.3rem 1.3rem;
+  /* background-color: #f0f0f0; */
+  border-radius: .5rem;
+
 }
 
-.videoplayer{
-  background-color: #3C3535;
-  height: 80vh;
-  width: 50vw;
-  border-radius: 3px;
-}
-.video{
-  justify-content: center;
-  background-color:#6d6868;
-  height: 7vh;
-  width: 50vw;
-  border-bottom: 0.1px solid #FFFF;
-  color: #FFFF;
-  padding-left: 15px;
+.video {
+  position: relative;
+  width: 100%;
+  padding-bottom: 45.25%;
+  overflow: hidden;
 }
 
-.video:hover{
-  background-color: #3C3535;
+iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-info {
+  background-color: #444444;
+  color: white;
   cursor: pointer;
+  padding: 1.5rem;
+}
+.video-info:hover {
+
+  background-color: #404040;
+    
+}
+
+.video-title {
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.video-description {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.related-videos {
+  border: 1px solid var(--grayish);
+}
+
+.related-videos-info {
+  background-color: #DFDFDF;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+}
+.related-videos-info:hover {
+
+  background-color: #bdbdbd;
+    
+}
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #0073e6;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.all-side-rounded-border {
+
+  border-radius: 10px;
+
+}
+
+.top-rounded-border {
+
+  border-radius: 10px 10px 0 0;
+
+}
+
+.bottom-rounded-border {
+
+  border-radius: 0 0 10px 10px;
+
+}
+
+.icon, .videoNumber {
+
+  margin-right: .5rem !important;
+}
+
+.image-size {
+
+  max-height: 3rem;
+  max-width: 3rem;
+
+}
+  
+.lecture-title {
+
+  font-size: 15px;
+
+}
+
+.shadow {
+
+  box-shadow: .5rem .5rem 2rem black !important;
+
+}
+
+
+@media (max-width: 1220px) {
+
+  .video-container {
+
+    margin: 2rem .5rem 1rem .5rem;
+
+  }
+
+}
+
+@media (max-width: 900px) {
+
+  .video-info {
+
+    padding: .8rem;
+
+  }
+
+  .videoNumber {
+
+    font-size: 12px;
+    margin-right: 3px;
+
+  }
+
+  .image-size {
+  
+    max-height: 1.5rem;
+  
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .lecture-title {
+
+    font-size: .6rem;
+
+  }
+
+  .arrow-style {
+
+    font-size: 1rem;
+
+  }
+
+  .icon, .videoNumber {
+
+    margin: 0 !important;
+
+  }
+
+  .image-size {
+
+    max-height: 1.8rem;
+    max-width: 1.8rem;
+
+  }
+
+}
+
+@media (max-width: 300px) {
+
+  .icon, .videoNumber {
+
+    font-size: .6rem;
+
+  }
+
+  .image-size {
+  
+    max-height: 1.3rem;
+    max-width: 1.5rem;
+  
+  }
+  
+  .lecture-title {
+
+    font-size: .5rem;
+
+  }
+
+  .related-videos-info {
+
+    padding: .5rem;
+
+  }
+
+  .image-size {
+
+    max-height: 1.3rem;
+    max-width: 1.3rem;
+    margin-left: .1rem;
+
+
+  }
+
+  .lecture-title {
+
+    font-size: .5rem;
+
+  }
+  
+  .video-info {
+
+    padding: .5rem;
+
+  }
+
+  .lecture-title {
+
+    font-size: .4rem;
+
+  }
+
 }

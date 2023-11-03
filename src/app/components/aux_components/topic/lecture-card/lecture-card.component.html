@@ -5,9 +5,9 @@
         <div class="col-2 m-0 p-0 d-flex justify-content-center align-items-center">
             <img [src]="lecture.lectureLogo" [alt]="lecture.title" class="image-size" height="30px">
         </div>
-        <div class="col-5 col-xs-6 col-sm-6 col-md-8 col-lg-8">
+        <div class="col-7 col-xs-6 col-sm-6 col-md-8 col-lg-8 m-0 p-0">
             <div class="row">
-                <span class="title"><b>{{lecture.title}}</b></span>
+                <span class="title text-start"><b>{{lecture.title}}</b></span>
                 <div>
                     <i class="fa fa-signal red lecture-info-position icon-size"></i>
                     <p class="ft-small lecture-info-text lecture-info-position description">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-5 col-xs-4 col-sm-4 col-md-2 col-lg-2">
+        <div class="col-3 col-xs-4 col-sm-4 col-md-2 col-lg-2 m-0 p-0">
 
             <button class="rewatch-btn" *ngIf="lecture.seenAlready" (click)="openLecture(lecture)">Rever aula</button>
             <button class="watch-btn" *ngIf="!lecture.seenAlready && !lecture.stoppedAt" (click)="openLecture(lecture)">Iniciar aula</button>
