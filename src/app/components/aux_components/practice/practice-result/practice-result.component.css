@@ -12,6 +12,9 @@ p{
   width: 70%;
 }
 
+#content-cnt{
+  position: absolute; margin-top: 130px !important; margin-left: 20px;
+}
 
 button.back{
     padding: 15px 50px 15px 50px;
@@ -34,20 +37,6 @@ button.back:hover {
   justify-content: start;
   align-items: center;
 
-}
-
-img.relative {
-    width: 43vw;
-    position: relative;
-}
-
-div.absolute {
-    font-size: 17px;
-    width: 18vw;
-    position: absolute;
-    margin-left: 1.5rem;
-    justify-content: center;
-    align-items: center;
 }
 
 .practice-result b{
