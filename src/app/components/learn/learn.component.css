@@ -9,7 +9,17 @@ html, body {
 }
 
 .card-container {
-  margin: 50px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.max-width-card-container {
+
+  width: 80%;
+
 }
 
 .learn-card {
@@ -20,6 +30,7 @@ html, body {
   flex-direction: column;
   border: 1px solid var(--grayish);
   border-radius: 5px;
+  width: 17.5rem;
 }
 
 
@@ -82,11 +93,50 @@ h3 {
   white-space: normal;
 }
 
+@media (min-width: 1600px) {
+
+  .max-width-card-container {
+
+    width: 60%;
+  
+  }
+
+
+}
+
+@media (max-width: 1100px) {
+
+  h3 {
+
+    font-size: 1.3rem;
+
+  }
+
+  .card-content {
+
+    font-size: .8rem;
+
+  }
+
+}
+
 @media (max-width: 300px) {
 
   #input-style {
 
     max-width: 80% !important;
+
+  }
+
+  h3 {
+
+    font-size: 1rem;
+
+  }
+
+  .card-content {
+
+    font-size: .6rem;
 
   }
 

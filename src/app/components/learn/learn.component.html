@@ -23,9 +23,9 @@
   
 
   <div class="card-container">
-    <div class="row">
-      <div class="col-lg-4 mb-3" *ngFor="let card of cards" (click)="openModule(card.route)">
-        <div class="learn-card" >
+    <div class="row max-width-card-container d-flex justify-content-center">
+      <div class="col-lg-4 mb-3 d-flex justify-content-center m-0 p-0" style="max-width: 22rem;" *ngFor="let card of cards" (click)="openModule(card.route)">
+        <div class="learn-card w-100" >
           <div class="card-image">
             <img [src]="card.topicLogoPath" alt="Card Image" loading="lazy">
           </div>
