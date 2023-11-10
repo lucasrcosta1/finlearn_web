@@ -8,19 +8,12 @@ html, body {
   height: 40vh;
 }
 
-.card-container {
-
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-}
-
 .max-width-card-container {
 
   width: 80%;
 
 }
+
 
 .learn-card {
   margin-top: 20px; 
