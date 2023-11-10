@@ -32,7 +32,6 @@ describe('FrequentQuestionsComponent', () => {
       id: jasmine.any(Number),
       name: jasmine.any(String),
       subject: jasmine.any(String),
-      description: jasmine.any(String),
       answer: jasmine.any(String),
       expanded: jasmine.any(Boolean)
     };

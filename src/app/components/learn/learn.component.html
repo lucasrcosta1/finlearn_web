@@ -1,5 +1,5 @@
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden; overflow-y: auto;">
 
   <div class="header">
     <img src="assets/images/learn/investBg.png" alt="Header Image" id="image" loading="lazy">
@@ -13,7 +13,7 @@
       </div>
       
     </div>
-    <div class="col-12 " style="margin-top: 1rem;">
+    <div class="row " style="margin-top: 1rem;">
       <div class="d-flex justify-content-center">
         <app-dropdown class="mx-2" [dropdown]="dropdowns[0]"></app-dropdown>
         <app-dropdown class="mx-2" [dropdown]="dropdowns[1]"></app-dropdown>
@@ -21,23 +21,24 @@
     </div>
   </div>
   
-
-  <div class="card-container">
-    <div class="row max-width-card-container d-flex justify-content-center">
-      <div class="col-lg-4 mb-3 d-flex justify-content-center m-0 p-0" style="max-width: 22rem;" *ngFor="let card of cards" (click)="openModule(card.route)">
-        <div class="learn-card w-100" >
-          <div class="card-image">
-            <img [src]="card.topicLogoPath" alt="Card Image" loading="lazy">
-          </div>
-          <div class="card-content">
-            <h3><b>{{ card.title }}</b></h3>
-            <p class="description-container">
-              <span class="description-text">{{ card.description }}</span>
-            </p>
+  <div class="row m-0 p-0 d-flex justify-content-center">
+    <div class="col-10 col-md-11 col-lg-9 col-xl-8">
+      <div class="row">
+        <div class="col-12 col-md-4" *ngFor="let card of cards" (click)="openModule(card.route)">
+          <div class="learn-card w-100" >
+            <div class="card-image">
+              <img [src]="card.topicLogoPath" alt="Card Image" loading="lazy">
+            </div>
+            <div class="card-content">
+              <h3><b>{{ card.title }}</b></h3>
+              <p class="description-container">
+                <span class="description-text">{{ card.description }}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+
 </body>
