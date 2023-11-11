@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login/login.service';
 import { SharedService } from 'src/app/service/shared/shared.service';
+import { RegisterUser } from 'src/app/models/user/RegisterUser.model';
+import { ApiService } from 'src/app/service/api/api.service';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +14,8 @@ export class RegisterService {
 
   constructor(
     private _sharedService: SharedService,
+    private _apiService: ApiService,
+    private _snackbarService: SnackbarService,
   ) { }
 
 
@@ -164,4 +170,80 @@ export class RegisterService {
     return telephone;
 
   }
+
+  /**
+   * Register user.
+   * @param userToBeRegistered 
+   * @returns 
+   */
+  registerUser (userToBeRegistered: RegisterUser): void {
+
+    this._apiService.registerNewUser(userToBeRegistered).subscribe({
+      next: (next) => {
+        const response = this.handleSuccess(next);
+        if (response != null) this._snackbarService.openSnackBar(5, response);
+        else this._snackbarService.openSnackBar(3, "Erro interno, tente novamente em instantes.");
+        const replaceWithLoginPage = setTimeout(
+          () => {
+            window.location.replace("/auth/login");
+            clearTimeout(replaceWithLoginPage);
+          }, 3000
+        );
+      },
+      error: (error) => {
+        const errorDetail = this.handleError(error);
+        this._snackbarService.openSnackBar(3, errorDetail);
+      }
+    });
+
+  }
+
+  handleSuccess (successResponse: any): string | null {
+
+    if (successResponse.success_detail) {
+
+      return successResponse.success_detail;
+
+    } else if (successResponse.detail) {
+
+      return successResponse.detail;
+
+    }
+    return null;
+
+  }
+
+  /**
+   * Handle error response.
+   * @param error 
+   * @returns 
+   */
+  handleError (error: HttpErrorResponse): string {
+
+    return error.error.detail;
+
+  }
+
+  /**
+   * Create user to be registered.
+   * @param form 
+   * @returns 
+   */
+  createRegisterUser (form: FormGroup): RegisterUser | null {
+  
+    if (form.value) {
+      return new RegisterUser({
+        fullname      : form.value.fullname, 
+        phone         : form.value.phone, 
+        username      : form.value.username, 
+        password      : form.value.password,
+        usernameCheck : form.value.usernameCheck, 
+        passwordCheck : form.value.passwordCheck
+      });
+    } return null;
+  
+  }
+
 }
+
+

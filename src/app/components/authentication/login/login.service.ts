@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(
     private _router: Router,
-    private _snackBarService: SnackbarService,
+    private _snackbarService: SnackbarService,
     private _sharedService: SharedService,
   ) { }
 
@@ -40,11 +40,11 @@ export class LoginService {
     //   this._loginService.setUser(new User(response.getResponse().user));
 
     //   this.spinner.emit(true);
-    //   this._snackBarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
+    //   this._snackbarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
     // } else {
-    //   this._snackBarService.openSnackBar(3,response.getResponse().message);
+    //   this._snackbarService.openSnackBar(3,response.getResponse().message);
     // }
-    this._snackBarService.openSnackBar(2, `Seja bem vindo, ${username}!`);
+    this._snackbarService.openSnackBar(2, `Seja bem vindo, ${username}!`);
     this._router.navigate(['/']);
 
   }

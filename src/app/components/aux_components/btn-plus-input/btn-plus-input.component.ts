@@ -35,7 +35,7 @@ export class BtnPlusInputComponent {
 
   constructor (
     private _api: ApiService,
-    private _snackBarService: SnackbarService,
+    private _snackbarService: SnackbarService,
     private formBuilder: FormBuilder,
   ) {
     this.commentForm = this.formBuilder.group({
@@ -55,23 +55,23 @@ export class BtnPlusInputComponent {
       if (r.getSuccess()) { //activate success/error button
         let user = this._createUser();
         if (this.route == '/talk/create') {
-          this._snackBarService.openSnackBar(2,`Conversa criada com sucesso!`);
+          this._snackbarService.openSnackBar(2,`Conversa criada com sucesso!`);
           this.conversation.emit(this._createConversation(r.getResponse().id,this.commentForm.value.commentInput, user));
         } else if (this.route == '/post/create') {
-          this._snackBarService.openSnackBar(2,`Post criado com sucesso!`);
+          this._snackbarService.openSnackBar(2,`Post criado com sucesso!`);
           this.postContent.emit(this._createPost(r.getResponse().id,this.commentForm.value.commentInput, user));
         }
         this.commentForm.get('commentInput')?.reset();
       } else {
         console.log("error",r.getResponse());
         if (this.route == '/talk/create') {
-          this._snackBarService.openSnackBar(2,"Erro ao criar conversa.");
+          this._snackbarService.openSnackBar(2,"Erro ao criar conversa.");
         } else if (this.route == '/post/create') {
-          this._snackBarService.openSnackBar(2,"Erro ao criar post.");
+          this._snackbarService.openSnackBar(2,"Erro ao criar post.");
         }
       }
     } else {
-      this._snackBarService.openSnackBar(2,"Erro ao pesquisar.");
+      this._snackbarService.openSnackBar(2,"Erro ao pesquisar.");
     }
   }
 

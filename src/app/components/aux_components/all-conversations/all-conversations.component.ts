@@ -24,7 +24,7 @@ export class AllConversationsComponent {
 
   constructor (
     private _api: ApiService,
-    private _snackBarService: SnackbarService,
+    private _snackbarService: SnackbarService,
   ) {
     this.conversations = new Array<ConversationData>();
   }
@@ -57,10 +57,10 @@ export class AllConversationsComponent {
     if (userId.id) {
       let rs = await this._api.post('/post/like', null, userId.id);
       if (rs.getSuccess()) {
-        this._snackBarService.openSnackBar(1,"Post curtido!");
+        this._snackbarService.openSnackBar(1,"Post curtido!");
       } else {
 
-        this._snackBarService.openSnackBar(1,rs.getResponse());
+        this._snackbarService.openSnackBar(1,rs.getResponse());
       }
     }
 
@@ -114,16 +114,16 @@ export class AllConversationsComponent {
           }
         );
 
-        this._snackBarService.openSnackBar(2,"Conversas recuperadas!");
+        this._snackbarService.openSnackBar(2,"Conversas recuperadas!");
         this.loaded$.next(true);
         this.disableClick.emit(false);
 
       } else {
         // console.log("error",r.getResponse());
-        this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas.");
+        this._snackbarService.openSnackBar(2,"Erro ao recuperar conversas.");
       }
     } else {
-      this._snackBarService.openSnackBar(2,"Erro ao recuperar conversas na rota.");
+      this._snackbarService.openSnackBar(2,"Erro ao recuperar conversas na rota.");
     }
   }
 
