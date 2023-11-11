@@ -180,15 +180,24 @@ export class RegisterService {
 
     this._apiService.registerNewUser(userToBeRegistered).subscribe({
       next: (next) => {
+
         const response = this.handleSuccess(next);
-        if (response != null) this._snackbarService.openSnackBar(5, response);
-        else this._snackbarService.openSnackBar(3, "Erro interno, tente novamente em instantes.");
-        const replaceWithLoginPage = setTimeout(
-          () => {
-            window.location.replace("/auth/login");
-            clearTimeout(replaceWithLoginPage);
-          }, 3000
-        );
+        if (response != null) {
+
+          this._snackbarService.openSnackBar(3, response);
+          const replaceWithLoginPage = setTimeout(
+            () => {
+              clearTimeout(replaceWithLoginPage);
+              window.location.replace("/auth/login");
+            }, 3000
+          );
+
+        } else {
+
+          this._snackbarService.openSnackBar(3, "Erro interno, tente novamente em instantes.");
+
+        }
+        
       },
       error: (error) => {
         const errorDetail = this.handleError(error);
@@ -198,6 +207,11 @@ export class RegisterService {
 
   }
 
+  /**
+   * Handle succes 
+   * @param successResponse 
+   * @returns 
+   */
   handleSuccess (successResponse: any): string | null {
 
     if (successResponse.success_detail) {

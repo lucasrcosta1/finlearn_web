@@ -21,12 +21,16 @@ export class AuthGuard {
    */
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
 
-    if (localStorage.getItem('email')) {
-      // logged in so return true
+    if (localStorage.getItem("credential") && localStorage.getItem("user_info")) {
+
       return true;
+
+    } else {
+
+      this._router.navigate(["/auth/login"],{ queryParams: { returnUrl: state.url }});
+      return false;
+      
     }
-    this._router.navigate(['/auth/login'],{ queryParams: { returnUrl: state.url }});
-    return false;
 
   }
 }

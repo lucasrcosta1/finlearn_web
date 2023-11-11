@@ -8,12 +8,16 @@
       <div class="m-4">
         <h5>Authentication</h5>
         <div class="row my-3">
-          <div class="col-2">
-            <button id="0" (click)="trigger('/auth/login', $event)">/auth/login</button>
-          </div>
-          <div class="col d-flex align-items-center p-0 m-0">
-            <p id="response0" style="padding: 10px;">{{response}}</p>
-          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="submitLogin()">
+              <div class="col-6 d-flex justify-content-between align-items-center m-0 p-0">
+              <input type="email" class="w-100 mx-2" placeholder="Type your email" formControlName="email">
+              <input type="password" class="w-100 mx-2" placeholder="Type your password" formControlName="password">
+              <button id="0" type="submit">/auth/login</button>
+            </div>
+            <div class="p-0 m-0">
+              <p id="response0" class="m-0 p-0">{{response}}</p>
+            </div>
+          </form>
         </div>
 
         <div class="row my-3">

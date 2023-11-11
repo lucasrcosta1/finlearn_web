@@ -73,16 +73,6 @@ export class LoginService {
     this.router.navigate(['/auth/login']);
   }
 
-  /**
-   * Log user out.
-   * @todo create logic to remove token once user is logged out.
-   */
-  public logout (): void {
-    localStorage.removeItem('id');
-    localStorage.removeItem('email');
-    localStorage.removeItem('username');
-    localStorage.removeItem('token');
-  }
 
   /**
    * Login user.

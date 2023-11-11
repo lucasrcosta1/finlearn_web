@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/service/login/login.service';
+import { LoginService } from '../authentication/login/login.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -27,32 +27,30 @@ export class SidebarComponent {
   }
 
   ngOnInit (): void {
-    if (localStorage.getItem('username') && localStorage.getItem('email')) { // Already logged
-      this._loginService.getUser().subscribe(
-        user => {
-          if (user && user.email != '') {
-            console.log(user)
-            if (user.name != localStorage.getItem('username')! ) {
-              localStorage.setItem('username', user.name);
-            }
-            if (user.email != localStorage.getItem('email')!) {
-              localStorage.setItem('username', user.email);
-            }
 
-            this.username = user.name;
-            this.email    = user.email;
-          } else {
-            this.username = localStorage.getItem('username')!;
-            this.email    = localStorage.getItem('email')!;
-          }
-        }
-      );
+    const userInfo = this._loginService.getUserInfo();
+    if (userInfo) {
+
+      this.username = userInfo.name;
+      this.email = userInfo.email;
+
+    } else {
+
+      window.location.reload();
+
+    }
+
+    if (localStorage.getItem('username') && localStorage.getItem('email')) { // Already logged
+      
     } else { // Not logged yet.
       console.error("ERROR: Username or email is null");
       this._loginService.getUser().subscribe(
         user => {
-          this.username = user.name;
-          this.email    = user.email;
+
+          if (user) {
+            this.username = user.name;
+            this.email    = user.email;
+          }
         }
       );
     }
