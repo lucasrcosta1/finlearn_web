@@ -23,8 +23,8 @@ export class LoginService {
   public appComponent = new AppComponent();
 
   constructor(
-    private router: Router,
-    private http: HttpClient,
+    private _http: HttpClient,
+    private _router: Router,
   ) { }
 
 
@@ -35,7 +35,7 @@ export class LoginService {
    */
   registerUser (user: User): Observable<any>  {
     return new Observable((observer) => {
-      this.http.post<any>(environment.HTTP_REQUEST + '/user/create', user).subscribe({
+      this._http.post<any>(environment.HTTP_REQUEST + '/user/create', user).subscribe({
         next: (response) => {
           if (response) {
             // this.appComponent.login = false;
@@ -56,33 +56,23 @@ export class LoginService {
   }
 
   registerUserAlternative (user: User) {
-    return this.http.post(environment.HTTP_REQUEST + '/user/create', user);
+    return this._http.post(environment.HTTP_REQUEST + '/user/create', user);
   }
 
   /**
    * Once login was successfully checked, user is redirect to the home page.
    */
   public redirectToHome (): void {
-    this.router.navigate(['/home']);
+    this._router.navigate(['/home']);
   }
 
   /**
    * Once login wasn't successfull, user is redirect to the login page.
    */
   public redirectToAuth (): void {
-    this.router.navigate(['/auth/login']);
+    this._router.navigate(['/auth/login']);
   }
 
-  /**
-   * Log user out.
-   * @todo create logic to remove token once user is logged out.
-   */
-  public logout (): void {
-    localStorage.removeItem('id');
-    localStorage.removeItem('email');
-    localStorage.removeItem('username');
-    localStorage.removeItem('token');
-  }
 
   /**
    * Login user.
@@ -93,7 +83,7 @@ export class LoginService {
     let user  = new FormData(); // form url-encoded not JSON.
     user.append('username', data.username);
     user.append('password', data.password);
-    return this.http.post(environment.HTTP_REQUEST + '/auth/login', user);
+    return this._http.post(environment.HTTP_REQUEST + '/auth/login', user);
   }
 
   public setToken (token: string) {
