@@ -40,17 +40,11 @@ export class RegisterBiggerScreenComponent {
    * Submit register form data.
    */
   submit (): void {
-
-    const fullname      = this.registerForm.value.fullname, 
-          phone         = this.registerForm.value.phone, 
-          username      = this.registerForm.value.username, 
-          password      = this.registerForm.value.password,
-          usernameCheck = this.registerForm.value.usernameCheck, 
-          passwordCheck = this.registerForm.value.passwordCheck;
-    if (this._registerService.checkRegisterFieldsAreCorrectlyFilled("registerBiggerScreenFullname", "registerBiggerScreenPhone", "registerBiggerScreenUsername", "registerBiggerScreenUsernameCheck", "registerBiggerScreenPasswordDiv", "registerBiggerScreenPasswordCheckDiv", fullname, phone, username, password, usernameCheck, passwordCheck)) {
+    
+    const registerUser = this._registerService.createRegisterUser(this.registerForm);
+    if (registerUser && this._registerService.checkRegisterFieldsAreCorrectlyFilled("registerBiggerScreenFullname", "registerBiggerScreenPhone", "registerBiggerScreenUsername", "registerBiggerScreenUsernameCheck", "registerBiggerScreenPasswordDiv", "registerBiggerScreenPasswordCheckDiv", registerUser.fullname, registerUser.phone, registerUser.username, registerUser.password, registerUser.usernameCheck, registerUser.passwordCheck)) {
       
-      // this._sharedService.login(username, password);
-      console.log("\n\nRedirect to login page and show a snackbar that say user should look at its email.\n\n");
+      this._registerService.registerUser(registerUser);
 
     }
 

@@ -50,10 +50,10 @@ export class PratiqueService {
           // let rs = await this._api.post('/practice', requestBody, null);
           // if (rs.getSuccess()) {
           //   console.log("Success", rs.getResponse());
-          //   this._snackBarService.openSnackBar(1,"Post curtido!");
+          //   this._snackbarService.openSnackBar(1,"Post curtido!");
           // } else {
           //   console.log("Error", rs.getResponse());
-          //   this._snackBarService.openSnackBar(1,rs.getResponse());
+          //   this._snackbarService.openSnackBar(1,rs.getResponse());
           // }
 
           // remove bellow after finished with post method

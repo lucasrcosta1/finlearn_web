@@ -8,6 +8,7 @@ import { Topic } from 'src/app/models/learn/topic/Topic.model';
 import { Module } from 'src/app/models/learn/topic/module/Module.model';
 import { Lecture } from 'src/app/models/learn/topic/module/lecture/Lecture.model';
 import { InvestmentType } from 'src/app/models/practice/InvestmentType.model';
+import { RegisterUser } from 'src/app/models/user/RegisterUser.model';
 import { User } from 'src/app/models/user/User.model';
 import { environment } from 'src/environments/environment';
 
@@ -437,60 +438,6 @@ export class ApiService {
   }
 
   /**
-   * Create user.
-   * @param user 
-   * @todo Organize method.
-   */
-  createUser (user: User) {
-    const route = '/user/create';
-    // // console.log( this.registerForm.value.role)
-    // let requestBody: User = {
-    //   name: this.registerForm.value.name,
-    //   email: this.registerForm.value.email,
-    //   password: this.registerForm.value.password,
-    //   role: "NORMAL_USER",
-    //   telephone: this.registerForm.value.telephone
-    // };
-    // // console.log(user);
-
-    // let firstR = await this._api.post(route, requestBody, null);
-    // // console.log(firstR);
-    // if (firstR.getSuccess()) {
-    //   this.spinner.emit(false);
-    //   route = '/auth/login';
-    //   const body = `username=${encodeURIComponent(requestBody.email)}&password=${encodeURIComponent(requestBody.password)}`;
-    //   const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-
-    //   let secondR = await this._api.post(route, body, null, headers);
-    //   // console.log(secondR);
-    //   if (secondR.getSuccess()) {
-    //     // console.log(secondR);
-
-    //     localStorage.setItem('id', secondR.getResponse()?.user.id);
-    //     localStorage.setItem('email', secondR.getResponse()?.user.email);
-    //     localStorage.setItem('token', secondR.getResponse()?.access_token);
-    //     localStorage.setItem('username', secondR.getResponse()?.user.name);
-
-    //     this._loginService.setUser(new User(secondR.getResponse().user));
-
-    //     // this.spinner.emit(true);
-    //     // this._router.navigate(['/']);
-
-    //     this._snackBarService.openSnackBar(2, `Bem vindo ${secondR.getResponse()?.user.name}!`);
-    //   } else {
-    //     this._snackBarService.openSnackBar(3,'Internal Error');
-    //   }
-    // } else {
-    //   this._snackBarService.openSnackBar(3, firstR.getResponse().message);
-    // }
-
-    // this.spinner.emit(true);
-    // this._router.navigate(['/']);
-
-  }
-
-
-  /**
    * Fetch topic by given url path.
    * @param urlPath 
    */
@@ -561,6 +508,24 @@ export class ApiService {
       }
     );
 
+  }
+
+  /**
+   * Register new user.
+   * @param userToBeRegistered 
+   */
+  registerNewUser (userToBeRegistered: RegisterUser): Observable<any> {
+
+    const route = '/user/create';
+    const requestBody = {
+      email: userToBeRegistered.username,
+      cpf: "",
+      name: userToBeRegistered.fullname,
+      telephone: userToBeRegistered.phone,
+      password: userToBeRegistered.password
+    }
+    return this._http.post(environment.HTTP_REQUEST + route, requestBody);
+  
   }
 
 }
