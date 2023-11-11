@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginBiggerScreenComponent } from './login-bigger-screen.component';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('LoginBiggerScreenComponent', () => {
   let component: LoginBiggerScreenComponent;
@@ -11,7 +12,7 @@ describe('LoginBiggerScreenComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LoginBiggerScreenComponent ],
-      imports: [ReactiveFormsModule, MatSnackBarModule],
+      imports: [ReactiveFormsModule, MatSnackBarModule, HttpClientModule],
       providers: [FormBuilder],
     })
     .compileComponents();

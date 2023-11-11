@@ -6,6 +6,7 @@ import { RegisterService } from '../register.service';
 import { LoginService } from '../../login/login.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('RegisterBiggerScreenComponent', () => {
   let component: RegisterBiggerScreenComponent;
@@ -14,7 +15,7 @@ describe('RegisterBiggerScreenComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RegisterBiggerScreenComponent ],
-      imports: [ReactiveFormsModule, MatSnackBarModule],
+      imports: [ReactiveFormsModule, MatSnackBarModule, HttpClientModule],
       providers: [
         RegisterService, 
         LoginService,   

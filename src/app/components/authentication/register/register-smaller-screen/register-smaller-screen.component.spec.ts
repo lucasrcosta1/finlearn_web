@@ -6,6 +6,7 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 import { RegisterService } from '../register.service';
 import { LoginService } from '../../login/login.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('RegisterSmallerScreenComponent', () => {
   let component: RegisterSmallerScreenComponent;
@@ -14,7 +15,7 @@ describe('RegisterSmallerScreenComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ RegisterSmallerScreenComponent ],
-      imports: [ReactiveFormsModule, MatSnackBarModule],
+      imports: [ReactiveFormsModule, MatSnackBarModule, HttpClientModule],
       providers: [
         RegisterService, 
         LoginService,   
