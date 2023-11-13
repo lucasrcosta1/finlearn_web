@@ -50,7 +50,7 @@ describe('LoginBiggerScreenComponent', () => {
 
     expect(usernameError.textContent).toContain('Digite um email válido.');
     expect(passwordError.textContent).toContain(
-      'Digite uma senha com pelo menos 6 caracteres.'
+      'Digite uma senha válida.'
     );
   });
 
