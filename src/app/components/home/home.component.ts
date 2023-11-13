@@ -18,7 +18,7 @@ export class HomeComponent {
 
   redirectToPage() {
     console.log('redirectToPage called');
-    this.router.navigate([`/learn/titulos/1`]);
+    this.router.navigate([`/learn/titulos/1/1`]);
   }
 
 }
