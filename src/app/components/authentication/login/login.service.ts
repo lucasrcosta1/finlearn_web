@@ -1,47 +1,76 @@
-import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, observable } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
+import { User } from 'src/app/models/user/User.model';
 import { ApiService } from 'src/app/service/api/api.service';
 import { SharedService } from 'src/app/service/shared/shared.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
-  name: string | null = null;
-  email: string | null = null;
-  private user = new BehaviorSubject<{name: string, email: string} | null>(null);
-
+  private token: string = '';
+  private user = new BehaviorSubject<User>(new User());
+  public userInfo: {name: string, email: string} | null = null;
 
   constructor(
     private _router: Router,
+    private _http: HttpClient,
     private _snackbarService: SnackbarService,
     private _sharedService: SharedService,
     private _apiService: ApiService,
   ) { }
 
   /**
-   * Handle login process based on the credentials passed as parameter.
-   * @param username 
-   * @param password 
+   * Once login was successfully checked, user is redirect to the home page.
+   */
+  public redirectToHome (): void {
+    this._router.navigate(['/home']);
+  }
+
+  /**
+   * Once login wasn't successfull, user is redirect to the login page.
+   */
+  public redirectToAuth (): void {
+    this._router.navigate(['/auth/login']);
+  }
+
+  /**
+   * Log user out.
+   * @todo create logic to remove token once user is logged out.
+   */
+  public logout (): void {
+    localStorage.removeItem('credential');
+    localStorage.removeItem('user_info');
+  }
+
+  /**
+   * Login user.
+   * @param data
+   * @returns
    */
   login (username: string, password: string): void {
 
     if (username && password) {
       this._apiService.login(username, password).subscribe({
         next: (next) => {
-          
+
           const userInfo = {name: next.user.name, email: next.user.email};
-          this.name = userInfo.name; 
-          this.email = userInfo.email;
-          this.setUser(userInfo)
+          this.setUser(next.user)
+          this.userInfo = userInfo;
           localStorage.setItem("credential", next.access_token);
           localStorage.setItem("user_info", JSON.stringify(userInfo));
-          this._router.navigate(["/home"]);
+          window.location.replace("/home")
 
         },
         error: (error) => {
@@ -50,6 +79,16 @@ export class LoginService {
         }
       });
     } 
+  }
+  
+  /**
+    * Handle error response.
+    * @param error 
+    * @returns 
+    */
+  handleError (error: HttpErrorResponse): string {
+
+    return error.error.detail;
 
   }
 
@@ -106,54 +145,10 @@ export class LoginService {
 
   }
 
-  /**
-   * Handle error response.
-   * @param error 
-   * @returns 
-   */
-  handleError (error: HttpErrorResponse): string {
-
-    return error.error.detail;
-
+  public setUser (user: User) {
+    this.user.next(user);
   }
-
-  /**
-   * Log user out.
-   * @todo create logic to remove token once user is logged out.
-   */
-  logout (): void {
-
-    this.name = null; 
-    this.email = null;
-    localStorage.removeItem('user_info');
-    localStorage.removeItem('credential');
-  }
-
-  getUserInfo (): {name: string, email: string} | null {
-
-    if (this.name && this.email) {
-
-      return {name: this.name, email: this.email};
-
-    } else {
-
-      const userStr = localStorage.getItem('user_info');
-      if (userStr) {
-
-        const userInfo = JSON.parse(userStr);
-        return {name: userInfo.name, email: userInfo.email};
-
-      } return null;
-
-    }
-
-  }
-
-  public setUser (userInfo: {name: string, email: string}) {
-    this.user.next(userInfo);
-  }
-  public getUser (): Observable<{name: string, email: string} | null> {
+  public getUser (): Observable<User> {
     return this.user.asObservable();
   }
-  
 }

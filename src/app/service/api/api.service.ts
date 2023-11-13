@@ -422,12 +422,12 @@ export class ApiService {
     );
 
   }
-
+  
   /**
-   * User's login.
-   * @param username
-   * @param password
-   */
+    * User's login.
+    * @param username
+    * @param password
+    */
   login (username: string, password: string): Observable<any> {
 
     const route   = '/auth/login';

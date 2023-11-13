@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { LoginService } from 'src/app/service/login/login.service';
+import { LoginService } from 'src/app/components/authentication/login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthGuard {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean{
 
     if (localStorage.getItem("credential") && localStorage.getItem("user_info")) {
-
+      
       return true;
 
     } else {
