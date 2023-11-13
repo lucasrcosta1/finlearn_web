@@ -10,11 +10,11 @@
         </div>
       </div>
       <div class="content">
-        <p >Iniciando em Títulos Públicos, Módulo 01, Aula 02:</p>
-        <p>Onde podem ser adquiridos?</p>
+        <p >Iniciando em Títulos Públicos, Módulo 01, Aula 05:</p>
+        <p>Tipos de títulos públicos.</p>
         <div id="button_assistir_wrapper">
-          <button>
-            <div><img src="../../../assets/images/home/play_icon.png" alt="play_icon"></div>
+          <button (click)="redirectToPage()">
+            <div ><img src="../../../assets/images/home/play_icon.png" alt="play_icon"></div>
             <div style="border-left: #E2E2E2 solid thin">ASSISTIR</div>
           </button>
         </div>
@@ -47,10 +47,9 @@
             <i>@myles_the_dog</i>
             <p>Podiam abaixar o preço da picanha NÉ</p>
           </div>
-
           <div>
-            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/like_icon.png" alt="like_icon"><i>999k</i></button>
-            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/reply_icon.png" alt="reply_icon"><i>7864</i></button>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/like_icon.png" alt="like_icon"><i>99k</i></button>
+            <button class="invisible_button like_reply_button"><img src="../../../assets/images/home/reply_icon.png" alt="reply_icon"><i>786</i></button>
             <button class="invisible_button report_join_button"><img src="../../../assets/images/home/report_icon.png" alt="report_icon"></button>
             <button class="invisible_button report_join_button"><img src="../../../assets/images/home/join_chat_icon.png" alt="join_chat_icon"></button>
           </div>
@@ -88,19 +87,19 @@
     </div>
     <div class="content">
       <div *ngIf="low_component_tab === 'daily_question_tab'">
-        <img src="../../../assets/images/home/daily_question.png" alt="daily_question">
+        <img id="dailyQuestionImage" src="../../../assets/images/home/daily_question.png" alt="daily_question">
       </div>
       <div *ngIf="low_component_tab === 'calendar_tab'">
-        <img src="../../../assets/images/home/calendar.png" alt="calendar">
+        <img id="calendarImage" src="../../../assets/images/home/calendar.png" alt="calendar">
       </div>
       <div *ngIf="low_component_tab === 'progress_tab'">
-        <img src="../../../assets/images/home/progress.png" alt="progress">
+        <img id="progressImage" src="../../../assets/images/home/progress.png" alt="progress">
       </div>
       <div *ngIf="low_component_tab === 'wallet_tab'">
-        <img src="../../../assets/images/home/wallet.jpg" alt="wallet">
+        <img id="walletImage" src="../../../assets/images/home/wallet.jpg" alt="wallet">
       </div>
       <div *ngIf="low_component_tab === 'news_tab'">
-        <img src="../../../assets/images/home/news.jpg" alt="news">
+        <img id="newsImage" src="../../../assets/images/home/news.jpg" alt="news">
       </div>
     </div>
   </div>
