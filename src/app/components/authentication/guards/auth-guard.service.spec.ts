@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthGuard } from './auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 describe('AuthGuard', () => {
@@ -8,7 +9,7 @@ describe('AuthGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule]
+      imports: [HttpClientModule, MatSnackBarModule]
     });
     service = TestBed.inject(AuthGuard);
   });
