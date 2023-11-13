@@ -1,51 +1,96 @@
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable, observable } from 'rxjs';
+import { AppComponent } from 'src/app/app.component';
+import { User } from 'src/app/models/user/User.model';
+import { ApiService } from 'src/app/service/api/api.service';
 import { SharedService } from 'src/app/service/shared/shared.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  private token: string = '';
+  private user = new BehaviorSubject<User>(new User());
+  public userInfo: {name: string, email: string} | null = null;
+
+  public appComponent = new AppComponent();
 
   constructor(
     private _router: Router,
+    private _http: HttpClient,
     private _snackbarService: SnackbarService,
     private _sharedService: SharedService,
+    private _apiService: ApiService,
   ) { }
 
   /**
-   * Handle login process based on the credentials passed as parameter.
-   * @param username 
-   * @param password 
+   * Once login was successfully checked, user is redirect to the home page.
+   */
+  public redirectToHome (): void {
+    this._router.navigate(['/home']);
+  }
+
+  /**
+   * Once login wasn't successfull, user is redirect to the login page.
+   */
+  public redirectToAuth (): void {
+    this._router.navigate(['/auth/login']);
+  }
+
+  /**
+   * Log user out.
+   * @todo create logic to remove token once user is logged out.
+   */
+  public logout (): void {
+    localStorage.removeItem('credential');
+    localStorage.removeItem('user_info');
+  }
+
+  /**
+   * Login user.
+   * @param data
+   * @returns
    */
   login (username: string, password: string): void {
 
-    const route   = '/auth/login';
-    const body    = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
-    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    if (username && password) {
+      this._apiService.login(username, password).subscribe({
+        next: (next) => {
 
-    localStorage.setItem('email', username);
-    localStorage.setItem('username', username);
+          const userInfo = {name: next.user.name, email: next.user.email};
+          this.setUser(next.user)
+          this.userInfo = userInfo;
+          localStorage.setItem("credential", next.access_token);
+          localStorage.setItem("user_info", JSON.stringify(userInfo));
+          window.location.replace("/home")
 
-    // let response = await this._api.post(route, body, null, headers);
-    // if (response.getSuccess()) {
-    //   this.spinner.emit(false);
-    //   localStorage.setItem('id', response.getResponse()?.user.id);
-    //   localStorage.setItem('email', response.getResponse()?.user.email);
-    //   localStorage.setItem('token', response.getResponse()?.access_token);
-    //   localStorage.setItem('username', response.getResponse()?.user.name);
-    //   this._loginService.setUser(new User(response.getResponse().user));
+        },
+        error: (error) => {
+          const errorDetail = this.handleError(error);
+          this._snackbarService.openSnackBar(3, errorDetail);
+        }
+      });
+    } 
+  }
+  
+  /**
+    * Handle error response.
+    * @param error 
+    * @returns 
+    */
+  handleError (error: HttpErrorResponse): string {
 
-    //   this.spinner.emit(true);
-    //   this._snackbarService.openSnackBar(2, `Bem vindo ${response.getResponse()?.user.name}!`);
-    // } else {
-    //   this._snackbarService.openSnackBar(3,response.getResponse().message);
-    // }
-    this._snackbarService.openSnackBar(2, `Seja bem vindo, ${username}!`);
-    this._router.navigate(['/']);
+    return error.error.detail;
 
   }
 
@@ -102,6 +147,10 @@ export class LoginService {
 
   }
 
-
-  
+  public setUser (user: User) {
+    this.user.next(user);
+  }
+  public getUser (): Observable<User> {
+    return this.user.asObservable();
+  }
 }

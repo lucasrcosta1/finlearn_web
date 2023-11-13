@@ -422,18 +422,18 @@ export class ApiService {
     );
 
   }
-
+  
   /**
-   * Authenticate user.
-   * @param user 
-   * @todo Organize method.
-   */
-  login (user: User) {
+    * User's login.
+    * @param username
+    * @param password
+    */
+  login (username: string, password: string): Observable<any> {
 
     const route   = '/auth/login';
-    // const body    = `username=${encodeURIComponent(user.username)}&password=${encodeURIComponent(user.password)}`;
-    // const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    // this._http.post<FrequentQuestion[]>(environment.HTTP_REQUEST + route, requestBody, {headers, params});
+    const body    = `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    return this._http.post(environment.HTTP_REQUEST + route, body, {headers});
 
   }
 
