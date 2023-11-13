@@ -6,7 +6,7 @@ const PROJECT_EMAIL       = 'projetoPDSI1@projetoPDSI1.com?';
 const SUBJECT             = 'Subject=';
 const BODY                = 'body=';
 
-const ACCESS              = 'finlearn-api-production.up.railway.app/v1';
+const ACCESS              = 'finlearn-api-pds2-production.up.railway.app/v1';
 const AUTH_ROUTE          = "auth";
 
 export const environment = {
