@@ -1,0 +1,43 @@
+#header_component{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding-bottom: 3rem;
+}
+
+#header_component > div{
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 2rem;
+}
+
+#tabs{
+  gap: 2rem;
+}
+
+#tabs > button{
+  font-size: larger;
+}
+
+#actions { 
+  gap: 1rem;
+}
+
+#actions > button {
+  background: rgba(5, 159, 48, 0.2);
+  padding: 0.5rem 1.5rem;
+}
+
+#actions > input{
+  border-radius: 8px;
+  border-style: solid;
+  border-color: #E2E2E2;
+  box-shadow: none;
+  padding: 0.5rem 1rem;
+}
+
+@media (min-width: 900px) {
+  #header_component {grid-template-columns: 1fr 1fr 1fr;}
+  #tabs {justify-content: center;}
+  #actions {justify-content: right;}
+}

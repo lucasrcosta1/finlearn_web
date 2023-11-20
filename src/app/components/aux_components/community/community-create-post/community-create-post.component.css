@@ -1,0 +1,18 @@
+html,body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 3rem 0;
+    padding: 0 0.5rem;
+    height: 100%;
+}
+
+@media (min-width: 600px) {
+    body {margin: 0 5rem;}
+}
+
+@media (min-width: 900px) {
+    body {margin: 0; padding:0;}
+    #header {margin: 0 5rem;}
+    .lateral_background {display: grid; grid-template-columns: 1.5fr 9fr 1.5fr; position: absolute; height: 100%; width: 100%;}
+    .lateral_background > div:first-child {background: linear-gradient(to left, #ffffff, #8FCAA0);}
+    .lateral_background > div:last-child {background: linear-gradient(to right, #ffffff, #8FCAA0);}
+}

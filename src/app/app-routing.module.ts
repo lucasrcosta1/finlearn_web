@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LearnRoutingModule } from './components/learn/learn-routing.module';
-
 import { AuthGuard } from './components/authentication/guards/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { SuporteComponent } from './components/suporte/suporte.component';
@@ -13,8 +11,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PracticeRoutingModule } from './components/practice/practice-routing.module';
 import { PracticeComponent } from './components/practice/practice.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
-
-
+import { LearnRoutingModule } from './components/learn/learn-routing.module';
+import { CommunityRoutingModule } from './components/community/community-routing.module';
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [AuthGuard]},
@@ -27,11 +25,10 @@ const routes: Routes = [
   {path: 'route_test', component: RouteTestComponent, canActivate: [AuthGuard]},
   {path: 'auth/login', component: AuthenticationComponent},
   {path: '**', redirectTo: 'page_not_found'}, // create a not found page.
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), LearnRoutingModule, PracticeRoutingModule],
+  imports: [RouterModule.forRoot(routes), LearnRoutingModule, PracticeRoutingModule, CommunityRoutingModule],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

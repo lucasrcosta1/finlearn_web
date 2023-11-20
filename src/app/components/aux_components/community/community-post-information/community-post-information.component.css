@@ -1,0 +1,10 @@
+.conversation_details {
+  font-size: smaller;
+  font-weight: lighter;
+  color: #6D7279;
+}
+
+.user_picture {
+  height: 70px;
+  width: 70px;
+}

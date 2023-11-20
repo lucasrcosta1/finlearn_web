@@ -5,64 +5,23 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <div class="conversation-container">
-      <div class="row d-flex justify-content-between align-items-center">
-        <div class="col">
-          <app-btn-plus-input
-            [iconClass]="'fa fa-search'"
-            [commentary]="'Procure uma conversa...'"
-            [value]="'Procurar'"
-            [route]="searchRoute"
-            [disableClick$]="disableClick$"
-          ></app-btn-plus-input>
-        </div>
-        <div class="col">
-          <app-btn-plus-input
-            [iconClass]="'fa fa-lightbulb-o'"
-            [commentary]="'Crie uma conversa!'"
-            [value]="'Criar'"
-            [route]="createConversationRoute"
-            (conversation)="handleNewConversation($event)"
-            [disableClick$]="disableClick$"
-          ></app-btn-plus-input></div>
-      </div>
+    <div>
+      <app-community-header [active_tab]="'relevants_tab'"></app-community-header>
     </div>
 
-    <div class="container conversation-container" >
-      <div class="d-flex justify-content-center">
-        <ul class="nav nav-tabs">
-          <li class="nav-item" [ngClass]="{'active': activeTab === 'tab1'}">
-            <a class="nav-link clickable" (click)="activateTab('tab1')" [ngStyle]="{'color': activeTab === 'tab1' ? '#059F30' : '#E2E2E2'}">
-              Minhas Conversas
-              <div class="divider" [ngClass]="{'active': activeTab === 'tab1'}"></div>
-            </a>
-          </li>
-          <li class="nav-item clickable" [ngClass]="{'active': activeTab === 'tab2'}">
-            <a class="nav-link" (click)="activateTab('tab2')" [ngStyle]="{'color': activeTab === 'tab2' ? '#059F30' : '#E2E2E2'}">
-              Todas as conversas
-              <div class="divider" [ngClass]="{'active': activeTab === 'tab2'}"></div>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div class="container-body p-3">
-        <div *ngIf="activeTab === 'tab1'">
-          <app-my-conversations
-            [conversation]="conversation"
-            (disableClick)="handleClickValue($event)"
-          ></app-my-conversations>
-        </div>
-        <div *ngIf="activeTab === 'tab2'">
-          <app-all-conversations
-            [conversation]="conversation"
-            (disableClick)="handleClickValue($event)"
-          ></app-all-conversations>
+    <div *ngIf="(loaded$ | async)">
+      <div *ngFor="let conversation of conversations;let i = index;">
+        <div class="conversation_entry">
+          <img class="user_picture" src="../../../assets/images/community/user_picture.png" alt="user_picture">
+          <div>
+            <button class="clear-button round-button">{{conversation.title}}</button>
+            <div class="conversation_details">8 coins · 5 comentários · 1 dia atrás</div>
+          </div>
         </div>
       </div>
     </div>
-
-
+    <app-loading  *ngIf="!(loaded$ | async)" ></app-loading>
+   
   </body>
-
 </html>
 

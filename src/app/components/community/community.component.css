@@ -1,9 +1,32 @@
 html,body{
-  padding: 0;
-  margin: .8rem;
   font-family: 'Montserrat', sans-serif;
+  margin: 3rem 0;
+  padding: 0 0.5rem;
 }
 
-.conversation-container {
-  margin-top: 2rem;
+.conversation_entry{
+  border-style: solid;
+  border-color: #E2E2E2;
+  border-radius: 8px;
+  border-width: 2px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  align-items: center;
+}
+
+.conversation_entry > * button {
+  font-weight: bold;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+
+.conversation_entry > * button:hover {
+  text-decoration: underline black;
+}
+
+@media (min-width: 600px) {
+  body{margin: 0 5rem;}
 }

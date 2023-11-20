@@ -30,14 +30,11 @@ import { CommunityComponent } from './components/community/community.component';
 import { LearnComponent } from './components/learn/learn.component';
 import { ProgressBarComponent } from './components/aux_components/progress-bar/progress-bar/progress-bar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { MyConversationsComponent } from './components/aux_components/my-conversations/my-conversations..component';
-import { BtnPlusInputComponent } from './components/aux_components/btn-plus-input/btn-plus-input.component';
 import { DropdownComponent } from './components/aux_components/dropdown/dropdown.component';
 
 import { RouteTestComponent } from './components/route-test/route-test.component';
 import { LectureComponent } from './components/aux_components/lecture/lecture.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AllConversationsComponent } from './components/aux_components/all-conversations/all-conversations.component';
 import { LoadingComponent } from './components/aux_components/loading/loading.component';
 import { PracticeComponent } from './components/practice/practice.component';
 import { PracticeTypeComponent } from './components/aux_components/practice/practice-type/practice-type.component';
@@ -59,7 +56,10 @@ import { LineComponent } from './components/aux_components/authentication/login-
 import { ContactComponent } from './components/suporte/contact/contact.component';
 import { FrequentQuestionsComponent } from './components/suporte/frequent-questions/frequent-questions.component';
 import { DropdownQuestionComponent } from './components/aux_components/contact/frequent-questions/dropdown-question/dropdown-question.component';
-
+import { CommunityHeaderComponent } from './components/aux_components/community/community-header/community-header.component';
+import { CommunityInputComponent } from './components/aux_components/community/community-input/community-input.component';
+import { CommunityCreatePostComponent } from './components/aux_components/community/community-create-post/community-create-post.component';
+import { CommunityPostInformationComponent } from './components/aux_components/community/community-post-information/community-post-information.component';
 
 @NgModule({
   declarations: [
@@ -70,13 +70,10 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
     LearnComponent,
     ProgressBarComponent,
     SidebarComponent,
-    MyConversationsComponent,
-    BtnPlusInputComponent,
     DropdownComponent,
     RouteTestComponent,
     LectureComponent,
     PageNotFoundComponent,
-    AllConversationsComponent,
     LoadingComponent,
     PracticeComponent,
     PracticeTypeComponent,
@@ -98,6 +95,10 @@ import { DropdownQuestionComponent } from './components/aux_components/contact/f
     ContactComponent,
     FrequentQuestionsComponent,
     DropdownQuestionComponent,
+    CommunityHeaderComponent,
+    CommunityInputComponent,
+    CommunityCreatePostComponent,
+    CommunityPostInformationComponent,
   ],
   imports: [
     BrowserModule,

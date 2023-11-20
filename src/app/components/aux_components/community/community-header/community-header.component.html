@@ -1,0 +1,15 @@
+<div id="header_component">
+  <div>
+    <button class="clear-button" style="font-size: xx-large; font-weight: bold;" (click)="goToCommunityPage()">Conversas</button>
+  </div>
+  <div id="tabs">
+    <button class="clear-button round-button" [ngClass]="{'active': active_tab === 'relevants_tab'}" (click)="ActiveTab('relevants_tab')" [ngStyle]="{'text-decoration': active_tab === 'relevants_tab' ? 'underline black' : 'none'}">Relevantes</button>
+    <button class="clear-button round-button" [ngClass]="{'active': active_tab === 'recents_tab'}" (click)="ActiveTab('recents_tab')" [ngStyle]="{'text-decoration': active_tab === 'recents_tab' ? 'underline black' : 'none'}">Recentes</button>
+  </div>
+  <div id="actions">
+    <input type="text" id="search_bar" placeholder="Procure uma conversa">
+    <button class="round-button" (click)="goToCreateConversationPage()">
+      <img src="../../../assets/images/community/new_cvs_icon.png" alt="new_conversation_icon">
+    </button>
+  </div>
+</div>

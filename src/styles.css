@@ -102,10 +102,6 @@
   height: 100vh;
 }
 
-.conversation-body {
-  margin: 1rem 1.5rem;
-}
-
 .border-around {
   margin-top: 1rem;
   border: .1rem solid var(--grayish);
@@ -113,11 +109,14 @@
 }
 
 .clear-button {
-
   outline: none;
   background-color: transparent;
   border: 0;
+}
 
+.round-button {
+  border: none;
+  border-radius: 10px;
 }
 
 

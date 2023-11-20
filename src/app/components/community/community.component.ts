@@ -1,15 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ConversationData } from 'src/app/models/conversation/ConversationData.model';
+import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { PostData } from 'src/app/models/conversation/PostData.model';
+import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 import { environment } from 'src/environments/environment';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    Authorization: localStorage.getItem("auth-key")!
-  })
-};
 
 @Component({
   selector: 'app-community',
@@ -17,50 +12,44 @@ const httpOptions = {
   styleUrls: ['./community.component.css']
 })
 export class CommunityComponent {
-  activeTab: string = 'tab1';
-  createConversationRoute = "/talk/create";
-  searchRoute = "";
-  conversation: ConversationData;
-  disableClick$ = new BehaviorSubject(true);
+
+  public disableClick$ = new BehaviorSubject(true);
+  public conversations: Array<PostData>;
+  public loaded$ = new BehaviorSubject(false);
+
+  private fetchConversationsRoute = "/network/posts";
+
 
   constructor(
-    private http: HttpClient
+    private _snackBarService: SnackbarService,
+    private _http: HttpClient,
+    private _router: Router,
   ) {
-    this.conversation = new ConversationData();
+
+    this.conversations = new Array<PostData>();
   }
 
-  public createNewConversation () {
-    let titleValue = (<HTMLInputElement>document.getElementById('search-bar'))?.value;
-    if (titleValue != undefined || titleValue != null) {
-      this.http.post<string>(
-        environment.HTTP_REQUEST + '/talk/create', {title: titleValue}, httpOptions).subscribe(
-          (response) => {
-            console.log(response);
-          }
+  async ngOnInit (): Promise<void> {
+    await this._fetchConversations();
+  }
+
+  /**
+   * Get conversations from api.
+   * @returns
+   */
+  private async _fetchConversations (): Promise<void> {
+    //const token = localStorage.getItem("credential");
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4YjVmNzJhZS0xNTk2LTQ3ODQtOTIwOC1hMzdmMjJkMDhmOWIiLCJleHAiOjE3MDA3NzAzMzV9.139bouVKON18pjpspNLQ6UWaJ9mBpvtChi8uIJjNubU";
+    if (token) {
+      const header: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      this._http.get(environment.HTTP_REQUEST + this.fetchConversationsRoute, {headers: header}).subscribe(
+        response => {
+          console.log("Response:", response);       
+        }
       );
+    } else {
+      this._snackBarService.openSnackBar(2, "Usuário não autenticado.");
     }
-  }
-
-  public activateTab(tab: string) {
-    this.activeTab = tab;
-    this.disableClick$.next(true);
-  }
-
-  /**
-   * Get created conversation and reply it for the conversation Array.
-   * @param conversation
-   */
-  public handleNewConversation (conversation: ConversationData): void {
-    this.conversation = conversation;
-  }
-
-  /**
-   * Get wheter button should be disabled or not.
-   * @param conversation
-   */
-  public handleClickValue (clickValue: boolean): void {
-    // console.log(this.activeTab,clickValue);
-    this.disableClick$.next(clickValue);
   }
 
 }

@@ -1,16 +1,23 @@
 import { UserInfo } from "../user/UserInfo.model";
-import { LikeData } from "./LikeData.model";
 
 export class PostData {
-  id?         : number;
-  base_text?  : string;
-  user?       : UserInfo;
-  likes_data? : LikeData[];
+  id?          : number;
+  title?       : string;
+  body_text?   : string;
+  user?        : UserInfo;
+  date_created?: Date;
 
-  constructor (postData?: PostData) {
-    this.id         = postData?.id;
-    this.base_text  = postData?.base_text;
-    this.user       = postData?.user;
-    this.likes_data = postData?.likes_data;
+  constructor (
+    id?          : number,
+    title?       : string,
+    body_text?   : string,
+    user?        : UserInfo,
+    date_created?: Date,
+  ) {
+    this.id           = id;
+    this.title        = title;
+    this.body_text    = body_text;
+    this.user         = user;
+    this.date_created = date_created;
   }
 }
