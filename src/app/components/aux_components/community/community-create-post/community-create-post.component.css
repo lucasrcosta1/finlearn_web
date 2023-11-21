@@ -5,6 +5,10 @@ html,body{
     height: 100%;
 }
 
+.lateral_background > div:nth-child(2){
+    margin: 0 1rem;
+}
+
 @media (min-width: 600px) {
     body {margin: 0 5rem;}
 }
@@ -14,5 +18,6 @@ html,body{
     #header {margin: 0 5rem;}
     .lateral_background {display: grid; grid-template-columns: 1.5fr 9fr 1.5fr; position: absolute; height: 100%; width: 100%;}
     .lateral_background > div:first-child {background: linear-gradient(to left, #ffffff, #8FCAA0);}
+    .lateral_background > div:nth-child(2) {padding: 0 5rem; padding-top: 2rem; margin: 0 3rem; border-right: black 1px solid; border-left: black 1px solid;}
     .lateral_background > div:last-child {background: linear-gradient(to right, #ffffff, #8FCAA0);}
 }

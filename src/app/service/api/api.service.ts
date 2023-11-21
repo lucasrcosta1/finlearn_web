@@ -527,5 +527,13 @@ export class ApiService {
     return this._http.post(environment.HTTP_REQUEST + route, requestBody);
   
   }
+  /**
+   * Get the formatted version of a date
+   * @returns formattedDate
+   */
+  getFormattedDate(date : Date) {
+    const months = ["Jan", "Fev", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    return date.getDay() + " " + months[date.getMonth()] + " " + date.getFullYear();
+  }
 
 }

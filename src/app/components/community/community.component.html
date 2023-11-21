@@ -10,12 +10,12 @@
     </div>
 
     <div *ngIf="(loaded$ | async)">
-      <div *ngFor="let conversation of conversations;let i = index;">
-        <div class="conversation_entry">
+      <div *ngFor="let post of posts;let i = index;">
+        <div class="post_entry">
           <img class="user_picture" src="../../../assets/images/community/user_picture.png" alt="user_picture">
           <div>
-            <button class="clear-button round-button">{{conversation.title}}</button>
-            <div class="conversation_details">8 coins · 5 comentários · 1 dia atrás</div>
+            <button class="clear-button round-button">{{post.title}}</button>
+            <div class="post_details">0 coins · 0 comentários · {{post.date_created}}</div>
           </div>
         </div>
       </div>

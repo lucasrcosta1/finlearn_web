@@ -27,7 +27,7 @@ export class CommunityHeaderComponent {
   ){
     this.post = new PostData;
   }
-
+  
   /**
    * Create conversation
    */

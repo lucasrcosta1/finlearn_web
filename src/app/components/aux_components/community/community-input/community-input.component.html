@@ -1,7 +1,7 @@
 <div id="input_comment">
-    <textarea rows="5"></textarea>
+    <textarea rows="5" [(ngModel)]="comment"></textarea>
     <div>
-        <button class="clear-button round-button" id="clear_button">Limpar</button>
-        <button class="round-button" id="comment_button">Comentar</button>
+        <button class="clear-button round-button" id="clear_button" (click)="clearTextArea()">Limpar</button>
+        <button class="round-button" id="comment_button" (click)="submit()">Comentar</button>
     </div>
 </div>

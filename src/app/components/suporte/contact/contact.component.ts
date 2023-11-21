@@ -1,7 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from 'src/app/service/shared/shared.service';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -11,10 +13,12 @@ import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 export class ContactComponent {
 
   contactForm: FormGroup;
+  contactRoute: string = "/contact/create"
 
   constructor (
+    private _http: HttpClient,
     private _formBuilder: FormBuilder,
-    private _snackbarService: SnackbarService,
+    private _snackBarService: SnackbarService,
     private _sharedService: SharedService,
   ) {
 
@@ -29,12 +33,21 @@ export class ContactComponent {
 
     const name = this.contactForm.value.name, email = this.contactForm.value.email, subject = this.contactForm.value.subject, description = this.contactForm.value.description;
     if (this._checkContactFieldsAreCorrectlyFilled("name", "email", "subject", "description", name, email, subject, description)) {
-      
-      const contactInfo = {name: name, email: email, subject: subject, description: description};
-      // this._apiService.post("/contact", contactInfo);
-      this._snackbarService.openSnackBar(10,"Logo responderemos seu contato. Fique de olho no seu email!");
-      this.contactForm.reset();
+      const token = localStorage.getItem("credential");
+      if (token) {
+      const requestBody = {name: name, email: email, subject: subject, doubt: description};
+      const header: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      this._http.post(environment.HTTP_REQUEST + this.contactRoute, requestBody, {headers: header}).subscribe(
+        response => {
+          console.log("Response:", response);
+        }
+      );
+      } else {
+        this._snackBarService.openSnackBar(2, "Usuário não autenticado.");
+      }
 
+      this._snackBarService.openSnackBar(10,"Logo responderemos seu contato. Fique de olho no seu email!");
+      this.contactForm.reset();
     }
 
   }
@@ -113,6 +126,4 @@ export class ContactComponent {
     return isNameFieldOk && isEmailFieldOk && isSubjectFieldOk && isDescriptionFieldOk;
 
   }
-  
-
 }

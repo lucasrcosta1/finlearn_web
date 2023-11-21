@@ -6,19 +6,19 @@
 <html>
   <body>
     <div id="header">
-        <app-community-header></app-community-header>
+        <app-community-header [active_tab]="'disabled'"></app-community-header>
     </div>
 
     <div class="lateral_background">
       <div></div>
 
-      <div style="padding: 0 5rem; padding-top: 2rem; margin: 0 3rem; gap: 1rem; border-right: black 1px solid; border-left: black 1px solid;">
+      <div>
         <div>
-          <app-community-post-information [post_title]=post_title [coins]=0 [replies]=0 [date]=formatDate() [name]="'Fulano de Tal'"></app-community-post-information>
+          <app-community-post-information [post_title]=post_title! [coins]=0 [replies]=0 [date]=getCurrentDayDate() [name]="getLoggedUserName()"></app-community-post-information>
         </div>
 
         <div>
-          <app-community-input></app-community-input>
+          <app-community-input (createPostEvent)="createPost($event)"></app-community-input>
         </div>
       </div>
 

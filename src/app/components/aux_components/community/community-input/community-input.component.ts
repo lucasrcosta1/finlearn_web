@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-community-input',
@@ -6,5 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./community-input.component.css']
 })
 export class CommunityInputComponent {
+  @Output() createPostEvent = new EventEmitter<string>();
+  comment: string = ""
 
+  clearTextArea(){
+    this.comment = "";
+  }
+
+  submit() {
+    this.createPostEvent.emit(this.comment)
+    this.clearTextArea()
+  }
 }
