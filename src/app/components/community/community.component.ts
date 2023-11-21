@@ -5,6 +5,9 @@ import { Component } from '@angular/core';
 import { PostData } from 'src/app/models/conversation/PostData.model';
 import { SnackbarService } from 'src/app/service/snackbar/snackbar.service';
 import { environment } from 'src/environments/environment';
+import { ApiService } from 'src/app/service/api/api.service';
+import { Obj } from '@popperjs/core';
+import { UserInfo } from 'src/app/models/user/UserInfo.model';
 
 @Component({
   selector: 'app-community',
@@ -14,42 +17,44 @@ import { environment } from 'src/environments/environment';
 export class CommunityComponent {
 
   public disableClick$ = new BehaviorSubject(true);
-  public conversations: Array<PostData>;
+  public posts: Array<PostData>;
   public loaded$ = new BehaviorSubject(false);
-
-  private fetchConversationsRoute = "/network/posts";
+  private fetchPostsRoute = "/network/posts";
 
 
   constructor(
     private _snackBarService: SnackbarService,
     private _http: HttpClient,
     private _router: Router,
+    private _apiService: ApiService
   ) {
-
-    this.conversations = new Array<PostData>();
+    this.posts = new Array<PostData>();
   }
 
   async ngOnInit (): Promise<void> {
-    await this._fetchConversations();
+    this._fetchPosts();
   }
 
   /**
-   * Get conversations from api.
+   * Get posts from api.
    * @returns
    */
-  private async _fetchConversations (): Promise<void> {
-    //const token = localStorage.getItem("credential");
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4YjVmNzJhZS0xNTk2LTQ3ODQtOTIwOC1hMzdmMjJkMDhmOWIiLCJleHAiOjE3MDA3NzAzMzV9.139bouVKON18pjpspNLQ6UWaJ9mBpvtChi8uIJjNubU";
+  private async _fetchPosts (): Promise<void> {
+    const token = localStorage.getItem("credential");
     if (token) {
       const header: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      this._http.get(environment.HTTP_REQUEST + this.fetchConversationsRoute, {headers: header}).subscribe(
+      this._http.get(environment.HTTP_REQUEST + this.fetchPostsRoute, {headers: header}).subscribe(
         response => {
-          console.log("Response:", response);       
+          this.posts = response as Array<PostData>;
+          this.loaded$.next(true);
         }
-      );
+      )
     } else {
       this._snackBarService.openSnackBar(2, "Usuário não autenticado.");
     }
   }
 
+  public getFormattedDate(date : Date){
+    return this._apiService.getFormattedDate(date);
+  }
 }

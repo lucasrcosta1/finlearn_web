@@ -4,7 +4,7 @@ html,body{
   padding: 0 0.5rem;
 }
 
-.conversation_entry{
+.post_entry{
   border-style: solid;
   border-color: #E2E2E2;
   border-radius: 8px;
@@ -17,13 +17,13 @@ html,body{
   align-items: center;
 }
 
-.conversation_entry > * button {
+.post_entry > * button {
   font-weight: bold;
   padding: 0;
   margin-bottom: 0.5rem;
 }
 
-.conversation_entry > * button:hover {
+.post_entry > * button:hover {
   text-decoration: underline black;
 }
 
